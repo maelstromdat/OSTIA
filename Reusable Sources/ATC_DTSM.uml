@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="_YBiHIISSEeW5ALaYT6mO8g" name="model">
+  <ownedComment xmi:type="uml:Comment" xmi:id="_mgr7UIbiEeWkx-Bh3MqvXw" annotatedElement="_n4icEISSEeW5ALaYT6mO8g _pbakEISSEeW5ALaYT6mO8g">
+    <body>&lt;&lt;Spout>></body>
+  </ownedComment>
+  <ownedComment xmi:type="uml:Comment" xmi:id="_rzt7MIbiEeWkx-Bh3MqvXw" annotatedElement="_qSWMEISSEeW5ALaYT6mO8g _n4icEISSEeW5ALaYT6mO8g _pbakEISSEeW5ALaYT6mO8g __ewfcISSEeW5ALaYT6mO8g _yljYYISSEeW5ALaYT6mO8g _Cgo8EISTEeW5ALaYT6mO8g _Fvk9QISTEeW5ALaYT6mO8g _LMvwkISTEeW5ALaYT6mO8g">
+    <body>&lt;&lt;Bolt>></body>
+  </ownedComment>
+  <ownedComment xmi:type="uml:Comment" xmi:id="_zEFKcIbiEeWkx-Bh3MqvXw" annotatedElement="_hEop4ISTEeW5ALaYT6mO8g _bSY-cISTEeW5ALaYT6mO8g _Cgo8EISTEeW5ALaYT6mO8g _VBqnQISTEeW5ALaYT6mO8g _LMvwkISTEeW5ALaYT6mO8g _nmAsMISTEeW5ALaYT6mO8g _sTl1oISTEeW5ALaYT6mO8g _uqD9wISTEeW5ALaYT6mO8g _wcouoISTEeW5ALaYT6mO8g">
+    <body>&lt;&lt;Bolt>></body>
+  </ownedComment>
+  <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_n4icEISSEeW5ALaYT6mO8g" name="WPSpout"/>
+  <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_pbakEISSEeW5ALaYT6mO8g" name="MISpout"/>
+  <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_qSWMEISSEeW5ALaYT6mO8g" name="WPDeserializer"/>
+  <packagedElement xmi:type="uml:InformationFlow" xmi:id="_xIwDMISSEeW5ALaYT6mO8g" name="InformationFlow1" informationSource="_n4icEISSEeW5ALaYT6mO8g" informationTarget="_qSWMEISSEeW5ALaYT6mO8g"/>
+  <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_yljYYISSEeW5ALaYT6mO8g" name="Expander"/>
+  <packagedElement xmi:type="uml:InformationFlow" xmi:id="_0HiIgISSEeW5ALaYT6mO8g" name="InformationFlow2" informationSource="_qSWMEISSEeW5ALaYT6mO8g" informationTarget="_yljYYISSEeW5ALaYT6mO8g"/>
+  <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="__ewfcISSEeW5ALaYT6mO8g" name="Media"/>
+  <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_Cgo8EISTEeW5ALaYT6mO8g" name="MediaExtraction"/>
+  <packagedElement xmi:type="uml:InformationFlow" xmi:id="_D1MUMISTEeW5ALaYT6mO8g" name="InformationFlow3" informationSource="_yljYYISSEeW5ALaYT6mO8g" informationTarget="_Cgo8EISTEeW5ALaYT6mO8g"/>
+  <packagedElement xmi:type="uml:InformationFlow" xmi:id="_EIJFYISTEeW5ALaYT6mO8g" name="InformationFlow4" informationSource="__ewfcISSEeW5ALaYT6mO8g" informationTarget="_Cgo8EISTEeW5ALaYT6mO8g"/>
+  <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_Fvk9QISTEeW5ALaYT6mO8g" name="MIDeserializer"/>
+  <packagedElement xmi:type="uml:InformationFlow" xmi:id="_IU29cISTEeW5ALaYT6mO8g" name="InformationFlow5" informationSource="_pbakEISSEeW5ALaYT6mO8g" informationTarget="_Fvk9QISTEeW5ALaYT6mO8g"/>
+  <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_LMvwkISTEeW5ALaYT6mO8g" name="MIStatusChecker"/>
+  <packagedElement xmi:type="uml:InformationFlow" xmi:id="_O5mc0ISTEeW5ALaYT6mO8g" name="InformationFlow6" informationSource="_Cgo8EISTEeW5ALaYT6mO8g" informationTarget="_LMvwkISTEeW5ALaYT6mO8g"/>
+  <packagedElement xmi:type="uml:InformationFlow" xmi:id="_PSkWcISTEeW5ALaYT6mO8g" name="InformationFlow7" informationSource="_Fvk9QISTEeW5ALaYT6mO8g" informationTarget="_LMvwkISTEeW5ALaYT6mO8g"/>
+  <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_SUTpIISTEeW5ALaYT6mO8g" name="WebPage"/>
+  <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_VBqnQISTEeW5ALaYT6mO8g" name="ArticleExtraction"/>
+  <packagedElement xmi:type="uml:InformationFlow" xmi:id="_WEhLYISTEeW5ALaYT6mO8g" name="InformationFlow8" informationSource="_SUTpIISTEeW5ALaYT6mO8g" informationTarget="_VBqnQISTEeW5ALaYT6mO8g"/>
+  <packagedElement xmi:type="uml:InformationFlow" xmi:id="_WbzqAISTEeW5ALaYT6mO8g" name="InformationFlow9" informationSource="_yljYYISSEeW5ALaYT6mO8g" informationTarget="_VBqnQISTEeW5ALaYT6mO8g"/>
+  <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_bSY-cISTEeW5ALaYT6mO8g" name="TextIndexer"/>
+  <packagedElement xmi:type="uml:InformationFlow" xmi:id="_cfqp4ISTEeW5ALaYT6mO8g" name="InformationFlow10" informationSource="_VBqnQISTEeW5ALaYT6mO8g" informationTarget="_bSY-cISTEeW5ALaYT6mO8g"/>
+  <packagedElement xmi:type="uml:InformationFlow" xmi:id="_c6EG4ISTEeW5ALaYT6mO8g" name="InformationFlow11" informationSource="_SUTpIISTEeW5ALaYT6mO8g" informationTarget="_bSY-cISTEeW5ALaYT6mO8g"/>
+  <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_hEop4ISTEeW5ALaYT6mO8g" name="VIndexer"/>
+  <packagedElement xmi:type="uml:InformationFlow" xmi:id="_k40tMISTEeW5ALaYT6mO8g" name="InformationFlow12" informationSource="_LMvwkISTEeW5ALaYT6mO8g" informationTarget="_hEop4ISTEeW5ALaYT6mO8g"/>
+  <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_nmAsMISTEeW5ALaYT6mO8g" name="RedisBolt"/>
+  <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_sTl1oISTEeW5ALaYT6mO8g" name="MediaTextIndexer"/>
+  <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_uqD9wISTEeW5ALaYT6mO8g" name="MediaUpdater"/>
+  <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_wcouoISTEeW5ALaYT6mO8g" name="Clusterer"/>
+  <packagedElement xmi:type="uml:InformationFlow" xmi:id="_zIxkwISTEeW5ALaYT6mO8g" name="InformationFlow13" informationSource="_hEop4ISTEeW5ALaYT6mO8g" informationTarget="_wcouoISTEeW5ALaYT6mO8g"/>
+  <packagedElement xmi:type="uml:InformationFlow" xmi:id="_za52kISTEeW5ALaYT6mO8g" name="InformationFlow14" informationSource="_hEop4ISTEeW5ALaYT6mO8g" informationTarget="_uqD9wISTEeW5ALaYT6mO8g"/>
+  <packagedElement xmi:type="uml:InformationFlow" xmi:id="_zrMVUISTEeW5ALaYT6mO8g" name="InformationFlow15" informationSource="_hEop4ISTEeW5ALaYT6mO8g" informationTarget="_sTl1oISTEeW5ALaYT6mO8g"/>
+  <packagedElement xmi:type="uml:InformationFlow" xmi:id="_0DA_cISTEeW5ALaYT6mO8g" name="InformationFlow16" informationSource="_hEop4ISTEeW5ALaYT6mO8g" informationTarget="_nmAsMISTEeW5ALaYT6mO8g"/>
+</uml:Model>
