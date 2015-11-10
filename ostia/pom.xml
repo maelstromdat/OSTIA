@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- Basic Info -->
+    <groupId>ostia</groupId>
+    <artifactId>ostia</artifactId>
+    <version>0.1</version>
+    <packaging>jar</packaging>
+
+    <!-- Project information -->
+    <name>Ostia</name>
+    <url>https://github.com/maelstromdat/OSTIA</url>
+    <description>
+        OSTIA is a parser to elicit and represent Storm Topologies by reverse engineering of Storm-based Big-Data
+        programs. The intent and aim of OSTIA is to automatically represent models of Storm topologies and conduct
+        inference analysis on them before nasty issues at run-time take place. A part of said run-time issues can be
+        avoided by using OSTIA and the analyses intended within it.
+    </description>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.github.javaparser</groupId>
+            <artifactId>javaparser-core</artifactId>
+            <version>2.2.2</version>
+        </dependency>
+    </dependencies>
+</project>
