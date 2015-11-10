@@ -10,8 +10,17 @@ public class DirectGraph<V> {
 
     public String toString() {
         StringBuffer s = new StringBuffer();
-        for (V v : neighbors.keySet())
-            s.append("\n    " + v + " -> " + neighbors.get(v));
+        s.append("digraph G {");
+        for (V v : neighbors.keySet()) {
+            if (neighbors.get(v).size() > 0)
+                 for (Edge edge : neighbors.get(v)) {
+                     s.append("\n  " + v + " -> " + edge);
+                 }
+            else {
+                continue;
+            }
+        }
+        s.append("\n}");
         return s.toString();
     }
 
@@ -19,24 +28,6 @@ public class DirectGraph<V> {
         if (neighbors.containsKey(vertex))
             return;
         neighbors.put(vertex, new ArrayList<Edge<V>>());
-    }
-
-    public int getNumberOfEdges() {
-        int sum = 0;
-        for (List<Edge<V>> outBounds : neighbors.values()) {
-            sum += outBounds.size();
-        }
-        return sum;
-    }
-
-    public boolean contains(V vertex) {
-        return neighbors.containsKey(vertex);
-    }
-
-    public void add(V from, V to, String label) {
-        this.add(from);
-        this.add(to);
-        neighbors.get(from).add(new Edge<V>(to, label));
     }
 
     public static class Edge<V> {
@@ -48,17 +39,9 @@ public class DirectGraph<V> {
             label = l;
         }
 
-        public V getVertex() {
-            return vertex;
-        }
-
-        public String getLabel() {
-            return label;
-        }
-
         @Override
         public String toString() {
-            return "Edge [vertex=" + vertex + ", label=" + label + "]";
+            return vertex + " [label=\"" + label + "\"];";
         }
     }
 }
