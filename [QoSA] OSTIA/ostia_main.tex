@@ -60,7 +60,58 @@
 % \documentclass[conference]{../sty/IEEEtran}
 
 
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+\usepackage{booktabs, multicol, multirow}
+\usepackage[acronym,nomain]{glossaries}
+\usepackage[inline]{enumitem}
+\usepackage{algorithm}
+\usepackage{algorithmicx}
+\usepackage{algpseudocode}
+\usepackage{amsmath}
+\usepackage{subfigure}
+\usepackage{grffile}
+\usepackage{tabularx}
+\usepackage{colortbl}
+\usepackage{hhline}
+\usepackage{hyperref}
+\usepackage[pdftex]{graphicx}
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % new commands % % %
+\usepackage[colorinlistoftodos,prependcaption,textsize=tiny]{todonotes}
+%
+% Convenience commands for the paper editing process
+%
+\newcommand{\comment}[1]{{\textbf{\color{red}[#1]}}}
+\newcommand{\fixed}[1]{{\textbf{\color{blue}[#1]}}}
+
+%
+% Convenience commands for references
+%
+\newcommand{\secref}[1]{Section~\ref{sec:#1}}
+\newcommand{\tabref}[1]{Table~\ref{tab:#1}}
+\newcommand{\figref}[1]{Figure~\ref{fig:#1}}
+\newcommand{\quotes}[1]{``#1''}
+
+\newcommand{\argmin}{\arg\!\min}
+\newcommand{\argmax}{\arg\!\max}
+
+
+\newtheorem{definition}{Definition}
+
+\renewcommand{\algorithmicrequire}{\textbf{Input:}}
+\renewcommand{\algorithmicensure}{\textbf{Output:}}
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+% Acronym definitions
+\newacronym{sps}{SPS}{Stream Processing Systems}
+\newacronym{pe}{PE}{Processing Elements}
+\newacronym{dag}{DAG}{Directed Acyclic Graph}
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 
 
 % Some very useful LaTeX packages include:
@@ -115,14 +166,14 @@
 
 % *** GRAPHICS RELATED PACKAGES ***
 %
-\ifCLASSINFOpdf
-   \usepackage[pdftex]{graphicx}
+
+   
   % declare the path(s) where your graphic files are
   % \graphicspath{{../pdf/}{../jpeg/}}
   % and their extensions so you won't have to specify these with
   % every instance of \includegraphics
   % \DeclareGraphicsExtensions{.pdf,.jpeg,.png}
-\else
+
   % or other class option (dvipsone, dvipdf, if not using dvips). graphicx
   % will default to the driver specified in the system graphics.cfg if no
   % driver is specified.
@@ -132,7 +183,7 @@
   % and their extensions so you won't have to specify these with
   % every instance of \includegraphics
   % \DeclareGraphicsExtensions{.eps}
-\fi
+
 % graphicx was written by David Carlisle and Sebastian Rahtz. It is
 % required if you want graphics, photos, etc. graphicx.sty is already
 % installed on most LaTeX systems. The latest version and documentation
@@ -177,7 +228,7 @@
 
 % *** SPECIALIZED LIST PACKAGES ***
 %
-\usepackage{algorithmic}
+
 % algorithmic.sty was written by Peter Williams and Rogerio Brito.
 % This package provides an algorithmic environment fo describing algorithms.
 % You can use the algorithmic environment in-text or within a figure
@@ -383,6 +434,7 @@ Email: damianandrew.tamburri@polimi.it}}
 % As a general rule, do not put math, special symbols or citations
 % in the abstract
 \begin{abstract}
+	
 Big-Data architectures featuring Storm have been proliferating massively in the last few years. For example Twitter uses complex Storm-based topologies to analyse and learn valuable trends from billions of tweets per minute. However, increasing the quality and consistency of Storm topologies before having expensive infrastructure up and running is still a big challenge. As an aid to designers and developers evaluating their Storm topologies much sooner than deployment-time, we developed OSTIA, that is, ``On-the-fly Storm Topology Inference Analysis". OSTIA offers round-trip engineering of Storm topologies so that designers and developers may: (a) use previously existing model-driven verification\&validation techniques on elicited models; (b) visualise and evaluate these models against simple consistency checks that would only be available at deployment and run-time. We illustrate the uses and benefits of OSTIA on three real-life industrial case studies.
 \end{abstract}
 
