@@ -25,9 +25,16 @@ public class DirectGraph<V> {
     }
 
     public void add(V vertex) {
+
         if (neighbors.containsKey(vertex))
             return;
         neighbors.put(vertex, new ArrayList<Edge<V>>());
+    }
+
+    public void add(V from, V to, String label) {
+        this.add(from);
+        this.add(to);
+        neighbors.get(from).add(new Edge<V>(to, label));
     }
 
     public static class Edge<V> {

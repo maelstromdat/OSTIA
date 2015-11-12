@@ -16,7 +16,7 @@ public class Ostia {
     }
 
     public Ostia() throws Exception {
-        FileInputStream in = new FileInputStream("examples/test.java");
+        FileInputStream in = new FileInputStream("examples/FocusedCrawler.java");
 
         CompilationUnit compilationUnit;
         try {
@@ -27,6 +27,18 @@ public class Ostia {
         MethodVisitor visitor = new MethodVisitor();
         visitor.visit(compilationUnit, null);
         visitor.printTopology();
+    }
+
+    private class Link {
+        String _from;
+        String _to;
+        String _label;
+
+        Link(String from, String to, String label){
+            _from = from;
+            _to = to;
+            _label = label;
+        }
     }
 
     private class MethodVisitor extends VoidVisitorAdapter {
@@ -43,8 +55,10 @@ public class Ostia {
                 _topology.add(spoutName);
             } else if (isBolt(call)) {
                 String parent = call.getParentNode().toString();
-                ArrayList<String> graphVertexes = getBoltLink(parent);
-                _topology.add(graphVertexes.get(1), graphVertexes.get(0), graphVertexes.get(2));
+                ArrayList<Link> edges = getBoltLinks(parent);
+                for (Link link : edges) {
+                    _topology.add(link._from, link._to, link._label);
+                }
             }
             super.visit(call, arg);
         }
@@ -59,17 +73,28 @@ public class Ostia {
             }
         }
 
-        private ArrayList<String> getBoltLink(String methodCall) {
-            Pattern string = Pattern.compile("\"[A-Za-z0-9]+\"");
+        private ArrayList<Link> getBoltLinks(String methodCall) {
+            Pattern string = Pattern.compile("(Grouping|Bolt|Spout)\\(\"([A-Za-z0-9]+)\"");
             Matcher matcher = string.matcher(methodCall);
-            ArrayList<String> ary = new ArrayList<String>();
 
+            ArrayList<String> sources = new ArrayList<String>();
+            System.out.println("B===");
+            System.out.println(methodCall);
             while (matcher.find()) {
-                if (ary.size() >= 2)
-                    continue;
-                ary.add(matcher.group(0));
+                System.out.println("Group: " + matcher.group(0));
+                System.out.println("Group: " + matcher.group(1));
+                System.out.println("Group: " + matcher.group(2));
+                sources.add(matcher.group(2));
+                System.out.println("E===");
             }
+            String mainVertex = sources.get(0);
+            sources.remove(mainVertex);
 
+            ArrayList<Link> edges = new ArrayList<Link>();
+            for (String source : sources) {
+                edges.add(new Link(source, mainVertex, ""));
+            }
+            /*
             string = Pattern.compile("[A-Za-z0-9]+Grouping");
             matcher = string.matcher(methodCall);
             ArrayList<String> tmp = new ArrayList<String>();
@@ -79,6 +104,8 @@ public class Ostia {
             assert(tmp.size() == 1);
             ary.add(tmp.get(0));
             return ary;
+            */
+            return edges;
         }
 
         private boolean isSpout(MethodCallExpr methodCall) {
