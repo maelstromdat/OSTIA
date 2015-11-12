@@ -67,6 +67,7 @@ class Ostia
   private
 
   def useful_lines
+    # TODO: comments
     spouts = @source_code.scan(%r{setSpout\("\w+".*\)})
     bolts = @source_code.scan(%r{setBolt\("\w+".*\)(?:\s*\..*)*})
             .map { |line| line.gsub(/\s/, '') }
@@ -74,6 +75,7 @@ class Ostia
   end
 
   def generate_graph(lines)
+    # TODO: stream_id?
     lines.each do |line|
       methods = line.split('.')
       destination_node = extract_component_name(methods.first)
