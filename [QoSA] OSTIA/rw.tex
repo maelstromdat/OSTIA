@@ -1,6 +1,14 @@
-\begin{itemize}
-\item mention DICE
-\item mention work by Len Bass on Big-Data
-\item other stuff on big data?
-\item feel free to extend this section with Previous work of course :)
-\end{itemize}
+%\begin{itemize}
+%\item mention DICE
+%\item mention work by Len Bass on Big-Data
+%\item other stuff on big data?
+%\item feel free to extend this section with Previous work of course :)
+%\end{itemize}
+
+There are several work close to OSTIA in terms of their foundations and type of support. 
+
+First, from a quantitative perspective, much literature discusses quality analyses of Storm topologies, e.g., from a performance~\cite{perfbd} or reliability point of view \cite{bigdatareliab}. Said works use complex math-based approaches to evaluating a number of Big data architectures, their structure and general configuration. However, although novel, these approaches do not suggest any significant design improvement method or pattern to make the improvements \emph{deployable}. With OSTIA, we make available a tool that automatically elicits a Storm topology and, while doing so, analyses said topology to evaluate it against a number of consistency checks that make the topology consistent with the framework it was developed for (Storm, in our case). To the best of our knowledge, no such tool exists. 
+
+Second, from a modelling perspective, approaches such as StormGen~\cite{stormgen} offer means to develop Storm topologies in a model-driven fashion using a combination of generative techniques based on XText and heavyweight (meta-)modelling, based on EMF, the standard Eclipse Modelling Framework Format. Although the first of its kind, StormGen merely allows the specification of a Storm topology, without applying any consistency checks or without offering the possibility to \emph{recover} said topology once it has been developed. By means of OSTIA, designers and developers can work hand in hand while refining their Storm topologies, e.g., as a consequence of verification or failed checks through OSTIA. As a consequence, tools such as StormGen can be used to assist the preliminary development of quick-and-dirty Storm topologies, e.g., to be further processed and improved with OSTIA.
+
+In addition, several deployment modelling technologies may be related to OSTIA since their role is to model the deployment structure represented by Big data architectures so that it can actually be deployed using compliant orchestrators. One such example is Celar\footnote{\url{https://github.com/CELAR/c-Eclipse}}, a deployment modelling technology based on the TOSCA OASIS Standard\footnote{\url{https://www.oasis-open.org/apps/org/workgroup/tosca/}}. Celar and related technologies (e.g., Alien4Cloud\footnote{\url{http://alien4cloud.github.io/}}) may be used in combination with OSTIA since their role is that of representing the infrastructure needed by modelled (Big data) applications so that they can be deployed. This representation is realised by means of infrastructure blueprints to be run by compliant orchestrators. The role of OSTIA in this scenario, is that of helping the quality refinement of an application topology to represent the very infrastructure needed for its run-time environment.
