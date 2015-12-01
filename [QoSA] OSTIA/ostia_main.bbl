@@ -52,4 +52,39 @@ R.~Evans, ``Apache storm, a hands on tutorial.'' in \emph{IC2E}.\hskip 1em plus
   \url{http://dblp.uni-trier.de/db/conf/ic2e/ic2e2015.html#Evans15}
 \BIBentrySTDinterwordspacing
 
+\bibitem{ibmspl}
+\BIBentryALTinterwordspacing
+M.~Hirzel, H.~Andrade, B.~Gedik, G.~Jacques-Silva, R.~Khandekar, V.~Kumar,
+  M.~P. Mendell, H.~Nasgaard, S.~Schneider, R.~Soulé, and K.-L. Wu, ``Ibm
+  streams processing language: Analyzing big data in motion.'' \emph{IBM
+  Journal of Research and Development}, vol.~57, no. 3/4, p.~7, 2013. [Online].
+  Available:
+  \url{http://dblp.uni-trier.de/db/journals/ibmrd/ibmrd57.html#HirzelAGJKKMNSSW13}
+\BIBentrySTDinterwordspacing
+
+\bibitem{perfbd}
+\BIBentryALTinterwordspacing
+D.~Wang and J.~Liu, ``Optimizing big data processing performance in the public
+  cloud: opportunities and approaches.'' \emph{IEEE Network}, vol.~29, no.~5,
+  pp. 31--35, 2015. [Online]. Available:
+  \url{http://dblp.uni-trier.de/db/journals/network/network29.html#WangL15}
+\BIBentrySTDinterwordspacing
+
+\bibitem{bigdatareliab}
+\BIBentryALTinterwordspacing
+Y.~Tamura and S.~Yamada, ``Reliability analysis based on a jump diffusion model
+  with two wiener processes for cloud computing with big data.''
+  \emph{Entropy}, vol.~17, no.~7, pp. 4533--4546, 2015. [Online]. Available:
+  \url{http://dblp.uni-trier.de/db/journals/entropy/entropy17.html#TamuraY15}
+\BIBentrySTDinterwordspacing
+
+\bibitem{stormgen}
+\BIBentryALTinterwordspacing
+K.~Chandrasekaran, S.~Santurkar, and A.~Arora, ``Stormgen - a domain specific
+  language to create ad-hoc storm topologies.'' in \emph{FedCSIS}, M.~Ganzha,
+  L.~A. Maciaszek, and M.~Paprzycki, Eds., 2014, pp. 1621--1628. [Online].
+  Available:
+  \url{http://dblp.uni-trier.de/db/conf/fedcsis/fedcsis2014.html#ChandrasekaranSA14}
+\BIBentrySTDinterwordspacing
+
 \end{thebibliography}
