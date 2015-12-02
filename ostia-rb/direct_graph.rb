@@ -3,6 +3,8 @@ require 'json'
 #:nodoc:
 module Ostia
   class DirectGraph
+    attr_reader :nodes, :spouts
+
     def initialize
       @nodes      = {}
       @spouts_map = {}
@@ -35,6 +37,21 @@ module Ostia
 
     def in_edges(node)
       @inverse[node].map { |h| h[:node] }
+    end
+
+    def make_undirect
+      undirect = {}
+      @nodes.each do |node, neighbors|
+        neighbor_names = neighbors.map { |hash| hash[:node] }
+        #undirect[node] = neighbor_names
+        neighbor_names.each do |name|
+          undirect[name] ||= []
+          undirect[node] ||= []
+          undirect[name] << node
+          undirect[node] << name
+        end
+      end
+      undirect
     end
 
     def generate_dot

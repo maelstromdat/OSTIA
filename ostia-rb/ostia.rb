@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 
 require './direct_graph'
+require './checker'
 
 #:nodoc:
 module Ostia
@@ -9,21 +10,33 @@ module Ostia
 
   class Runner
     def initialize(args)
-      if args.size != 2 || !OUTPUT_FORMATS.include?(args.last)
+      if args.size != 3 || !OUTPUT_FORMATS.include?(args.last)
         puts "Usage: ./ostia.rb <file_with_topologyBuilder>\
  <format: #{OUTPUT_FORMATS.join(', ')}>"
         exit 1
       end
-      @filename = args.first
-      @format = args.last
-      @graph = DirectGraph.new
+      @filename    = args[0]
+      @output_file = args[1]
+      @format      = args[2]
+      @graph       = DirectGraph.new
     end
 
     def run
       @source_code = File.open(@filename).read
       lines = useful_lines
       generate_graph(lines)
-      @graph.send("generate_#{@format}")
+      problems = Checker.new(@graph).run
+      if problems.any?
+        puts "#{problems.size} reported:"
+        problems.each do |problem|
+          puts problem
+        end
+      else
+        puts 'No errors detected'
+      end
+      file = File.open(@output_file, 'w')
+      file.puts @graph.send("generate_#{@format}")
+      file.close
     end
 
     private
@@ -64,4 +77,4 @@ module Ostia
   end
 end
 
-puts Ostia::Runner.new(ARGV).run
+Ostia::Runner.new(ARGV).run
