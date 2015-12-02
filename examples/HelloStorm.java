@@ -23,7 +23,7 @@ public class HelloStorm {
         builder.setSpout("spout", new MySpout());
         builder.setBolt("split", new SplitterBolt()).shuffleGrouping("spout");
         builder.setBolt("counter", new WordCounterBolt()).fieldsGrouping("split", new Fields("word"));
-        builder.setBolt("lol", new WordCounterBolt()).fieldsGrouping("X", new Fields("word"));
+        builder.setBolt("Y", new WordCounterBolt()).fieldsGrouping("X", new Fields("word"));
 
         config.setNumWorkers(3);
         config.setNumAckers(3);
