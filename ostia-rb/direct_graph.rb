@@ -6,9 +6,14 @@ module Ostia
     attr_reader :nodes, :spouts
 
     def initialize
-      @nodes      = {}
-      @spouts_map = {}
-      @inverse    = {}
+      @nodes       = {}
+      @spouts_map  = {}
+      @inverse     = {}
+      @parallelism = Hash.new(0)
+    end
+
+    def add_parallelism(node_name, parallelism)
+      @parallelism[node_name] = parallelism
     end
 
     def add_link(from, to, label)
@@ -43,7 +48,6 @@ module Ostia
       undirect = {}
       @nodes.each do |node, neighbors|
         neighbor_names = neighbors.map { |hash| hash[:node] }
-        #undirect[node] = neighbor_names
         neighbor_names.each do |name|
           undirect[name] ||= []
           undirect[node] ||= []
@@ -60,8 +64,8 @@ module Ostia
         next if neighbors.empty?
         neighbors.each do |destination|
           str += "\n  " \
-                 + node + ' -> ' \
-                 + destination[:node] \
+                 + node + "#{@parallelism[node]}" + ' -> ' \
+                 + destination[:node] + "#{@parallelism[destination[:node]]}" \
                  + " [label=\"#{destination[:label]}\"]"
         end
       end
@@ -79,7 +83,9 @@ module Ostia
       end
 
       bolts.each do |bolt|
-        hash[:topology][:bolts] << { id: bolt, subs: in_edges(bolt) }
+        hash[:topology][:bolts] << { id: bolt,
+                                     subs: in_edges(bolt),
+                                     parallelism: @parallelism[bolt] }
       end
 
       hash.to_json

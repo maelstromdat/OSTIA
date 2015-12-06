@@ -54,6 +54,7 @@ module Ostia
       lines.each do |line|
         methods = line.split('.')
         destination_node = extract_component_name(methods.first)
+        extract_parallelism(destination_node, line)
         if methods.size == 1
           @graph.add_node(destination_node, is_spout: true)
         else
@@ -65,6 +66,12 @@ module Ostia
           end
         end
       end
+    end
+
+    def extract_parallelism(node, line)
+      require 'pp'
+      parallelism =  line.scan(/(\d+)\s*\)/).first.first.to_i
+      @graph.add_parallelism(node, parallelism)
     end
 
     def extract_component_name(line)
