@@ -111,6 +111,11 @@ Y.~Tamura and S.~Yamada, ``Reliability analysis based on a jump diffusion model
   \url{http://dblp.uni-trier.de/db/journals/entropy/entropy17.html#TamuraY15}
 \BIBentrySTDinterwordspacing
 
+\bibitem{jamshidi-vldb}
+P.~Jamshidi and G.~Casale, ``An uncertainty-aware approach to optimal
+  configuration of stream processing systems.'' in \emph{VLDB (under
+  evaluation)}, 2016.
+
 \bibitem{stormgen}
 \BIBentryALTinterwordspacing
 K.~Chandrasekaran, S.~Santurkar, and A.~Arora, ``Stormgen - a domain specific

@@ -25,45 +25,45 @@ Warning--I didn't find a database entry for "conf/fedcsis/2014"
 -- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
 
 Done.
-You've used 13 entries,
+You've used 14 entries,
             4039 wiz_defined-function locations,
-            904 strings with 10118 characters,
-and the built_in function-call counts, 9494 in all, are:
-= -- 748
-> -- 237
+            909 strings with 10269 characters,
+and the built_in function-call counts, 9950 in all, are:
+= -- 780
+> -- 246
 < -- 60
-+ -- 126
-- -- 46
-* -- 477
-:= -- 1518
-add.period$ -- 29
-call.type$ -- 13
-change.case$ -- 12
++ -- 130
+- -- 48
+* -- 495
+:= -- 1591
+add.period$ -- 31
+call.type$ -- 14
+change.case$ -- 13
 chr.to.int$ -- 126
-cite$ -- 13
-duplicate$ -- 663
-empty$ -- 815
-format.name$ -- 57
-if$ -- 2170
+cite$ -- 14
+duplicate$ -- 703
+empty$ -- 871
+format.name$ -- 60
+if$ -- 2276
 int.to.chr$ -- 0
-int.to.str$ -- 13
-missing$ -- 128
-newline$ -- 82
-num.names$ -- 17
-pop$ -- 303
+int.to.str$ -- 14
+missing$ -- 136
+newline$ -- 85
+num.names$ -- 18
+pop$ -- 326
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 2
-skip$ -- 752
+skip$ -- 792
 stack$ -- 0
-substring$ -- 306
-swap$ -- 522
+substring$ -- 307
+swap$ -- 542
 text.length$ -- 18
 text.prefix$ -- 0
 top$ -- 5
-type$ -- 13
+type$ -- 14
 warning$ -- 0
-while$ -- 35
-width$ -- 15
-write$ -- 172
+while$ -- 36
+width$ -- 16
+write$ -- 180
 (There were 4 error messages)
