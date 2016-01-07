@@ -1,7 +1,7 @@
 \BOOKMARK [1][-]{section.1}{Introduction}{}% 1
 \BOOKMARK [1][-]{section.2}{Research Design}{}% 2
 \BOOKMARK [1][-]{section.3}{Research Solution}{}% 3
-\BOOKMARK [1][-]{section.4}{Stream Deign Patterns and Anti-Patterns}{}% 4
+\BOOKMARK [1][-]{section.4}{Stream Design Anti-Patterns}{}% 4
 \BOOKMARK [2][-]{subsection.4.1}{Multi-Anchoring}{section.4}% 5
 \BOOKMARK [2][-]{subsection.4.2}{Cycle in Topology}{section.4}% 6
 \BOOKMARK [2][-]{subsection.4.3}{Persistent Data}{section.4}% 7

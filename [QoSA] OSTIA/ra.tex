@@ -10,14 +10,22 @@ The work we elaborated in this paper is stemming from the following research que
 \emph{``Can we improve the structural quality of Big-Data streaming designs?"}
 \end{center}
 
-The results contained in this paper in response to this research question were initially elaborated within a free-form focus group \cite{focusgroup} involving three experienced practitioners and researchers on Big data streaming technology such as Storm. Following the focus group, through self-ethnography \cite{selfeth} and brainstorming we designed OSTIA and identified the series of consistency checks as well as anti-patterns that can now be evaluated through OSTIA while recovering an architectural representation for Storm topologies. The prototype thus developed, was refined incrementally through a series of case-studies \cite{casestudy} involving an industrial partner. Finally, we applied well established verification approaches to integrate the value and benefits behind using OSTIA.
+The results contained in this paper in response to this research question were initially elaborated within a free-form focus group \cite{focusgroup} involving three experienced practitioners and researchers on Big data streaming technology such as Storm. Following the focus group, through self-ethnography \cite{selfeth} and brainstorming we designed OSTIA and identified the series of consistency checks, algorithmic evaluations as well as anti-patterns that can now be applied through OSTIA while recovering an architectural representation for Storm topologies. 
+\begin{figure*}
+\includegraphics[width=\textwidth]{images/socialsensor}
+  \caption{A sample Storm topology in the SocialSensor App.}\label{topo1}
+\end{figure*}
+In addition, the OSTIA prototype we developed\footnote{\url{https://github.com/maelstromdat/OSTIA}}, was refined incrementally and evaluated through a series of case-studies \cite{casestudy} involving an industrial partner. The partner in question uses open-source social-sensing software do elaborate a Big-Data application that: (a) aggregates news assets from various sources (e.g., Twitter, Facebook, etc.) based on user-desired specifications (e.g., topic, sentiment, etc.); (b) presents and allows the manipulation of data. Said application is based on the SocialSensor App\footnote{\url{https://github.com/socialsensor}} which features the combined action of three complex streaming topologies using Storm (see Fig. \ref{topo1} for a sample of said topologies).
 
-\begin{itemize}
-\item elaborate on the case-study partner
-\item elaborate on the case at hand for that partner
-\item elaborate on the origin of the application and how it uses social-sensor
-\item also, elaborate on the case by NETF which starts and stems from KILLRWEATHER
-\item should we elaborate on something else?
-\end{itemize}
-\textbf{TODO: @anyone, feel free to elaborate more!!}
+More in particular, the topology in Fig. \ref{topo1} extracts data from sources and manipulates said data to divide and arrange contents based on type (e.g., article vs. media), later updating a series of databases (e.g., Redis) with these elaborations.
 
+%\begin{itemize}
+%\item elaborate on the case-study partner
+%\item elaborate on the case at hand for that partner
+%\item elaborate on the origin of the application and how it uses social-sensor
+%\item also, elaborate on the case by NETF which starts and stems from KILLRWEATHER
+%\item should we elaborate on something else?
+%\end{itemize}
+%\textbf{TODO: @anyone, feel free to elaborate more!!}
+
+Finally, we applied well-established verification approaches to integrate the value and benefits behind using OSTIA. More in particular, we engineered OSTIA to support exporting of elicited topologies for their further analysis using the Zot LTL model-checker \cite{zot} using the approach outlined in our previous work \cite{icsoft}.
