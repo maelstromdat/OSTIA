@@ -37,6 +37,16 @@ B.~Ratner, \emph{Statistical and Machine-Learning Data Mining: Techniques for
   \url{http://books.google.de/books?id=0KuIJTAznLUC}
 \BIBentrySTDinterwordspacing
 
+\bibitem{ossslr}
+D.~A. Tamburri, P.~Lago, and H.~van Vliet, ``Organizational social structures
+  for software engineering.'' \emph{ACM Comput. Surv.}, vol.~46, no.~1, p.~3,
+  2013.
+
+\bibitem{devops}
+L.~J. Bass, I.~M. Weber, and L.~Zhu, \emph{DevOps - A Software Architect's
+  Perspective.}, ser. SEI series in software engineering.\hskip 1em plus 0.5em
+  minus 0.4em\relax Addison-Wesley, 2015.
+
 \bibitem{archrec}
 \BIBentryALTinterwordspacing
 I.~Ivkovic and M.~W. Godfrey, ``Enhancing domain-specific software architecture
@@ -51,6 +61,11 @@ R.~Evans, ``Apache storm, a hands on tutorial.'' in \emph{IC2E}.\hskip 1em plus
   0.5em minus 0.4em\relax IEEE, 2015, p.~2. [Online]. Available:
   \url{http://dblp.uni-trier.de/db/conf/ic2e/ic2e2015.html#Evans15}
 \BIBentrySTDinterwordspacing
+
+\bibitem{mda}
+D.~Frankel, \emph{Model Driven Architecture: Applying MDA to Enterprise
+  Computing}.\hskip 1em plus 0.5em minus 0.4em\relax New York, NY, USA: John
+  Wiley \& Sons, Inc., 2002.
 
 \bibitem{patternoriented2000}
 D.~C. Schmidt, M.~Stal, H.~Rohnert, and F.~Buschmann, \emph{Pattern-oriented

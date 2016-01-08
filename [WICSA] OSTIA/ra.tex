@@ -7,7 +7,7 @@
 The work we elaborated in this paper is stemming from the following research question:
 
 \begin{center}
-\emph{``Can we improve the structural quality of Big-Data streaming designs?"}
+\emph{``Can we assist the continuous architecting of Big-Data streaming designs?"}
 \end{center}
 
 The results contained in this paper in response to this research question were initially elaborated within a free-form focus group \cite{focusgroup} involving three experienced practitioners and researchers on Big data streaming technology such as Storm. Following the focus group, through self-ethnography \cite{selfeth} and brainstorming we identified the series of essential consistency checks, algorithmic evaluations as well as anti-patterns that can now be applied through OSTIA while recovering an architectural representation for Storm topologies. We designed OSTIA to support the incremental and iterative refinement of streaming topologies based on the incremental discovery and correction of the above checks and patterns.
@@ -24,6 +24,8 @@ In addition, the OSTIA prototype we developed\footnote{\url{https://github.com/m
 As previously stated, OSTIA was evaluated by means of an industrial case-study offered by one of the industrial partners in the DICE EU H2020 Project consortium\footnote{\url{http://www.dice-h2020.eu/}}. The partner in question uses open-source social-sensing software do elaborate a subscription-based Big-Data application that: (a) aggregates news assets from various sources (e.g., Twitter, Facebook, etc.) based on user-desired specifications (e.g., topic, sentiment, etc.); (b) presents and allows the manipulation of data. Said application is based on the SocialSensor App\footnote{\url{https://github.com/socialsensor}} which features the combined action of three complex streaming topologies based on Apache Storm (see Fig. \ref{topo1} for a sample of said topologies).
 
 More in particular, the topology in Fig. \ref{topo1} extracts data from sources and manipulates said data to divide and arrange contents based on type (e.g., article vs. media), later updating a series of databases (e.g., Redis) with these elaborations.
+
+The models that OSTIA elicited from this application were showcased to our industrial partner in a focus group. Our qualitative analysis was based on questionnaires and open discussion.
 
 %\begin{itemize}
 %\item elaborate on the case-study partner
