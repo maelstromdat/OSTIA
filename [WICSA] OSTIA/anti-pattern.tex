@@ -1,4 +1,7 @@
 \section{Topology Design Anti-Patterns}
+
+This section and section \ref{algo} elaborate on the Anti-patterns and algorithmic analysis supported in OSTIA. All figures in these sections use a simple graph-like notation where nodes may be any topological element (e.g., Spouts or Bolts in Apache Storm terms) while edges are to be interpreted as directed data-flow connections.
+
 \label{sec:anti-pattern}
 This elaborates on the anti-patterns we elicited through self-ethnography. These anti-patterns are elaborated further within OSTIA to allow for their detection during streaming topology inference analysis.
 
@@ -14,14 +17,14 @@ In order to guarantee fault-tolerant stream processing, tuples processed by bolt
 	\end{center}
 \end{figure}
 
-\subsection{Cycle in Topology}
+\subsection{Cycle-in Topology}
 
 Technically it is possible to have cycle in Storm topologies. An infinite cycle of processing would create an infinite tuple tree and make it impossible for Storm to ever acknowledge spout emitted tuples. Therefore, cycles should be avoided or resulting tuple trees should be investigated additionally to make sure they terminate at some point and under a specified series of conditions.
 
 \begin{figure}[H]
 	\begin{center}
 		\includegraphics[width=3cm]{images/cycle}
-		\caption{Cycle n Topology.}
+		\caption{Cycle-in Topology.}
 		\label{fig:cycle}
 	\end{center}
 \end{figure}
@@ -82,7 +85,7 @@ A computational funnel emerges when there is not a path from data source (spout)
 \begin{figure}[H]
 	\begin{center}
 		\includegraphics[width=5cm]{images/funnel}
-		\caption{funnel.}
+		\caption{computation funnel.}
 		\label{fig:funnel}
 	\end{center}
 \end{figure}
