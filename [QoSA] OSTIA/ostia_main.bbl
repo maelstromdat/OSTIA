@@ -93,6 +93,15 @@ C.~A. Furia, D.~Mandrioli, A.~Morzenti, and M.~Rossi, ``Modeling time in
   \url{http://doi.acm.org/10.1145/1667062.1667063}
 \BIBentrySTDinterwordspacing
 
+\bibitem{lambda}
+\BIBentryALTinterwordspacing
+M.~Quartulli, J.~Lozano, and I.~G. Olaizola, ``Beyond the lambda architecture:
+  Effective scheduling for large scale eo information mining and interactive
+  thematic mapping.'' in \emph{IGARSS}.\hskip 1em plus 0.5em minus 0.4em\relax
+  IEEE, 2015, pp. 1492--1495. [Online]. Available:
+  \url{http://dblp.uni-trier.de/db/conf/igarss/igarss2015.html#QuartulliLO15}
+\BIBentrySTDinterwordspacing
+
 \bibitem{ibmspl}
 \BIBentryALTinterwordspacing
 M.~Hirzel, H.~Andrade, B.~Gedik, G.~Jacques-Silva, R.~Khandekar, V.~Kumar,
