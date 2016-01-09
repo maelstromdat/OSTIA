@@ -108,6 +108,12 @@ C.~A. Furia, D.~Mandrioli, A.~Morzenti, and M.~Rossi, ``Modeling time in
   \url{http://doi.acm.org/10.1145/1667062.1667063}
 \BIBentrySTDinterwordspacing
 
+\bibitem{brunnert2015performance}
+A.~Brunnert, A.~van Hoorn, F.~Willnecker, A.~Danciu, W.~Hasselbring, C.~Heger,
+  N.~Herbst, P.~Jamshidi, R.~Jung, J.~von Kistowski \emph{et~al.},
+  ``Performance-oriented devops: A research agenda,'' \emph{arXiv preprint
+  arXiv:1508.04752}, 2015.
+
 \bibitem{lambda}
 \BIBentryALTinterwordspacing
 M.~Quartulli, J.~Lozano, and I.~G. Olaizola, ``Beyond the lambda architecture:

@@ -12,6 +12,8 @@
 \end{itemize}
 
 
+The overall architecture of OSTIA is depicted in Figure \ref{fig:ostia-arch}. The logical architectural information of the topology is primarily retrieved by OSTIA and stored in an intermediate format to be used by other algorithmic processes. OSTIA is architected in a way that algorithmic analysis such as anti-pattern analyses can be provided by some plugins. These analyses use the information resides in the intermediate format and provide added value analyses for continuous architecting of storm topologies. Since the information in the intermediate format is only rely on the logical code analysis, some algorithmic analyses requires some information regarding the running topology, such as end to end latency and throughput. Such information will be continuously added to the intermediate repository via runtime monitoring of the topology on real deployment cluster. These provide appropriate and rich information for refactoring the initial architecture and enabling performance driven DevOps \cite{brunnert2015performance}.
+
 \begin{figure}[H]
 	\begin{center}
 		\includegraphics[width=8cm]{images/ostia-arch}
