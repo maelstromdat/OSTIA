@@ -21,7 +21,7 @@
 %% Legal Notice:
 %% This code is offered as-is without any warranty either expressed or
 %% implied; without even the implied warranty of MERCHANTABILITY or
-%% FITNESS FOR A PARTICULAR PURPOSE! 
+%% FITNESS FOR A PARTICULAR PURPOSE!
 %% User assumes all risk.
 %% In no event shall the IEEE or any contributor to this code be liable for
 %% any damages or losses, including, but not limited to, incidental,
@@ -168,7 +168,7 @@
 % *** GRAPHICS RELATED PACKAGES ***
 %
 
-   
+
   % declare the path(s) where your graphic files are
   % \graphicspath{{../pdf/}{../jpeg/}}
   % and their extensions so you won't have to specify these with
@@ -188,7 +188,7 @@
 % graphicx was written by David Carlisle and Sebastian Rahtz. It is
 % required if you want graphics, photos, etc. graphicx.sty is already
 % installed on most LaTeX systems. The latest version and documentation
-% can be obtained at: 
+% can be obtained at:
 % http://www.ctan.org/pkg/graphicx
 % Another good source of documentation is "Using Imported Graphics in
 % LaTeX2e" by Keith Reckdahl which can be found at:
@@ -419,10 +419,10 @@ Email: $[p.jamshidi,$\\$a.nodari15]$@imperial.ac.uk}
 
 % for over three affiliations, or if they all won't fit within the width
 % of the page, use this alternative format:
-% 
+%
 %\author{\IEEEauthorblockN{Michael Shell\IEEEauthorrefmark{1},
 %Homer Simpson\IEEEauthorrefmark{2},
-%James Kirk\IEEEauthorrefmark{3}, 
+%James Kirk\IEEEauthorrefmark{3},
 %Montgomery Scott\IEEEauthorrefmark{3} and
 %Eldon Tyrell\IEEEauthorrefmark{4}}
 %\IEEEauthorblockA{\IEEEauthorrefmark{1}School of Electrical and Computer Engineering\\
@@ -449,10 +449,24 @@ Email: $[p.jamshidi,$\\$a.nodari15]$@imperial.ac.uk}
 % As a general rule, do not put math, special symbols or citations
 % in the abstract
 \begin{abstract}
-	
+
 %<<<<<<< Updated upstream
 %\comment{title suggestions: (i) Topology Architecture Recovery for Stream Based Systems (ii) Automated Architecture Recovery and Consistency Checking for Stream Based Systems}
-Big data architectures have been gaining momentum in the last few years. For example, Twitter uses complex Stream topologies featuring frameworks like Storm to analyse and learn trending topics from billions of tweets per minute. However, maintaining the quality of said topologies often requires iterative experiments on expensive multi-node clusters. As an aid to designers and developers evaluating their Stream topologies in a DevOps fashion (i.e., through continuous feedback between development and operation), we developed OSTIA, that is, ``On-the-fly Static Topology Inference Analysis". OSTIA allows reverse-engineering of streaming topologies for the purpose of: (a) using previously existing verification\&validation techniques on elicited models; (b) visualising and refactoring elicited models while maintaining constraints that would only be evaluated at deployment and run-time; (c) tackle the occurrence of common anti-patterns across considered topologies. We illustrate the uses and benefits of OSTIA on three real-life industrial case studies.
+Big data architectures have been gaining momentum in the last years. For
+example, Twitter uses stream processing frameworks like Storm to analyse and
+learn trending topics from billions of tweets per minute. However, maintaining
+the quality of developed applications (\emph{topologies} in Storm jargon) often
+requires iterative experiments on expensive multi-node clusters. As an aid to
+designers and developers evaluating their applications in a DevOps fashion
+(i.e., through continuous feedback between development and operation), we
+developed OSTIA, that is, ``On-the-fly Static Topology Inference
+Analysis". OSTIA allows reverse-engineering of topologies for the purpose of:
+(a) using previously existing verification\&validation techniques on elicited
+models; (b) visualising and refactoring elicited models while maintaining
+constraints that would only be evaluated at deployment and run-time; (c) tackle
+the occurrence of common anti-patterns across considered topologies. We
+illustrate the uses and benefits of OSTIA on three real-life industrial case
+studies.
 %=======
 %Big-Data architectures featuring Storm have been proliferating massively in the last few years. For example Twitter uses complex Storm-based topologies to analyse and learn valuable trends from billions of tweets per minute. However, increasing the quality and consistency of Storm topologies before having expensive infrastructure up and running is still a big challenge. As a way to help designers and developers to architect their Storm topologies for effective deployability much sooner than deployment-time, we developed OSTIA, that is, ``On-the-fly Storm Topology Inference Analysis". OSTIA offers round-trip engineering of Storm topologies so that designers and developers may: (a) use previously existing model-driven verification\&validation techniques on elicited models; (b) visualise and evaluate these models against simple consistency checks that would only be available at deployment and run-time. We illustrate the uses and benefits of OSTIA on three industrial case-studies.
 %>>>>>>> Stashed changes
@@ -477,17 +491,18 @@ Big data architectures have been gaining momentum in the last few years. For exa
 
 \section{Introduction}
 % no \IEEEPARstart
-\input{intro}\label{ra}
+\input{intro}\label{intro}
 
 
 \section{Research Design}
 % no \IEEEPARstart
-\input{ra}\label{ra}
+\input{ra}
+\label{ra}
 
 \section{Research Solution}
 % no \IEEEPARstart
-\input{rs}\label{rs}
-
+\input{rs}
+\label{rs}
 \input{anti-pattern}
 
 \section{Evaluation}
@@ -521,7 +536,7 @@ Big data architectures have been gaining momentum in the last few years. For exa
 %\begin{figure}[!t]
 %\centering
 %\includegraphics[width=2.5in]{myfigure}
-% where an .eps filename suffix will be assumed under latex, 
+% where an .eps filename suffix will be assumed under latex,
 % and a .pdf suffix will be assumed for pdflatex; or what has been declared
 % via \DeclareGraphicsExtensions.
 %\caption{Simulation results for the network.}
@@ -537,7 +552,7 @@ Big data architectures have been gaining momentum in the last few years. For exa
 % The subfigure \label commands are set within each subfloat command,
 % and the \label for the overall figure must come after \caption.
 % \hfil is used as a separator to get equal spacing.
-% Watch out that the combined width of all the subfigures on a 
+% Watch out that the combined width of all the subfigures on a
 % line do not exceed the text width or a line break will occur.
 %
 %\begin{figure*}[!t]
@@ -594,7 +609,7 @@ Big data architectures have been gaining momentum in the last few years. For exa
 % in-text middle ("here") positioning is typically not used, but it
 % is allowed and encouraged for Computer Society conferences (but
 % not Computer Society journals). Most IEEE journals/conferences use
-% top floats exclusively. 
+% top floats exclusively.
 % Note that, LaTeX2e, unlike IEEE journals/conferences, places
 % footnotes above bottom floats. This can be corrected via the
 % \fnbelowfloat command of the stfloats package.
