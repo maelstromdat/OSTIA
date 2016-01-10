@@ -1,18 +1,51 @@
-\textbf{@Pooyan,Andrea: here we should probably elaborate on OSTIA's architecture and the design principles that led us to define it as such... also we might want to elaborate on its components, the structure I'm suggesting below is merely tentative but it will give us ahead start!!}
 
-\begin{itemize}
-\item add and comment the meta-model of storm and how OSTIA uses that as a reference to draw and check models which are consistent with the technology
-\item OSTIA Architecture 
-\item we should probably elaborate the architecture part (or on a separate "implementation" part or paragraph) with a link to the downloadable technology - @Andrea: can we bundle it up as plugin for Eclipse? E.g., somehow using RCP?
-\item OSTIA Antipatterns Module
-\item OSTIA Visualisation Module 
-\item OSTIA extensibility
-\item OSTIA explanation of use and simple usage scenario
-\item OSTIA explanation of use and simple usage scenario of continuous architecting
-\end{itemize}
+%% \textbf{@Pooyan,Andrea: here we should probably elaborate on OSTIA's architecture and the design principles that led us to define it as such... also we might want to elaborate on its components, the structure I'm suggesting below is merely tentative but it will give us ahead start!!}
 
+%% \begin{itemize}
+%% \item add and comment the meta-model of storm and how OSTIA uses that as a reference to draw and check models which are consistent with the technology
+%% \item OSTIA Architecture
+%% \item we should probably elaborate the architecture part (or on a separate "implementation" part or paragraph) with a link to the downloadable technology - @Andrea: can we bundle it up as plugin for Eclipse? E.g., somehow using RCP?
+%% \item OSTIA Antipatterns Module
+%% \item OSTIA Visualisation Module
+%% \item OSTIA extensibility
+%% \item OSTIA explanation of use and simple usage scenario
+%% \item OSTIA explanation of use and simple usage scenario of continuous architecting
+%% \end{itemize}
 
-The overall architecture of OSTIA is depicted in Figure \ref{fig:ostia-arch}. The logical architectural information of the topology is primarily retrieved by OSTIA and stored in an intermediate format to be used by other algorithmic processes. OSTIA is architected in a way that algorithmic analysis such as anti-pattern analyses can be provided by some plugins. These analyses use the information resides in the intermediate format and provide added value analyses for continuous architecting of storm topologies. Since the information in the intermediate format is only rely on the logical code analysis, some algorithmic analyses requires some information regarding the running topology, such as end to end latency and throughput. Such information will be continuously added to the intermediate repository via runtime monitoring of the topology on real deployment cluster. These provide appropriate and rich information for refactoring the initial architecture and enabling performance driven DevOps \cite{brunnert2015performance}.
+\subsection{Storm architecture}
+
+Storm is a technology developed at Twitter \cite{toshniwal2014storm} in order to
+face the problem of processing of streaming of data. It is defined as a
+distributed processing framework which is able to analyse streams of data. The
+core element in the system is called \emph{topology}. A Storm topology is a
+computational graph composed by nodes of two types: spouts and bolts. The former
+type includes nodes that process the data entering the topology, for instance
+querying APIs or retrieve information from a message broker, such as Apache
+Kafka. The latter executes operations on data, such as filtering or serialising.
+
+\subsection{OSTIA design}
+
+The overall architecture of OSTIA is depicted in
+Figure \ref{fig:ostia-arch}. The logical architectural information of the
+topology is retrieved by OSTIA via static analysis of the source code. OSTIA
+generates a simple intermediate format to be used by other algorithmic
+processes.
+
+OSTIA is architected in a way that algorithmic analysis, such as anti-pattern
+analyses, can be easily added. These analyses use the information resides in the
+intermediate format and provide added value analyses for continuous architecting
+of storm topologies. Since the information in the intermediate format only rely
+on the logical code analysis, some algorithmic analyses requires some
+information regarding the running topology, such as end to end latency and
+throughput.
+
+Such information will be continuously added to the intermediate repository via
+runtime monitoring of the topology on real deployment cluster. These provide
+appropriate and rich information for refactoring the initial architecture and
+enabling performance driven DevOps \cite{brunnert2015performance}.
+
+Finally, OSTIA allows users to export the topology in different formats
+(e.g. JSON) to analyse the topology with other tools.
 
 \begin{figure}[H]
 	\begin{center}
@@ -21,5 +54,3 @@ The overall architecture of OSTIA is depicted in Figure \ref{fig:ostia-arch}. Th
 		\label{fig:ostia-arch}
 	\end{center}
 \end{figure}
-
-

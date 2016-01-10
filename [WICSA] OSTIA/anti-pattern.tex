@@ -8,6 +8,7 @@ This elaborates on the anti-patterns we elicited through self-ethnography. These
 \subsection{Multi-Anchoring}
 In order to guarantee fault-tolerant stream processing, tuples processed by bolts needs to be anchored with the unique id of the bolt and be passed to multiple acknowledgers (or ``ackers" in short) in the topology. In this way, ackers can keep track of tuples in the topology.\\
 \emph{\bf TODO: what is the consequence of these anti-patterns? How does OSTIA detect?}
+\emph{\bf Multi-anchoring is not supported at the moment. Besides, I am not sure it is an anti-patter but rather a design decision}
 
 \begin{figure}[H]
 	\begin{center}
@@ -19,7 +20,9 @@ In order to guarantee fault-tolerant stream processing, tuples processed by bolt
 
 \subsection{Cycle-in Topology}
 
-Technically it is possible to have cycle in Storm topologies. An infinite cycle of processing would create an infinite tuple tree and make it impossible for Storm to ever acknowledge spout emitted tuples. Therefore, cycles should be avoided or resulting tuple trees should be investigated additionally to make sure they terminate at some point and under a specified series of conditions.
+Technically, it is possible to have cycle in Storm topologies. An infinite cycle of processing would create an infinite tuple tree and make it impossible for Storm to ever acknowledge spout emitted tuples. Therefore, cycles should be avoided or resulting tuple trees should be investigated additionally to make sure they terminate at some point and under a specified series of conditions.
+\emph{\bf A topology is already an infinite stream of tuple, the problem could be the overloading of some machines}
+\emph{\bf At the cycle-detection is not supported (even if it is easy to implement)}
 
 \begin{figure}[H]
 	\begin{center}
@@ -31,8 +34,8 @@ Technically it is possible to have cycle in Storm topologies. An infinite cycle 
 
 \subsection{Persistent Data}
 
-This pattern covers the circumstance wherefore if two processing elements need to update a same entity in a storage, there should be a consistency mechanism in place. 
-
+This pattern covers the circumstance wherefore if two processing elements need to update a same entity in a storage, there should be a consistency mechanism in place.
+\emph{\bf Ostia does not support this. BTW is this static analysis? if not, is it off-topic?}
 
 \begin{figure}[H]
 	\begin{center}
@@ -46,7 +49,11 @@ This pattern covers the circumstance wherefore if two processing elements need t
 
 \subsection{fan-in/fan-out}
 
-For Bolts, fan-in is the number of processing elements (Bolts and Spouts) that are connected to this specific bolt in the topology and fan-out is the number of PEs that are dependent to this specific bolt. For Spouts, fan-in is the number of topics (from the messaging broker, i.e., Apache Kafka for Storm) that this specific spout is subscribed to and fan out is the number of bolts that is dependent to this spout.
+For each element of the topology, fan-in is the number of incoming
+streams. Conversely, fan-out is the number outgoing streams. In the case of
+bolts, both in and out streams are internal to the topology. For Spouts,
+incoming streams are the data sources of the topology (e.g., message brokers,
+APIs, etc).
 
 \begin{figure}[H]
 	\begin{center}
@@ -59,6 +66,7 @@ For Bolts, fan-in is the number of processing elements (Bolts and Spouts) that a
 \subsection{topology cascading}
 
 By topology cascading, we mean connecting two different Storm topologies via a messaging framework (e.g., Apache Kafka). This circumstance, which is actually part of our evaluation and case-studies, may raise the complexity of the overarching topology to unacceptable levels and may require additional attention.
+\emph{\bf Ostia does not support this. I can't think of an easy way to implement it}
 
 \begin{figure}[H]
 	\begin{center}
@@ -70,6 +78,7 @@ By topology cascading, we mean connecting two different Storm topologies via a m
 
 \subsection{Topology clustering}
 Identifying the coupled processing elements and put the in a cluster in a way that elements in a cluster have high cohesion and less coupled with the elements in other clusters. Simple clustering or Social-Network Analysis mechanisms can be used to infer clusters. These clusters may require additional attention since they could turn out to become bottlenecks.
+\emph{\bf Does it relates with Storm scheduling?}
 
 \begin{figure}[H]
 	\begin{center}

@@ -1,5 +1,5 @@
 %\begin{itemize}
-%\item so we had a focus group to actually elaborate the aprroach 
+%\item so we had a focus group to actually elaborate the aprroach
 %\item then we used explorative prototyping to elicit the initial version of the prototype and then refined that by means of case study, we could mention that we used ATC as an action-research source (this is what we are doing now internally in WP2 actually)
 %\item ...
 %\end{itemize}
@@ -7,23 +7,22 @@
 The work we elaborated in this paper is stemming from the following research question:
 
 \begin{center}
-\emph{``Can we assist the continuous architecting of Big-Data streaming designs?"}
+\emph{``Can we assist the continuous architecting of stream-based systems design?"}
 \end{center}
 
-The results contained in this paper in response to this research question were initially elaborated within a free-form focus group \cite{focusgroup} involving three experienced practitioners and researchers on Big data streaming technology such as Storm. Following the focus group, through self-ethnography \cite{selfeth} and brainstorming we identified the series of essential consistency checks, algorithmic evaluations as well as anti-patterns that can now be applied through OSTIA while recovering an architectural representation for Storm topologies. We designed OSTIA to support the incremental and iterative refinement of streaming topologies based on the incremental discovery and correction of the above checks and patterns.
+The results contained in this paper in response to this research question were initially elaborated within a free-form focus group \cite{focusgroup} involving three experienced practitioners and researchers on big data streaming technologies, such as Storm. Following the focus group, through self-ethnography \cite{selfeth} and brainstorming we identified the series of essential consistency checks, algorithmic evaluations as well as anti-patterns that can now be applied through OSTIA while recovering an architectural representation for Storm topologies. We designed OSTIA\footnote{\url{https://github.com/maelstromdat/OSTIA}} to support the incremental and iterative refinement of streaming topologies based on the incremental discovery and correction of the above checks and patterns.
 
 \begin{figure*}
 \includegraphics[width=\textwidth]{images/socialsensor}
-  \caption{A sample Storm topology in the SocialSensor App.}\label{topo1}
+\caption{A sample Storm topology in the SocialSensor App.}
+\label{topo1}
 \end{figure*}
 
-In addition, the OSTIA prototype we developed\footnote{\url{https://github.com/maelstromdat/OSTIA}}, was refined incrementally and evaluated through scenario-analysis and case-study research \cite{casestudy} involving an industrial partner. 
+In addition, we incrementally refined and evaluated OSTIA through scenario-analysis and case-study research \cite{casestudy} involving an industrial partner.
 
-\subsection{Evaluating OSTIA}
+As previously stated, OSTIA was evaluated by means of an industrial case-study offered by one of the industrial partners in the DICE EU H2020 Project consortium\footnote{\url{http://www.dice-h2020.eu/}}. The partner in question uses open-source social-sensing software to elaborate a subscription-based big-data application that: (a) aggregates news assets from various sources (e.g., Twitter, Facebook, etc.) based on user-desired specifications (e.g., topic, sentiment, etc.); (b) presents and allows the manipulation of data. Said application is based on the SocialSensor App\footnote{\url{https://github.com/socialsensor}} which features the combined action of three complex streaming topologies based on Apache Storm (see Fig. \ref{topo1} for a sample of topologies).
 
-As previously stated, OSTIA was evaluated by means of an industrial case-study offered by one of the industrial partners in the DICE EU H2020 Project consortium\footnote{\url{http://www.dice-h2020.eu/}}. The partner in question uses open-source social-sensing software do elaborate a subscription-based Big-Data application that: (a) aggregates news assets from various sources (e.g., Twitter, Facebook, etc.) based on user-desired specifications (e.g., topic, sentiment, etc.); (b) presents and allows the manipulation of data. Said application is based on the SocialSensor App\footnote{\url{https://github.com/socialsensor}} which features the combined action of three complex streaming topologies based on Apache Storm (see Fig. \ref{topo1} for a sample of said topologies).
-
-More in particular, the topology in Fig. \ref{topo1} extracts data from sources and manipulates said data to divide and arrange contents based on type (e.g., article vs. media), later updating a series of databases (e.g., Redis) with these elaborations.
+In particular, the topology in Fig. \ref{topo1} extracts data from sources and manipulates said data to divide and arrange contents based on type (e.g., article vs. media), later updating a series of databases (e.g., Redis) with these elaborations.
 
 The models that OSTIA elicited from this application were showcased to our industrial partner in a focus group. Our qualitative analysis was based on questionnaires and open discussion.
 
@@ -36,4 +35,4 @@ The models that OSTIA elicited from this application were showcased to our indus
 %\end{itemize}
 %\textbf{TODO: @anyone, feel free to elaborate more!!}
 
-Finally, we applied well-established verification approaches to integrate the value and benefits behind using OSTIA. More in particular, we engineered OSTIA to support exporting of elicited topologies for their further analysis using the Zot LTL model-checker \cite{zot} using the approach outlined in our previous work \cite{icsoft}.
+Finally, we applied well-established verification approaches to integrate the value and benefits behind using OSTIA. We engineered OSTIA to support exporting of elicited topologies for their further analysis using the Zot LTL model-checker \cite{zot} using the approach outlined in our previous work \cite{icsoft}.
