@@ -37,13 +37,6 @@ B.~Ratner, \emph{Statistical and Machine-Learning Data Mining: Techniques for
   \url{http://books.google.de/books?id=0KuIJTAznLUC}
 \BIBentrySTDinterwordspacing
 
-\bibitem{toshniwal2014storm}
-A.~Toshniwal, S.~Taneja, A.~Shukla, K.~Ramasamy, J.~M. Patel, S.~Kulkarni,
-  J.~Jackson, K.~Gade, M.~Fu, J.~Donham \emph{et~al.}, ``Storm@ twitter,'' in
-  \emph{Proceedings of the 2014 ACM SIGMOD international conference on
-  Management of data}.\hskip 1em plus 0.5em minus 0.4em\relax ACM, 2014, pp.
-  147--156.
-
 \bibitem{ossslr}
 D.~A. Tamburri, P.~Lago, and H.~van Vliet, ``Organizational social structures
   for software engineering.'' \emph{ACM Comput. Surv.}, vol.~46, no.~1, p.~3,
@@ -68,6 +61,13 @@ R.~Evans, ``Apache storm, a hands on tutorial.'' in \emph{IC2E}.\hskip 1em plus
   0.5em minus 0.4em\relax IEEE, 2015, p.~2. [Online]. Available:
   \url{http://dblp.uni-trier.de/db/conf/ic2e/ic2e2015.html#Evans15}
 \BIBentrySTDinterwordspacing
+
+\bibitem{toshniwal2014storm}
+A.~Toshniwal, S.~Taneja, A.~Shukla, K.~Ramasamy, J.~M. Patel, S.~Kulkarni,
+  J.~Jackson, K.~Gade, M.~Fu, J.~Donham \emph{et~al.}, ``Storm@ twitter,'' in
+  \emph{Proceedings of the 2014 ACM SIGMOD international conference on
+  Management of data}.\hskip 1em plus 0.5em minus 0.4em\relax ACM, 2014, pp.
+  147--156.
 
 \bibitem{mda}
 D.~Frankel, \emph{Model Driven Architecture: Applying MDA to Enterprise

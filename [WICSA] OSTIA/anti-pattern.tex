@@ -7,8 +7,8 @@ This elaborates on the anti-patterns we elicited through self-ethnography. These
 
 \subsection{Multi-Anchoring}
 In order to guarantee fault-tolerant stream processing, tuples processed by bolts needs to be anchored with the unique id of the bolt and be passed to multiple acknowledgers (or ``ackers" in short) in the topology. In this way, ackers can keep track of tuples in the topology.\\
-\emph{\bf TODO: what is the consequence of these anti-patterns? How does OSTIA detect?}
-\emph{\bf Multi-anchoring is not supported at the moment. Besides, I am not sure it is an anti-patter but rather a design decision}
+%\emph{\bf TODO: what is the consequence of these anti-patterns? How does OSTIA detect?}
+%\emph{\bf Multi-anchoring is not supported at the moment. Besides, I am not sure it is an anti-patter but rather a design decision}
 
 \begin{figure}[H]
 	\begin{center}
@@ -20,9 +20,9 @@ In order to guarantee fault-tolerant stream processing, tuples processed by bolt
 
 \subsection{Cycle-in Topology}
 
-Technically, it is possible to have cycle in Storm topologies. An infinite cycle of processing would create an infinite tuple tree and make it impossible for Storm to ever acknowledge spout emitted tuples. Therefore, cycles should be avoided or resulting tuple trees should be investigated additionally to make sure they terminate at some point and under a specified series of conditions.
-\emph{\bf A topology is already an infinite stream of tuple, the problem could be the overloading of some machines}
-\emph{\bf At the cycle-detection is not supported (even if it is easy to implement)}
+Technically, it is possible to have cycle in Storm topologies. An infinite cycle of processing would create an infinite tuple tree and make it impossible for Storm to ever acknowledge spout emitted tuples. Therefore, cycles should be avoided or resulting tuple trees should be investigated additionally to make sure they terminate at some point and under a specified series of conditions. The anti-pattern itself may lead to infrastructure overloading and therefore increased infrastructure costs.
+%\emph{\bf A topology is already an infinite stream of tuple, the problem could be the overloading of some machines}
+%\emph{\bf At the cycle-detection is not supported (even if it is easy to implement)}
 
 \begin{figure}[H]
 	\begin{center}
@@ -34,8 +34,8 @@ Technically, it is possible to have cycle in Storm topologies. An infinite cycle
 
 \subsection{Persistent Data}
 
-This pattern covers the circumstance wherefore if two processing elements need to update a same entity in a storage, there should be a consistency mechanism in place.
-\emph{\bf Ostia does not support this. BTW is this static analysis? if not, is it off-topic?}
+This pattern covers the circumstance wherefore if two processing elements need to update a same entity in a storage, there should be a consistency mechanism in place. OSTIA offers limited support to this feature, which we plan to look into more carefully for future work. More details on this support are discussed in the approach limitations section (see Sec. \ref{lim}).
+%\emph{\bf Ostia does not support this. BTW is this static analysis? if not, is it off-topic?}
 
 \begin{figure}[H]
 	\begin{center}
@@ -65,20 +65,20 @@ APIs, etc).
 
 \subsection{topology cascading}
 
-By topology cascading, we mean connecting two different Storm topologies via a messaging framework (e.g., Apache Kafka). This circumstance, which is actually part of our evaluation and case-studies, may raise the complexity of the overarching topology to unacceptable levels and may require additional attention.
-\emph{\bf Ostia does not support this. I can't think of an easy way to implement it}
+By topology cascading, we mean connecting two different Storm topologies via a messaging framework (e.g., Apache Kafka). This circumstance, which is actually part of our evaluation and case-studies, may raise the complexity of the overarching topology to unacceptable levels and may require additional attention. OSTIA support for this feature is still limited, more details on this and similar limitations are discussed in Section \ref{lim}.
+%\emph{\bf Ostia does not support this. I can't think of an easy way to implement it}
 
 \begin{figure}[H]
 	\begin{center}
-		\includegraphics[width=5cm]{images/cascading}
+		\includegraphics[width=6cm]{images/cascading}
 		\caption{cascading.}
 		\label{fig:cascading}
 	\end{center}
 \end{figure}
 
 \subsection{Topology clustering}
-Identifying the coupled processing elements and put the in a cluster in a way that elements in a cluster have high cohesion and less coupled with the elements in other clusters. Simple clustering or Social-Network Analysis mechanisms can be used to infer clusters. These clusters may require additional attention since they could turn out to become bottlenecks.
-\emph{\bf Does it relates with Storm scheduling?}
+Identifying the coupled processing elements and put the in a cluster in a way that elements in a cluster have high cohesion and less coupled with the elements in other clusters. Simple clustering or Social-Network Analysis mechanisms can be used to infer clusters. These clusters may require additional attention since they could turn out to become bottlenecks. Reasoning more deeply on clusters and their resolution may lead to establishing the Storm scheduling policy best-fitting with the application at hand.
+%\emph{\bf Does it relates with Storm scheduling?}
 
 \begin{figure}[H]
 	\begin{center}
