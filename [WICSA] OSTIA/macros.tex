@@ -1,7 +1,10 @@
+<<<<<<< HEAD
 \newcommand{\I}{\mathcal{I}}
 \newcommand{\M}{\mathcal{M}}
 \newcommand{\timestr}{\mathcal{T}}
 
+=======
+>>>>>>> 915d87a8f9df7f67cfd959767461c7f00a2f4d2b
 \newcommand{\D}{\mathcal{D}}
 \newcommand{\C}{\mathcal{C}}
 
@@ -17,8 +20,13 @@
 \newcommand{\Q}{\mathbb{Q}}
 
 %old, compatibility reasons
+
 \newcommand{\X}[1]{\mathbf{X}\left(#1\right)}
 \newcommand{\Y}[1]{\mathbf{Y}\left(#1\right)}
+
+\newcommand{\X}{\mathbf{X}}
+\newcommand{\Y}{\mathbf{Y}}
+
 
 \newcommand{\Zed}{\mathbf{Z}}
 \newcommand{\Lng}{\mathscr {L}}
@@ -72,6 +80,7 @@
 \newcommand{\first}[2]{(H_{#1}\vee L_{#1}) \wedge(\neg(H_{#1}\vee L_{#1}) \Snc (#2))}
 
 
+<<<<<<< HEAD
 
 \newcommand{\pname}[1]{\ensuremath{\textit{#1}}}
 \newcommand{\on}{\pname{on}}
@@ -93,3 +102,226 @@
 
 \newcommand{\intg}[1]{\lfloor#1\rfloor}
 \newcommand{\fract}[1]{\mathit{frac(#1)}}
+=======
+\newcommand{\todoMR}[2]{\todo[color=red!50,#1]{\textbf{MR:}#2}}
+\newcommand{\todoPL}[2]{\todo[color=yellow!50,#1]{\textbf{PL:}#2}}
+\newcommand{\todoMB}[2]{\todo[color=green!50,#1]{\textbf{MB:}#2}}
+
+
+\def\notRaisingEdge{\mathrel{\NOTRaisingEdge}}
+\def\NOTRaisingEdge{{%
+    \setbox0\hbox{\RaisingEdge}%
+    \rlap{\hbox to \wd0{\hss/\hss}}\box0
+}}
+
+
+\def\notFallingEdge{\mathrel{\NOTFallingEdge}}
+\def\NOTFallingEdge{{%
+    \setbox0\hbox{\FallingEdge}%
+    \rlap{\hbox to \wd0{\hss/\hss}}\box0
+}}
+
+
+\def\notShortPulseHigh{\mathrel{\NOTShortPulseHigh}}
+\def\NOTShortPulseHigh{{%
+    \setbox0\hbox{\ShortPulseHigh}%
+    \rlap{\hbox to \wd0{\hss/\hss}}\box0
+}}
+
+
+\def\notShortPulseLow{\mathrel{\NOTShortPulseLow}}
+\def\NOTShortPulseLow{{%
+    \setbox0\hbox{\ShortPulseLow}%
+    \rlap{\hbox to \wd0{\hss/\hss}}\box0
+}}
+
+
+%% Some definitions needed to use MnSymbol \mediamond and \medsquare
+  \DeclareFontFamily{U}  {MnSymbolA}{}
+  \DeclareSymbolFont{MnSyA}         {U}  {MnSymbolA}{m}{n}
+  \SetSymbolFont{MnSyA}       {bold}{U}  {MnSymbolA}{b}{n}
+\DeclareFontShape{U}{MnSymbolA}{m}{n}{
+    <-6>  MnSymbolA5
+   <6-7>  MnSymbolA6
+   <7-8>  MnSymbolA7
+   <8-9>  MnSymbolA8
+   <9-10> MnSymbolA9
+  <10-12> MnSymbolA10
+  <12->   MnSymbolA12}{}
+\DeclareFontShape{U}{MnSymbolA}{b}{n}{
+    <-6>  MnSymbolA-Bold5
+   <6-7>  MnSymbolA-Bold6
+   <7-8>  MnSymbolA-Bold7
+   <8-9>  MnSymbolA-Bold8
+   <9-10> MnSymbolA-Bold9
+  <10-12> MnSymbolA-Bold10
+  <12->   MnSymbolA-Bold12}{}
+  \DeclareMathSymbol{\leftfilledspoon}{\mathrel}{MnSyA}{114}
+  \DeclareMathSymbol{\leftspoon}{\mathrel}{MnSyA}{106}
+  \DeclareMathSymbol{\upfilledspoon}{\mathrel}{MnSyA}{113}
+  \DeclareMathSymbol{\upspoon}{\mathrel}{MnSyA}{105}
+  \DeclareMathSymbol{\leftfree}{\mathrel}{MnSyA}{130}
+
+  \DeclareFontFamily{U}  {MnSymbolB}{}
+  \DeclareSymbolFont{MnSyB}         {U}  {MnSymbolB}{m}{n}
+  \SetSymbolFont{MnSyB}       {bold}{U}  {MnSymbolB}{b}{n}
+\DeclareFontShape{U}{MnSymbolB}{m}{n}{
+    <-6>  MnSymbolB5
+   <6-7>  MnSymbolB6
+   <7-8>  MnSymbolB7
+   <8-9>  MnSymbolB8
+   <9-10> MnSymbolB9
+  <10-12> MnSymbolB10
+  <12->   MnSymbolB12}{}
+\DeclareFontShape{U}{MnSymbolB}{b}{n}{
+    <-6>  MnSymbolB-Bold5
+   <6-7>  MnSymbolB-Bold6
+   <7-8>  MnSymbolB-Bold7
+   <8-9>  MnSymbolB-Bold8
+   <9-10> MnSymbolB-Bold9
+  <10-12> MnSymbolB-Bold10
+  <12->   MnSymbolB-Bold12}{}
+  \DeclareMathSymbol{\nleftfilledspoon}{\mathrel}{MnSyB}{114}
+
+
+%\newcommand{\rest}[1]{\ensuremath{\overrightarrow{#1}}}
+%\newcommand{\fst}[1]{\ensuremath{|_{#1}}}
+\newcommand{\rest}[1]{\ensuremath{\stackrel{\leftfree}{#1}}}
+\newcommand{\fst}[1]{\ensuremath{\upfilledspoon_{#1}}}
+\newcommand{\allup}[1]{\ensuremath{\stackrel{\leftfilledspoon}{#1}}}
+\newcommand{\alldn}[1]{\ensuremath{\stackrel[\leftfilledspoon]{}{#1}}}
+
+
+\newcommand{\Hg}[1]{\ensuremath{\textrm{\RaisingEdge}_{#1}}}
+\newcommand{\notHg}[1]{\ensuremath{\notRaisingEdge_{#1}}}
+\newcommand{\Lw}[1]{\ensuremath{\textrm{\FallingEdge}_{#1}}}
+\newcommand{\notLw}[1]{\ensuremath{\notFallingEdge_{#1}}}
+\newcommand{\Sup}[1]{\ensuremath{\textrm{\ShortPulseHigh}_{#1}}}
+\newcommand{\notSup}[1]{\ensuremath{\notShortPulseHigh_{#1}}}
+\newcommand{\Sdn}[1]{\ensuremath{\textrm{\ShortPulseLow}_{#1}}}
+\newcommand{\notSdn}[1]{\ensuremath{\notShortPulseLow_{#1}}}
+
+\newcommand{\qtlHg}[1]{\ensuremath{e^{u}_{#1}}}
+\newcommand{\notqtlHg}[1]{\ensuremath{\neg eUp_{#1}}}
+\newcommand{\qtlLw}[1]{\ensuremath{e^{d}_{#1}}}
+\newcommand{\notqtlLw}[1]{\ensuremath{\neg eDn_{#1}}}
+\newcommand{\qtlSup}[1]{\ensuremath{s^{u}_{#1}}}
+\newcommand{\notqtlSup}[1]{\ensuremath{\neg s^{u}_{#1}}}
+\newcommand{\qtlSdn}[1]{\ensuremath{s^{d}_{#1}}}
+\newcommand{\notqtlSdn}[1]{\ensuremath{\neg s^{u}_{#1}}}
+
+
+\DeclareRobustCommand{\shortf}[3] % operator_name, subscript, arguments
+{\ensuremath{%
+	 % if subscript argument (#3) is nonempty, add superscript appropriately
+%	 \ifthenelse{\not \equal{#3}{} }  {{#1}_{#2}^{#3}}  {{#1}_{#2}}
+	 \ifthenelse{\not \equal{#3}{} }  {\stackrel{#2}{#1}_{#3}}  {\stackrel{#2}{#1}}
+  }%
+}%
+
+\def\udsh{\mathrel{\rotatebox[origin=c]{90}{$\dlsh$}}}
+\def\dush{\mathrel{\rotatebox[origin=c]{-90}{$\Lsh$}}}
+
+\DeclareRobustCommand{\befUnowD}[2]{\shortf{\udsh}{#1}{#2}}
+\DeclareRobustCommand{\befDnowU}[2]{\shortf{\dush}{#1}{#2}}
+\DeclareRobustCommand{\notbefUnowD}[2]{\shortf{\not \udsh}{#1}{#2}}
+\DeclareRobustCommand{\notbefDnowU}[2]{\shortf{\not \dush}{#1}{#2}}
+\DeclareRobustCommand{\nowonU}[2]{\shortf{\Rsh}{#1}{#2}}
+\DeclareRobustCommand{\nowonD}[2]{\shortf{\drsh}{#1}{#2}}
+\DeclareRobustCommand{\notnowonU}[2]{\shortf{\not \Rsh}{#1}{#2}}
+\DeclareRobustCommand{\notnowonD}[2]{\shortf{\not \drsh}{#1}{#2}}
+
+%\newcommand{\befUnowD}[2]{\shortf{\mathtt{lowEdge}}{#1}{#2}}
+%\newcommand{\befDnowU}[2]{\shortf{\mathtt{highEdge}}{#1}{#2}}
+%\newcommand{\nowonU}[1]{\shortf{\mathtt{up}}{#1}{}}
+%\newcommand{\nowonD}[1]{\shortf{\mathtt{down}}{#1}{}}
+\DeclareRobustCommand{\UbefD}[2]{\mathtt{up}_{{#1}\curvearrowright{#2}}}
+\DeclareRobustCommand{\DafterU}[2]{\mathtt{down}_{{#2}\curvearrowleft{#1}}}
+\DeclareRobustCommand{\orig}{\ensuremath{\mathrm{O}}}
+
+\newcommand{\genconstr}[1]{\ensuremath{\mathtt{genconstr_{#1}}}}
+\newcommand{\init}[1]{\ensuremath{\mathtt{init_{#1}}}}
+
+\newcommand{\myitem}[1]{$\bullet \quad$ #1:~\hspace{6pt}~}
+%\newcommand{\sig}{\ensuremath{\zeta}}
+\newcommand{\sig}{\ensuremath{M}}
+\newcommand{\m}[1]{\ensuremath{#1_{\text{CLTL}}}}
+\newcommand{\rmap}[2]{\ensuremath{r_{#1}(#2)}}
+\newcommand{\rmapinv}[2]{\ensuremath{r^{-1}_{#1}(#2)}}
+
+
+%% Generic temporal operator, displayed in the form name_{subscript}(arguments)
+\DeclareRobustCommand{\LogOp}[3] % operator_name, subscript, arguments
+{\ensuremath{%
+	 % if subscript argument (#2) is nonempty, add subscript appropriately
+	 \ifthenelse{\not \equal{#2}{}}  {\mathbf{#1}_{#2}}  {\mathbf{#1}}
+	 % if operator argument is nonempty write ( #3 )
+	 \ifthenelse{\not \equal{#3}{}}  {\!\left({#3}\right)} {}
+	 % else: just write the operator's name
+  }%
+}%
+
+\DeclareRobustCommand{\LogOpPast}[3] % operator_name, subscript, arguments
+{\ensuremath{%
+	 % if subscript argument (#2) is nonempty, add subscript appropriately
+	 \ifthenelse{\not \equal{#2}{}}  {\overleftarrow{\mathbf{#1}}_{#2}}  {\mathbf{#1}}
+	 % if operator argument is nonempty write ( #3 )
+	 \ifthenelse{\not \equal{#3}{}}  {\!\left({#3}\right)} {}
+	 % else: just write the operator's name
+  }%
+}%
+
+\DeclareRobustCommand{\Ultl}[1]{\LogOp{U}{#1}{}}
+\DeclareRobustCommand{\Sltl}[1]{\LogOp{S}{#1}{}}
+\DeclareRobustCommand{\Tltl}[1]{\LogOp{T}{#1}{}}
+\DeclareRobustCommand{\Rltl}[1]{\LogOp{R}{#1}{}}
+\DeclareRobustCommand{\Xltl}[1]{\LogOp{X}{}{#1}}
+\DeclareRobustCommand{\Yltl}[1]{\LogOp{Y}{}{#1}}
+\DeclareRobustCommand{\Gltl}[2]{\LogOp{G}{#1}{#2}}
+\DeclareRobustCommand{\Fltl}[2]{\LogOp{F}{#1}{#2}}
+\DeclareRobustCommand{\Pltl}[2]{\LogOp{P}{#1}{#2}}
+\DeclareRobustCommand{\Pn}[2]{\LogOp{P}{#1}{#2}}
+\DeclareRobustCommand{\Cn}[2]{\LogOp{C}{#1}{#2}}
+\DeclareRobustCommand{\PnP}[2]{\LogOpPast{P}{#1}{#2}}
+\DeclareRobustCommand{\CnP}[2]{\LogOpPast{C}{#1}{#2}}
+
+\DeclareRobustCommand{\LogOpInfix}[4] % operator_name, subscript, arguments
+{\ensuremath{%
+	 % if first argument (#3) is nonempty, add first argument appropriately
+	 \ifthenelse{\not \equal{#3}{}}  {#3}  {}
+	 % if subscript argument (#2) is nonempty, add subscript appropriately
+	 \ifthenelse{\not \equal{#2}{}}  {\mathbf{#1}_{#2}}  {\mathbf{#1}}
+	 % if second argument is nonempty write it
+	 \ifthenelse{\not \equal{#4}{}}  {#4} {}
+	 % else: just write the operator's name
+  }%
+}%
+
+\DeclareRobustCommand{\Uinfix}[3]{\LogOpInfix{U}{#1}{#2}{#3}}
+\DeclareRobustCommand{\Sinfix}[3]{\LogOpInfix{S}{#1}{#2}{#3}}
+\DeclareRobustCommand{\Tinfix}[3]{\LogOpInfix{T}{#1}{#2}{#3}}
+\DeclareRobustCommand{\Rinfix}[3]{\LogOpInfix{R}{#1}{#2}{#3}}
+
+\newcommand{\upn}[3]{\ensuremath{\mathtt{up}^{#1}_{#2}(#3)}}
+\newcommand{\upSubfn}[3]{\ensuremath{\mathtt{upSub}^{#1}_{#2}(#3)}}
+\newcommand{\nPspikes}[2]{\ensuremath{\overleftarrow{\mathtt{nspikes}}_{#1}(#2)}}
+\newcommand{\upPn}[3]{\ensuremath{\overleftarrow{\mathtt{up}}^{#1}_{#2}(#3)}}
+\newcommand{\thenY}[3]{\ensuremath{\mathtt{seq}^{#2}_{#3}(\rightsquigarrow #1)}}
+\newcommand{\XthenY}[4]{\ensuremath{\mathtt{seq}^{#3}_{#4}(#1 \rightsquigarrow #2)}}
+\newcommand{\XthenYthenZ}[5]{\ensuremath{\mathtt{seq}^{#4}_{#5}(#1 \rightsquigarrow #2 \rightsquigarrow #3)}}
+\newcommand{\nowXthenY}[2]{\ensuremath{\mathtt{seqU}(#1 \rightsquigarrow #2)}}
+\newcommand{\nowXthenYthenZ}[3]{\ensuremath{\mathtt{seqU}(#1 \rightsquigarrow #2 \rightsquigarrow #3)}}
+\newcommand{\nowXthenYP}[2]{\ensuremath{\overleftarrow{\mathtt{seqU}}(#1 \leftsquigarrow #2)}}
+\newcommand{\nowXthenYthenZP}[3]{\ensuremath{\overleftarrow{\mathtt{seqU}}(#1 \leftsquigarrow #2 \leftsquigarrow #3)}}
+\newcommand{\XthenYP}[3]{\ensuremath{\overleftarrow{\mathtt{seq}}^{#3}(#1 \leftsquigarrow #2)}}
+\newcommand{\XthenYthenZP}[4]{\ensuremath{\overleftarrow{\mathtt{seq}}^{#4}(#1 \leftsquigarrow #2 \leftsquigarrow #3)}}
+
+
+\newcommand{\pname}[1]{\ensuremath{\textit{#1}}}
+\newcommand{\on}{\pname{on}}
+\newcommand{\off}{\pname{off}}
+\newcommand{\lon}{\pname{l}}
+\newcommand{\test}{\pname{test}}
+\newcommand{\resetc}{\pname{reset-c}}
+\newcommand{\turnoff}{\pname{turnoff}}
+>>>>>>> 915d87a8f9df7f67cfd959767461c7f00a2f4d2b
