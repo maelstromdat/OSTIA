@@ -64,8 +64,8 @@ module Ostia
         next if neighbors.empty?
         neighbors.each do |destination|
           str += "\n  " \
-                 + node + "#{@parallelism[node]}" + ' -> ' \
-                 + destination[:node] + "#{@parallelism[destination[:node]]}" \
+                 + node + "_#{@parallelism[node]}" + ' -> ' \
+                 + destination[:node] + "_#{@parallelism[destination[:node]]}" \
                  + " [label=\"#{destination[:label]}\"]"
         end
       end

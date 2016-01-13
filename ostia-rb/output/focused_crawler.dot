@@ -1,0 +1,13 @@
+digraph G {
+  wpSpout_1 -> WpDeserializer_4 [label="shuffleGrouping"]
+  WpDeserializer_4 -> expander_8 [label="shuffleGrouping"]
+  expander_8 -> articleExtraction_1 [label="shuffleGrouping"]
+  expander_8 -> mediaExtraction_1 [label="shuffleGrouping"]
+  articleExtraction_1 -> webPageUpdater_4 [label="shuffleGrouping"]
+  articleExtraction_1 -> textIndexer_1 [label="shuffleGrouping"]
+  articleExtraction_1 -> mediaupdater_1 [label="shuffleGrouping"]
+  articleExtraction_1 -> mediatextindexer_1 [label="shuffleGrouping"]
+  mediaExtraction_1 -> webPageUpdater_4 [label="shuffleGrouping"]
+  mediaExtraction_1 -> mediaupdater_1 [label="shuffleGrouping"]
+  mediaExtraction_1 -> mediatextindexer_1 [label="shuffleGrouping"]
+}
