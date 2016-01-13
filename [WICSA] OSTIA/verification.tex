@@ -18,10 +18,7 @@ Our model is an infinite state, non-deterministic system.
 We started by understanding and capturing the behaviors of both spouts and bolts. 
 After choosing the level of abstraction of our model we simplified those behaviors accordingly, in order to formalize them as finite state machines. The purpose of this first activity was to define the possible operations and the allowed orderings of such operations.
 We then extended the model by taking into account the message buffers (or queues) and the quantity of tuples that are exchanged through the topology.
-In addition to the correct ordering of the operations, we decided to introduce more specific temporal constraints into the model, in order to limit the time spent by the system in each state (or processing phase) and to elaborate the concept of \textit{rate}, intended as ``number of times an event is occurring over time''.\\
-We found that a suitable way to express the model was \textit{CLTL-oc} (Constrained Linear Temporal Logic over Clocks) with the addition of discrete variables (counters).\\
-
-
+In addition to the correct ordering of the operations, we decided to introduce more specific temporal constraints into the model, in order to limit the time spent by the system in each state (or processing phase) and to elaborate the concept of \textit{rate}, intended as ``number of times an event is occurring every time unit''.\\
 
 
 \subsubsection{Assumptions and  level of abstraction}

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 \input{macros}
 
 %\textbf{@Marcello,Francesco: we should also probably elaborate on the kind of verification technique we are using and how that can help in evaluating the topology.. remember here we do not have the DICE restriction so we can mention any kind of analysis that it would be possible to run, also analyses that are currently in the hands of other DICE partners!!}
@@ -38,6 +39,7 @@ Besides this pattern-based evaluation and assessment, OSTIA algorithmic analyses
 \subsection{Confirming OSTIA Usefulness with Open-Source Case-Studies}\label{os}
 
 \subsection{OSTIA-Based Formal Verification}\label{ver}
+\input{macros}
 
 This section describes the formal modelling and verification employed in OSTIA  which both rely on \textit{satisfiability checking}~\cite{MPS13}, an alternative approach to model-checking.
 Instead of an operational model (like automata or transition systems), as in model-checking, 
@@ -79,5 +81,7 @@ Clocks are associated with specific events to measure time elapsing over the exe
 As they are reset when the associated event occurs, in any moment, the clock value represents the time elapsed since the previous reset and corresponds to the elapsed time since the last occurrence of the event associated to it.
 We use such constraints to define, for instance, the time delay required to process tuples or between two node failures.
 
-Modeling topologies requires to express by formulae emitting rates which measure the number of tuples emitted by a spout node per time unit.
-***TBC
+%Modeling topologies requires to express by formulae emitting rates which measure the number of tuples emitted by a spout node per time unit.
+%***TBC
+
+\input{verification}

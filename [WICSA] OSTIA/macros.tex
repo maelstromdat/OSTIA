@@ -77,7 +77,6 @@
 
 \newcommand{\first}[2]{(H_{#1}\vee L_{#1}) \wedge(\neg(H_{#1}\vee L_{#1}) \Snc (#2))}
 
-
 \newcommand{\pname}[1]{\ensuremath{\textit{#1}}}
 \newcommand{\on}{\pname{on}}
 \newcommand{\off}{\pname{off}}
@@ -98,3 +97,43 @@
 
 \newcommand{\intg}[1]{\lfloor#1\rfloor}
 \newcommand{\fract}[1]{\mathit{frac(#1)}}
+
+
+
+%%%%%%%%%%%%%%% STORM MODEL COMMANDS
+
+
+\newcommand{\ori}{\mathtt{orig}}
+%commands with single parameter
+\newcommand{\p}[1]{\mathtt{process}_{#1}}
+\newcommand{\ta}[1]{\mathtt{take}_{#1}}
+\newcommand{\e}[1]{\mathtt{emit}_{#1}}
+\newcommand{\add}[1]{\mathtt{add}_{#1}}
+\newcommand{\f}[1]{\mathtt{fail}_{#1}}
+\newcommand{\buf}[1]{\mathtt{buffer}_{#1}}
+\newcommand{\startf}[1]{\mathtt{startFailure}_{#1}}
+\newcommand{\startid}[1]{\mathtt{startIdle}_{#1}}
+\newcommand{\id}[1]{\mathtt{idle}_{#1}}
+\newcommand{\cl}[1]{\mathtt{clock}_{#1}}
+\newcommand{\cltf}[1]{ \cl{to\f{#1}}}
+\newcommand{\ph}[1]{\mathtt{phase}_{#1}}
+
+%commands with two parameters (index, rate)
+\newcommand{\pr}[2]{\p{#1}(#2)}
+\newcommand{\tar}[2]{\ta{#1}(#2)}
+\newcommand{\er}[2]{\e{#1}(#2)}
+\newcommand{\addr}[2]{\add{#1}(#2)}
+\newcommand{\ra}[1]{r_{\add{#1}}}
+\newcommand{\rp}[1]{r_{\p{#1}}}
+\newcommand{\re}[1]{r_{\e{#1}}}
+\newcommand{\rt}[1]{r_{\ta{#1}}}
+\newcommand{\rf}[1]{r_{\mathtt{failure}_{#1}}}
+\newcommand{\rff}[2]{r_{\mathtt{failure}_{#1#2}}}
+\newcommand{\rr}[1]{r_{\mathtt{replay}_{#1}}}
+\newcommand{\reb}[1]{\bar{r}_{\e{#1}}}
+\newcommand{\rth}[1]{\hat{r}_{\ta{#1}}}
+\newcommand{\reh}[1]{\hat{r}_{\e{#1}}}
+
+\newcommand{\tph}[2]{t_{\ph{#1}}^{#2} }
+
+	
