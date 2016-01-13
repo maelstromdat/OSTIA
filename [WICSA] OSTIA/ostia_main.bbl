@@ -129,15 +129,19 @@ M.~Pradella, A.~Morzenti, and P.~S. Pietro, ``Bounded satisfiability checking
   \url{http://doi.acm.org/10.1145/2491509.2491514}
 \BIBentrySTDinterwordspacing
 
+\bibitem{BRS15}
+M.~M. Bersani, M.~Rossi, and P.~San~Pietro, ``A tool for deciding the
+  satisfiability of continuous-time metric temporal logic,'' \emph{Acta
+  Informatica}, pp. 1--36, 2015.
+
 \bibitem{DD07}
 S.~Demri and D.~D'Souza, ``An automata-theoretic approach to constraint
   {LTL},'' \emph{Information and Computation}, vol. 205, no.~3, pp. 380--415,
   2007.
 
-\bibitem{BRS15}
-M.~M. Bersani, M.~Rossi, and P.~San~Pietro, ``A tool for deciding the
-  satisfiability of continuous-time metric temporal logic,'' \emph{Acta
-  Informatica}, pp. 1--36, 2015.
+\bibitem{timed}
+{Rajeev Alur} and {David L. Dill}, ``A theory of timed automata,''
+  \emph{Theoretical Computer Science}, vol. 126, p. 183?235, 1994.
 
 \bibitem{lambda}
 \BIBentryALTinterwordspacing

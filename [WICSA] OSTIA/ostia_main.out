@@ -8,16 +8,19 @@
 \BOOKMARK [2][-]{subsection.4.1}{Multi-Anchoring}{section.4}% 8
 \BOOKMARK [2][-]{subsection.4.2}{Cycle-in Topology}{section.4}% 9
 \BOOKMARK [2][-]{subsection.4.3}{Persistent Data}{section.4}% 10
-\BOOKMARK [1][-]{section.5}{Algorithmic Analysis on Stream Topologies}{}% 11
-\BOOKMARK [2][-]{subsection.5.1}{fan-in/fan-out}{section.5}% 12
-\BOOKMARK [2][-]{subsection.5.2}{topology cascading}{section.5}% 13
-\BOOKMARK [2][-]{subsection.5.3}{Topology clustering}{section.5}% 14
-\BOOKMARK [2][-]{subsection.5.4}{Computation funnel}{section.5}% 15
-\BOOKMARK [2][-]{subsection.5.5}{Linearising a topology}{section.5}% 16
+\BOOKMARK [2][-]{subsection.4.4}{Computation funnel}{section.4}% 11
+\BOOKMARK [1][-]{section.5}{Algorithmic Analysis on Stream Topologies}{}% 12
+\BOOKMARK [2][-]{subsection.5.1}{fan-in/fan-out}{section.5}% 13
+\BOOKMARK [2][-]{subsection.5.2}{topology cascading}{section.5}% 14
+\BOOKMARK [2][-]{subsection.5.3}{Topology clustering}{section.5}% 15
+\BOOKMARK [2][-]{subsection.5.4}{Linearising a topology}{section.5}% 16
 \BOOKMARK [1][-]{section.6}{Evaluation}{}% 17
-\BOOKMARK [1][-]{section.7}{Discussion}{}% 18
-\BOOKMARK [2][-]{subsection.7.1}{Findings and Quality-Improvement Insights}{section.7}% 19
-\BOOKMARK [2][-]{subsection.7.2}{Approach Limitations and Threats to Validity}{section.7}% 20
-\BOOKMARK [1][-]{section.8}{Previous and Related Work}{}% 21
-\BOOKMARK [1][-]{section.9}{Conclusion}{}% 22
-\BOOKMARK [1][-]{section*.2}{References}{}% 23
+\BOOKMARK [2][-]{subsection.6.1}{Industrial Case-Study}{section.6}% 18
+\BOOKMARK [2][-]{subsection.6.2}{Confirming OSTIA Usefulness with Open-Source Case-Studies}{section.6}% 19
+\BOOKMARK [2][-]{subsection.6.3}{OSTIA-Based Formal Verification}{section.6}% 20
+\BOOKMARK [1][-]{section.7}{Discussion}{}% 21
+\BOOKMARK [2][-]{subsection.7.1}{Findings and Quality-Improvement Insights}{section.7}% 22
+\BOOKMARK [2][-]{subsection.7.2}{Approach Limitations and Threats to Validity}{section.7}% 23
+\BOOKMARK [1][-]{section.8}{Previous and Related Work}{}% 24
+\BOOKMARK [1][-]{section.9}{Conclusion}{}% 25
+\BOOKMARK [1][-]{section*.2}{References}{}% 26

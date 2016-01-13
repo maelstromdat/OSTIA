@@ -10,13 +10,40 @@
 %\item any additional case that we can run?
 %\item what do the results show? do we have a way to quickly quantify the time that is saved by using this approach? e.g., the time that is saved in setting up and running the infrastructure and how much would that time saved have costed these could be valuable evaluation insights
 %\end{itemize}
+This section elaborates on our evaluation campaign. As previously stated, we evaluated OSTIA through qualitative evaluation and case-study research featuring an open-/closed-source industrial case-study (see Section \ref{cs}) and two open-source case-studies (see Section \ref{os}) on which we also applied complex formal verification (see Section \ref{ver}).
 
+\subsection{Industrial Case-Study}\label{cs}
 
-This section describes the formal modeling and validation employed in OSTIA  which both rely on \textit{satisfiability checking}~\cite{MPS13}, an alternative approach to model-checking.
+As previously introduced in Section \ref{ra}, we operated an evaluation of OSTIA running the application on a closed-source cascade of several topologies part of the SocialSensor App. Our industrial partner is having performance and availability outages connected to currently unknown circumstances. Therefore, the objective of our evaluation for OSTIA was twofold: (a) allow our industrial partner to enact continuous architecting of their application with the goal of discovering any patterns or hotspots that may be requiring further architectural reasoning; (b) understand wether OSTIA provided valuable feedback to endure the continuous architecting exercise.
+
+OSTIA output for the SocialSensor topologies is outlined in Fig. \ref{topo1}.
+
+\begin{figure}[H]
+		\includegraphics[width=9cm]{images/output/focused_crawler}
+		\caption{SocialSensor App, OSTIA sample output.}
+		\label{topo1}
+\end{figure}
+
+OSTIA findings are as follows:
+\begin{itemize}
+\item A double instance of the ``Multi-Anchoring" pattern is found around bolt ``expander";
+\item An instance of the ``Persistent Data" pattern is found around bolt ``expander" as well;
+\item An instance of the ``Computational Funnel" pattern is found around bolt ``expander";
+\end{itemize}
+
+as a consequence of these outputs our industrial partner observed that the ``expander" bolt clearly needed additional architectural reasoning. Also, the partner welcomed the idea of using OSTIA as a mechanism to enact continuous architecting of the topology in question as part of the needed architectural reasoning.
+
+Besides this pattern-based evaluation and assessment, OSTIA algorithmic analyses assisted our client in understanding that the topological structure and cascade of the SocialSensor app would be better fit for batch processing rather than streaming, since the partner observed autonomously that too many Database-output spouts and bolts were used in their versions of the SocialSensor topologies. In so doing, the partner is now using OSTIA to drive the refactoring exercise towards a Hadoop Map Reduce\footnote{\url{http://hadoop.apache.org/}} framework for batch processing.
+
+\subsection{Confirming OSTIA Usefulness with Open-Source Case-Studies}\label{os}
+
+\subsection{OSTIA-Based Formal Verification}\label{ver}
+
+This section describes the formal modelling and verification employed in OSTIA  which both rely on \textit{satisfiability checking}~\cite{MPS13}, an alternative approach to model-checking.
 Instead of an operational model (like automata or transition systems), as in model-checking, 
 the system (i.e., a topology in this context) is specified by a formula defining their executions over time and properties are verified by proving that the system logically entails them.
 
-The logic we use is Constraint LTL over clocks (CLTLoc)~\cite{BRS15} which is a semantic restriction of Constraint LTL (CLTL)~\cite{DD07} allowing atomic formulae over $(\mathbb{R}, \set{<,=})$ where the arithmetical variables behave like clocks of Timed Automata (TA)~\cite{Alur&Dill94}.
+The logic we use is Constraint LTL over clocks (CLTLoc)~\cite{BRS15} which is a semantic restriction of Constraint LTL (CLTL)~\cite{DD07} allowing atomic formulae over $(\mathbb{R}, \set{<,=})$ where the arithmetical variables behave like clocks of Timed Automata (TA)~\cite{timed}.
 A clock $x$ measures the time elapsed since the last time when $x=0$ held, i.e., since the last ``reset'' of $x$.
 Clocks are interpreted over Reals and their value can be tested with respect to a positive integer value.
 %

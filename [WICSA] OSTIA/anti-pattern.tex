@@ -40,8 +40,20 @@ This pattern covers the circumstance wherefore if two processing elements need t
 \begin{figure}[H]
 	\begin{center}
 		\includegraphics[width=4cm]{images/persistence}
-		\caption{Concurrency management.}
+		\caption{Concurrency management in case of Persistent Data circumstances.}
 		\label{fig:persistence}
+	\end{center}
+\end{figure}
+
+
+\subsection{Computation funnel}
+A computational funnel emerges when there is not a path from data source (spout) to the bolts that sends out the tuples off the topology to another topology through a messaging framework or through a storage. This circumstance should be dealt with since it may compromise the availability of results under the desired performance restrictions.
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=5cm]{images/funnel}
+		\caption{computation funnel.}
+		\label{fig:funnel}
 	\end{center}
 \end{figure}
 
@@ -63,6 +75,8 @@ APIs, etc).
 	\end{center}
 \end{figure}
 
+This algorithmic manipulation allows to visualise instances where fan-in and fan-out numbers are differing.
+
 \subsection{topology cascading}
 
 By topology cascading, we mean connecting two different Storm topologies via a messaging framework (e.g., Apache Kafka). This circumstance, which is actually part of our evaluation and case-studies, may raise the complexity of the overarching topology to unacceptable levels and may require additional attention. OSTIA support for this feature is still limited, more details on this and similar limitations are discussed in Section \ref{lim}.
@@ -76,6 +90,8 @@ By topology cascading, we mean connecting two different Storm topologies via a m
 	\end{center}
 \end{figure}
 
+This algorithmic manipulation allows to combine multiple cascading topologies.
+
 \subsection{Topology clustering}
 Identifying the coupled processing elements and put the in a cluster in a way that elements in a cluster have high cohesion and less coupled with the elements in other clusters. Simple clustering or Social-Network Analysis mechanisms can be used to infer clusters. These clusters may require additional attention since they could turn out to become bottlenecks. Reasoning more deeply on clusters and their resolution may lead to establishing the Storm scheduling policy best-fitting with the application at hand.
 %\emph{\bf Does it relates with Storm scheduling?}
@@ -85,17 +101,6 @@ Identifying the coupled processing elements and put the in a cluster in a way th
 		\includegraphics[width=5cm]{images/clustering}
 		\caption{clustering.}
 		\label{fig:clustering}
-	\end{center}
-\end{figure}
-
-\subsection{Computation funnel}
-A computational funnel emerges when there is not a path from data source (spout) to the bolts that sends out the tuples off the topology to another topology through a messaging framework or through a storage. This circumstance should be dealt with since it may compromise the availability of results under the desired performance restrictions.
-
-\begin{figure}[H]
-	\begin{center}
-		\includegraphics[width=5cm]{images/funnel}
-		\caption{computation funnel.}
-		\label{fig:funnel}
 	\end{center}
 \end{figure}
 
