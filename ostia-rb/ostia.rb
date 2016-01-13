@@ -6,7 +6,7 @@ require './checker'
 #:nodoc:
 module Ostia
   VERSION = '0.1'
-  OUTPUT_FORMATS = %(dot json)
+  OUTPUT_FORMATS = %w(dot json)
 
   class Runner
     def initialize(args)

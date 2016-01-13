@@ -20,10 +20,9 @@ public class HelloStorm {
         config.setMessageTimeoutSecs(30);
 
         TopologyBuilder builder = new TopologyBuilder();
-        builder.setSpout("spout", new MySpout());
-        builder.setBolt("split", new SplitterBolt()).shuffleGrouping("spout");
-        builder.setBolt("counter", new WordCounterBolt()).fieldsGrouping("split", new Fields("word"));
-        builder.setBolt("Y", new WordCounterBolt()).fieldsGrouping("X", new Fields("word"));
+        builder.setSpout("spout", new MySpout(), 1);
+        builder.setBolt("split", new SplitterBolt(), 1).shuffleGrouping("spout");
+        builder.setBolt("counter", new WordCounterBolt(), 1).fieldsGrouping("split", new Fields("word"));
 
         config.setNumWorkers(3);
         config.setNumAckers(3);
