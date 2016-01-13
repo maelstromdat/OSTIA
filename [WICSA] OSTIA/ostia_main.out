@@ -3,20 +3,21 @@
 \BOOKMARK [1][-]{section.3}{Research Solution}{}% 3
 \BOOKMARK [2][-]{subsection.3.1}{Storm architecture}{section.3}% 4
 \BOOKMARK [2][-]{subsection.3.2}{OSTIA design}{section.3}% 5
-\BOOKMARK [1][-]{section.4}{Topology Design Anti-Patterns}{}% 6
-\BOOKMARK [2][-]{subsection.4.1}{Multi-Anchoring}{section.4}% 7
-\BOOKMARK [2][-]{subsection.4.2}{Cycle-in Topology}{section.4}% 8
-\BOOKMARK [2][-]{subsection.4.3}{Persistent Data}{section.4}% 9
-\BOOKMARK [1][-]{section.5}{Algorithmic Analysis on Stream Topologies}{}% 10
-\BOOKMARK [2][-]{subsection.5.1}{fan-in/fan-out}{section.5}% 11
-\BOOKMARK [2][-]{subsection.5.2}{topology cascading}{section.5}% 12
-\BOOKMARK [2][-]{subsection.5.3}{Topology clustering}{section.5}% 13
-\BOOKMARK [2][-]{subsection.5.4}{Computation funnel}{section.5}% 14
-\BOOKMARK [2][-]{subsection.5.5}{Linearising a topology}{section.5}% 15
-\BOOKMARK [1][-]{section.6}{Evaluation}{}% 16
-\BOOKMARK [1][-]{section.7}{Discussion}{}% 17
-\BOOKMARK [2][-]{subsection.7.1}{Findings and Quality-Improvement Insights}{section.7}% 18
-\BOOKMARK [2][-]{subsection.7.2}{Approach Limitations and Threats to Validity}{section.7}% 19
-\BOOKMARK [1][-]{section.8}{Previous and Related Work}{}% 20
-\BOOKMARK [1][-]{section.9}{Conclusion}{}% 21
-\BOOKMARK [1][-]{section*.2}{References}{}% 22
+\BOOKMARK [2][-]{subsection.3.3}{Deep Within OSTIA: The Storm Framework Meta-Model}{section.3}% 6
+\BOOKMARK [1][-]{section.4}{Topology Design Anti-Patterns}{}% 7
+\BOOKMARK [2][-]{subsection.4.1}{Multi-Anchoring}{section.4}% 8
+\BOOKMARK [2][-]{subsection.4.2}{Cycle-in Topology}{section.4}% 9
+\BOOKMARK [2][-]{subsection.4.3}{Persistent Data}{section.4}% 10
+\BOOKMARK [1][-]{section.5}{Algorithmic Analysis on Stream Topologies}{}% 11
+\BOOKMARK [2][-]{subsection.5.1}{fan-in/fan-out}{section.5}% 12
+\BOOKMARK [2][-]{subsection.5.2}{topology cascading}{section.5}% 13
+\BOOKMARK [2][-]{subsection.5.3}{Topology clustering}{section.5}% 14
+\BOOKMARK [2][-]{subsection.5.4}{Computation funnel}{section.5}% 15
+\BOOKMARK [2][-]{subsection.5.5}{Linearising a topology}{section.5}% 16
+\BOOKMARK [1][-]{section.6}{Evaluation}{}% 17
+\BOOKMARK [1][-]{section.7}{Discussion}{}% 18
+\BOOKMARK [2][-]{subsection.7.1}{Findings and Quality-Improvement Insights}{section.7}% 19
+\BOOKMARK [2][-]{subsection.7.2}{Approach Limitations and Threats to Validity}{section.7}% 20
+\BOOKMARK [1][-]{section.8}{Previous and Related Work}{}% 21
+\BOOKMARK [1][-]{section.9}{Conclusion}{}% 22
+\BOOKMARK [1][-]{section*.2}{References}{}% 23

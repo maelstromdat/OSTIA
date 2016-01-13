@@ -1,10 +1,56 @@
-\textbf{@Marcello,Francesco: we should also probably elaborate on the kind of verification technique we are using and how that can help in evaluating the topology.. remember here we do not have the DICE restriction so we can mention any kind of analysis that it would be possible to run, also analyses that are currently in the hands of other DICE partners!!}
+\input{macros}
 
-\begin{itemize}
-\item we can use the ATC case study as much as we want - that yields already three topologies that we can infer
-\item ATC has agreed that we can mention their role in this exercise, I also showed them the topology that we elicited basically with OSTIA and they already made considerations on how to improve it
-\item in the evaluation we should also comment on how OSTIA can help you in visualizing the application topology that you may be considering to use by reusing a big-data application for something else... visualising the application topology and analysing it may allow you to improve it while you are using it as a starting point for your application
-\item another application that we can use is the one that NETF is considering for their own scenario, KILLRWEATHER - \url{https://github.com/killrweather/killrweather}
-\item any additional case that we can run?
-\item what do the results show? do we have a way to quickly quantify the time that is saved by using this approach? e.g., the time that is saved in setting up and running the infrastructure and how much would that time saved have costed these could be valuable evaluation insights
-\end{itemize}
+%\textbf{@Marcello,Francesco: we should also probably elaborate on the kind of verification technique we are using and how that can help in evaluating the topology.. remember here we do not have the DICE restriction so we can mention any kind of analysis that it would be possible to run, also analyses that are currently in the hands of other DICE partners!!}
+
+%\begin{itemize}
+%\item we can use the ATC case study as much as we want - that yields already three topologies that we can infer
+%\item ATC has agreed that we can mention their role in this exercise, I also showed them the topology that we elicited basically with OSTIA and they already made considerations on how to improve it
+%\item in the evaluation we should also comment on how OSTIA can help you in visualizing the application topology that you may be considering to use by reusing a big-data application for something else... visualising the application topology and analysing it may allow you to improve it while you are using it as a starting point for your application
+%\item another application that we can use is the one that NETF is considering for their own scenario, KILLRWEATHER - \url{https://github.com/killrweather/killrweather}
+%\item any additional case that we can run?
+%\item what do the results show? do we have a way to quickly quantify the time that is saved by using this approach? e.g., the time that is saved in setting up and running the infrastructure and how much would that time saved have costed these could be valuable evaluation insights
+%\end{itemize}
+
+
+This section describes the formal modeling and validation employed in OSTIA  which both rely on \textit{satisfiability checking}~\cite{MPS13}, an alternative approach to model-checking.
+Instead of an operational model (like automata or transition systems), as in model-checking, 
+the system (i.e., a topology in this context) is specified by a formula defining their executions over time and properties are verified by proving that the system logically entails them.
+
+The logic we use is Constraint LTL over clocks (CLTLoc)~\cite{BRS15} which is a semantic restriction of Constraint LTL (CLTL)~\cite{DD07} allowing atomic formulae over $(\mathbb{R}, \set{<,=})$ where the arithmetical variables behave like clocks of Timed Automata (TA)~\cite{Alur&Dill94}.
+A clock $x$ measures the time elapsed since the last time when $x=0$ held, i.e., since the last ``reset'' of $x$.
+Clocks are interpreted over Reals and their value can be tested with respect to a positive integer value.
+%
+Let $X$ be a finite set of clock variables $x$ over $\Real$ and $AP$ be a finite set of atomic propositions $p$.
+CLTLoc formulae are defined as follows:
+\begin{equation*}%\small
+  \phi :=
+  \begin{gathered}
+    p \mid x\sim c \mid \phi \wedge \phi \mid \neg \phi \mid
+   \X{\phi} \mid \Y{\phi} %\mid \Zed\phi
+\mid \phi\U\phi \mid \phi\Snc\phi
+  \end{gathered}
+\end{equation*}
+where %$p\in AP$, $x \in V$, 
+$c \in \Nat$ and $\sim \in \set{<,=}$, $\bullet$, $\circ$, $\U$ and $\Snc$ are the usual ``next'', ``previous'', ``until'' and ``since''.
+%The semantics of CLTLoc is defined with respect to $(\Real, \set{<,=})$ and $\pair{\Nat}{<}$, the latter representing positions in time.
+A \textit{model} is a pair $\pair{\pi}{\sigma}$, where $\sigma$ is a mapping associating every variable $x$ and position in $\Nat$ with value $\sigma(i,x)$ and $\pi$ is a mapping associating each position in $\Nat$ with subset of $AP$. 
+The semantics of CLTLoc is defined as for LTL except for formulae $x\sim c$. 
+At position $i\in\Nat$, $ \pair{\pi}{\sigma}, i \models x\sim c \textbf{ iff }  \sigma(i, x)\sim c$.
+A formula is \textit{satisfiable} if it has a model.
+
+The standard technique to prove the satisfiability of CLTL and CLTLoc formulae is based on of B\"uchi automata \cite{DD07,BRS15} %the evidence has turned out that it may be rather expensive in practice, even in the case of LTL (the size of the automaton is exponential with respect to the size of the formula).
+but, for practical implementation, Bounded Satisfiability Checking (BSC)~\cite{MPS13} avoids the onerous construction of automata.
+By unrolling the semantics of a formula for a finite number $k>0$ of steps, 
+the outcome of a BSC problem is either an infinite ultimately periodic model or unsat.
+\cite{BRS15} shows that BSC for CLTLoc is complete and that is reducible to a decidable Satisfiability Modulo Theory (SMT) problem. 
+A CLTLoc formula can be translated into the decidable theory of quantifier-free formulae with equality and uninterpreted functions combined with the theory of Reals over $(\Real,<)$. %, written QF-EUF$(\Real,<)$.
+
+CLTLoc allows the specification of temporal constraints using clock variables ranging over $\Real$, whose value is not abstracted.
+Clock variables represent, in the logical language and with the same precision, physical (dense) clocks.
+They appear in formulae of the form $x \sim c$ to express a bound $c$ on the delay measured by clock $x$. 
+Clocks are associated with specific events to measure time elapsing over the execution.
+As they are reset when the associated event occurs, in any moment, the clock value represents the time elapsed since the previous reset and corresponds to the elapsed time since the last occurrence of the event associated to it.
+We use such constraints to define, for instance, the time delay required to process tuples or between two node failures.
+
+Modeling topologies requires to express by formulae emitting rates which measure the number of tuples emitted by a spout node per time unit.
+***TBC

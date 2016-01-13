@@ -37,13 +37,6 @@ B.~Ratner, \emph{Statistical and Machine-Learning Data Mining: Techniques for
   \url{http://books.google.de/books?id=0KuIJTAznLUC}
 \BIBentrySTDinterwordspacing
 
-\bibitem{toshniwal2014storm}
-A.~Toshniwal, S.~Taneja, A.~Shukla, K.~Ramasamy, J.~M. Patel, S.~Kulkarni,
-  J.~Jackson, K.~Gade, M.~Fu, J.~Donham \emph{et~al.}, ``Storm@ twitter,'' in
-  \emph{Proceedings of the 2014 ACM SIGMOD international conference on
-  Management of data}.\hskip 1em plus 0.5em minus 0.4em\relax ACM, 2014, pp.
-  147--156.
-
 \bibitem{ossslr}
 D.~A. Tamburri, P.~Lago, and H.~van Vliet, ``Organizational social structures
   for software engineering.'' \emph{ACM Comput. Surv.}, vol.~46, no.~1, p.~3,
@@ -68,6 +61,13 @@ R.~Evans, ``Apache storm, a hands on tutorial.'' in \emph{IC2E}.\hskip 1em plus
   0.5em minus 0.4em\relax IEEE, 2015, p.~2. [Online]. Available:
   \url{http://dblp.uni-trier.de/db/conf/ic2e/ic2e2015.html#Evans15}
 \BIBentrySTDinterwordspacing
+
+\bibitem{toshniwal2014storm}
+A.~Toshniwal, S.~Taneja, A.~Shukla, K.~Ramasamy, J.~M. Patel, S.~Kulkarni,
+  J.~Jackson, K.~Gade, M.~Fu, J.~Donham \emph{et~al.}, ``Storm@ twitter,'' in
+  \emph{Proceedings of the 2014 ACM SIGMOD international conference on
+  Management of data}.\hskip 1em plus 0.5em minus 0.4em\relax ACM, 2014, pp.
+  147--156.
 
 \bibitem{mda}
 D.~Frankel, \emph{Model Driven Architecture: Applying MDA to Enterprise
@@ -120,6 +120,24 @@ A.~Brunnert, A.~van Hoorn, F.~Willnecker, A.~Danciu, W.~Hasselbring, C.~Heger,
   N.~Herbst, P.~Jamshidi, R.~Jung, J.~von Kistowski \emph{et~al.},
   ``Performance-oriented devops: A research agenda,'' \emph{arXiv preprint
   arXiv:1508.04752}, 2015.
+
+\bibitem{MPS13}
+\BIBentryALTinterwordspacing
+M.~Pradella, A.~Morzenti, and P.~S. Pietro, ``Bounded satisfiability checking
+  of metric temporal logic specifications,'' \emph{ACM Trans. Softw. Eng.
+  Methodol.}, vol.~22, no.~3, pp. 20:1--20:54, Jul. 2013. [Online]. Available:
+  \url{http://doi.acm.org/10.1145/2491509.2491514}
+\BIBentrySTDinterwordspacing
+
+\bibitem{DD07}
+S.~Demri and D.~D'Souza, ``An automata-theoretic approach to constraint
+  {LTL},'' \emph{Information and Computation}, vol. 205, no.~3, pp. 380--415,
+  2007.
+
+\bibitem{BRS15}
+M.~M. Bersani, M.~Rossi, and P.~San~Pietro, ``A tool for deciding the
+  satisfiability of continuous-time metric temporal logic,'' \emph{Acta
+  Informatica}, pp. 1--36, 2015.
 
 \bibitem{lambda}
 \BIBentryALTinterwordspacing
