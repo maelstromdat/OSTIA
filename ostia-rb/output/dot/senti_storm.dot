@@ -1,0 +1,7 @@
+digraph G {
+  DatasetSpout -> TokenizerBolt [label="shuffleGrouping"]
+  TokenizerBolt -> PreprocessorBolt [label="shuffleGrouping"]
+  PreprocessorBolt -> POSTaggerBolt [label="shuffleGrouping"]
+  POSTaggerBolt -> FeatureGenerationBolt [label="shuffleGrouping"]
+  FeatureGenerationBolt -> SVMBolt [label="shuffleGrouping"]
+}

@@ -69,8 +69,8 @@ module Ostia
     end
 
     def extract_parallelism(node, line)
-      require 'pp'
-      parallelism =  line.scan(/(\d+)\s*\)/).first.first.to_i
+      parallelism =  line.scan(/(\d+)\s*\)/).first
+      parallelism = parallelism.nil? ? nil : parallelism.first
       @graph.add_parallelism(node, parallelism)
     end
 

@@ -63,9 +63,11 @@ module Ostia
       @nodes.each do |node, neighbors|
         next if neighbors.empty?
         neighbors.each do |destination|
-          str += "\n  " \
-                 + node + "_#{@parallelism[node]}" + ' -> ' \
-                 + destination[:node] + "_#{@parallelism[destination[:node]]}" \
+          parallelism_source = @parallelism[node] ? "_#{@parallelism[node]}" : ''
+          parallelism_destination = @parallelism[destination[:node]] ? "_#{@parallelism[destination[:node]]}" : ''
+          str += "\n  "\
+                 + node + parallelism_source + ' -> ' \
+                 + destination[:node] +  parallelism_destination\
                  + " [label=\"#{destination[:label]}\"]"
         end
       end

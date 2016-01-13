@@ -1,0 +1,11 @@
+digraph G {
+  spout -> partitioner [label="shuffleGrouping"]
+  partitioner -> fetch [label="fieldsGrouping"]
+  fetch -> sitemap [label="shuffleGrouping"]
+  fetch -> status [label="shuffleGrouping"]
+  sitemap -> parse [label="shuffleGrouping"]
+  sitemap -> status [label="shuffleGrouping"]
+  parse -> index [label="shuffleGrouping"]
+  parse -> status [label="shuffleGrouping"]
+  index -> status [label="shuffleGrouping"]
+}
