@@ -12,7 +12,7 @@ In order to guarantee fault-tolerant stream processing, tuples processed by bolt
 
 \begin{figure}[H]
 	\begin{center}
-		\includegraphics[width=4cm]{images/multi-anchoring}
+		\includegraphics[width=2.5cm]{images/multi-anchoring}
 		\caption{Multi-anchoring.}
 		\label{fig:multi-anchoring}
 	\end{center}
@@ -20,13 +20,13 @@ In order to guarantee fault-tolerant stream processing, tuples processed by bolt
 
 \subsection{Cycle-in Topology}
 
-Technically, it is possible to have cycle in Storm topologies. An infinite cycle of processing would create an infinite tuple tree and make it impossible for Storm to ever acknowledge spout emitted tuples. Therefore, cycles should be avoided or resulting tuple trees should be investigated additionally to make sure they terminate at some point and under a specified series of conditions. The anti-pattern itself may lead to infrastructure overloading and therefore increased infrastructure costs.
+Technically, it is possible to have cycle in Storm topologies. An infinite cycle of processing would create an infinite tuple tree and make it impossible for Storm to ever acknowledge spout emitted tuples. Therefore, cycles should be avoided or resulting tuple trees should be investigated additionally to make sure they terminate at some point and under a specified series of conditions. The anti-pattern itself may lead to infrastructure overloading and therefore increased costs.
 %\emph{\bf A topology is already an infinite stream of tuple, the problem could be the overloading of some machines}
 %\emph{\bf At the cycle-detection is not supported (even if it is easy to implement)}
 
 \begin{figure}[H]
 	\begin{center}
-		\includegraphics[width=3cm]{images/cycle}
+		\includegraphics[width=2cm]{images/cycle}
 		\caption{Cycle-in Topology.}
 		\label{fig:cycle}
 	\end{center}

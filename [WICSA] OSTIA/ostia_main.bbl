@@ -22,20 +22,13 @@
 \BIBdecl
 
 \bibitem{bdsurvey}
-\BIBentryALTinterwordspacing
 C.~K. Emani, N.~Cullot, and C.~Nicolle, ``Understandable big data: A survey.''
-  \emph{Computer Science Review}, vol.~17, pp. 70--81, 2015. [Online].
-  Available:
-  \url{http://dblp.uni-trier.de/db/journals/csr/csr17.html#EmaniCN15}
-\BIBentrySTDinterwordspacing
+  \emph{Computer Science Review}, vol.~17, pp. 70--81, 2015.
 
 \bibitem{ml4bd}
-\BIBentryALTinterwordspacing
 B.~Ratner, \emph{Statistical and Machine-Learning Data Mining: Techniques for
   Better Predictive Modeling and Analysis of Big Data}.\hskip 1em plus 0.5em
-  minus 0.4em\relax CRC PressINC, 2012. [Online]. Available:
-  \url{http://books.google.de/books?id=0KuIJTAznLUC}
-\BIBentrySTDinterwordspacing
+  minus 0.4em\relax CRC PressINC, 2012.
 
 \bibitem{ossslr}
 D.~A. Tamburri, P.~Lago, and H.~van Vliet, ``Organizational social structures
@@ -48,19 +41,13 @@ L.~J. Bass, I.~M. Weber, and L.~Zhu, \emph{DevOps - A Software Architect's
   minus 0.4em\relax Addison-Wesley, 2015.
 
 \bibitem{archrec}
-\BIBentryALTinterwordspacing
 I.~Ivkovic and M.~W. Godfrey, ``Enhancing domain-specific software architecture
   recovery.'' in \emph{IWPC}.\hskip 1em plus 0.5em minus 0.4em\relax IEEE
-  Computer Society, 2003, pp. 266--273. [Online]. Available:
-  \url{http://dblp.uni-trier.de/db/conf/iwpc/iwpc2003.html#IvkovicG03}
-\BIBentrySTDinterwordspacing
+  Computer Society, 2003, pp. 266--273.
 
 \bibitem{storm}
-\BIBentryALTinterwordspacing
 R.~Evans, ``Apache storm, a hands on tutorial.'' in \emph{IC2E}.\hskip 1em plus
-  0.5em minus 0.4em\relax IEEE, 2015, p.~2. [Online]. Available:
-  \url{http://dblp.uni-trier.de/db/conf/ic2e/ic2e2015.html#Evans15}
-\BIBentrySTDinterwordspacing
+  0.5em minus 0.4em\relax IEEE, 2015, p.~2.
 
 \bibitem{toshniwal2014storm}
 A.~Toshniwal, S.~Taneja, A.~Shukla, K.~Ramasamy, J.~M. Patel, S.~Kulkarni,
@@ -81,15 +68,11 @@ D.~C. Schmidt, M.~Stal, H.~Rohnert, and F.~Buschmann, \emph{Pattern-oriented
   England, 2000.
 
 \bibitem{icsoft}
-\BIBentryALTinterwordspacing
 M.~M. Bersani, S.~Distefano, L.~Ferrucci, and M.~Mazzara, ``A timed semantics
   of workflows.'' in \emph{ICSOFT (Selected Papers)}, ser. Communications in
   Computer and Information Science, A.~Holzinger, J.~Cardoso, J.~Cordeiro,
   T.~Libourel, L.~A. Maciaszek, and M.~van Sinderen, Eds., vol. 555.\hskip 1em
-  plus 0.5em minus 0.4em\relax Springer, 2014, pp. 365--383. [Online].
-  Available:
-  \url{http://dblp.uni-trier.de/db/conf/icsoft/icsoft2014s.html#BersaniDFM14}
-\BIBentrySTDinterwordspacing
+  plus 0.5em minus 0.4em\relax Springer, 2014, pp. 365--383.
 
 \bibitem{focusgroup}
 D.~L. Morgan, \emph{Focus groups as qualitative research}.\hskip 1em plus 0.5em
@@ -107,14 +90,6 @@ S.~B. Merriam, \emph{Case study research in education: A qualitative
   \url{http://psycnet.apa.org/psycinfo/1989-97006-000}
 \BIBentrySTDinterwordspacing
 
-\bibitem{zot}
-\BIBentryALTinterwordspacing
-C.~A. Furia, D.~Mandrioli, A.~Morzenti, and M.~Rossi, ``Modeling time in
-  computing: A taxonomy and a comparative survey,'' \emph{ACM Comput. Surv.},
-  vol.~42, no.~2, pp. 6:1--6:59, Mar. 2010. [Online]. Available:
-  \url{http://doi.acm.org/10.1145/1667062.1667063}
-\BIBentrySTDinterwordspacing
-
 \bibitem{brunnert2015performance}
 A.~Brunnert, A.~van Hoorn, F.~Willnecker, A.~Danciu, W.~Hasselbring, C.~Heger,
   N.~Herbst, P.~Jamshidi, R.~Jung, J.~von Kistowski \emph{et~al.},
@@ -122,12 +97,9 @@ A.~Brunnert, A.~van Hoorn, F.~Willnecker, A.~Danciu, W.~Hasselbring, C.~Heger,
   arXiv:1508.04752}, 2015.
 
 \bibitem{MPS13}
-\BIBentryALTinterwordspacing
 M.~Pradella, A.~Morzenti, and P.~S. Pietro, ``Bounded satisfiability checking
   of metric temporal logic specifications,'' \emph{ACM Trans. Softw. Eng.
-  Methodol.}, vol.~22, no.~3, pp. 20:1--20:54, Jul. 2013. [Online]. Available:
-  \url{http://doi.acm.org/10.1145/2491509.2491514}
-\BIBentrySTDinterwordspacing
+  Methodol.}, vol.~22, no.~3, pp. 20:1--20:54, Jul. 2013.
 
 \bibitem{BRS15}
 M.~M. Bersani, M.~Rossi, and P.~San~Pietro, ``A tool for deciding the
@@ -143,40 +115,32 @@ S.~Demri and D.~D'Souza, ``An automata-theoretic approach to constraint
 {Rajeev Alur} and {David L. Dill}, ``A theory of timed automata,''
   \emph{Theoretical Computer Science}, vol. 126, p. 183?235, 1994.
 
+\bibitem{atam}
+P.~Clements, R.~Kazman, and M.~Klein, \emph{Evaluating Software Architectures:
+  Methods and Case Studies}.\hskip 1em plus 0.5em minus 0.4em\relax
+  Addison-Wesley, 2001.
+
 \bibitem{lambda}
-\BIBentryALTinterwordspacing
 M.~Quartulli, J.~Lozano, and I.~G. Olaizola, ``Beyond the lambda architecture:
   Effective scheduling for large scale eo information mining and interactive
   thematic mapping.'' in \emph{IGARSS}.\hskip 1em plus 0.5em minus 0.4em\relax
-  IEEE, 2015, pp. 1492--1495. [Online]. Available:
-  \url{http://dblp.uni-trier.de/db/conf/igarss/igarss2015.html#QuartulliLO15}
-\BIBentrySTDinterwordspacing
+  IEEE, 2015, pp. 1492--1495.
 
 \bibitem{ibmspl}
-\BIBentryALTinterwordspacing
 M.~Hirzel, H.~Andrade, B.~Gedik, G.~Jacques-Silva, R.~Khandekar, V.~Kumar,
   M.~P. Mendell, H.~Nasgaard, S.~Schneider, R.~Soulé, and K.-L. Wu, ``Ibm
   streams processing language: Analyzing big data in motion.'' \emph{IBM
-  Journal of Research and Development}, vol.~57, no. 3/4, p.~7, 2013. [Online].
-  Available:
-  \url{http://dblp.uni-trier.de/db/journals/ibmrd/ibmrd57.html#HirzelAGJKKMNSSW13}
-\BIBentrySTDinterwordspacing
+  Journal of Research and Development}, vol.~57, no. 3/4, p.~7, 2013.
 
 \bibitem{perfbd}
-\BIBentryALTinterwordspacing
 D.~Wang and J.~Liu, ``Optimizing big data processing performance in the public
   cloud: opportunities and approaches.'' \emph{IEEE Network}, vol.~29, no.~5,
-  pp. 31--35, 2015. [Online]. Available:
-  \url{http://dblp.uni-trier.de/db/journals/network/network29.html#WangL15}
-\BIBentrySTDinterwordspacing
+  pp. 31--35, 2015.
 
 \bibitem{bigdatareliab}
-\BIBentryALTinterwordspacing
 Y.~Tamura and S.~Yamada, ``Reliability analysis based on a jump diffusion model
   with two wiener processes for cloud computing with big data.''
-  \emph{Entropy}, vol.~17, no.~7, pp. 4533--4546, 2015. [Online]. Available:
-  \url{http://dblp.uni-trier.de/db/journals/entropy/entropy17.html#TamuraY15}
-\BIBentrySTDinterwordspacing
+  \emph{Entropy}, vol.~17, no.~7, pp. 4533--4546, 2015.
 
 \bibitem{jamshidi-vldb}
 P.~Jamshidi and G.~Casale, ``An uncertainty-aware approach to optimal
@@ -184,12 +148,24 @@ P.~Jamshidi and G.~Casale, ``An uncertainty-aware approach to optimal
   evaluation)}, 2016.
 
 \bibitem{stormgen}
-\BIBentryALTinterwordspacing
 K.~Chandrasekaran, S.~Santurkar, and A.~Arora, ``Stormgen - a domain specific
   language to create ad-hoc storm topologies.'' in \emph{FedCSIS}, M.~Ganzha,
-  L.~A. Maciaszek, and M.~Paprzycki, Eds., 2014, pp. 1621--1628. [Online].
-  Available:
-  \url{http://dblp.uni-trier.de/db/conf/fedcsis/fedcsis2014.html#ChandrasekaranSA14}
-\BIBentrySTDinterwordspacing
+  L.~A. Maciaszek, and M.~Paprzycki, Eds., 2014, pp. 1621--1628.
+
+\bibitem{camilli2014}
+M.~Camilli, ``Formal verification problems in a big data world: Towards a
+  mighty synergy,'' in \emph{Companion Proceedings of the 36th International
+  Conference on Software Engineering}, ser. ICSE Companion 2014.\hskip 1em plus
+  0.5em minus 0.4em\relax New York, NY, USA: ACM, 2014, pp. 638--641.
+
+\bibitem{dicomputational}
+T.~Di~Noia, M.~Mongiello, and E.~Di~Sciascio, ``A computational model for
+  mapreduce job flow.''
+
+\bibitem{yang2010formalizing}
+F.~Yang, W.~Su, H.~Zhu, and Q.~Li, ``Formalizing mapreduce with csp,'' in
+  \emph{Engineering of Computer Based Systems (ECBS), 2010 17th IEEE
+  International Conference and Workshops on}.\hskip 1em plus 0.5em minus
+  0.4em\relax IEEE, 2010, pp. 358--367.
 
 \end{thebibliography}
