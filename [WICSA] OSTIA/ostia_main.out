@@ -18,9 +18,13 @@
 \BOOKMARK [2][-]{subsection.6.1}{Industrial Case-Study}{section.6}% 18
 \BOOKMARK [2][-]{subsection.6.2}{Confirming OSTIA Usefulness with Open-Source Case-Studies}{section.6}% 19
 \BOOKMARK [2][-]{subsection.6.3}{OSTIA-Based Formal Verification}{section.6}% 20
-\BOOKMARK [1][-]{section.7}{Discussion}{}% 21
-\BOOKMARK [2][-]{subsection.7.1}{Findings and Quality-Improvement Insights}{section.7}% 22
-\BOOKMARK [2][-]{subsection.7.2}{Approach Limitations and Threats to Validity}{section.7}% 23
-\BOOKMARK [1][-]{section.8}{Previous and Related Work}{}% 24
-\BOOKMARK [1][-]{section.9}{Conclusion}{}% 25
-\BOOKMARK [1][-]{section*.2}{References}{}% 26
+\BOOKMARK [2][-]{subsection.6.4}{Storm Formal Model}{section.6}% 21
+\BOOKMARK [3][-]{subsubsection.6.4.1}{How the model came to be}{subsection.6.4}% 22
+\BOOKMARK [3][-]{subsubsection.6.4.2}{Assumptions and level of abstraction}{subsection.6.4}% 23
+\BOOKMARK [3][-]{subsubsection.6.4.3}{Model Formalization}{subsection.6.4}% 24
+\BOOKMARK [1][-]{section.7}{Discussion}{}% 25
+\BOOKMARK [2][-]{subsection.7.1}{Findings and Quality-Improvement Insights}{section.7}% 26
+\BOOKMARK [2][-]{subsection.7.2}{Approach Limitations and Threats to Validity}{section.7}% 27
+\BOOKMARK [1][-]{section.8}{Previous and Related Work}{}% 28
+\BOOKMARK [1][-]{section.9}{Conclusion}{}% 29
+\BOOKMARK [1][-]{section*.2}{References}{}% 30
