@@ -7,9 +7,10 @@
 The work we elaborated in this paper is stemming from the following research question:
 
 \begin{center}
-\emph{``How can we assist the continuous architecting of stream-based systems design?"}
+\emph{``How can we assist the continuous architecting of stream processing systems?"}
 \end{center}
 
+\comment{I would say if we connect it to the special need in DICE would makes more sense?}
 The results contained in this paper in response to this research question were initially elaborated within a free-form focus group \cite{focusgroup} involving three experienced practitioners and researchers on big data streaming technologies, such as Storm. Following the focus group, through self-ethnography \cite{selfeth} and brainstorming we identified the series of essential consistency checks, algorithmic evaluations as well as anti-patterns that can now be applied through OSTIA while recovering an architectural representation for Storm topologies. We designed OSTIA\footnote{\url{https://github.com/maelstromdat/OSTIA}} to support the incremental and iterative refinement of streaming topologies based on the incremental discovery and correction of the above checks and patterns.
 
 \begin{figure*}
@@ -22,8 +23,8 @@ The results contained in this paper in response to this research question were i
 
 In addition, we incrementally refined and evaluated OSTIA through scenario-analysis and case-study research \cite{casestudy} involving an industrial partner.
 
-As previously stated, OSTIA was evaluated by means of an industrial case-study offered by one of the industrial partners in the DICE EU H2020 Project consortium\footnote{\url{http://www.dice-h2020.eu/}}. 
-The partner in question uses open-source social-sensing software to elaborate a subscription-based big-data application that: (a) aggregates news assets from various sources (e.g., Twitter, Facebook, etc.) based on user-desired specifications (e.g., topic, sentiment, etc.); (b) presents and allows the manipulation of data. Said application is based on the SocialSensor App\footnote{\url{https://github.com/socialsensor}} which features the combined action of three complex streaming topologies based on Apache Storm (see Fig. \ref{topo1} for a sample).
+As previously stated, OSTIA was evaluated by means of an industrial case-study \comment{wasnt it three?} offered by one of the industrial partners in the DICE EU H2020 Project consortium\footnote{\url{http://www.dice-h2020.eu/}}. 
+The partner in question uses open-source social-sensing software to elaborate a subscription-based big-data application that: (a) aggregates news assets from various sources (e.g., Twitter, Facebook, etc.) based on user-desired specifications (e.g., topic, sentiment, etc.); (b) presents and allows the manipulation of data. Said \comment{I'm not sure using ''said'' is formal?} application is based on the SocialSensor App\footnote{\url{https://github.com/socialsensor}} which features the combined action of three complex streaming topologies based on Apache Storm (see Fig. \ref{topo1} for a sample).
 
 In particular, the topology in Fig. \ref{topo1} extracts data from sources and manipulates said data to divide and arrange contents based on type (e.g., article vs. media), later updating a series of databases (e.g., Redis) with these elaborations. The models that OSTIA elicited from this application were showcased to our industrial partner in a focus group aimed at establishing the value of insights produced as part of OSTIA-based analyses. Our qualitative assessment was based on questionnaires and open discussion.
 
@@ -39,3 +40,5 @@ To further validate OSTIA on open-source projects, we applied it on two open-sou
 %\textbf{TODO: @anyone, feel free to elaborate more!!}
 
 Finally, we applied well-established verification approaches to integrate the value and benefits behind using OSTIA. We engineered OSTIA to support exporting of elicited topologies for their further analysis using the Zot\footnote{\url{https://github.com/fm-polimi/zot}} LTL model-checkerusing the approach outlined in our previous work \cite{icsoft}.
+
+\comment{this section need a bit of refactoring it's not focused enough}

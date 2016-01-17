@@ -36,7 +36,7 @@ OSTIA is architected in a way that algorithmic analysis, such as anti-pattern
 analyses, can be easily added. These analyses use the information resides in the
 intermediate format and provide added value analyses for continuous architecting
 of storm topologies. Since the information in the intermediate format only rely
-on the logical code analysis, some algorithmic analyses requires some
+on the logical code analysis, the algorithmic analyses require some
 information regarding the running topology, such as end to end latency and
 throughput.
 
@@ -58,7 +58,7 @@ Finally, OSTIA allows users to export the topology in different formats
 
 \subsection{Deep Within OSTIA: The Storm Framework Meta-Model}
 
-OSTIA was designed to retrieve and analyse Storm topologies on-the-fly, allowing their refactoring in a way which is consistent with framework restrictions, rules and regulations part of the Storm framework. In so doing, OSTIA uses a meta-model for the Storm framework. This meta-model acts as an image of all said restrictions and rules that OSTIA needs to maintain for elicited (or refactored) topologies. 
+OSTIA was designed to retrieve and analyse Storm topologies on-the-fly, allowing their refactoring in a way which is consistent with framework restrictions, rules and regulations part of the Storm framework. In doing so, OSTIA uses a meta-model for the Storm framework. This meta-model acts as an image of all said restrictions and rules that OSTIA needs to maintain for elicited (or refactored) topologies. 
 Essentially OSTIA implements in the meta-model the operational picture of the Storm Framework - this is critical to checking that the restrictions and constraints coded within Storm are reflected in elicited models as well as maintained during architecting and refactoring of those models. In addition, OSTIA applies all the necessary anti-pattern checks in combination with checking that said framework restrictions are maintained - this is critical to support continuous architecting in a manner which is consistent with Storm restrictions that would only become apparent during run-time and operations.
 The meta-model in question is depicted in Fig. \ref{stormmm}. The figure shows an overview of the meta-model for Storm\footnote{The details of this meta-model and the restrictions captured therein is beyond the scope of this paper. More details are available in our project homepage, in section D2.1: \url{http://dice-h2020.eu/deliverables/D2.1}.} where, for example, the grouping restrictions that Storm envisions are captured in an enumeration of constraints (see the $<<$Grouping$>>$ element or the $<<$ReplicationFactor$>>$ concrete parameter). Key elements of the meta-model are the following:
 \begin{itemize}
@@ -75,4 +75,5 @@ The meta-model in question is depicted in Fig. \ref{stormmm}. The figure shows a
 	\end{center}
 \end{figure*}
 
+\comment{a description about the verification analyses and more details about the implementations should be added here}
 
