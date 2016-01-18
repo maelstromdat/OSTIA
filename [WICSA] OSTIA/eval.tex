@@ -79,14 +79,35 @@ reading long documentation or inspecting the code.
 \end{center}
 \end{figure}
 
+
+\subsection{A Formal Interpretation}
+The anti-pattern analysis of topologies, previously described in Sec.~\ref{sec:anti-pattern}, is enriched with model-checking, whereby topologies undergo formal verification to assess temporal properties on their executions.
+The next sections elaborate the role of formal verification in OSTIA and describe the background, the modeling assumptions and the definition of the model required to perform verification.
+In particular, in Section~\ref{sec:storm-model}, we provide a non-deterministic model representing Storm topologies behaviors in terms of the delay due to the processing carried out by bolts, the spout input profile (measured with rates of incoming tuples into the topology) and node failures.
+Verification in OSTIA is intended to discover possible design errors at design time which are caused by (i) under/over estimation of timing requirements of computational nodes or (ii) possible runtime node failures.
+Therefore, in this context, we are interested in verifying properties like, for instance, the existence of an execution of the topology which guarantees the boundedness of the length of the queue occupation even if failures occur with a certain delay one from each other.
+Defining the formal model, first requires the comprehension of %started by understanding and capturing 
+the behaviors of both spouts and bolts which, after choosing the level of abstraction of the model, allows us to abstract those behaviors accordingly, %in order 
+to formalize them as finite state machines. The purpose of this  activity is defining the %possible 
+operations performed by nodes and their allowed orderings in a real implementation. %of such operations.
+We then extend the model %by taking into account 
+considering the message buffers (or queues) and the quantity of tuples that are exchanged through the topology.
+In addition, %to the correct ordering of the operations, we decided to 
+we introduce more specific temporal constraints %into the model, in order 
+to limit the time spent by the system in each state (or processing phase) and to elaborate the concept of \textit{rate}, intended as ``number of times an event is occurring every time unit''.
+The formal modeling is based on real-time temporal logic, i.e., the topology behavior is defined through a temporal logic formula written in Constraint LTL over clocks (CLTLoc)~\cite{BRS15}.
+
+
+
 \subsection{OSTIA-Based Formal Verification}\label{ver}
 \input{macros}
 
 This section describes the formal modelling and verification employed in OSTIA  which both rely on \textit{satisfiability checking}~\cite{MPS13}, an alternative approach to model-checking.
 Instead of an operational model (like automata or transition systems), as in model-checking, 
-the system (i.e., a topology in this context) is specified by a formula defining their executions over time and properties are verified by proving that the system logically entails them.
+the system (i.e., a topology in this context) is specified by a formula defining its executions over time and properties are verified by proving that the system logically entails them.
 
-The logic we use is Constraint LTL over clocks (CLTLoc)~\cite{BRS15} which is a semantic restriction of Constraint LTL (CLTL)~\cite{DD07} allowing atomic formulae over $(\mathbb{R}, \set{<,=})$ where the arithmetical variables behave like clocks of Timed Automata (TA)~\cite{timed}.
+%The logic we use is Constraint LTL over clocks 
+CLTLoc is a real-time temporal logic and, in particular, a semantic restriction of Constraint LTL (CLTL)~\cite{DD07} allowing atomic formulae over $(\mathbb{R}, \set{<,=})$ where the arithmetical variables behave like clocks of Timed Automata (TA)~\cite{timed}.
 A clock $x$ measures the time elapsed since the last time when $x=0$ held, i.e., since the last ``reset'' of $x$.
 Clocks are interpreted over Reals and their value can be tested with respect to a positive integer value.
 %
@@ -110,14 +131,14 @@ A formula is \textit{satisfiable} if it has a model.
 
 The standard technique to prove the satisfiability of CLTL and CLTLoc formulae is based on of B\"uchi automata \cite{DD07,BRS15} %the evidence has turned out that it may be rather expensive in practice, even in the case of LTL (the size of the automaton is exponential with respect to the size of the formula).
 but, for practical implementation, Bounded Satisfiability Checking (BSC)~\cite{MPS13} avoids the onerous construction of automata.
-By unrolling the semantics of a formula for a finite number $k>0$ of steps, 
-the outcome of a BSC problem is either an infinite ultimately periodic model or unsat.
+%By unrolling the semantics of a formula for a finite number $k>0$ of steps, 
+The outcome of a BSC problem is either an infinite ultimately periodic model or unsat.
 \cite{BRS15} shows that BSC for CLTLoc is complete and that is reducible to a decidable Satisfiability Modulo Theory (SMT) problem. 
-A CLTLoc formula can be translated into the decidable theory of quantifier-free formulae with equality and uninterpreted functions combined with the theory of Reals over $(\Real,<)$. %, written QF-EUF$(\Real,<)$.
+%A CLTLoc formula can be translated into the decidable theory of quantifier-free formulae with equality and uninterpreted functions combined with the theory of Reals over $(\Real,<)$. %, written QF-EUF$(\Real,<)$.
 
 CLTLoc allows the specification of temporal constraints using clock variables ranging over $\Real$, whose value is not abstracted.
 Clock variables represent, in the logical language and with the same precision, physical (dense) clocks.
-They appear in formulae of the form $x \sim c$ to express a bound $c$ on the delay measured by clock $x$. 
+They appear in formulae in the form $x \sim c$ to express a bound $c$ on the delay measured by clock $x$. 
 Clocks are associated with specific events to measure time elapsing over the execution.
 As they are reset when the associated event occurs, in any moment, the clock value represents the time elapsed since the previous reset and corresponds to the elapsed time since the last occurrence of the event associated to it.
 We use such constraints to define, for instance, the time delay required to process tuples or between two node failures.
