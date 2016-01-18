@@ -10,13 +10,21 @@ In order to guarantee fault-tolerant stream processing, tuples processed by bolt
 %\emph{\bf TODO: what is the consequence of these anti-patterns? How does OSTIA detect?}
 %\emph{\bf Multi-anchoring is not supported at the moment. Besides, I am not sure it is an anti-patter but rather a design decision}
 
-\begin{figure}[H]
-	\begin{center}
-		\includegraphics[width=2.5cm]{images/multi-anchoring}
-		\caption{Multi-anchoring.}
-		\label{fig:multi-anchoring}
-	\end{center}
+%\begin{figure}[H]
+%	\begin{center}
+%		\includegraphics[width=2.5cm]{images/multi-anchoring}
+%		\caption{Multi-anchoring.}
+%		\label{fig:multi-anchoring}
+%	\end{center}
+%\end{figure}
+
+\begin{figure}
+\centering 
+\subfigure[Multi-anchoring.]{\includegraphics[width=2.5cm]{images/multi-anchoring}}\label{fig:multi-anchoring}
+\hspace{1cm}
+\subfigure[Cycle-in.]{\includegraphics[width=2.0cm]{images/cycle}}\label{fig:cycle}
 \end{figure}
+
 
 \subsection{Cycle-in Topology}
 
@@ -24,13 +32,13 @@ Technically, it is possible to have cycle in Storm topologies. An infinite cycle
 %\emph{\bf A topology is already an infinite stream of tuple, the problem could be the overloading of some machines}
 %\emph{\bf At the cycle-detection is not supported (even if it is easy to implement)}
 
-\begin{figure}[H]
-	\begin{center}
-		\includegraphics[width=2cm]{images/cycle}
-		\caption{Cycle-in Topology.}
-		\label{fig:cycle}
-	\end{center}
-\end{figure}
+%\begin{figure}[H]
+%	\begin{center}
+%		\includegraphics[width=2cm]{images/cycle}
+%		\caption{Cycle-in Topology.}
+%		\label{fig:cycle}
+%	\end{center}
+%\end{figure}
 
 \subsection{Persistent Data}
 
