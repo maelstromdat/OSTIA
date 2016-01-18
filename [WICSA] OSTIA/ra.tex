@@ -19,13 +19,13 @@ In pursuit of the research question above, the results contained in this paper w
 \includegraphics[width=12cm]{images/socialsensor}
 \caption{A sample Storm topology in the SocialSensor App.}
 \end{center}
-\label{topo1}
+\label{socialsensor-topology}
 \end{figure*}
 
 Finally, OSTIA's evaluation is threefold. 
 First, by means of an industrial case-study offered by one of the industrial partners in the DICE EU H2020 Project consortium\footnote{\url{http://www.dice-h2020.eu/}}. 
 The partner in question uses open-source social-sensing software to elaborate a subscription-based big-data application that: (a) aggregates news assets from various sources (e.g., Twitter, Facebook, etc.) based on user-desired specifications (e.g., topic, sentiment, etc.); (b) presents and allows the manipulation of data. The application in question is based on the SocialSensor App\footnote{\url{https://github.com/socialsensor}} which features the combined action of three complex streaming topologies based on Apache Storm (see Fig. \ref{topo1} for a sample).
-In particular, the topology in Fig. \ref{topo1} extracts data from sources and manipulates said data to divide and arrange contents based on type (e.g., article vs. media), later updating a series of databases (e.g., Redis) with these elaborations. The models that OSTIA elicited from this application were showcased to our industrial partner in a focus group aimed at establishing the value of insights produced as part of OSTIA-based analyses. Our qualitative assessment was based on questionnaires and open discussion.
+In particular, the topology in Fig. \ref{socialsensor-topology} extracts data from sources and manipulates said data to divide and arrange contents based on type (e.g., article vs. media), later updating a series of databases (e.g., Redis) with these elaborations. The models that OSTIA elicited from this application were showcased to our industrial partner in a focus group aimed at establishing the value of insights produced as part of OSTIA-based analyses. Our qualitative assessment was based on questionnaires and open discussion.
 
 Second, to further confirm the validity of OSTIA analyses and support, we applied it on two open-source applications featuring Big-Data analytics and built on top of the Storm streaming technology, namely: (a) the DigitalPebble application, i.e., quoting from the homesite\footnote{\url{https://github.com/DigitalPebble/storm-crawler}}, ``A Text Classification API in Java originally developed by DigitalPebble Ltd. The API is independent from the ML implementations used and can be used as a front end to various ML algorithms"; (b) the StormCV application, i.e., quoting from the homesite\footnote{\url{https://github.com/sensorstorm/StormCV}} ``StormCV enables the use of Apache Storm for video processing by adding computer vision (CV) specific operations and data model; the platform enables the development of distributed video processing pipelines which can be deployed on Storm clusters".
 
