@@ -21,45 +21,45 @@ Warning--empty journal in dicomputational
 Warning--empty year in dicomputational
 
 Done.
-You've used 28 entries,
+You've used 26 entries,
             4039 wiz_defined-function locations,
-            977 strings with 12202 characters,
-and the built_in function-call counts, 19713 in all, are:
-= -- 1507
-> -- 524
-< -- 132
-+ -- 278
-- -- 101
-* -- 920
-:= -- 2937
-add.period$ -- 63
-call.type$ -- 28
-change.case$ -- 24
+            964 strings with 11895 characters,
+and the built_in function-call counts, 18797 in all, are:
+= -- 1435
+> -- 511
+< -- 130
++ -- 272
+- -- 98
+* -- 880
+:= -- 2774
+add.period$ -- 59
+call.type$ -- 26
+change.case$ -- 23
 chr.to.int$ -- 294
-cite$ -- 30
-duplicate$ -- 1453
-empty$ -- 1742
-format.name$ -- 125
-if$ -- 4582
+cite$ -- 28
+duplicate$ -- 1380
+empty$ -- 1638
+format.name$ -- 121
+if$ -- 4373
 int.to.chr$ -- 0
-int.to.str$ -- 28
-missing$ -- 273
-newline$ -- 109
-num.names$ -- 32
-pop$ -- 683
+int.to.str$ -- 26
+missing$ -- 258
+newline$ -- 101
+num.names$ -- 30
+pop$ -- 647
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 2
-skip$ -- 1548
+skip$ -- 1466
 stack$ -- 0
-substring$ -- 724
-swap$ -- 1118
-text.length$ -- 34
+substring$ -- 723
+swap$ -- 1074
+text.length$ -- 32
 text.prefix$ -- 0
 top$ -- 5
-type$ -- 28
+type$ -- 26
 warning$ -- 2
-while$ -- 78
-width$ -- 30
-write$ -- 278
+while$ -- 76
+width$ -- 28
+write$ -- 258
 (There were 2 error messages)

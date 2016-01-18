@@ -82,14 +82,6 @@ D.~L. Morgan, \emph{Focus groups as qualitative research}.\hskip 1em plus 0.5em
 M.~Hammersley and P.~Atkinson, \emph{Ethnography}.\hskip 1em plus 0.5em minus
   0.4em\relax London: Routledge, 2003.
 
-\bibitem{casestudy}
-\BIBentryALTinterwordspacing
-S.~B. Merriam, \emph{Case study research in education: A qualitative
-  approach}.\hskip 1em plus 0.5em minus 0.4em\relax Jossey-Bass Publishers,
-  1991, vol.~1, no. 1980. [Online]. Available:
-  \url{http://psycnet.apa.org/psycinfo/1989-97006-000}
-\BIBentrySTDinterwordspacing
-
 \bibitem{brunnert2015performance}
 A.~Brunnert, A.~van Hoorn, F.~Willnecker, A.~Danciu, W.~Hasselbring, C.~Heger,
   N.~Herbst, P.~Jamshidi, R.~Jung, J.~von Kistowski \emph{et~al.},
@@ -141,11 +133,6 @@ D.~Wang and J.~Liu, ``Optimizing big data processing performance in the public
 Y.~Tamura and S.~Yamada, ``Reliability analysis based on a jump diffusion model
   with two wiener processes for cloud computing with big data.''
   \emph{Entropy}, vol.~17, no.~7, pp. 4533--4546, 2015.
-
-\bibitem{jamshidi-vldb}
-P.~Jamshidi and G.~Casale, ``An uncertainty-aware approach to optimal
-  configuration of stream processing systems.'' in \emph{VLDB (under
-  evaluation)}, 2016.
 
 \bibitem{stormgen}
 K.~Chandrasekaran, S.~Santurkar, and A.~Arora, ``Stormgen - a domain specific
