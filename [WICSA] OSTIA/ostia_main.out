@@ -8,10 +8,10 @@
 \BOOKMARK [2][-]{subsection.4.1}{Multi-Anchoring}{section.4}% 8
 \BOOKMARK [2][-]{subsection.4.2}{Cycle-in Topology}{section.4}% 9
 \BOOKMARK [2][-]{subsection.4.3}{Persistent Data}{section.4}% 10
-\BOOKMARK [2][-]{subsection.4.4}{Computation funnel}{section.4}% 11
+\BOOKMARK [2][-]{subsection.4.4}{Computation Funnel}{section.4}% 11
 \BOOKMARK [1][-]{section.5}{Algorithmic Analysis on Stream Topologies}{}% 12
-\BOOKMARK [2][-]{subsection.5.1}{fan-in/fan-out}{section.5}% 13
-\BOOKMARK [2][-]{subsection.5.2}{topology cascading}{section.5}% 14
+\BOOKMARK [2][-]{subsection.5.1}{Fan-in/Fan-out}{section.5}% 13
+\BOOKMARK [2][-]{subsection.5.2}{Topology cascading}{section.5}% 14
 \BOOKMARK [2][-]{subsection.5.3}{Topology clustering}{section.5}% 15
 \BOOKMARK [2][-]{subsection.5.4}{Linearising a topology}{section.5}% 16
 \BOOKMARK [1][-]{section.6}{Evaluation}{}% 17

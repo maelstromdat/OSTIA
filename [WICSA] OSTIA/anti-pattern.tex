@@ -46,7 +46,7 @@ This pattern covers the circumstance wherefore if two processing elements need t
 \end{figure}
 
 
-\subsection{Computation funnel}
+\subsection{Computation Funnel}
 A computational funnel emerges when there is not a path from data source (spout) to the bolts that sends out the tuples off the topology to another topology through a messaging framework or through a storage. This circumstance should be dealt with since it may compromise the availability of results under the desired performance restrictions.
 
 \begin{figure}[H]
@@ -59,7 +59,7 @@ A computational funnel emerges when there is not a path from data source (spout)
 
 \section{Algorithmic Analysis on Stream Topologies}\label{algo}
 
-\subsection{fan-in/fan-out}
+\subsection{Fan-in/Fan-out}
 
 For each element of the topology, fan-in is the number of incoming
 streams. Conversely, fan-out is the number outgoing streams. In the case of
@@ -77,7 +77,7 @@ APIs, etc).
 
 This algorithmic manipulation allows to visualise instances where fan-in and fan-out numbers are differing.
 
-\subsection{topology cascading}
+\subsection{Topology cascading}
 
 By topology cascading, we mean connecting two different Storm topologies via a messaging framework (e.g., Apache Kafka). This circumstance, which is actually part of our evaluation and case-studies, may raise the complexity of the overarching topology to unacceptable levels and may require additional attention. OSTIA support for this feature is still limited, more details on this and similar limitations are discussed in Section \ref{lim}.
 %\emph{\bf Ostia does not support this. I can't think of an easy way to implement it}
