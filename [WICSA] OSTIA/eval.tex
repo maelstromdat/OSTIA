@@ -111,23 +111,26 @@ CLTLoc is a real-time temporal logic and, in particular, a semantic restriction 
 A clock $x$ measures the time elapsed since the last time when $x=0$ held, i.e., since the last ``reset'' of $x$.
 Clocks are interpreted over Reals and their value can be tested with respect to a positive integer value.
 %
-Let $X$ be a finite set of clock variables $x$ over $\Real$ and $AP$ be a finite set of atomic propositions $p$.
-CLTLoc formulae are defined as follows:
+Let $X$ be a finite set of clock variables $x$ over $\Real$, $Y$ be a finite set of variables over $\Nat$ and $AP$ be a finite set of atomic propositions $p$.
+CLTLoc formulae with counters are defined as follows:
 \begin{equation*}%\small
   \phi :=
   \begin{gathered}
-    p \mid x\sim c \mid \phi \wedge \phi \mid \neg \phi \mid
-   \X{\phi} \mid \Y{\phi} %\mid \Zed\phi
+    p \mid x\sim c \mid y\sim c\mid \aX y\sim z\pm c \mid\phi \wedge \phi \mid \neg \phi \mid \\
+       \X{\phi} \mid \Y{\phi} %\mid \Zed\phi
 \mid \phi\U\phi \mid \phi\Snc\phi
   \end{gathered}
 \end{equation*}
-where %$p\in AP$, $x \in V$, 
-$c \in \Nat$ and $\sim \in \set{<,=}$, $\bullet$, $\circ$, $\U$ and $\Snc$ are the usual ``next'', ``previous'', ``until'' and ``since''.
+where $x \in X$, $y,z \in Y$, $c \in \Nat$ and 
+$\sim \in \set{<,=}$, $\bullet$, $\circ$, $\U$ and $\Snc$ are the
+usual ``next'', ``previous'', ``until'' and ``since''.
 %The semantics of CLTLoc is defined with respect to $(\Real, \set{<,=})$ and $\pair{\Nat}{<}$, the latter representing positions in time.
 A \textit{model} is a pair $\pair{\pi}{\sigma}$, where $\sigma$ is a mapping associating every variable $x$ and position in $\Nat$ with value $\sigma(i,x)$ and $\pi$ is a mapping associating each position in $\Nat$ with subset of $AP$. 
-The semantics of CLTLoc is defined as for LTL except for formulae $x\sim c$. 
-At position $i\in\Nat$, $ \pair{\pi}{\sigma}, i \models x\sim c \textbf{ iff }  \sigma(i, x)\sim c$.
-A formula is \textit{satisfiable} if it has a model.
+The semantics of CLTLoc is defined as for LTL except for formulae $x\sim c$ and $\aX y \sim z\pm c$. 
+At position $i\in\Nat$,
+$ \pair{\pi}{\sigma}, i \models x\sim c \textbf{ iff }  \sigma(i, x)\sim c$
+and $\pair{\pi}{\sigma}, i \models \aX y\sim z \pm c \textbf{ iff }  \sigma(i+1, z) \sim \sigma(i,z) \pm c$.
+Intuitively, formula $\aX y \sim z\pm c$ means that the next value of $y$ is $\sim$ to/than $z+c$.
 
 The standard technique to prove the satisfiability of CLTL and CLTLoc formulae is based on of B\"uchi automata \cite{DD07,BRS15} %the evidence has turned out that it may be rather expensive in practice, even in the case of LTL (the size of the automaton is exponential with respect to the size of the formula).
 but, for practical implementation, Bounded Satisfiability Checking (BSC)~\cite{MPS13} avoids the onerous construction of automata.
