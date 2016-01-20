@@ -13,17 +13,6 @@
 %% \end{itemize}
 This section outlines OSTIA starting form a brief recap of the technology it is currently designed to support, i.e., the Apache Storm framework. Further on, the section introduces how OSTIA was designed to support continuous architecting of streaming topologies focusing on Storm. Finally, the section outlines the meta-model for Storm that captures all restrictions and rules (e.g., for configuration, topology, dependence, messaging, etc.) in the framework. OSTIA uses this meta-model as a reference every time the application is run to recover and analyse operational topologies.
 
-\subsection{Storm architecture}
-
-Storm is a technology developed at Twitter \cite{toshniwal2014storm} in order to
-face the problem of processing of streaming of data. It is defined as a
-distributed processing framework which is able to analyse streams of data. The
-core element in the system is called \emph{topology}. A Storm topology is a
-computational graph composed by nodes of two types: spouts and bolts. The former
-type includes nodes that process the data entering the topology, for instance
-querying APIs or retrieve information from a message broker, such as Apache
-Kafka. The latter executes operations on data, such as filtering or serialising.
-
 \subsection{OSTIA design}
 
 The overall architecture of OSTIA is depicted in
@@ -53,13 +42,23 @@ appropriate and rich information for refactoring the initial architecture and
 enabling performance driven DevOps \cite{brunnert2015performance}.
 
 Finally, OSTIA allows users to export the topology in different formats
-(e.g. JSON) to analyse the topology with other tools.
+(e.g. JSON) to analyse and continuously improve the topology with other tools, e.g., by means of formal verification.
 
+\subsection{Storm Architecture}
 
-\subsection{Deep Within OSTIA: The Storm Framework Meta-Model}
+Storm is a technology developed at Twitter \cite{toshniwal2014storm} in order to
+face the problem of processing of streaming of data. It is defined as a
+distributed processing framework which is able to analyse streams of data. The
+core element in the system is called \emph{topology}. A Storm topology is a
+computational graph composed by nodes of two types: spouts and bolts. The former
+type includes nodes that process the data entering the topology, for instance
+querying APIs or retrieve information from a message broker, such as Apache
+Kafka. The latter executes operations on data, such as filtering or serialising.
 
-OSTIA was designed to retrieve and analyse Storm topologies on-the-fly, allowing their refactoring in a way which is consistent with framework restrictions, rules and regulations part of the Storm framework. In doing so, OSTIA uses a meta-model for the Storm framework. This meta-model acts as an image of all said restrictions and rules that OSTIA needs to maintain for elicited (or refactored) topologies. 
-Essentially OSTIA implements in the meta-model the operational picture of the Storm Framework - this is critical to checking that the restrictions and constraints coded within Storm are reflected in elicited models as well as maintained during architecting and refactoring of those models. In addition, OSTIA applies all the necessary anti-pattern checks in combination with checking that said framework restrictions are maintained - this is critical to support continuous architecting in a manner which is consistent with Storm restrictions that would only become apparent during run-time and operations.
+\subsection{Storm Framework Meta-Model}
+
+OSTIA was designed to retrieve and analyse Storm topologies on-the-fly, allowing their refactoring in a way which is consistent with framework restrictions, rules and regulations part of the Storm framework. To do so, OSTIA uses a meta-model for the Storm framework which acts as an operational image of all said restrictions and rules that OSTIA needs to maintain. 
+Essentially OSTIA uses the meta-model as such an operational image for Storm, for two purposes: (a) checking that Storm restrictions (e.g., Spouts initiate the topology) and constraints (e.g., grouping policies) are valid on models recovered by OSTIA; (b) keep checking said restrictions and constraints during continuous architecting. 
 The meta-model in question is depicted in Fig. \ref{stormmm}. The figure shows an overview of the meta-model for Storm\footnote{The details of this meta-model and the restrictions captured therein is beyond the scope of this paper. More details are available in our project homepage, in section D2.1: \url{http://dice-h2020.eu/deliverables/D2.1}.} where, for example, the grouping restrictions that Storm envisions are captured in an enumeration of constraints (see the $<<$Grouping$>>$ element or the $<<$ReplicationFactor$>>$ concrete parameter). Key elements of the meta-model are the following:
 \begin{itemize}
 \item the $<<$TopologyConfiguration$>>$ meta-element contains the parameters necessary for the Storm framework to be configured and to run on the selected infrastructure. OSTIA checks that these parameters are present or that defaults are correctly inplace;
@@ -76,4 +75,21 @@ The meta-model in question is depicted in Fig. \ref{stormmm}. The figure shows a
 \end{figure*}
 %
 %\comment{a description about the verification analyses and more details about the implementations should be added here}
+
+\subsection{Storm: A Formal Interpretation}
+Model-checking can serve as a means to enact continuous architecting of Storm topologies. Topologies can undergo formal verification, for example, to assess temporal properties on their execution.
+This section elaborates on the role of formal verification in OSTIA and describes the necessary background, modelling assumptions and model definition behind Storm topology verification.
+In particular, we provide a non-deterministic model representing Storm topologies' behavior in terms of the delay connected to bolts' processing, spout input profile and node failures. Spout input profile is measured with rates of incoming tuples into the topology.
+Verification in OSTIA is intended to discover possible design errors at design time which are caused by (i) under/over estimation of timing requirements of computational nodes or (ii) possible runtime node failures.
+Therefore, in this context, we are interested in verifying properties like, for instance, the existence of an execution of the topology which guarantees queue-length boundedness even if failures occur with a certain delay.
+Defining the formal model, requires the comprehension of %started by understanding and capturing 
+the behaviors of both spouts and bolts which, after choosing the level of abstraction of the model, allows us to abstract those behaviors accordingly, %in order 
+to formalize them as finite state machines. The purpose of this  activity is defining the %possible 
+operations performed by nodes and their allowed orderings in a real implementation. %of such operations.
+We then extend the model %by taking into account 
+considering the message buffers (or queues) and the quantity of tuples that are exchanged through the topology.
+In addition, %to the correct ordering of the operations, we decided to 
+we introduce more specific temporal constraints %into the model, in order 
+to limit the time spent by the system in each state (or processing phase) and to elaborate the concept of \textit{rate}, intended as ``number of times an event is occurring every time unit''.
+The formal modeling (see Section \ref{ver}) is based on real-time temporal logic, i.e., the topology behavior is defined through a temporal logic formula written in Constraint LTL over clocks (CLTLoc)~\cite{BRS15}.
 

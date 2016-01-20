@@ -25,7 +25,7 @@ OSTIA standard output\footnote{Output of OSTIA analyses is not evidenced for the
 sake of space.} for the smallest of the three SocialSensor topologies, namely
 the ``focused-crawler" topology, is outlined in Fig. \ref{topo1}.
 
-\begin{figure}[H]
+\begin{figure}
 		\includegraphics[width=9cm]{images/output/focused_crawler}
 		\caption{SocialSensor App, OSTIA sample output.}
 		\label{topo1}
@@ -57,92 +57,33 @@ DigitalPebble\footnote{\url{https://github.com/DigitalPebble}} and
 StormCV\footnote{\url{https://github.com/sensorstorm/StormCV}}
 applications. Figures \ref{dp} and \ref{scv} outline standard OSTIA output for
 the two applications.
+%
+%\begin{figure}
+%\begin{center}
+%		\includegraphics[width=5cm]{}
+%		\caption{}
+%		\label{dp}
+%		\end{center}
+%\end{figure}
 
 \begin{figure}
-\begin{center}
-		\includegraphics[width=5cm]{images/output/crawl}
-		\caption{DigitalPebble application topology, an overview.}
-		\label{dp}
-		\end{center}
+\centering 
+\subfigure[{\footnotesize DigitalPebble topology.}]{\includegraphics[width=4.5cm]{images/output/crawl}}\label{dp}
+\hspace{0.5cm}
+\subfigure[{\footnotesize StormCV topology.}]{\includegraphics[width=3cm]{images/output/senti_storm}}\label{scv}
 \end{figure}
 
 The OSTIA output aided as follows. First, the output summarised in Fig. \ref{dp}
 allowed us to immediately grasp the functional behavior of the DigitalPebble and
 StormCV topologies allowing us to interpret correctly their operations before
 reading long documentation or inspecting the code.
-
-\begin{figure}
-\begin{center}
-		\includegraphics[width=2.7cm]{images/output/senti_storm}
-		\caption{StormCV application topology, an overview.}
-		\label{scv}
-\end{center}
-\end{figure}
-
-
-\subsection{A Formal Interpretation}
-The anti-pattern analysis of topologies, previously described in Sec.~\ref{sec:anti-pattern}, is enriched with model-checking, whereby topologies undergo formal verification to assess temporal properties on their executions.
-The next sections elaborate the role of formal verification in OSTIA and describe the background, the modeling assumptions and the definition of the model required to perform verification.
-In particular, in Section~\ref{sec:storm-model}, we provide a non-deterministic model representing Storm topologies behaviors in terms of the delay due to the processing carried out by bolts, the spout input profile (measured with rates of incoming tuples into the topology) and node failures.
-Verification in OSTIA is intended to discover possible design errors at design time which are caused by (i) under/over estimation of timing requirements of computational nodes or (ii) possible runtime node failures.
-Therefore, in this context, we are interested in verifying properties like, for instance, the existence of an execution of the topology which guarantees the boundedness of the length of the queue occupation even if failures occur with a certain delay one from each other.
-Defining the formal model, first requires the comprehension of %started by understanding and capturing 
-the behaviors of both spouts and bolts which, after choosing the level of abstraction of the model, allows us to abstract those behaviors accordingly, %in order 
-to formalize them as finite state machines. The purpose of this  activity is defining the %possible 
-operations performed by nodes and their allowed orderings in a real implementation. %of such operations.
-We then extend the model %by taking into account 
-considering the message buffers (or queues) and the quantity of tuples that are exchanged through the topology.
-In addition, %to the correct ordering of the operations, we decided to 
-we introduce more specific temporal constraints %into the model, in order 
-to limit the time spent by the system in each state (or processing phase) and to elaborate the concept of \textit{rate}, intended as ``number of times an event is occurring every time unit''.
-The formal modeling is based on real-time temporal logic, i.e., the topology behavior is defined through a temporal logic formula written in Constraint LTL over clocks (CLTLoc)~\cite{BRS15}.
-
-
-
-\subsection{OSTIA-Based Formal Verification}\label{ver}
-\input{macros}
-
-This section describes the formal modelling and verification employed in OSTIA  which rely on \textit{satisfiability checking}~\cite{MPS13}, an alternative approach to model-checking where, instead of an operational model (like automata or transition systems), the system (i.e., a topology in this context) is specified by a formula defining its executions over time and properties are verified by proving that the system logically entails them.
-
-%The logic we use is Constraint LTL over clocks 
-CLTLoc is a real-time temporal logic and, in particular, a semantic restriction of Constraint LTL (CLTL)~\cite{DD07} allowing atomic formulae over $(\mathbb{R}, \set{<,=})$ where the arithmetical variables behave like clocks of Timed Automata (TA)~\cite{timed}.
-A clock $x$ measures the time elapsed since the last time when $x=0$ held, i.e., since the last ``reset'' of $x$.
-Clocks are interpreted over Reals and their value can be tested with respect to a positive integer value.
 %
-Let $X$ be a finite set of clock variables $x$ over $\Real$, $Y$ be a finite set of variables over $\Nat$ and $AP$ be a finite set of atomic propositions $p$.
-CLTLoc formulae with counters are defined as follows:
-\begin{equation*}%\small
-  \phi :=
-  \begin{gathered}
-    p \mid x\sim c \mid y\sim c\mid \aX y\sim z\pm c \mid\phi \wedge \phi \mid \neg \phi \mid \\
-       \X{\phi} \mid \Y{\phi} %\mid \Zed\phi
-\mid \phi\U\phi \mid \phi\Snc\phi
-  \end{gathered}
-\end{equation*}
-where $x \in X$, $y,z \in Y$, $c \in \Nat$ and 
-$\sim \in \set{<,=}$, $\bullet$, $\circ$, $\U$ and $\Snc$ are the
-usual ``next'', ``previous'', ``until'' and ``since''.
-%The semantics of CLTLoc is defined with respect to $(\Real, \set{<,=})$ and $\pair{\Nat}{<}$, the latter representing positions in time.
-A \textit{model} is a pair $\pair{\pi}{\sigma}$, where $\sigma$ is a mapping associating every variable $x$ and position in $\Nat$ with value $\sigma(i,x)$ and $\pi$ is a mapping associating each position in $\Nat$ with subset of $AP$. 
-The semantics of CLTLoc is defined as for LTL except for formulae $x\sim c$ and $\aX y \sim z\pm c$. 
-%At position $i\in\Nat$, $ \pair{\pi}{\sigma}, i \models x\sim c \textbf{ iff }  \sigma(i, x)\sim c$ and $\pair{\pi}{\sigma}, i \models \aX y\sim z \pm c \textbf{ iff }  \sigma(i+1, z) \sim \sigma(i,z) \pm c$.
-Intuitively, formula $x\sim c$ states that the value of clock $x$ is $\sim$ than/to $c$ and formula $\aX y \sim z\pm c$ states that the next value of variable $y$ is $\sim$ to/than $z+c$.
+%\begin{figure}
+%\begin{center}
+%		\includegraphics[width=2.7cm]{}
+%		\caption{}
+%		\label{scv}
+%\end{center}
+%\end{figure}
 
-The standard technique to prove the satisfiability of CLTL and CLTLoc formulae is based on of B\"uchi automata \cite{DD07,BRS15} %the evidence has turned out that it may be rather expensive in practice, even in the case of LTL (the size of the automaton is exponential with respect to the size of the formula).
-but, for practical implementation, Bounded Satisfiability Checking (BSC)~\cite{MPS13} avoids the onerous construction of automata by means of a reduction to a decidable Satisfiability Modulo Theory (SMT) problem~\cite{BRS15}.
-%By unrolling the semantics of a formula for a finite number $k>0$ of steps, 
-The outcome of a BSC problem is either an infinite ultimately periodic model or unsat.
-%\cite{BRS15} shows that BSC for CLTLoc is complete and that is reducible to a decidable Satisfiability Modulo Theory (SMT) problem. 
-%A CLTLoc formula can be translated into the decidable theory of quantifier-free formulae with equality and uninterpreted functions combined with the theory of Reals over $(\Real,<)$. %, written QF-EUF$(\Real,<)$.
-
-CLTLoc allows the specification of non-deterministic models using temporal constraints wherein clock variables range over a dense domain and whose value is not abstracted.
-Clock variables represent, in the logical language and with the same precision, physical (dense) clocks implemented in real architectures.
-%They appear in formulae in the form $x \sim c$ to express a bound $c$ on the delay measured by clock $x$. 
-Clocks are associated with specific events to measure time elapsing over the executions.
-As they are reset when the associated event occurs, in any moment, the clock value represents the time elapsed since the previous reset and corresponds to the elapsed time since the last occurrence of the event associated to it.
-We use such constraints to define, for instance, the time delay required to process tuples or between two node failures.
-
-%Modeling topologies requires to express by formulae emitting rates which measure the number of tuples emitted by a spout node per time unit.
-%***TBC
-
-\input{verification}
+\subsection{Continuous Architecting by Means of Formal Verification: A Sample Scenario}

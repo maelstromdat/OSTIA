@@ -17,49 +17,50 @@ Warning--I didn't find a database entry for "conf/fedcsis/2014"
 -- IEEEtran.bst version 1.13 (2008/09/30) by Michael Shell.
 -- http://www.michaelshell.org/tex/ieeetran/bibtex/
 -- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
+Warning--empty journal in soc
 Warning--empty journal in dicomputational
 Warning--empty year in dicomputational
 
 Done.
-You've used 26 entries,
+You've used 27 entries,
             4039 wiz_defined-function locations,
-            964 strings with 11895 characters,
-and the built_in function-call counts, 18797 in all, are:
-= -- 1435
-> -- 511
-< -- 130
-+ -- 272
-- -- 98
-* -- 880
-:= -- 2774
-add.period$ -- 59
-call.type$ -- 26
-change.case$ -- 23
-chr.to.int$ -- 294
-cite$ -- 28
-duplicate$ -- 1380
-empty$ -- 1638
-format.name$ -- 121
-if$ -- 4373
+            969 strings with 12001 characters,
+and the built_in function-call counts, 19661 in all, are:
+= -- 1510
+> -- 528
+< -- 141
++ -- 282
+- -- 100
+* -- 923
+:= -- 2900
+add.period$ -- 61
+call.type$ -- 27
+change.case$ -- 24
+chr.to.int$ -- 318
+cite$ -- 30
+duplicate$ -- 1439
+empty$ -- 1696
+format.name$ -- 124
+if$ -- 4571
 int.to.chr$ -- 0
-int.to.str$ -- 26
-missing$ -- 258
-newline$ -- 101
-num.names$ -- 30
-pop$ -- 647
+int.to.str$ -- 27
+missing$ -- 267
+newline$ -- 104
+num.names$ -- 31
+pop$ -- 664
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 2
-skip$ -- 1466
+skip$ -- 1534
 stack$ -- 0
-substring$ -- 723
-swap$ -- 1074
-text.length$ -- 32
+substring$ -- 780
+swap$ -- 1129
+text.length$ -- 35
 text.prefix$ -- 0
 top$ -- 5
-type$ -- 26
-warning$ -- 2
-while$ -- 76
-width$ -- 28
-write$ -- 258
+type$ -- 27
+warning$ -- 3
+while$ -- 81
+width$ -- 29
+write$ -- 268
 (There were 2 error messages)

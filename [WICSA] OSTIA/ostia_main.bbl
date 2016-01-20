@@ -45,17 +45,6 @@ I.~Ivkovic and M.~W. Godfrey, ``Enhancing domain-specific software architecture
   recovery.'' in \emph{IWPC}.\hskip 1em plus 0.5em minus 0.4em\relax IEEE
   Computer Society, 2003, pp. 266--273.
 
-\bibitem{storm}
-R.~Evans, ``Apache storm, a hands on tutorial.'' in \emph{IC2E}.\hskip 1em plus
-  0.5em minus 0.4em\relax IEEE, 2015, p.~2.
-
-\bibitem{toshniwal2014storm}
-A.~Toshniwal, S.~Taneja, A.~Shukla, K.~Ramasamy, J.~M. Patel, S.~Kulkarni,
-  J.~Jackson, K.~Gade, M.~Fu, J.~Donham \emph{et~al.}, ``Storm@ twitter,'' in
-  \emph{Proceedings of the 2014 ACM SIGMOD international conference on
-  Management of data}.\hskip 1em plus 0.5em minus 0.4em\relax ACM, 2014, pp.
-  147--156.
-
 \bibitem{mda}
 D.~Frankel, \emph{Model Driven Architecture: Applying MDA to Enterprise
   Computing}.\hskip 1em plus 0.5em minus 0.4em\relax New York, NY, USA: John
@@ -74,6 +63,17 @@ M.~M. Bersani, S.~Distefano, L.~Ferrucci, and M.~Mazzara, ``A timed semantics
   T.~Libourel, L.~A. Maciaszek, and M.~van Sinderen, Eds., vol. 555.\hskip 1em
   plus 0.5em minus 0.4em\relax Springer, 2014, pp. 365--383.
 
+\bibitem{storm}
+R.~Evans, ``Apache storm, a hands on tutorial.'' in \emph{IC2E}.\hskip 1em plus
+  0.5em minus 0.4em\relax IEEE, 2015, p.~2.
+
+\bibitem{toshniwal2014storm}
+A.~Toshniwal, S.~Taneja, A.~Shukla, K.~Ramasamy, J.~M. Patel, S.~Kulkarni,
+  J.~Jackson, K.~Gade, M.~Fu, J.~Donham \emph{et~al.}, ``Storm@ twitter,'' in
+  \emph{Proceedings of the 2014 ACM SIGMOD international conference on
+  Management of data}.\hskip 1em plus 0.5em minus 0.4em\relax ACM, 2014, pp.
+  147--156.
+
 \bibitem{focusgroup}
 D.~L. Morgan, \emph{Focus groups as qualitative research}.\hskip 1em plus 0.5em
   minus 0.4em\relax Sage Publications, Thousand Oaks, 1997.
@@ -82,21 +82,25 @@ D.~L. Morgan, \emph{Focus groups as qualitative research}.\hskip 1em plus 0.5em
 M.~Hammersley and P.~Atkinson, \emph{Ethnography}.\hskip 1em plus 0.5em minus
   0.4em\relax London: Routledge, 2003.
 
+\bibitem{BRS15}
+M.~M. Bersani, M.~Rossi, and P.~San~Pietro, ``A tool for deciding the
+  satisfiability of continuous-time metric temporal logic,'' \emph{Acta
+  Informatica}, pp. 1--36, 2015.
+
 \bibitem{brunnert2015performance}
 A.~Brunnert, A.~van Hoorn, F.~Willnecker, A.~Danciu, W.~Hasselbring, C.~Heger,
   N.~Herbst, P.~Jamshidi, R.~Jung, J.~von Kistowski \emph{et~al.},
   ``Performance-oriented devops: A research agenda,'' \emph{arXiv preprint
   arXiv:1508.04752}, 2015.
 
+\bibitem{soc}
+T.~Mens and M.~Wermelinger, ``Issue overview: Separation of concerns in
+  software evolution,'' vol.~14, no.~5, pp. 311--315, 2002.
+
 \bibitem{MPS13}
 M.~Pradella, A.~Morzenti, and P.~S. Pietro, ``Bounded satisfiability checking
   of metric temporal logic specifications,'' \emph{ACM Trans. Softw. Eng.
   Methodol.}, vol.~22, no.~3, pp. 20:1--20:54, Jul. 2013.
-
-\bibitem{BRS15}
-M.~M. Bersani, M.~Rossi, and P.~San~Pietro, ``A tool for deciding the
-  satisfiability of continuous-time metric temporal logic,'' \emph{Acta
-  Informatica}, pp. 1--36, 2015.
 
 \bibitem{DD07}
 S.~Demri and D.~D'Souza, ``An automata-theoretic approach to constraint

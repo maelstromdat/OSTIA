@@ -9,9 +9,9 @@
 %In a distributed  --> Motivare questione delle code!
 %
 
-
-\subsection{Storm Formal Model}
-\label{sec:storm-model}
+%
+%\subsection{Storm Formal Model}
+%\label{sec:storm-model}
 %To perform our verification tasks we defined a formal model expressed in CLTLoc with discrete variables. The resulting model is a non-deterministic infinite state system.
 
 % MOVED BEFORE
@@ -23,7 +23,8 @@
 
 %\subsubsection{Assumptions and  level of abstraction}
 %We made several assumptions and abstractions while building the model:
-Building the model requires the following abstractions:
+
+Building on top of the above framework,  a formal interpretation of the Storm (meta-)model requires the following abstractions and assumptions:
 \begin{itemize}
 	\item some deployment details, e.g., the number of worker nodes and features of the underlying cluster, are abstracted;
 	\item each bolt/spout has a single output stream;
