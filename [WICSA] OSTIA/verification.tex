@@ -40,13 +40,14 @@ A Storm Topology is a directed graph $\mathbf{G} = \{ \mathbf{N}, Sub\}$ where t
 $Sub\subset\mathbf{N}\times\mathbf{N}$ defines how the nodes are connected each other via the subscription relation. Pair $(i,j)\in Sub$ indicates that ``bolt $i$ subscribes to the streams emitted by the spout/bolt $j$''. 
 Spouts cannot subscribe to other nodes in the topology.
 Each bolt has a receive queue where the incoming tuples are collected before being read and processed. % by the node.
-The queues have infinite size and the level of occupation of each $j^{th}$ queue is described by the variable $q_j$.\footnote{Spouts have no queues, by definition.}
-Each spout can either \textit{emit} tuples into the topology or stay \emph{idle}.
+The queues have infinite size and the level of occupation of each $j^{th}$ queue is described by the variable $q_j$. %\footnote{Spouts have no queues, by definition.}
+Spouts have no queues, and 
+each spout can either \textit{emit} tuples into the topology or stay \emph{idle}.
 Each bolt can be in \emph{idle} state, in \emph{failure} state or in  \emph{processing} state.  While in the processing state, the bolt first reads tuples from its receive queue (\textit{take} action), then it performs its transformation (\textit{execute} action) and finally it \textit{emits} the output tuples in its output streams. \\
 
 \begin{figure}\label{figure-fsa}
 	\centering	
-	\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.5cm,semithick, every node/.style={scale=0.6}]
+	\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.5cm,semithick, every node/.style={scale=0.55}]
 	
 	\tikzstyle{every state}=[fill=white,text=black,minimum width={width("execute")+10pt}]
 	
@@ -74,6 +75,7 @@ Each bolt can be in \emph{idle} state, in \emph{failure} state or in  \emph{proc
 %To give an idea about how the model is formalized, 
 We provide, as an example, one of the formulae defining the processing state. Formula \ref{formula:1} can be read as \textit{``for all bolts: if a bolt j is processing tuples, then it has been processing tuples since it took those tuples from the queue, (or since the origin of the events), and it will keep processing those tuples until it will either emit them or fail. Moreover, the bolt is not in a failure state''.}
 \begin{align}
+\small
 %
 \bigwedge_{
 	i \in \mathbf{B} } 
@@ -90,7 +92,7 @@ The number of tuples emitted by a bolt depends on the number of incoming tuples.
 expresses the ``kind of function''  performed by the bolt and is given as configuration parameter. 
 All the emitted tuples are then added to the receive queues of the bolts subscribing to the emitting nodes.
 In the same way, whenever a bolt reads tuples from the queue, the number of elements in queue decreases. To this end, formula \ref{formula:2}, imposes that \textit{``if a bolt takes elements from its queue, the number of queued elements in the next time instant will be equal to the current number of elements plus the quantity of tuples being added (emitted) from other connectd nodes minus the quantity of tuples being read''.}
-\begin{align}
+\begin{align}\small
 %
 \bigwedge_{
 	\begin{subarray}{c}

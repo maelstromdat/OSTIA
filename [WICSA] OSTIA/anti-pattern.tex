@@ -42,10 +42,10 @@ Technically, it is possible to have cycle in Storm topologies. An infinite cycle
 
 \subsubsection{Persistent Data}
 
-This pattern covers the circumstance wherefore if two processing elements need to update a same entity in a storage, there should be a consistency mechanism in place. OSTIA offers limited support to this feature, which we plan to look into more carefully for future work. More details on this support are discussed in the approach limitations section (see Sec. \ref{lim}).
+This pattern covers the circumstance wherefore if two processing elements need to update a same entity in a storage, there should be a consistency mechanism in place. OSTIA offers limited support to this feature, which we plan to look into more carefully for future work. More details on this support are discussed in the approach limitations section (see Section~\ref{lim}).
 %\emph{\bf Ostia does not support this. BTW is this static analysis? if not, is it off-topic?}
 
-\begin{figure}[H]
+\begin{figure}
 	\begin{center}
 		\includegraphics[width=4cm]{images/persistence}
 		\caption{Concurrency management in case of Persistent Data circumstances.}
@@ -57,9 +57,9 @@ This pattern covers the circumstance wherefore if two processing elements need t
 \subsubsection{Computation Funnel}
 A computational funnel emerges when there is not a path from data source (spout) to the bolts that sends out the tuples off the topology to another topology through a messaging framework or through a storage. This circumstance should be dealt with since it may compromise the availability of results under the desired performance restrictions.
 
-\begin{figure}[H]
+\begin{figure}
 	\begin{center}
-		\includegraphics[width=5cm]{images/funnel}
+		\includegraphics[width=4.5cm]{images/funnel}
 		\caption{computation funnel.}
 		\label{fig:funnel}
 	\end{center}
@@ -77,7 +77,7 @@ bolts, both in and out streams are internal to the topology. For Spouts,
 incoming streams are the data sources of the topology (e.g., message brokers,
 APIs, etc).
 
-\begin{figure}[H]
+\begin{figure}
 	\begin{center}
 		\includegraphics[width=3cm]{images/fan-in-out}
 		\caption{Fan-in fan-out in Stream topologies.}
@@ -89,10 +89,12 @@ This algorithmic manipulation allows to visualise instances where fan-in and fan
 
 \subsubsection{Topology cascading}
 
-By topology cascading, we mean connecting two different Storm topologies via a messaging framework (e.g., Apache Kafka\footnote{\url{http://kafka.apache.org/}}). This circumstance may raise the complexity of continuous architecting and may require separation of concerns \cite{soc}. For example, Fig. \ref{fig:cascading} outlines an instance in which two topologies are concatenated together by a message broker. In this instance, formal verification may be applied on the left-hand side topology, which is more business-critical, while the right-hand side of the entire topology is improved by on-the-fly OSTIA-based analysis. Even though OSTIA support for this feature is still limited, we report it nonetheless since OSTIA was engineered to address multiple topologies at once. More details on this and similar limitations are discussed in Section \ref{lim}.
+By topology cascading, we mean connecting two different Storm topologies via a messaging framework (e.g., Apache Kafka~\cite{kafka}).
+%\footnote{\url{http://kafka.apache.org/}}). 
+This circumstance may raise the complexity of continuous architecting and may require separation of concerns \cite{soc}. For example, Fig. \ref{fig:cascading} outlines an instance in which two topologies are concatenated together by a message broker. In this instance, formal verification may be applied on the left-hand side topology, which is more business-critical, while the right-hand side of the entire topology is improved by on-the-fly OSTIA-based analysis. Even though OSTIA support for this feature is still limited, we report it nonetheless since OSTIA was engineered to address multiple topologies at once. More details on this and similar limitations are discussed in Section \ref{lim}.
 %\emph{\bf Ostia does not support this. I can't think of an easy way to implement it}
 
-\begin{figure}[H]
+\begin{figure}
 	\begin{center}
 		\includegraphics[width=6cm]{images/cascading}
 		\caption{cascading.}
@@ -106,7 +108,7 @@ This algorithmic manipulation allows to combine multiple cascading topologies.
 Topology clustering implies identifying coupled processing elements (i.e., bolts and spouts) and cluster them together (e.g., by means of graph-based analysis) in a way that elements in a cluster have high cohesion and loose-coupling with elements in other clusters. Simple clustering or Social-Network Analysis mechanisms can be used to infer clusters. These clusters may require additional attention since they could turn out to become bottlenecks. Reasoning more deeply on clusters and their resolution may lead to establishing the Storm scheduling policy best-fitting with the application at hand.
 %\emph{\bf Does it relates with Storm scheduling?}
 
-\begin{figure}[H]
+\begin{figure}
 	\begin{center}
 		\includegraphics[width=5cm]{images/clustering}
 		\caption{clustering.}
@@ -118,7 +120,7 @@ Topology clustering implies identifying coupled processing elements (i.e., bolts
 
 Sorting the processing elements in a topology in a way that topology looks more linear, visually. This step ensures that visual investigation and evaluation of the structural complexity of the topology is possible by direct observation. It is sometimes essential to provide such a visualisation to evaluate how to refactor the topology based on emerging needs.
 
-\begin{figure}[H]
+\begin{figure}
 	\begin{center}
 		\includegraphics[width=5cm]{images/linearizing}
 		\caption{linearizing.}
