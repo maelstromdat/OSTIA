@@ -73,10 +73,11 @@ the two applications.
 \subfigure[{\footnotesize StormCV topology.}]{\includegraphics[width=3cm]{images/output/senti_storm}}\label{scv}
 \end{figure}
 
-The OSTIA output aided as follows. First, the output summarised in Fig. \ref{dp}
+The OSTIA output aided as follows: (a) the output summarised in Fig. \ref{dp}
 allowed us to immediately grasp the functional behavior of the DigitalPebble and
 StormCV topologies allowing us to interpret correctly their operations before
-reading long documentation or inspecting the code. \comment{you said first, where is the second? this is incomplete}
+reading long documentation or inspecting the code; (b) OSTIA aided us in visually interpreting the complexity of the applications at hand; (c) OSTIA allowed us to spot several anti-patterns in the DigitalPebble Storm application around the ``sitemap" and ``parse" bolts, namely, a multiple cascading instance of the multi-anchoring pattern and a persistent-data pattern. Finally, OSTIA aided in the identification of the computational funnel anti-pattern around the "status" bolt closing the DigitalPebble topology. With this evaluation at hand, developers in the respective communities of DigitalPebble and StormCV could refactor their topologies, e.g., aided by OSTIA-based formal verification that proves the negative effects of said anti-patterns.
+% \comment{you said first, where is the second? this is incomplete}
 %
 %\begin{figure}
 %\begin{center}
@@ -86,5 +87,8 @@ reading long documentation or inspecting the code. \comment{you said first, wher
 %\end{center}
 %\end{figure}
 
-\subsection{Continuous Architecting by Means of Formal Verification: A Sample Scenario}
+\subsection{Continuous Architecting by Means of Formal Verification: An Industrial Case-Study}
+
+In this section we outline the results from OSTIA-based formal verification applied on (one of) the topologies used by our industrial partner in practice. Results provide valuable insights for (re-)architecting and improving these topologies in a continuous manner.
+
 \comment{incomplete}
