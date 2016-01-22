@@ -35,6 +35,11 @@
 %
 %\newcommand{\tph}[2]{t_{\ph{#1}}^{#2} }
 
+
+\section{Appendix-extended results}\label{app:extended-exp-results}
+
+\section{Appendix-Formal model}\label{app:extended-formal-model}
+
 This appendix is an extract of the full CLTLoc model to provide the user with a clear overview of the formal background behind the verification in OSTIA.
 Therefore, some part are missing, in particular, those related to the modeling of node failures.
 
@@ -106,37 +111,37 @@ i \in \mathbf{B}
 \end{align*}  
 
 
-\subsubsection*{Node Failure}
-
-
-\begin{align*}
-%
- &\bigwedge_{
-\begin{subarray}{c}
-\,j \in B
-\end{subarray}
-}
-(\startf{j} \iff (\lnot \mathbf{Y}(\f{j}) \land \f{j}))\\
-%
-% 
-%
-&\bigwedge_{
-\begin{subarray}{c}
-\,j \in B
-\end{subarray}
-}
-(\startf{j} \Rightarrow 
-(
-\bigwedge_{
-	\begin{subarray}{c}
-	\,i \in B \\
-	i \neq j 
-	\end{subarray}
-}
-(\lnot \startf{i})
-))
-%
-\end{align*}
+%%%\subsubsection*{Node Failure}
+%%%
+%%%
+%%%\begin{align*}
+%%%%
+%%% &\bigwedge_{
+%%%\begin{subarray}{c}
+%%%\,j \in B
+%%%\end{subarray}
+%%%}
+%%%(\startf{j} \iff (\lnot \mathbf{Y}(\f{j}) \land \f{j}))\\
+%%%%
+%%%% 
+%%%%
+%%%&\bigwedge_{
+%%%\begin{subarray}{c}
+%%%\,j \in B
+%%%\end{subarray}
+%%%}
+%%%(\startf{j} \Rightarrow 
+%%%(
+%%%\bigwedge_{
+%%%	\begin{subarray}{c}
+%%%	\,i \in B \\
+%%%	i \neq j 
+%%%	\end{subarray}
+%%%}
+%%%(\lnot \startf{i})
+%%%))
+%%%%
+%%%\end{align*}
 
 
 \newpage
@@ -162,15 +167,17 @@ Sub(j,i)
  } \e{i})
 \end{align*}
 \subsubsection*{Quantites and Rates}
-To represent the quantities of tuples that are taken/processed/emitted by each node in the topology, we introduce the concept of rate defined as "the quantity of tuples considered in the current time unit". \\
-We therefore present the following quantities:
+To represent the quantities of tuples that are taken/processed/emitted by each node in the topology, we introduce the concept of rate defined as "the quantity of exchanged tuples  in the current time unit". 
+Therefore, to express rates we use variables representing quantities and to measure time elapsing we exploit clocks of CLTLoc, as later explained in this section.
+
+Following quantities define relevant metrics related to the message exchange process implemented by message brokers:
 \begin{itemize}
-\item $\re{j}$: quantity of tuples emitted in the current time unit by bolt/spout $j$.
-\item $\rt{j}$: quantity of tuples taken in the current time unit by spout $j$.
-\item $\ra{j}$: quantity of tuples that are added to the receive queue of spout $j$ in the current time unit, consisting in the sum of all the tuples currently emitted by the spouts/bolts belonging to $In(j)$.
+\item $\re{j}$: number of tuples emitted in the current time unit by bolt/spout $j$.
+\item $\rt{j}$: number of tuples taken in the current time unit by spout $j$.
+\item $\ra{j}$: number of tuples that are added to the receive queue of spout $j$ in the current time unit, consisting in the sum of all the tuples currently emitted by the spouts/bolts belonging to $In(j)$.
 \end{itemize}
 %
-Therefore, the evolution of each queue given the occurrence of adding and/or receiving event is the following:
+Therefore, the evolution of each queue occupation, given the occurrence of adding and/or receiving event, is determined by the following formualae:
 %
 \begin{align*}
 \bigwedge_{
@@ -216,7 +223,7 @@ Therefore, the evolution of each queue given the occurrence of adding and/or rec
 \Rightarrow \mathbf{X}( q_j = 0 ))
 \end{align*}
 %
-Necessary conditions:
+Following formulae define the necessary conditions ruling the occurrence of a variation of queue occupancy, i.e., if the queue occupancy increases then an $\add{}$ event occurs; if the queue occupancy decreases then a $\ta{j}$ action or a failure  $\startf{j}$ occurs.
 %
 \begin{align*}
  \bigwedge_{
@@ -350,8 +357,7 @@ Sub(j,i) \\
 %} ( \re{j} =0 \iff \lnot \e{j}) 
 %
 \end{align*}
-Each bolt has a maximum take capability $\rth{j}$ that limits the number of tuples that can be taken from the receive queue at any moment. This is 
-If the elements in the queue are greater than or equal to $\rth{j}$ and a $take$ is performed by the bolt, then exactly $\rth{j}$ tuples are taken from the queue. Otherwise, all the tuples are taken. 
+Each bolt has a maximum take capability $\rth{j}$ that limits the number of tuples that can be taken from the receive queue at any moment. This is, if the elements in the queue are greater than or equal to $\rth{j}$ and a $take$ is performed by the bolt, then exactly $\rth{j}$ tuples are taken from the queue. Otherwise, all the tuples are taken. 
 \begin{align*}
 %
 %
@@ -373,7 +379,7 @@ If the elements in the queue are greater than or equal to $\rth{j}$ and a $take$
 %
 \end{align*}
 
-Since the spouts are modeled as node which only emit tuples into the topology, we only define the emitting rate $\re{j}$  that is composed of the "nominal" emitting quantity $\reb{j}$ (i.e. the quantity of tuples that the spout would emit if no failure happens) and the additional quantity $\rf{j}$ expressing how many tuples have to be re-emitted by spout $j$ due to failures in the topology.
+Since the spouts are modeled as node which only emit tuples into the topology, we define the amount of emitted tuples $\re{j}$ as the "nominal" emitting quantity $\reb{j}$ (i.e. the quantity of tuples that the spout would emit if no failure happens) plus the additional quantity $\rf{j}$ expressing the number of re-emitted tuples due to failures in the topology.
 \begin{align*}
 %
 & \bigwedge_{
@@ -702,12 +708,13 @@ Since the spouts are modeled as node which only emit tuples into the topology, w
 %\input{queue_behaviour_old}
 \newpage
 \subsection*{Clocks Formulae}
-In order to represent the duration of the various processing phases of each bolt we introduce diferent clocks:
+In order to represent the duration of the various processing phases of each bolt we introduce different clocks:
 \begin{itemize}
 	\item \textbf{$ \tph{j}{0} $} and \textbf{$ \tph{j}{1} $} measure the duration of the $ \p{j} $, $ \id{j} $ and $ \f{j} $ phases for each bolt $ j $ and the time elapsed between one $ \e{j} $ and the next one for each spout $ i $.
 	\item \textbf{$ \cltf{j} $} measures the \textit{time to failure}, i.e. the time elapsing between the end of a failure and the beginning of the next one for each bolt $ j $.
 \end{itemize}
-
+%
+Following formulae impose that $\tph{j}{0}$ and $\tph{j}{1}$ are reset alternatively and never at the same time.
 \begin{align*}
 %
 & \bigwedge_{
@@ -715,18 +722,19 @@ In order to represent the duration of the various processing phases of each bolt
 	j \in \{ S \bigcup  B \}\\
 	\end{subarray}
 	}
-	(\tph{j}{0} =  0 \Rightarrow \X((\tph{j}{1} = 0) \R (\tph{j}{0}>0)) \land (\tph{j}{1} > 0) \\
+	(\tph{j}{0} =  0 \Rightarrow \X{(\tph{j}{1} = 0) \R (\tph{j}{0}>0)} \land (\tph{j}{1} > 0) \\
 	%
 	& \bigwedge_{
 	\begin{subarray}{c}
 	j \in \{ S \bigcup  B \}\\
 	\end{subarray}
 	}
-	(\tph{j}{1} =  0 \Rightarrow \X((\tph{j}{0} = 0) \R (\tph{j}{1}>0)))	
+	(\tph{j}{1} =  0 \Rightarrow \X{(\tph{j}{0} = 0) \R (\tph{j}{1}>0)})	
 		%
 		\end{align*}
 
-Each clock $ \tph{j}{0} $ will be initially set to 0. We will use the shortand $ \tph{j}{} \sim c$ to indicate the formula:
+Each clock $ \tph{j}{0} $ will be initially set to 0. 
+In the following formula, we will use the shorthand $ \tph{j}{} \sim c$ to indicate the formula:
 
 
 \begin{align*}
@@ -740,7 +748,7 @@ Each clock $ \tph{j}{0} $ will be initially set to 0. We will use the shortand $
 \end{align*} 
 
 
-Reset conditions:
+Reset conditions for $\tph{j}{0}$ and $\tph{j}{1}$ are defined by next formulae which bind the occurrence of specific combination of events with the reset itself.
 
 \begin{itemize}
  \item \textbf{ $ \tph{j}{} $ for bolts} - start of processing, failure or idle phase.
