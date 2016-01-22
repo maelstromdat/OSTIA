@@ -357,7 +357,7 @@ Sub(j,i) \\
 %} ( \re{j} =0 \iff \lnot \e{j}) 
 %
 \end{align*}
-Each bolt has a maximum take capability $\rth{j}$ that limits the number of tuples that can be taken from the receive queue at any moment. This is, if the elements in the queue are greater than or equal to $\rth{j}$ and a $take$ is performed by the bolt, then exactly $\rth{j}$ tuples are taken from the queue. Otherwise, all the tuples are taken. 
+Each bolt has a maximum take capability $\rth{j}$ that limits the number of tuples that can be taken from the receive queue at any moment. That is, if the elements in the queue are greater than or equal to $\rth{j}$ and a $take$ is performed by the bolt, then exactly $\rth{j}$ tuples are taken from the queue. Otherwise, all the tuples are taken. 
 \begin{align*}
 %
 %
@@ -746,7 +746,9 @@ In the following formula, we will use the shorthand $ \tph{j}{} \sim c$ to indic
 & (\tph{j}{1} >  0 \land  (\tph{j}{0} \lor (\tph{j}{0} > 0) \Snc (\tph{j}{1})) \Rightarrow \tph{j}{1} \sim c )\\
 %
 \end{align*} 
-
+%
+which, intuitively, has the ability of choosing the last clock which was reset before the current position. 
+The last clock reset keeps the current time delay since the last event associated with it and, therefore, it is the clock to employ for measuring the next deadline.
 
 Reset conditions for $\tph{j}{0}$ and $\tph{j}{1}$ are defined by next formulae which bind the occurrence of specific combination of events with the reset itself.
 
@@ -795,56 +797,21 @@ Reset conditions for $\tph{j}{0}$ and $\tph{j}{1}$ are defined by next formulae 
 \end{align*} 
 \end{itemize}
 
-Processing duration:
+Following formulae determine the duration of permanence in one state.
 
+Processing duration: $\alpha_j$ is the time required by bolt $j$ to process one tuple and $\epsilon$ is a fixed defined tolerance.
 \begin{align*}
 %
-\bigwedge_{
+%
+&\bigwedge_{
 	\begin{subarray}{c}
 	j \in B\\
 	\end{subarray}
 }
 \left( \begin{array}{l}
-(\p{j} \land \rp{j} \geq \mathtt{proc\_rates[3]}) \Rightarrow \\
-(\p{j} \land \lnot \e{j}) \U (( \tph{j}{} \geq \mathtt{proc\_times[4]}) \land ( \tph{j}{} < \mathtt{proc\_times[5]}) \land (\f{j} \lor \e{j}) )
-\end{array} \right)\\ 
-%
-%
-%
-\bigwedge_{
-	\begin{subarray}{c}
-	j \in B\\
-	\end{subarray}
-}
-\left( \begin{array}{l}
-(\p{j} \land \rp{j} \geq \mathtt{proc\_rates[2]} \land \rp{j} < \mathtt{proc\_rates[3]}) \Rightarrow \\
-(\p{j} \land \lnot \e{j}) \U (( \tph{j}{} \geq \mathtt{proc\_times[3]}) \land ( \tph{j}{} < \mathtt{proc\_times[4]}) \land (\f{j} \lor \e{j}) )
-\end{array} \right)\\ 
-%
-%
-%
-\bigwedge_{
-	\begin{subarray}{c}
-	j \in B\\
-	\end{subarray}
-}
-\left( \begin{array}{l}
-(\p{j} \land \rp{j} \geq \mathtt{proc\_rates[1]} \land \rp{j} < \mathtt{proc\_rates[2]}) \Rightarrow \\
-(\p{j} \land \lnot \e{j}) \U (( \tph{j}{} \geq \mathtt{proc\_times[2]}) \land ( \tph{j}{} < \mathtt{proc\_times[3]}) \land (\f{j} \lor \e{j}) )
-\end{array} \right)\\ 
-%
-%
-%
-\bigwedge_{
-	\begin{subarray}{c}
-	j \in B\\
-	\end{subarray}
-}
-\left( \begin{array}{l}
-(\p{j} \land \rp{j} \geq 0 \land \rp{j} < \mathtt{proc\_rates[1]}) \Rightarrow \\
-(\p{j} \land \lnot \e{j}) \U (( \tph{j}{} \geq \mathtt{proc\_times[1]}) \land ( \tph{j}{} < \mathtt{proc\_times[2]}) \land (\f{j} \lor \e{j}) )
-\end{array} \right)\\ 
-%
+(\p{j} \Rightarrow \\
+(\p{j} \land \lnot \e{j}) \U (( \tph{j}{} \geq \alpha_{j} - \epsilon) \land ( \tph{j}{} \leq \alpha_{j} + \epsilon) \land (\f{j} \lor \e{j}) )
+\end{array} \right)\\
 \end{align*}
 
 Failure duration:
@@ -899,6 +866,42 @@ Minimum time to failure:
 \end{align*}
 
 
+Spout emitting intervals: to define emitting rates we here define the ratio between the number of emitted tuples in an time interval and the duration of  time interval.
+Clock $\tph{j}{}$ measure the duration of the interval where a certain amount of tuples is emitted and the number of emitted tuples is expressed by $\mathtt{proc\_times[r][\cdot]}$.
+The amount of tuples $r$ that can be emitted is discretized and each possible amount in $(0, \reh{j}]$ is associated with a proper delay.
+This allows us to impose a specific emitting rate for each spout.
+To set up a proper tolerance in measuring time duration, we employ two time bounds $\mathtt{proc\_times[r][0]}$ and $\mathtt{proc\_times[r][1]}$.
+Hence, the ratio imposed by the formula is between $\frac{r}{\mathtt{proc\_times[r][1]}}$ and $\frac{r}{\mathtt{proc\_times[r][0]}}$, for each $r \in (0, \reh{j}]$.
 
-
+\begin{align*}
+%
+&\bigwedge_{
+	\begin{subarray}{c}
+	j \in \mathbf{S}\\
+	\end{subarray}
+}
+\left( \begin{array}{l}
+(\lnot \e{j} \mathbf{S} \ori) \Rightarrow \\
+(\lnot \e{j} \U
+(( \tph{j}{} \leq \mathtt{proc\_times[1][0]}) \land  \e{j}) )
+\end{array} \right)\\
+%
+%
+&\bigwedge_{
+	\begin{subarray}{c}
+	r \in (0, \reh{j}]\\
+	\end{subarray}
+}
+\left(
+\bigwedge_{
+	\begin{subarray}{c}
+	j \in \mathbf{S}\\
+	\end{subarray}
+}
+\left( \begin{array}{l}
+(\e{j} \land \reb{j} = r) \Rightarrow \\
+(\mathbf{X}(\lnot \e{j} \U
+(( \tph{j}{} \geq \mathtt{proc\_times[r][0]}) \land ( \tph{j}{} < \mathtt{proc\_times[r][1]}) \land  \e{j}) ))
+\end{array} \right) \right)\\
+\end{align*}
 
