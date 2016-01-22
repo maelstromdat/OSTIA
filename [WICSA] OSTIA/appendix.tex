@@ -37,8 +37,9 @@
 
 
 \section{Appendix-extended results}\label{app:extended-exp-results}
+\noindent
 This appendix shows the some extended result of the verification tool.
-We try to enact an exercise of continuous architecting on the focused-crawler topology.
+We exercised on applying OSTIA-BASED formal verification to support continuous architecting of the ``focused-crawler topology''.
 All the experiments were carried out with a random initial configuration for the queue occupancy which allowed us to detect possible executions leading to unbounded queues.
 The three experiments were parameterized with different values of $ \alpha $ (time to process  one tuple).
 
@@ -74,7 +75,7 @@ The three experiments were parameterized with different values of $ \alpha $ (ti
 
 \clearpage
 \section{Appendix-Formal model}\label{app:extended-formal-model}
-
+\noindent
 This appendix is an extract of the full CLTLoc model to provide the user with a clear overview of the formal background behind the verification in OSTIA.
 Therefore, some part are missing, in particular, those related to the modeling of node failures.
 
@@ -179,7 +180,6 @@ i \in \mathbf{B}
 %%%\end{align*}
 
 
-\newpage
 \subsection*{Single queue behaviour}
 
 Each bolt has a receive queue where the incoming tuples are collected before being read and processed by the node.
@@ -741,7 +741,7 @@ Since the spouts are modeled as node which only emit tuples into the topology, w
 %OLD QUEUE FORMULAE
 %\newpage
 %\input{queue_behaviour_old}
-\newpage
+
 \subsection*{Clocks Formulae}
 In order to represent the duration of the various processing phases of each bolt we introduce different clocks:
 \begin{itemize}
