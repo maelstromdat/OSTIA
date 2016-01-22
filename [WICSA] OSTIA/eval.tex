@@ -93,5 +93,14 @@ reading long documentation or inspecting the code; (b) OSTIA aided us in visuall
 \subsection{Continuous Architecting by Means of Formal Verification: An Industrial Case-Study}
 
 In this section we outline the results from OSTIA-based formal verification applied on (one of) the topologies used by our industrial partner in practice. Results provide valuable insights for (re-)architecting and improving these topologies in a continuous manner.
+The formal analysis of the ``focused-crawler'' topology confirmed the critical role of the ``expander'' bolt, previously noticed with the aim of OSTIA visual output. It emerged from the output traces that there exists an execution of the system, even without failures, where the queue occupation level is unbounded. Figure~\ref{verif-trace} shows how the tool constructed a periodic model in which a suffix (highlighted in red) of a finite sequence of events is repeated infinitely many times after a prefix (in white). After ensuring that the trace is not a spurious model, we concluded that the expander queue, having an increasing trend in the suffix, is unbounded.
+% alternative
+%This feedback persuaded to 
 
-\comment{incomplete}
+\begin{figure}
+\centering
+\includegraphics[width=0.65\linewidth]{images/verif-trace}
+\caption{Ostia-based formal verification output trace}
+\label{verif-trace}
+\end{figure}
+
