@@ -38,13 +38,16 @@
 This appendix is an extract of the full CLTLoc model to provide the user with a clear overview of the formal background behind the verification in OSTIA.
 Therefore, some part are missing, in particular, those related to the modeling of node failures.
 
-A Storm topology formal definition is already given in Section~\ref{verification}.
+A Storm topology formal definition is already given in Section~\ref{rs}.
 %A Storm Topology is a directed graph $\mathbf{G} = \{ \mathbf{N}, \mathbf{E}\}$ such that the set of nodes $\mathbf{N} = \mathbf{S}\bigcup \mathbf{B}$ includes in the sets of spouts (\textbf{S}) and bolts (\textbf{B}), while the set of edges $\mathbf{E} = \{ Sub_{i,j} | i \in \mathbf{B}, j \in \{\mathbf{S}\bigcup \mathbf{B}\} \}$ defines how the nodes are connected each other expressing the subscription ($Sub_{i,j}$) of the bolts $i$ to the streams emitted by the spouts/bolts $j$.\\
-The main execution steps of each bolt (respectively spout) are: \texttt{take()} ( respectively \texttt{nextTuple()}), \texttt{execute()} (respectively \texttt{transform()}) and \texttt{emit()}. These steps are represented in a more generic way by the propositions:
+%The main execution steps of each bolt (respectively spout) are: \texttt{take()} ( respectively \texttt{nextTuple()}), \texttt{execute()} (respectively \texttt{transform()}) and \texttt{emit()}. These steps are represented in a more generic way by the propositions:
+The possible states and ``actions'' performed by the nodes are represented by the propositions:
 \begin{itemize}
-\item[] $\ta{i}$ indicates that the \texttt{take()}/\texttt{nextTuple()} step is performed by the $i^{th}$ bolt/spout;
-\item[] $\p{i}$ corresponds to the \texttt{execute()}/\texttt{transform()} step performed by the $i^{th}$ bolt/spout; 
-\item[] $\e{i}$ indicates that bolt $i$ is emitting tuples;
+%\item $\ta{i}$ indicates that the \texttt{take()}/\texttt{nextTuple()} step is performed by the $i^{th}$ bolt/spout;
+\item $\ta{i}$ indicates that the $i^{th}$ bolt is reading tuples from its queue;
+%\item $\p{i}$ corresponds to the \texttt{execute()}/\texttt{transform()} step performed by the $i^{th}$ bolt/spout; 
+\item $\e{i}$ represents the $ i^{th} $ bolt/spout  emitting tuples;
+\item $\p{i}$ corresponds to processing state of the $i^{th}$ bolt, that is, from the \texttt{take()} until the \texttt{emit()}; 
 \end{itemize}
 
 %\newcommand{\ori}{\mathtt{orig}}
@@ -53,42 +56,25 @@ The main execution steps of each bolt (respectively spout) are: \texttt{take()} 
 Let $\ori$ be a shorthand for $\neg\Y(\top)$.
 The formula is true only in the origin.
 The behaviour of each single node is defined by the following properties:
-\begin{align}
-% \bigwedge_{
-%i \in \{ \mathbf{S} \bigcup \mathbf{B}\}} 
-%& ( \ta{i} \Rightarrow \lnot \e{i}) ) \label{eq:1a}\\
-%%
+\begin{align*}
  \bigwedge_{
 i \in \mathbf{B} } 
 &(\ta{i} \Rightarrow 
 \p{i} \wedge \mathbf{X}(\lnot \ta{i} \U (\e{i} \lor \f{i})) \land \lnot \e{i}
 \land \mathbf{Y}(\lnot \p{i} \, \Snc \, (\e{i}\lor \ori \lor \f{i}))
-) \label{eq:2a} \\
+) \\
 %
  \bigwedge_{
 i \in \mathbf{B} } 
 &(\p{i} \Rightarrow 
-\p{i} \, \Snc \, ( \ta{i} \lor (\ori \land \p{i})) \land \p{i} \, \U \, (\e{i} \lor \f{i}) \land \lnot \f{i}) \label{eq:3a} \\
+\p{i} \, \Snc \, ( \ta{i} \lor (\ori \land \p{i})) \land \p{i} \, \U \, (\e{i} \lor \f{i}) \land \lnot \f{i}) \\
 %
  \bigwedge_{
 i \in \mathbf{B} } 
 &(\e{i} \Rightarrow \p{i} 
 \wedge (\ori \lor \mathbf{Y}(\lnot \e{i} \, \Snc \, \ta{i})
-\land \mathbf{X}(\lnot \p{i} \, \U \, \ta{i})
- \label{eq:4a} \\
+\land \mathbf{X}(\lnot \p{i} \, \U \, \ta{i}) \\
 %
-%
-%%%
-%%% 
-%%\bigwedge_{
-%%	\begin{subarray}{c}
-%%	\,i \in \mathbf{B}
-%%	\end{subarray}
-%%}
-%%&(\startid{i} \iff (\lnot \mathbf{Y}(\id{i}) \land \id{i}))\\
-%%%
-%
-% 
 \bigwedge_{
 	\begin{subarray}{c}
 	\,i \in \mathbf{B}
@@ -103,60 +89,43 @@ i \in \mathbf{B} }
 \id{i} \Rightarrow 
 \id{i} \, \Snc \, \startid{j} \land 
 \id{i} \, \U \, (\ta{i} \lor \f{i}) \land \lnot \f{i}
-\right) \label{eq:5a} \\
+\right)  \\
 %
 %
 \bigwedge_{
 i \in \mathbf{S}} \,
-&(\G{\F{\e{i}}})  \label{eq:6a}\\
+&(\G{\F{\e{i}}}) \\
 %
 %
  \bigwedge_{
 \begin{subarray}{c}
 i \in \mathbf{B}
 \end{subarray}} \,
-&(\G{\F{\ta{i}}})  \label{eq:7a}
+&(\G{\F{\ta{i}}}) 
 %
-\end{align}  
+\end{align*}  
 
 
 \subsubsection*{Node Failure}
 
 
 \begin{align*}
-%%\bigwedge_{
-%%\begin{subarray}{c}
-%%\,j \in B
-%%\end{subarray}
-%%}
-%%&(\f{j} \land  (\mathbf{Y}(\lnot \f{j})\lor \ori) \iff \cl{\f{j}} = 0)\\
-%%%
-%%%
-%% \bigwedge_{
-%%\begin{subarray}{c}
-%%\,j \in B
-%%\end{subarray}
-%%}
-%%&( \f{j} \Rightarrow  \f{j} \U (\f{j} \land \cl{\f{j}} > \texttt{minTimeToReboot}) \land \lnot \p{j}
-%%% \land \lnot \add{j} UNCOMMENT IF ADD IS DISABLED DURING FAILURE
-%% \land x=0)\\
 %
-% 
- \bigwedge_{
+ &\bigwedge_{
 \begin{subarray}{c}
 \,j \in B
 \end{subarray}
 }
-&(\startf{j} \iff (\lnot \mathbf{Y}(\f{j}) \land \f{j}))\\
+(\startf{j} \iff (\lnot \mathbf{Y}(\f{j}) \land \f{j}))\\
 %
 % 
 %
-\bigwedge_{
+&\bigwedge_{
 \begin{subarray}{c}
 \,j \in B
 \end{subarray}
 }
-&(\startf{j} \Rightarrow 
+(\startf{j} \Rightarrow 
 (
 \bigwedge_{
 	\begin{subarray}{c}
@@ -168,116 +137,6 @@ i \in \mathbf{B}
 ))
 %
 \end{align*}
-
-
-%%%%\newpage
-%%%%
-%%%%\textbf{Taking into account rates}:
-%%%%\begin{itemize}
-%%%%\item[] $\tar{i}{r}$ indicates that the \texttt{take()}/\texttt{nextTuple()} step is performed by the $i^{th}$ bolt/spout with rate $r$ (i.e. $r$ tuples are taken);
-%%%%\item[] $\pr{i}{r}$ corresponds to the \texttt{execute()}/\texttt{transform()} step performed by the $i^{th}$ bolt/spout with rate r; 
-%%%%\item[]$\sigma_i$ represents the ratio between the number of input tuples taken as input by the bolt and the number of new output tuples that will be emitted. $\sigma_i$ is used to outline the behaviour of the main operations implemented by bolts (considering the input/output ratio): 
-%%%%\begin{itemize}
-%%%%\item $1 \leq \sigma$: function
-%%%%\item $0 \leq \sigma \leq 1$: filtering
-%%%%\item $\sigma = 0, d > 0$: aggregation
-%%%%\end{itemize}
-%%%%\item[] $\er{i}{\sigma_i r}$ corresponds to the \texttt{emit()} step executed by the bolt/spout with rate $\sigma_i r$ (i.e. $\sigma_i r$ tuples are emitted).
-%%%%
-%%%%\end{itemize}
-%%%%
-%%%%
-%%%%
-%%%%
-%%%%
-%%%%
-%%%%\begin{align}
-%%%% \bigwedge_{
-%%%%\begin{subarray}{c}
-%%%%i \in \mathbf{B}\\
-%%%%r \in R_T
-%%%%\end{subarray}} 
-%%%%& ( \pr{i}{r} \Rightarrow 
-%%%%\lnot (
-%%%%\bigvee_{
-%%%%\begin{subarray}
-%%%%\,c \in R_T \\
-%%%%c \neq r
-%%%%\end{subarray}
-%%%%}
-%%%%\pr{i}{c}) ) \label{eq:1b1}\\
-%%%%%
-%%%%%
-%%%%%
-%%%%%
-%%%% \bigwedge_{
-%%%%\begin{subarray}{c}
-%%%%i \in \mathbf{B}\\
-%%%%r \in R_T
-%%%%\end{subarray}} 
-%%%%& ( \tar{i}{r} \Rightarrow 
-%%%%\lnot 
-%%%%\er{i}{\sigma_i r})  \label{eq:1b}\\
-%%%%%
-%%%% \bigwedge_{
-%%%%\begin{subarray}{c}
-%%%%i \in \mathbf{B}\\
-%%%%r \in R_T
-%%%%\end{subarray} 
-%%%%}
-%%%%&(\tar{i}{r} \Rightarrow \pr{i}{r} \wedge \mathbf{X}(\lnot 
-%%%%\tar{i}{r} \,
-%%%%\U \, \er{i}{\sigma_i r}
-%%%%)) \label{eq:2b} \\
-%%%%%
-%%%% \bigwedge_{
-%%%%\begin{subarray}{c}
-%%%%i \in \mathbf{B}\\
-%%%%r \in R_T
-%%%%\end{subarray}}
-%%%%&\pr{i}{r} \Rightarrow \pr{i}{r} \Snc (\ori \lor \tar{i}{r}) 
-%%%%\land \pr{i}{r} \, \U \, \er{i}{\sigma_i r} \land \lnot \f{i}) \label{eq:3b} \\
-%%%%%
-%%%% \bigwedge_{
-%%%%\begin{subarray}{c}
-%%%%i \in \mathbf{B}\\
-%%%%r \in R_T
-%%%%\end{subarray}}
-%%%%%%&(E_i^{\sigma_i r} \Rightarrow P_i^r \wedge 
-%%%%%%\lnot (
-%%%%%%\bigvee_{c \in R_T}
-%%%%%%T_i^{c}) 
-%%%%%%\wedge 
-%%%%%%\mathbf{X}(\lnot (
-%%%%%%\bigvee_{c \in R_T}
-%%%%%%E_i^{\sigma_i c}) ) \label{eq:4b} \\
-%%%%%MB: aggiunto since
-%%%%&(\er{i}{\sigma_i r} \Rightarrow \pr{i}{r} \wedge 
-%%%%(\ori \lor \Y(\lnot 
-%%%%\er{i}{\sigma_i c} \, \Snc \, \tar{i}{r})) \label{eq:4b} \\
-%%%%%
-%%%%%
-%%%% \bigwedge_{
-%%%%\begin{subarray}{c}
-%%%%i \in \mathbf{S}\\
-%%%%r \in R_T
-%%%%\end{subarray}} 
-%%%%&\G{\mathbf{F}(\er{i}{r})}  \label{eq:5b}\\
-%%%%%
-%%%%%
-%%%% \bigwedge_{
-%%%%\begin{subarray}{c}
-%%%%i \in \mathbf{B}\\
-%%%%r \in R_T
-%%%%\end{subarray}} 
-%%%%&\G{\mathbf{F}(\tar{i}{r})}  \label{eq:6b}
-%%%%%
-%%%%%
-%%%%%
-%%%%%
-%%%%\end{align}  
-
-
 
 
 \newpage
@@ -302,16 +161,16 @@ Sub(j,i)
 \end{subarray}
  } \e{i})
 \end{align*}
-\subsubsection*{Rates}
+\subsubsection*{Quantites and Rates}
 To represent the quantities of tuples that are taken/processed/emitted by each node in the topology, we introduce the concept of rate defined as "the quantity of tuples considered in the current time unit". \\
-We therefore present the following rates:
+We therefore present the following quantities:
 \begin{itemize}
-\item $\re{j}$: quantity of tuples emitted in the current time unit by task $j$.
-\item $\rt{j}$: quantity of tuples taken in the current time unit by task $j$.
-\item $\ra{j}$: quantity of tuples that are added to the receive queue of task $j$ in the current time unit, consisting in the sum of all the tuples currently emitted by the tasks belonging to $In(j)$.
+\item $\re{j}$: quantity of tuples emitted in the current time unit by bolt/spout $j$.
+\item $\rt{j}$: quantity of tuples taken in the current time unit by spout $j$.
+\item $\ra{j}$: quantity of tuples that are added to the receive queue of spout $j$ in the current time unit, consisting in the sum of all the tuples currently emitted by the spouts/bolts belonging to $In(j)$.
 \end{itemize}
 %
-Therefore, the behaviour of the queue given the occurrence of adding and/or receiving event is the following:
+Therefore, the evolution of each queue given the occurrence of adding and/or receiving event is the following:
 %
 \begin{align*}
 \bigwedge_{
@@ -376,19 +235,9 @@ Necessary conditions:
 } &\left( (\aX q_j < q_j) 
 \Rightarrow 
 \ta{j} \lor \startf{j} \right)
-%
-%
-%*** \bigwedge_{
-%\begin{subarray}{c}
-%\,j \in B
-%\end{subarray}
-%} &\left( (\aX q_j = q_j) 
-%\Rightarrow 
-%(\add{j} \wedge \ta{j}{}) \vee (\lnot \add{j} \wedge \lnot \ta{j}{})
-%\right)\\
 \end{align*}
 %
-The following properties define the behaviour of rates for all bolts, distinguishing, when needed, between final ("leaf" node of the topology graph) and non-final bolt. $\mathit{final}(i)$ is equivalent to $\lnot \exists j: Sub(j,i)$:
+The following properties define the constraints applying to the tuple quantities of all bolts, distinguishing, when needed, between final ("leaf" node of the topology graph) and non-final bolt. $\mathit{final}(i)$ is equivalent to $\lnot \exists j: Sub(j,i)$:
 %
 %
 \begin{align*}
@@ -501,7 +350,7 @@ Sub(j,i) \\
 %} ( \re{j} =0 \iff \lnot \e{j}) 
 %
 \end{align*}
-Each bolt has a maximum take rate $\rth{j}$ that limits the number of tuples that can be taken from the receive queue at any moment.
+Each bolt has a maximum take capability $\rth{j}$ that limits the number of tuples that can be taken from the receive queue at any moment. This is 
 If the elements in the queue are greater than or equal to $\rth{j}$ and a $take$ is performed by the bolt, then exactly $\rth{j}$ tuples are taken from the queue. Otherwise, all the tuples are taken. 
 \begin{align*}
 %
@@ -524,7 +373,7 @@ If the elements in the queue are greater than or equal to $\rth{j}$ and a $take$
 %
 \end{align*}
 
-Since the spouts are modeled as node which only emit tuples into the topology, we only define the emitting rate $\re{j}$  that is composed of the "nominal" emitting rate $\reb{j}$ (i.e. the emitting rate that the spout would if no failure ever happened) and the additional rate $\rf{j}$ expressing how many tuples have to be re-emitted by spout $j$ due to failures in the topology.
+Since the spouts are modeled as node which only emit tuples into the topology, we only define the emitting rate $\re{j}$  that is composed of the "nominal" emitting quantity $\reb{j}$ (i.e. the quantity of tuples that the spout would emit if no failure happens) and the additional quantity $\rf{j}$ expressing how many tuples have to be re-emitted by spout $j$ due to failures in the topology.
 \begin{align*}
 %
 & \bigwedge_{
