@@ -85,9 +85,8 @@ D.~C. Schmidt, M.~Stal, H.~Rohnert, and F.~Buschmann, \emph{Pattern-oriented
 \bibitem{icsoft}
 M.~M. Bersani, S.~Distefano, L.~Ferrucci, and M.~Mazzara, ``A timed semantics
   of workflows.'' in \emph{ICSOFT (Selected Papers)}, ser. Communications in
-  Computer and Information Science, A.~Holzinger, J.~Cardoso, J.~Cordeiro,
-  T.~Libourel, L.~A. Maciaszek, and M.~van Sinderen, Eds., vol. 555.\hskip 1em
-  plus 0.5em minus 0.4em\relax Springer, 2014, pp. 365--383.
+  Computer and Information Science, vol. 555.\hskip 1em plus 0.5em minus
+  0.4em\relax Springer, 2014, pp. 365--383.
 
 \bibitem{toshniwal2014storm}
 A.~Toshniwal, S.~Taneja, A.~Shukla, K.~Ramasamy, J.~M. Patel, S.~Kulkarni,
@@ -176,8 +175,7 @@ P.~Clements, R.~Kazman, and M.~Klein, \emph{Evaluating Software Architectures:
 \bibitem{lambda}
 M.~Quartulli, J.~Lozano, and I.~G. Olaizola, ``Beyond the lambda architecture:
   Effective scheduling for large scale eo information mining and interactive
-  thematic mapping.'' in \emph{IGARSS}.\hskip 1em plus 0.5em minus 0.4em\relax
-  IEEE, 2015, pp. 1492--1495.
+  thematic mapping.'' in \emph{IGARSS}, 2015, pp. 1492--1495.
 
 \bibitem{ibmspl}
 M.~Hirzel, H.~Andrade, B.~Gedik, G.~Jacques-Silva, R.~Khandekar, V.~Kumar,

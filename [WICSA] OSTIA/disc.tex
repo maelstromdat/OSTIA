@@ -1,4 +1,4 @@
-This section discusses our findings and limitations around OSTIA.
+This section discusses some findings and the limitations of OSTIA.
 
 \subsection{Findings and Continuous Architecting Insights}
 %\begin{itemize}
@@ -28,7 +28,7 @@ Second, OSTIA only allows to recover and evaluate previously-existing topologies
 
 Third, OSTIA does offer essential insights to aid deployment as well (e.g., separating or \emph{clustering} complex portions of a topology so that they may run on dedicated infrastructure), however, our tool was not meant to be used as a system to aid planning and infrastructure design. Rather, as specified previously in the introduction, OSTIA was meant to evaluate and increase the quality of topologies \emph{before} they enter into operation since the continuous improvement cycles connected to operating the topology and learning from said operation are often costly and still greatly inefficient.
 
-Fourth, although we were able to discover a number of recurrent anti-patterns to be applied during OSTIA analysis, we were not able to implement all of them in practice and in a manner which allows to spot both the anti-pattern and any problems connected with it. For example, detecting the ``Cycle-in topology" is already possible, however, OSTIA would not allow designers to understand the consequence of the anti-pattern, i.e., where in the infrastructure do the cycles cause troubles. Also, there are several features that are currently under implementation but not released within OSTIA, for example, the ``Persistent Data" and the ``Topology Cascading" features.
+Fourth, although we were able to discover a number of recurrent anti-patterns to be applied during OSTIA analysis, we were not able to implement all of them in practice and in a manner which allows to spot both the anti-pattern and any problems connected with it. For example, detecting the ``Cycle-in topology" is already possible, however, OSTIA would not allow designers to understand the consequence of the anti-pattern, i.e., where in the infrastructure do the cycles cause troubles. Also, there are several features that are currently under implementation but not released within the OSTIA codebase, for example, the ``Persistent Data" and the ``Topology Cascading" features.
 %
 %In the future we plan to tackle the above limitations furthering our understanding of streaming design as well as the support OSTIA offers to designers during continuous architecting.
 

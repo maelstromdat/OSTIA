@@ -33,43 +33,43 @@ Warning--empty journal in soc
 Done.
 You've used 39 entries,
             4039 wiz_defined-function locations,
-            1001 strings with 12771 characters,
-and the built_in function-call counts, 24050 in all, are:
-= -- 1784
-> -- 581
+            1000 strings with 12643 characters,
+and the built_in function-call counts, 23783 in all, are:
+= -- 1771
+> -- 556
 < -- 168
-+ -- 317
-- -- 105
-* -- 1072
-:= -- 3527
-add.period$ -- 76
++ -- 306
+- -- 99
+* -- 1054
+:= -- 3493
+add.period$ -- 75
 call.type$ -- 39
-change.case$ -- 24
+change.case$ -- 22
 chr.to.int$ -- 384
 cite$ -- 41
-duplicate$ -- 1816
-empty$ -- 2156
-format.name$ -- 130
-if$ -- 5561
+duplicate$ -- 1799
+empty$ -- 2140
+format.name$ -- 123
+if$ -- 5502
 int.to.chr$ -- 0
 int.to.str$ -- 39
-missing$ -- 351
+missing$ -- 344
 newline$ -- 160
-num.names$ -- 31
-pop$ -- 965
+num.names$ -- 29
+pop$ -- 946
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 2
-skip$ -- 1846
+skip$ -- 1834
 stack$ -- 0
 substring$ -- 934
-swap$ -- 1359
+swap$ -- 1343
 text.length$ -- 40
 text.prefix$ -- 0
 top$ -- 5
 type$ -- 39
 warning$ -- 2
-while$ -- 94
+while$ -- 93
 width$ -- 41
-write$ -- 360
+write$ -- 359
 (There were 4 error messages)
