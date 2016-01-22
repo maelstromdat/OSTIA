@@ -37,7 +37,42 @@
 
 
 \section{Appendix-extended results}\label{app:extended-exp-results}
+This appendix shows the some extended result of the verification tool.
+We try to enact an exercise of continuous architecting on the focused-crawler topology.
+All the experiments were carried out with a random initial configuration for the queue occupancy which allowed us to detect possible executions leading to unbounded queues.
+The three experiments were parameterized with different values of $ \alpha $ (time to process  one tuple).
 
+
+%\begin{figure}[h]
+%	\centering 
+%	\subfigure[{\footnotesize Starting configuration of the model: All the three bolt queues show an unbounded behavior. }]{\includegraphics[width=0.45\linewidth]{images/appendix/3bolts-1}}\label{vb1}
+%	\hspace{0.5cm}
+%	\subfigure[{\footnotesize WpDeserializer seems to better manage the incoming tuples flow, but it still unbounded, as the other bolts.}]{\includegraphics[width=0.45\linewidth]{images/appendix/3bolts-2}}\label{vb2}
+%	%\hspace{0.5cm}
+%	\subfigure[{\footnotesize This configuration allows WpDeserializer bolt to process the incoming tuple rate from the spout. Problems are still present for expander and articleExtraction }]{\includegraphics[width=0.45\linewidth]{images/appendix/3bolts-3}}\label{vb3}
+%\end{figure}
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.7\linewidth]{images/appendix/3bolts-1}
+	\caption{Starting configuration of the model: All the three bolt queues show an unbounded behavior.}
+	\label{fig:3bolts-1}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.7\linewidth]{images/appendix/3bolts-2}
+	\caption{WpDeserializer seems to better manage the incoming tuples flow, but it still unbounded, as the other bolts.}
+	\label{fig:3bolts-2}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.7\linewidth]{images/appendix/3bolts-3}
+	\caption{This configuration allows WpDeserializer bolt to process the incoming tuple rate from the spout. Problems are still present for expander and articleExtraction}
+	\label{fig:3bolts-3}
+\end{figure}
+
+\clearpage
 \section{Appendix-Formal model}\label{app:extended-formal-model}
 
 This appendix is an extract of the full CLTLoc model to provide the user with a clear overview of the formal background behind the verification in OSTIA.
