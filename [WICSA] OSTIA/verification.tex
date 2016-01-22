@@ -45,7 +45,7 @@ Spouts have no queues, and
 each spout can either \textit{emit} tuples into the topology or stay \emph{idle}.
 Each bolt can be in \emph{idle} state, in \emph{failure} state or in  \emph{processing} state.  While in the processing state, the bolt first reads tuples from its receive queue (\textit{take} action), then it performs its transformation (\textit{execute} action) and finally it \textit{emits} the output tuples in its output streams. \\
 
-\begin{figure}\label{figure-fsa}
+\begin{figure}
 	\centering	
 	\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.5cm,semithick, every node/.style={scale=0.55}]
 	
@@ -71,6 +71,7 @@ Each bolt can be in \emph{idle} state, in \emph{failure} state or in  \emph{proc
 	edge [bend right]  node {} (I);
 	\end{tikzpicture}
 	\caption{Finite state automaton describing bolt states.}
+	\label{figure-fsa}
 \end{figure}
 %To give an idea about how the model is formalized, 
 We provide, as an example, one of the formulae defining the processing state. Formula \ref{formula:1} can be read as \textit{``for all bolts: if a bolt j is processing tuples, then it has been processing tuples since it took those tuples from the queue, (or since the origin of the events), and it will keep processing those tuples until it will either emit them or fail. Moreover, the bolt is not in a failure state''.}
