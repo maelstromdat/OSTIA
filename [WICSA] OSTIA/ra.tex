@@ -20,8 +20,8 @@ to support the incremental and iterative refinement of streaming topologies base
 
 \begin{figure*}
   \centering
-  \includegraphics[width=12cm]{images/socialsensor}
-  \caption{A sample Storm topology in the SocialSensor App.}
+  \includegraphics[width=12cm]{images/socialsensorother}
+  \caption{A sample Storm topology (readable from left to right) using an UML object diagram in the SocialSensor App, notes identify types for nodes (i.e., Bolts or Spouts).}
   \label{socialsensor-topology}
 \end{figure*}
 
@@ -39,7 +39,7 @@ App~\cite{socialsensor}
 %\footnote{\url{https://github.com/socialsensor}} 
 which features the combined
 action of three complex streaming topologies based on Apache Storm (see
-Fig. \ref{socialsensor-topology} for a sample).  In particular, the topology in
+Fig. \ref{socialsensor-topology} for a sample realised using a simple UML object diagram).  In particular, the topology in
 Fig. \ref{socialsensor-topology} extracts data from sources and manipulates said
 data to divide and arrange contents based on type (e.g., article vs. media),
 later updating a series of databases (e.g., Redis) with these elaborations. The
@@ -72,7 +72,6 @@ distributed video processing pipelines which can be deployed on Storm clusters".
 %\item should we elaborate on something else?
 %\end{itemize}
 %\textbf{TODO: @anyone, feel free to elaborate more!!}
-
 Third, finally, we applied well-established verification approaches to integrate
 the value and benefits behind using OSTIA. We engineered OSTIA to support
 exporting of elicited topologies for their further analysis using the

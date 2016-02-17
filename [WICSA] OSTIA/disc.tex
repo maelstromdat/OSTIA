@@ -1,10 +1,7 @@
 This section discusses some findings and the limitations of OSTIA.
+%%%%%%%%%% COMMENTATO SHORT
+%%%%%%%%%%\subsection{Findings and Continuous Architecting Insights}
 
-\subsection{Findings and Continuous Architecting Insights}
-%\begin{itemize}
-%\item we should probably enumerate the many issues we have found with the work in WP2 and WP3 to allow some good insights for the people using OSTIA
-%\item also we could discuss the benefits one by one using some usage-scenarios
-%\end{itemize}
 OSTIA represents one humble, but significant step at supporting practically the necessities behind developing and maintaining high-quality big-data application architectures. In designing and developing OSTIA we encountered a number of insights that may aid continuous architecting.
 
 First, we found (and observed in industrial practice) that it is often more useful to develop a quick-and-dirty but ``runnable" architecture topology than improving the topology at design time for a tentatively perfect execution. This is mostly the case with big-data applications that are developed stemming from previously existing topologies or applications. OSTIA hardcodes this way of thinking by supporting reverse-engineering and recovery of deployed topologies for their incremental improvement. Although we did not carry out extensive qualitative or quantitative evaluation of OSTIA in this regard, we are planning additional industrial experiments for future work with the goal of increasing OSTIA usability and practical quality.
@@ -12,23 +9,23 @@ First, we found (and observed in industrial practice) that it is often more usef
 Second, big-data applications design is an extremely young and emerging field for which not many software design patterns have been discovered yet. The (anti-)patterns and approaches currently hardcoded into OSTIA are inherited from related fields, e.g., pattern- and cluster-based graph analysis. Nevertheless, OSTIA may also be used to investigate the existence of recurrent and effective design solutions (i.e., design patterns) for the benefit of big-data application design. We are improving OSTIA in this regard by experimenting on two fronts: (a) re-design and extend the facilities with which OSTIA supports anti-pattern detection; (b) run OSTIA on multiple big-data applications stemming from multiple technologies beyond Storm (e.g., Spark, Hadoop Map Reduce, etc.) with the purpose of finding recurrent patterns. A similar approach may feature OSTIA as part of architecture trade-off analysis campaigns \cite{atam}.
 
 Third, a step which is currently undersupported during big-data applications design is devising an efficient algorithmic breakdown of a workflow into an efficient topology. Conversely, OSTIA does support the linearisation and combination of multiple topologies, e.g., into a cascade. Cascading and similar super-structures may be an interesting investigation venue since they may reveal more efficient styles for big-data architectures beyond styles such as Lambda Architecture \cite{lambda}. OSTIA may aid in this investigation by allowing the interactive and incremental improvement of multiple (combinations of) topologies together.
-
-\subsection{Approach Limitations and Threats to Validity}\label{lim}
-%\begin{itemize}
-%\item here we could elaborate on the limitations of addressing only storm and why we are addressing storm (e.g., the main technology for streaming currently)
-%\item we should probably discuss the fact that the tech is still eclipse-based and how this is not really a limitation after all
-%\item are there any threats to validity? we should probably discuss this as well
-%\end{itemize}
-
-Although OSTIA shows promise both conceptually and as a practical tool, it shows several limitations.
-
-First of all, OSTIA only supports streaming topologies enacted using Storm. Multiple other big-data frameworks such as Apache Spark, Samza exist to support both streaming and batch processing. 
-
-Second, OSTIA only allows to recover and evaluate previously-existing topologies, its usage is limited to design improvement and refactoring phases rather than design. Although this limitation may inhibit practitioners from using our technology, the (anti-)patterns and algorithmic approaches elaborated in this paper help designers and implementors to develop the reasonably good-quality and ``quick" topologies upon which to use OSTIA for continuous improvement.
-
-Third, OSTIA does offer essential insights to aid deployment as well (e.g., separating or \emph{clustering} complex portions of a topology so that they may run on dedicated infrastructure), however, our tool was not meant to be used as a system to aid planning and infrastructure design. Rather, as specified previously in the introduction, OSTIA was meant to evaluate and increase the quality of topologies \emph{before} they enter into operation since the continuous improvement cycles connected to operating the topology and learning from said operation are often costly and still greatly inefficient.
-
-Fourth, although we were able to discover a number of recurrent anti-patterns to be applied during OSTIA analysis, we were not able to implement all of them in practice and in a manner which allows to spot both the anti-pattern and any problems connected with it. For example, detecting the ``Cycle-in topology" is already possible, however, OSTIA would not allow designers to understand the consequence of the anti-pattern, i.e., where in the infrastructure do the cycles cause troubles. Also, there are several features that are currently under implementation but not released within the OSTIA codebase, for example, the ``Persistent Data" and the ``Topology Cascading" features.
+%%%%%%%%%%%%%% COMMENTATO SHORT
+%%%%%%%%%%%%%%\subsection{Approach Limitations and Threats to Validity}\label{lim}
+%%%%%%%%%%%%%%\begin{itemize}
+%%%%%%%%%%%%%%\item here we could elaborate on the limitations of addressing only storm and why we are addressing storm (e.g., the main technology for streaming currently)
+%%%%%%%%%%%%%%\item we should probably discuss the fact that the tech is still eclipse-based and how this is not really a limitation after all
+%%%%%%%%%%%%%%\item are there any threats to validity? we should probably discuss this as well
+%%%%%%%%%%%%%%\end{itemize}
+%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%Although OSTIA shows promise both conceptually and as a practical tool, it shows several limitations.
+%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%First of all, OSTIA only supports streaming topologies enacted using Storm. Multiple other big-data frameworks such as Apache Spark, Samza exist to support both streaming and batch processing. 
+%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%Second, OSTIA only allows to recover and evaluate previously-existing topologies, its usage is limited to design improvement and refactoring phases rather than design. Although this limitation may inhibit practitioners from using our technology, the (anti-)patterns and algorithmic approaches elaborated in this paper help designers and implementors to develop the reasonably good-quality and ``quick" topologies upon which to use OSTIA for continuous improvement.
+%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%Third, OSTIA does offer essential insights to aid deployment as well (e.g., separating or \emph{clustering} complex portions of a topology so that they may run on dedicated infrastructure), however, our tool was not meant to be used as a system to aid planning and infrastructure design. Rather, as specified previously in the introduction, OSTIA was meant to evaluate and increase the quality of topologies \emph{before} they enter into operation since the continuous improvement cycles connected to operating the topology and learning from said operation are often costly and still greatly inefficient.
+%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%Fourth, although we were able to discover a number of recurrent anti-patterns to be applied during OSTIA analysis, we were not able to implement all of them in practice and in a manner which allows to spot both the anti-pattern and any problems connected with it. For example, detecting the ``Cycle-in topology" is already possible, however, OSTIA would not allow designers to understand the consequence of the anti-pattern, i.e., where in the infrastructure do the cycles cause troubles. Also, there are several features that are currently under implementation but not released within the OSTIA codebase, for example, the ``Persistent Data" and the ``Topology Cascading" features.
 %
 %In the future we plan to tackle the above limitations furthering our understanding of streaming design as well as the support OSTIA offers to designers during continuous architecting.
 

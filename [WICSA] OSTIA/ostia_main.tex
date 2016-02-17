@@ -463,7 +463,7 @@ Email: $[p.jamshidi,$\\$a.nodari15]$@imperial.ac.uk}
 %\comment{title suggestions: (i) Topology Architecture Recovery for Stream Based Systems (ii) Automated Architecture Recovery and Consistency Checking for Stream Based Systems}
 %<<<<<<< Updated upstream
 Big data architectures have been gaining momentum in recent years. For
-instance, Twitter uses stream processing frameworks like Storm to analyse billions of tweets per minute and learn the trending topics. However, architectures that process big data involves many different components interconnected via semantically different connectors making it a difficult task for software architects to refactor the initial designs. As an aid to designers and developers, we developed OSTIA (On-the-fly Static Topology Inference Analysis) that allows: (a) visualising big data architectures for the purpose of design-time refactoring while maintaining constraints that would only be evaluated at later stages such as deployment and run-time; (b) detecting the occurrence of common anti-patterns across big data architectures; (c) exploiting software verification techniques on the elicited architectural models. This paper illustrates OSTIA and evaluates its uses and benefits on three industrial-scale case studies.
+instance, Twitter uses stream processing frameworks like Storm to analyse billions of tweets per minute and learn the trending topics. However, architectures that process big data involve many different components interconnected via semantically different connectors making it a difficult task for software architects to refactor the initial designs. As an aid to designers and developers, we developed OSTIA (On-the-fly Static Topology Inference Analysis) that allows: (a) visualising big data architectures for the purpose of design-time refactoring while maintaining constraints that would only be evaluated at later stages such as deployment and run-time; (b) detecting the occurrence of common anti-patterns across big data architectures; (c) exploiting software verification techniques on the elicited architectural models. This paper illustrates OSTIA and evaluates its uses and benefits on three industrial-scale case studies.
 %=======
 %Big data architectures have been gaining momentum in the last years. For
 %example, Twitter uses stream processing frameworks like Apache Storm to learn trending topics from billions of tweets per minute. However, maintaining applications' quality (or better, \emph{topologies} quality in Storm jargon) often requires iterative experiments on expensive multi-node clusters. As an aid to designers of streaming applications we
@@ -503,11 +503,11 @@ instance, Twitter uses stream processing frameworks like Storm to analyse billio
 \label{intro}
 \input{intro}
 
-
-\section{Research Design}
-\label{ra}
-\input{ra}
-
+%%%%%%%%%% COMMENTATO SHORT
+%%%%%%%%%%\section{Research Design}
+%%%%%%%%%%\label{ra}
+%%%%%%%%%%\input{ra}
+%%%%%%%%%%
 
 \section{Research Solution}
 \label{rs}
@@ -521,18 +521,17 @@ instance, Twitter uses stream processing frameworks like Storm to analyse billio
 \section{Discussion}
 \label{disc}
 \input{disc}
-
-\section{Related Work}
-\label{rw}
-\input{rw}
+%%%%%%%% COMMENTATO SHORT
+%%%%%%%%\section{Related Work}
+%%%%%%%%\label{rw}
+%%%%%%%%\input{rw}
 
 \section{Conclusion}
 \input{conc}
 \label{conc}
-
+\small
 \bibliographystyle{IEEEtran}
 \bibliography{ostia}
-\clearpage
 %\input{appendix}
 
 % An example of a floating figure using the graphicx package.

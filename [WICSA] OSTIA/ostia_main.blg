@@ -8,68 +8,58 @@ Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Database file #1: ostia.bib
-Warning--entry type for "dicomputational" isn't style-file defined
---line 369 of file ostia.bib
 Repeated entry---line 430 of file ostia.bib
  : @online{storm
  :              ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 471 of file ostia.bib
- : @online{zot
- :            ,
-I'm skipping whatever remains of this entry
 A bad cross reference---entry "icsoft"
 refers to entry "conf/icsoft/2014s", which doesn't exist
-A bad cross reference---entry "stormgen"
-refers to entry "conf/fedcsis/2014", which doesn't exist
 Warning--I didn't find a database entry for "conf/icsoft/2014s"
-Warning--I didn't find a database entry for "conf/fedcsis/2014"
 -- IEEEtran.bst version 1.13 (2008/09/30) by Michael Shell.
 -- http://www.michaelshell.org/tex/ieeetran/bibtex/
 -- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
-Warning--empty year in dynos
 Warning--empty journal in soc
 
 Done.
-You've used 39 entries,
+You've used 21 entries,
             4039 wiz_defined-function locations,
-            1000 strings with 12643 characters,
-and the built_in function-call counts, 23783 in all, are:
-= -- 1771
-> -- 556
-< -- 168
-+ -- 306
-- -- 99
-* -- 1054
-:= -- 3493
-add.period$ -- 75
-call.type$ -- 39
-change.case$ -- 22
-chr.to.int$ -- 384
-cite$ -- 41
-duplicate$ -- 1799
-empty$ -- 2140
-format.name$ -- 123
-if$ -- 5502
+            905 strings with 9936 characters,
+and the built_in function-call counts, 11061 in all, are:
+= -- 760
+> -- 268
+< -- 58
++ -- 147
+- -- 52
+* -- 477
+:= -- 1642
+add.period$ -- 39
+call.type$ -- 21
+change.case$ -- 9
+chr.to.int$ -- 132
+cite$ -- 22
+duplicate$ -- 863
+empty$ -- 1079
+format.name$ -- 63
+if$ -- 2539
 int.to.chr$ -- 0
-int.to.str$ -- 39
-missing$ -- 344
-newline$ -- 160
-num.names$ -- 29
-pop$ -- 946
+int.to.str$ -- 21
+missing$ -- 179
+newline$ -- 100
+num.names$ -- 14
+pop$ -- 532
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 2
-skip$ -- 1834
+skip$ -- 842
 stack$ -- 0
-substring$ -- 934
-swap$ -- 1343
-text.length$ -- 40
+substring$ -- 321
+swap$ -- 585
+text.length$ -- 14
 text.prefix$ -- 0
 top$ -- 5
-type$ -- 39
-warning$ -- 2
-while$ -- 93
-width$ -- 41
-write$ -- 359
-(There were 4 error messages)
+type$ -- 21
+warning$ -- 1
+while$ -- 36
+width$ -- 23
+write$ -- 193
+(There were 2 error messages)
