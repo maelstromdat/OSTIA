@@ -1,0 +1,94 @@
+This is BibTeX, Version 0.99d (TeX Live 2015)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: ostia_jss.aux
+The style file: elsarticle-num.bst
+Database file #1: ostia.bib
+Warning--entry type for "dicomputational" isn't style-file defined
+--line 369 of file ostia.bib
+Warning--entry type for "gartner" isn't style-file defined
+--line 415 of file ostia.bib
+Warning--entry type for "spark" isn't style-file defined
+--line 420 of file ostia.bib
+Warning--entry type for "hadoop" isn't style-file defined
+--line 425 of file ostia.bib
+Repeated entry---line 430 of file ostia.bib
+ : @online{storm
+ :              ,
+I'm skipping whatever remains of this entry
+Warning--entry type for "kafka" isn't style-file defined
+--line 435 of file ostia.bib
+Warning--entry type for "dice2020" isn't style-file defined
+--line 440 of file ostia.bib
+Warning--entry type for "ostia" isn't style-file defined
+--line 445 of file ostia.bib
+Warning--entry type for "socialsensor" isn't style-file defined
+--line 450 of file ostia.bib
+Warning--entry type for "storm-crawler" isn't style-file defined
+--line 455 of file ostia.bib
+Warning--entry type for "stormCV" isn't style-file defined
+--line 460 of file ostia.bib
+Warning--entry type for "digitalpebble" isn't style-file defined
+--line 465 of file ostia.bib
+Repeated entry---line 471 of file ostia.bib
+ : @online{zot
+ :            ,
+I'm skipping whatever remains of this entry
+A bad cross reference---entry "icsoft"
+refers to entry "conf/icsoft/2014s", which doesn't exist
+A bad cross reference---entry "stormgen"
+refers to entry "conf/fedcsis/2014", which doesn't exist
+Warning--I didn't find a database entry for "conf/icsoft/2014s"
+Warning--I didn't find a database entry for "conf/fedcsis/2014"
+Warning--all relevant fields are empty in gartner
+Warning--all relevant fields are empty in spark
+Warning--all relevant fields are empty in hadoop
+Warning--all relevant fields are empty in dice2020
+Warning--all relevant fields are empty in socialsensor
+Warning--all relevant fields are empty in storm-crawler
+Warning--all relevant fields are empty in stormCV
+Warning--all relevant fields are empty in kafka
+Warning--empty journal in soc
+Warning--all relevant fields are empty in digitalpebble
+Warning--all relevant fields are empty in ostia
+You've used 38 entries,
+            2937 wiz_defined-function locations,
+            856 strings with 10319 characters,
+and the built_in function-call counts, 10546 in all, are:
+= -- 893
+> -- 320
+< -- 9
++ -- 132
+- -- 94
+* -- 646
+:= -- 1276
+add.period$ -- 41
+call.type$ -- 38
+change.case$ -- 21
+chr.to.int$ -- 0
+cite$ -- 49
+duplicate$ -- 395
+empty$ -- 1350
+format.name$ -- 117
+if$ -- 2868
+int.to.chr$ -- 0
+int.to.str$ -- 38
+missing$ -- 34
+newline$ -- 135
+num.names$ -- 28
+pop$ -- 328
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 778
+stack$ -- 0
+substring$ -- 434
+swap$ -- 102
+text.length$ -- 9
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 11
+while$ -- 61
+width$ -- 40
+write$ -- 298
+(There were 4 error messages)
