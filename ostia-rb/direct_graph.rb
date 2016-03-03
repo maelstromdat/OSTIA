@@ -3,17 +3,48 @@ require 'json'
 #:nodoc:
 module Ostia
   class DirectGraph
-    attr_reader :nodes, :spouts
+    attr_reader :nodes, :spouts, :parallelism
 
     def initialize
       @nodes       = {}
       @spouts_map  = {}
       @inverse     = {}
-      @parallelism = Hash.new(0)
+      @parallelism = {}
     end
 
     def add_parallelism(node_name, parallelism)
-      @parallelism[node_name] = parallelism
+      @parallelism[node_name] = parallelism.to_i
+    end
+
+    def fan_in
+      @fan_in ||= @inverse.each_with_object({}) do |data, fan_in_hash|
+        node = data.first
+        other = data.last
+        fan_in_hash[node] = other.count
+      end
+    end
+
+    def fan_out
+      @fan_out ||= @nodes.each_with_object({}) do |data, fan_out_hash|
+        node = data.first
+        other = data.last
+        fan_out_hash[node] = other.count
+      end
+    end
+
+    # (fan_in * parallelism of each node) / parallelism of this node
+    def weighted_fan_in
+      @inverse.each_with_object({}) do |data, fan_in_hash|
+        node = data.first
+        other = data.last
+        next if other.count.zero?
+        weight = 0
+        other.each do |neighbor|
+          node_name = neighbor[:node]
+          weight += @parallelism[node_name]
+        end
+        fan_in_hash[node] = weight / @parallelism[node].to_f
+      end
     end
 
     def add_link(from, to, label)

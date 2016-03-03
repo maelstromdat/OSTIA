@@ -1,42 +1,60 @@
 #!/usr/bin/env ruby
 
+require './ostia_opt_parser'
 require './direct_graph'
 require './checker'
+require './performance_booster'
 
 #:nodoc:
 module Ostia
-  VERSION = '0.1'
-  OUTPUT_FORMATS = %w(dot json)
 
   class Runner
     def initialize(args)
-      if args.size != 3 || !OUTPUT_FORMATS.include?(args.last)
-        puts "Usage: ./ostia.rb <file_with_topologyBuilder>\
- <format: #{OUTPUT_FORMATS.join(', ')}>"
-        exit 1
-      end
-      @filename    = args[0]
-      @output_file = args[1]
-      @format      = args[2]
-      @graph       = DirectGraph.new
+      opts = OstiaOptParser.new(args).run
+      @filename = opts[:topology]
+      @output_file = opts[:output]
+      @format = opts[:format]
+      @machines = opts[:machines]
+      @tasks_per_machine = opts[:tasks_per_machine]
+      @graph = DirectGraph.new
     end
 
     def run
       @source_code = File.open(@filename).read
       lines = useful_lines
       generate_graph(lines)
+
       problems = Checker.new(@graph).run
       if problems.any?
-        puts "#{problems.size} reported:"
+        puts "#{problems.size} problem reported:"
         problems.each do |problem|
           puts problem
         end
-      else
-        puts 'No errors detected'
+        puts ""
       end
-      file = File.open(@output_file, 'w')
-      file.puts @graph.send("generate_#{@format}")
-      file.close
+
+      if @machines && @tasks_per_machine
+        suggestions = PerformanceBooster.new(@graph,
+                                             @machines,
+                                             @tasks_per_machine).run
+        if suggestions.any?
+          puts "#{suggestions.size} performance issue reported:"
+          suggestions.each do |suggestion|
+            ap suggestion
+          end
+          puts ""
+        end
+      end
+
+      str = @graph.send("generate_#{@format}")
+      if @output_file
+        file = File.open(@output_file, 'w')
+        file.puts(str)
+        file.close
+        puts "Done."
+      else
+        puts str
+      end
     end
 
     private
