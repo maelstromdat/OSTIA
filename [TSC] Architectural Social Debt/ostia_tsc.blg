@@ -1,0 +1,85 @@
+This is BibTeX, Version 0.99d (TeX Live 2015)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: ostia_tsc.aux
+The style file: IEEEtranS.bst
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Database file #1: ostia.bib
+Warning--entry type for "dicomputational" isn't style-file defined
+--line 369 of file ostia.bib
+Repeated entry---line 430 of file ostia.bib
+ : @online{storm
+ :              ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 471 of file ostia.bib
+ : @online{zot
+ :            ,
+I'm skipping whatever remains of this entry
+A bad cross reference---entry "icsoft"
+refers to entry "conf/icsoft/2014s", which doesn't exist
+A bad cross reference---entry "stormgen"
+refers to entry "conf/fedcsis/2014", which doesn't exist
+Warning--I didn't find a database entry for "conf/icsoft/2014s"
+Warning--I didn't find a database entry for "conf/fedcsis/2014"
+-- IEEEtranS.bst version 1.14 (2015/08/26) by Michael Shell.
+-- http://www.michaelshell.org/tex/ieeetran/bibtex/
+-- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
+** Sorting version - not for normal IEEE work.
+Warning--to sort, need author or key in gartner
+Warning--to sort, need author or key in spark
+Warning--to sort, need author or key in hadoop
+Warning--to sort, need author or key in dice2020
+Warning--to sort, need author or key in socialsensor
+Warning--to sort, need author or key in storm-crawler
+Warning--to sort, need author or key in stormCV
+Warning--to sort, need author or key in kafka
+Warning--to sort, need author or key in digitalpebble
+Warning--to sort, need author or key in ostia
+Warning--empty journal in soc
+
+Done.
+You've used 38 entries,
+            4566 wiz_defined-function locations,
+            1087 strings with 13188 characters,
+and the built_in function-call counts, 27624 in all, are:
+= -- 2344
+> -- 746
+< -- 162
++ -- 392
+- -- 188
+* -- 1445
+:= -- 4065
+add.period$ -- 72
+call.type$ -- 38
+change.case$ -- 189
+chr.to.int$ -- 369
+cite$ -- 49
+duplicate$ -- 1811
+empty$ -- 2186
+format.name$ -- 211
+if$ -- 6268
+int.to.chr$ -- 0
+int.to.str$ -- 38
+missing$ -- 331
+newline$ -- 157
+num.names$ -- 56
+pop$ -- 1026
+preamble$ -- 1
+purify$ -- 168
+quote$ -- 2
+skip$ -- 1985
+stack$ -- 0
+substring$ -- 1094
+swap$ -- 1294
+text.length$ -- 39
+text.prefix$ -- 0
+top$ -- 6
+type$ -- 376
+warning$ -- 11
+while$ -- 116
+width$ -- 40
+write$ -- 349
+(There were 4 error messages)
