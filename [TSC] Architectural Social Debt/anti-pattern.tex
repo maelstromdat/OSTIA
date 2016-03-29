@@ -1,5 +1,14 @@
 \section{OSTIA-Based Continuous Architecting}
-This section elaborates on the ways in which OSTIA supports continuous architecting. First, we elaborate on the anti-patterns supported in OSTIA. Second,  we elaborate on the algorithmic manipulation that OSTIA could apply to topologies to provide alternative visualisation. Third, finally, we elaborate on how OSTIA can drive continuous improvement assisted by formal verification. All figures in these sections use a simple graph-like notation where nodes may be any topological element (e.g., Spouts or Bolts in Apache Storm terms) while edges are directed data-flow connections.
+This section elaborates on the ways in which OSTIA supports continuous
+architecting. First, we elaborate on the anti-patterns supported in
+OSTIA. Second, we elaborate on the algorithmic manipulation that OSTIA could
+apply to topologies to provide alternative visualisation. Third, we discuss how
+OSTIA suggests an alternative architecture to improve the system
+performance. Fourth, finally, we elaborate on how OSTIA can drive continuous
+improvement assisted by formal verification. All figures in these sections use a
+simple graph-like notation where nodes may be any topological element (e.g.,
+Spouts or Bolts in Apache Storm terms) while edges are directed data-flow
+connections.
 
 
 \subsection{Topology Design Anti-Patterns Within OSTIA}\label{sec:anti-pattern}
@@ -129,8 +138,61 @@ Topology linearisation is outlined in Fig. \ref{fig:linearizing}. Sorting the pr
 	\end{center}
 \end{figure}
 
+\subsection{Suggestions for Performance Improvements}
+\label{sec:performance-boosting}
 
- COMMENTATO SHORT
+Big data architectures typically need parameters tuning to achieve best
+performance. For instance, in Storm developers have to specify the parallelism
+level for each node, which is the number of processes instantiated for a
+particular bolt or spout. OSTIA provides suggestions on how to change the
+parallelism level of the nodes, using simple and fast heuristics together with
+static analysis.
+
+After architects designed a Storm application, a scheduler instantiate the
+topology on a cluster of machines. The default scheduler utilises a round-robin
+strategy to fairly load the machines with the bolts and spouts. This a crucial
+assumption for the heuristic used in OSTIA to perform well.
+
+The heuristic works as follow. A Storm architect runs OSTIA specifying the
+number of machines used in the deployment and the number of instances of spouts
+and bolts that can be spawned in each machine. OSTIA statically analyses the
+topology and extract the parallelism level for each component of the
+topology. At this point, we sum of all instances need to be allocated and the
+slots available on the machines ($machines * components\_for\_each\_machine$).
+
+OSTIA decides whether a possible improvements is possible (i.e. \emph{slots
+  available} $>$ \emph{instances to be allocate}), and suggests changes to the
+parallelism level to the nodes in order to improve the performance. The simplest
+case occur when the unallocated slots are enough to remove a machine from the
+cluster, saving costs.
+
+Alternatively, OSTIA identify a subset of nodes, called critical nodes, which
+are important from a performance perspective. The critical nodes of a topology
+are defined as the nodes with the highest \emph{weighted fan-in}. The
+\emph{weighted fan-in} of a node \emph{N} is defined by Equation \ref{eq:wfi}.
+
+\begin{align}
+  \text{weighted fan-in(N)} = \frac{\sum_{X \rightarrow N \in Edges} parallelism(X)}{parallelism(N)} \label{eq:wfi}
+\end{align}
+
+The critical nodes could be easily susceptible to overloading as their
+parallelism level do not compensate the parallelism level of its
+\emph{in-nodes}. Increasing the parallelism level gives the nodes more resources
+to cope with high loads.
+
+For instance, let us take Figure \ref{topo1} as an example. There are 22
+components that needs to be allocated. Suppose that our cluster is composed by 4
+machines and each machine fits 10 instances of components. OSTIA in this case
+would suggest to simply remove one machine. Let us suppose that we have 3
+machines with 10 tasks each. At this point we have 30 slots available and 22
+components, therefore we have 8 slots available that can be used to increase the
+performance. In order to decide the components to improves we identify the ones
+with maximum \emph{weighted fan-in}. In the example nodes \emph{mediaExtractor}
+and \emph{articleExtractor} with \emph{weighted fan-in} of 8. Finally, since we
+have 8 free slots to share between two nodes we increase the parallelism level
+of the two critical nodes of $8/2 = 4$, setting it from 1 to 5.
+
+
 \subsection{OSTIA-Based Formal Verification}\label{ver}
 \input{macros}
 

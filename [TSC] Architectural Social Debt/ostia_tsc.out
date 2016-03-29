@@ -16,20 +16,21 @@
 \BOOKMARK [3][-]{subsubsection.4.2.2}{Topology cascading}{subsection.4.2}% 16
 \BOOKMARK [3][-]{subsubsection.4.2.3}{Topology clustering}{subsection.4.2}% 17
 \BOOKMARK [3][-]{subsubsection.4.2.4}{Linearising a topology}{subsection.4.2}% 18
-\BOOKMARK [2][-]{subsection.4.3}{OSTIA-Based Formal Verification}{section.4}% 19
-\BOOKMARK [1][-]{section.5}{Evaluation}{}% 20
-\BOOKMARK [2][-]{subsection.5.1}{Industrial Case-Study}{section.5}% 21
-\BOOKMARK [2][-]{subsection.5.2}{Evaluation on Open-Source Software}{section.5}% 22
-\BOOKMARK [2][-]{subsection.5.3}{Continuous Architecting by Means of Formal Verification: An Industrial Case-Study}{section.5}% 23
-\BOOKMARK [1][-]{section.6}{Discussion}{}% 24
-\BOOKMARK [2][-]{subsection.6.1}{Findings and Continuous Architecting Insights}{section.6}% 25
-\BOOKMARK [2][-]{subsection.6.2}{Approach Limitations and Threats to Validity}{section.6}% 26
-\BOOKMARK [1][-]{section.7}{Related Work}{}% 27
-\BOOKMARK [1][-]{section.8}{Conclusion}{}% 28
-\BOOKMARK [1][-]{section*.3}{References}{}% 29
-\BOOKMARK [1][-]{IEEEbiography.0}{Biographies}{}% 30
-\BOOKMARK [2][-]{IEEEbiography.1}{Marcello Maria Bersani}{IEEEbiography.0}% 31
-\BOOKMARK [2][-]{IEEEbiography.2}{Damian A. Tamburri}{IEEEbiography.0}% 32
-\BOOKMARK [2][-]{IEEEbiography.3}{Francesco Marconi}{IEEEbiography.0}% 33
-\BOOKMARK [2][-]{IEEEbiography.4}{Pooyan Jamshidi}{IEEEbiography.0}% 34
-\BOOKMARK [2][-]{IEEEbiography.5}{Andrea Nodari}{IEEEbiography.0}% 35
+\BOOKMARK [2][-]{subsection.4.3}{Suggestions for Performance Improvements}{section.4}% 19
+\BOOKMARK [2][-]{subsection.4.4}{OSTIA-Based Formal Verification}{section.4}% 20
+\BOOKMARK [1][-]{section.5}{Evaluation}{}% 21
+\BOOKMARK [2][-]{subsection.5.1}{Industrial Case-Study}{section.5}% 22
+\BOOKMARK [2][-]{subsection.5.2}{Evaluation on Open-Source Software}{section.5}% 23
+\BOOKMARK [2][-]{subsection.5.3}{Continuous Architecting by Means of Formal Verification: An Industrial Case-Study}{section.5}% 24
+\BOOKMARK [1][-]{section.6}{Discussion}{}% 25
+\BOOKMARK [2][-]{subsection.6.1}{Findings and Continuous Architecting Insights}{section.6}% 26
+\BOOKMARK [2][-]{subsection.6.2}{Approach Limitations and Threats to Validity}{section.6}% 27
+\BOOKMARK [1][-]{section.7}{Related Work}{}% 28
+\BOOKMARK [1][-]{section.8}{Conclusion}{}% 29
+\BOOKMARK [1][-]{section*.3}{References}{}% 30
+\BOOKMARK [1][-]{IEEEbiography.0}{Biographies}{}% 31
+\BOOKMARK [2][-]{IEEEbiography.1}{Marcello Maria Bersani}{IEEEbiography.0}% 32
+\BOOKMARK [2][-]{IEEEbiography.2}{Damian A. Tamburri}{IEEEbiography.0}% 33
+\BOOKMARK [2][-]{IEEEbiography.3}{Francesco Marconi}{IEEEbiography.0}% 34
+\BOOKMARK [2][-]{IEEEbiography.4}{Pooyan Jamshidi}{IEEEbiography.0}% 35
+\BOOKMARK [2][-]{IEEEbiography.5}{Andrea Nodari}{IEEEbiography.0}% 36
