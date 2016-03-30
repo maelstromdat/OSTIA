@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.12.22)  29 MAR 2016 13:29
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.10.1)  31 MAR 2016 01:15
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1257,12 +1257,12 @@ Package pdftex.def Info: images/linearizing.pdf used on input line 135.
 (pdftex.def)             Requested size: 142.26378pt x 158.36281pt.
  [6 <./images/cascading.pdf> <./images/clustering.pdf> <./images/linearizing.pd
 f>] (./macros.tex)
-Underfull \hbox (badness 3058) in paragraph at lines 232--238
+Underfull \hbox (badness 3058) in paragraph at lines 233--239
 []\OT1/ptm/m/n/10 CLTLoc al-lows the spec-i-fi-ca-tion of non-deterministic
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 232--238
+Underfull \hbox (badness 10000) in paragraph at lines 233--239
 
  []
 
@@ -1294,16 +1294,13 @@ Missing character: There is no ( in font nullfont!
 Missing character: There is no I in font nullfont!
 Missing character: There is no ) in font nullfont!
 Missing character: There is no ; in font nullfont!
+[7]
 
 LaTeX Font Warning: Command \small invalid in math mode on input line 91.
 
 
 LaTeX Font Warning: Command \small invalid in math mode on input line 91.
 
-
-Underfull \vbox (badness 3492) has occurred while \output is active []
-
- [7]
 
 LaTeX Font Warning: Command \small invalid in math mode on input line 104.
 
@@ -1311,7 +1308,7 @@ LaTeX Font Warning: Command \small invalid in math mode on input line 104.
 LaTeX Font Warning: Command \small invalid in math mode on input line 104.
 
 )) (./eval.tex
-<images/output/focused_crawler.pdf, id=658, 919.435pt x 461.725pt>
+<images/output/focused_crawler.pdf, id=657, 919.435pt x 461.725pt>
 File: images/output/focused_crawler.pdf Graphic file (type pdf)
 
 <use images/output/focused_crawler.pdf>
@@ -1319,20 +1316,20 @@ Package pdftex.def Info: images/output/focused_crawler.pdf used on input line 3
 0.
 (pdftex.def)             Requested size: 312.9803pt x 157.17464pt.
 
-<images/output/senti_storm.pdf, id=664, 263.98625pt x 548.0475pt>
+<images/output/senti_storm.pdf, id=663, 263.98625pt x 548.0475pt>
 File: images/output/senti_storm.pdf Graphic file (type pdf)
 
 <use images/output/senti_storm.pdf>
 Package pdftex.def Info: images/output/senti_storm.pdf used on input line 67.
 (pdftex.def)             Requested size: 113.81102pt x 236.27466pt.
-
-<images/output/crawl.pdf, id=666, 460.72125pt x 634.37pt>
+ [8]
+<images/output/crawl.pdf, id=686, 460.72125pt x 634.37pt>
 File: images/output/crawl.pdf Graphic file (type pdf)
 
 <use images/output/crawl.pdf>
 Package pdftex.def Info: images/output/crawl.pdf used on input line 101.
 (pdftex.def)             Requested size: 170.71652pt x 235.052pt.
- [8]
+
 <images/verif-trace-color.pdf, id=688, 1058.75555pt x 677.89258pt>
 File: images/verif-trace-color.pdf Graphic file (type pdf)
 
@@ -1345,8 +1342,10 @@ LaTeX Font Info:    Try loading font information for OT1+pcr on input line 113.
 (/usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/ot1pcr.fd
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 )) (./disc.tex
-[9 <./images/output/focused_crawler.pdf> <./images/output/senti_storm.pdf> <./i
-mages/output/crawl.pdf>]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [9 <./images/output/focused_crawler.pdf> <./images/output/senti_storm.pdf> <./
+images/output/crawl.pdf>]
 Underfull \hbox (badness 1845) in paragraph at lines 19--20
 []\OT1/ptm/m/n/10 Second, OS-TIA only al-lows to re-cover and eval-u-ate
  []
@@ -1355,8 +1354,9 @@ Underfull \hbox (badness 1845) in paragraph at lines 19--20
 (./ostia_tsc.bbl
 Missing character: There is no é in font ptmr7t!
 
-Overfull \vbox (6.36073pt too high) has occurred while \output is active []
 
+Package balance Warning: You have called \balance in second column
+(balance)                Columns might not be balanced.
 
 [11]) [12] [13]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1016.
@@ -1370,8 +1370,8 @@ Package rerunfilecheck Info: File `ostia_tsc.out' has not changed.
  ) 
 Here is how much of TeX's memory you used:
  23865 strings out of 493089
- 446281 string characters out of 6134841
- 614094 words of memory out of 5000000
+ 446281 string characters out of 6134842
+ 577969 words of memory out of 5000000
  26699 multiletter control sequences out of 15000+600000
  50956 words of font info for 110 fonts, out of 8000000 for 9000
  1144 hyphenation exceptions out of 8191
@@ -1401,7 +1401,7 @@ e1/urw/courier/ucrr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/t
 imes/utmb8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/times/utmbi
 8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></u
 sr/local/texlive/2015/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on ostia_tsc.pdf (13 pages, 960831 bytes).
+Output written on ostia_tsc.pdf (13 pages, 961790 bytes).
 PDF statistics:
  899 PDF objects out of 1000 (max. 8388607)
  727 compressed objects within 8 object streams
