@@ -10,11 +10,11 @@ Reallocated singl_function (elt_size=4) to 100 items from 50.
 Database file #1: ostia.bib
 Warning--entry type for "dicomputational" isn't style-file defined
 --line 369 of file ostia.bib
-Repeated entry---line 430 of file ostia.bib
+Repeated entry---line 466 of file ostia.bib
  : @online{storm
  :              ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 471 of file ostia.bib
+Repeated entry---line 507 of file ostia.bib
  : @online{zot
  :            ,
 I'm skipping whatever remains of this entry
@@ -41,45 +41,45 @@ Warning--to sort, need author or key in ostia
 Warning--empty journal in soc
 
 Done.
-You've used 38 entries,
+You've used 40 entries,
             4566 wiz_defined-function locations,
-            1087 strings with 13188 characters,
-and the built_in function-call counts, 27624 in all, are:
-= -- 2344
-> -- 746
-< -- 162
-+ -- 392
-- -- 188
-* -- 1445
-:= -- 4065
-add.period$ -- 72
-call.type$ -- 38
-change.case$ -- 189
-chr.to.int$ -- 369
-cite$ -- 49
-duplicate$ -- 1811
-empty$ -- 2186
-format.name$ -- 211
-if$ -- 6268
+            1103 strings with 13743 characters,
+and the built_in function-call counts, 30028 in all, are:
+= -- 2552
+> -- 814
+< -- 180
++ -- 428
+- -- 204
+* -- 1583
+:= -- 4411
+add.period$ -- 78
+call.type$ -- 40
+change.case$ -- 203
+chr.to.int$ -- 417
+cite$ -- 51
+duplicate$ -- 1957
+empty$ -- 2370
+format.name$ -- 229
+if$ -- 6820
 int.to.chr$ -- 0
-int.to.str$ -- 38
-missing$ -- 331
-newline$ -- 157
-num.names$ -- 56
-pop$ -- 1026
+int.to.str$ -- 40
+missing$ -- 357
+newline$ -- 167
+num.names$ -- 60
+pop$ -- 1096
 preamble$ -- 1
-purify$ -- 168
+purify$ -- 180
 quote$ -- 2
-skip$ -- 1985
+skip$ -- 2155
 stack$ -- 0
-substring$ -- 1094
-swap$ -- 1294
-text.length$ -- 39
+substring$ -- 1218
+swap$ -- 1414
+text.length$ -- 41
 text.prefix$ -- 0
 top$ -- 6
-type$ -- 376
+type$ -- 398
 warning$ -- 11
-while$ -- 116
-width$ -- 40
-write$ -- 349
+while$ -- 128
+width$ -- 42
+write$ -- 375
 (There were 4 error messages)

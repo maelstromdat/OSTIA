@@ -151,7 +151,11 @@ static analysis.
 After architects designed a Storm application, a scheduler instantiate the
 topology on a cluster of machines. The default scheduler utilises a round-robin
 strategy to fairly load the machines with the bolts and spouts. This a crucial
-assumption for the heuristic used in OSTIA to perform well. There has been some proposal to change the default scheduler logic \comment{Andrea I added this sentence but please add some citations here} in order to boost the performance of the topologies, however, many Storm users typically prefer the default scheduler while having the opportunity to tune the parameter automatically behind the scenes.
+assumption for the heuristic used in OSTIA to perform well. There has been some
+proposal to change the default scheduler logic in order to boost the performance
+of the topologies \cite{Aniello2013Adaptive, R-Storm2015Peng}. However, many
+Storm users typically prefer the default scheduler, while having the opportunity
+to tune the parameter automatically behind the scenes.
 
 The heuristic works as follow. A Storm architect runs OSTIA specifying the
 number of machines used in the deployment and the number of instances of spouts

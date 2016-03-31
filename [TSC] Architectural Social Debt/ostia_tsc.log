@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.10.1)  31 MAR 2016 01:15
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.12.22)  31 MAR 2016 08:46
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1257,12 +1257,12 @@ Package pdftex.def Info: images/linearizing.pdf used on input line 135.
 (pdftex.def)             Requested size: 142.26378pt x 158.36281pt.
  [6 <./images/cascading.pdf> <./images/clustering.pdf> <./images/linearizing.pd
 f>] (./macros.tex)
-Underfull \hbox (badness 3058) in paragraph at lines 233--239
+Underfull \hbox (badness 3058) in paragraph at lines 237--243
 []\OT1/ptm/m/n/10 CLTLoc al-lows the spec-i-fi-ca-tion of non-deterministic
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 233--239
+Underfull \hbox (badness 10000) in paragraph at lines 237--243
 
  []
 
@@ -1308,7 +1308,7 @@ LaTeX Font Warning: Command \small invalid in math mode on input line 104.
 LaTeX Font Warning: Command \small invalid in math mode on input line 104.
 
 )) (./eval.tex
-<images/output/focused_crawler.pdf, id=657, 919.435pt x 461.725pt>
+<images/output/focused_crawler.pdf, id=661, 919.435pt x 461.725pt>
 File: images/output/focused_crawler.pdf Graphic file (type pdf)
 
 <use images/output/focused_crawler.pdf>
@@ -1316,21 +1316,21 @@ Package pdftex.def Info: images/output/focused_crawler.pdf used on input line 3
 0.
 (pdftex.def)             Requested size: 312.9803pt x 157.17464pt.
 
-<images/output/senti_storm.pdf, id=663, 263.98625pt x 548.0475pt>
+<images/output/senti_storm.pdf, id=667, 263.98625pt x 548.0475pt>
 File: images/output/senti_storm.pdf Graphic file (type pdf)
 
 <use images/output/senti_storm.pdf>
 Package pdftex.def Info: images/output/senti_storm.pdf used on input line 67.
 (pdftex.def)             Requested size: 113.81102pt x 236.27466pt.
  [8]
-<images/output/crawl.pdf, id=686, 460.72125pt x 634.37pt>
+<images/output/crawl.pdf, id=690, 460.72125pt x 634.37pt>
 File: images/output/crawl.pdf Graphic file (type pdf)
 
 <use images/output/crawl.pdf>
 Package pdftex.def Info: images/output/crawl.pdf used on input line 101.
 (pdftex.def)             Requested size: 170.71652pt x 235.052pt.
 
-<images/verif-trace-color.pdf, id=688, 1058.75555pt x 677.89258pt>
+<images/verif-trace-color.pdf, id=692, 1058.75555pt x 677.89258pt>
 File: images/verif-trace-color.pdf Graphic file (type pdf)
 
 <use images/verif-trace-color.pdf>
@@ -1369,10 +1369,10 @@ Package rerunfilecheck Info: File `ostia_tsc.out' has not changed.
 (rerunfilecheck)             Checksum: E91D865C13947A18CD9B567C7194783A;2603.
  ) 
 Here is how much of TeX's memory you used:
- 23865 strings out of 493089
- 446281 string characters out of 6134842
- 577969 words of memory out of 5000000
- 26699 multiletter control sequences out of 15000+600000
+ 23869 strings out of 493089
+ 446363 string characters out of 6134841
+ 578050 words of memory out of 5000000
+ 26701 multiletter control sequences out of 15000+600000
  50956 words of font info for 110 fonts, out of 8000000 for 9000
  1144 hyphenation exceptions out of 8191
  62i,16n,68p,2222b,977s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1401,10 +1401,10 @@ e1/urw/courier/ucrr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/t
 imes/utmb8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/times/utmbi
 8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></u
 sr/local/texlive/2015/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on ostia_tsc.pdf (13 pages, 961790 bytes).
+Output written on ostia_tsc.pdf (13 pages, 962535 bytes).
 PDF statistics:
- 899 PDF objects out of 1000 (max. 8388607)
- 727 compressed objects within 8 object streams
- 111 named destinations out of 1000 (max. 500000)
+ 906 PDF objects out of 1000 (max. 8388607)
+ 734 compressed objects within 8 object streams
+ 113 named destinations out of 1000 (max. 500000)
  376 words of extra memory for PDF output out of 10000 (max. 10000000)
 

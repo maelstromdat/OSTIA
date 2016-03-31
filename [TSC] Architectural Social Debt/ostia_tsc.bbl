@@ -71,6 +71,15 @@
  [Online]. Available: \url{https://github.com/maelstromdat/OSTIA}
 \BIBentrySTDinterwordspacing
 
+\bibitem{Aniello2013Adaptive}
+\BIBentryALTinterwordspacing
+L.~Aniello, R.~Baldoni, and L.~Querzoni, ``Adaptive online scheduling in
+  storm,'' in \emph{Proceedings of the 7th ACM International Conference on
+  Distributed Event-based Systems}, ser. DEBS '13.\hskip 1em plus 0.5em minus
+  0.4em\relax New York, NY, USA: ACM, 2013, pp. 207--218. [Online]. Available:
+  \url{http://doi.acm.org/10.1145/2488222.2488267}
+\BIBentrySTDinterwordspacing
+
 \bibitem{devops}
 L.~J. Bass, I.~M. Weber, and L.~Zhu, \emph{DevOps - A Software Architect's
   Perspective.}, ser. SEI series in software engineering.\hskip 1em plus 0.5em
@@ -154,6 +163,15 @@ T.~Mens and M.~Wermelinger, ``Issue overview: Separation of concerns in
 \bibitem{focusgroup}
 D.~L. Morgan, \emph{Focus groups as qualitative research}.\hskip 1em plus 0.5em
   minus 0.4em\relax Sage Publications, Thousand Oaks, 1997.
+
+\bibitem{R-Storm2015Peng}
+\BIBentryALTinterwordspacing
+B.~Peng, M.~Hosseini, Z.~Hong, R.~Farivar, and R.~Campbell, ``R-storm:
+  Resource-aware scheduling in storm,'' in \emph{Proceedings of the 16th Annual
+  Middleware Conference}, ser. Middleware '15.\hskip 1em plus 0.5em minus
+  0.4em\relax New York, NY, USA: ACM, 2015, pp. 149--161. [Online]. Available:
+  \url{http://doi.acm.org/10.1145/2814576.2814808}
+\BIBentrySTDinterwordspacing
 
 \bibitem{MPS13}
 M.~Pradella, A.~Morzenti, and P.~S. Pietro, ``Bounded satisfiability checking
