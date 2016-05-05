@@ -1,6 +1,11 @@
+<<<<<<< Updated upstream
 This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.10.1)  5 MAY 2016 07:39
+=======
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.11.23)  13 APR 2016 12:21
+>>>>>>> Stashed changes
 entering extended mode
  restricted \write18 enabled.
+ file:line:error style messages enabled.
  %&-line parsing enabled.
 **ostia_tsc.tex
 (./ostia_tsc.tex
@@ -1259,12 +1264,20 @@ Package pdftex.def Info: images/linearizing.pdf used on input line 135.
 (pdftex.def)             Requested size: 142.26378pt x 158.36281pt.
  [6 <./images/cascading.pdf> <./images/clustering.pdf> <./images/linearizing.pd
 f>] (./macros.tex)
+<<<<<<< Updated upstream
 Underfull \hbox (badness 3058) in paragraph at lines 240--246
+=======
+Underfull \hbox (badness 3058) in paragraph at lines 239--245
+>>>>>>> Stashed changes
 []\OT1/ptm/m/n/10 CLTLoc al-lows the spec-i-fi-ca-tion of non-deterministic
  []
 
 
+<<<<<<< Updated upstream
 Underfull \hbox (badness 10000) in paragraph at lines 240--246
+=======
+Underfull \hbox (badness 10000) in paragraph at lines 239--245
+>>>>>>> Stashed changes
 
  []
 
@@ -1310,7 +1323,11 @@ LaTeX Font Warning: Command \small invalid in math mode on input line 104.
 LaTeX Font Warning: Command \small invalid in math mode on input line 104.
 
 )) (./eval.tex
+<<<<<<< Updated upstream
 <images/output/focused_crawler.pdf, id=665, 919.435pt x 461.725pt>
+=======
+<images/output/focused_crawler.pdf, id=660, 919.435pt x 461.725pt>
+>>>>>>> Stashed changes
 File: images/output/focused_crawler.pdf Graphic file (type pdf)
 
 <use images/output/focused_crawler.pdf>
@@ -1318,7 +1335,11 @@ Package pdftex.def Info: images/output/focused_crawler.pdf used on input line 3
 0.
 (pdftex.def)             Requested size: 312.9803pt x 157.17464pt.
 
+<<<<<<< Updated upstream
 <images/output/senti_storm.pdf, id=671, 263.98625pt x 548.0475pt>
+=======
+<images/output/senti_storm.pdf, id=666, 263.98625pt x 548.0475pt>
+>>>>>>> Stashed changes
 File: images/output/senti_storm.pdf Graphic file (type pdf)
 
 <use images/output/senti_storm.pdf>
@@ -1356,6 +1377,7 @@ Underfull \hbox (badness 1845) in paragraph at lines 19--20
 Package balance Warning: You have called \balance in second column
 (balance)                Columns might not be balanced.
 
+<<<<<<< Updated upstream
 [11]
 Missing character: There is no é in font ptmr7t!
 ) [12]
@@ -1365,6 +1387,15 @@ Missing character: There is no ™ in font ptmr7t!
  [13]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1018.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 1018.
+=======
+[11])
+Overfull \vbox (1.32pt too high) has occurred while \output is active []
+
+ [12]
+[13]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1016.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1016.
+>>>>>>> Stashed changes
  (./ostia_tsc.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1018.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1018.
@@ -1373,11 +1404,19 @@ Package rerunfilecheck Info: File `ostia_tsc.out' has not changed.
 (rerunfilecheck)             Checksum: E91D865C13947A18CD9B567C7194783A;2603.
  ) 
 Here is how much of TeX's memory you used:
+<<<<<<< Updated upstream
  23924 strings out of 493089
  447146 string characters out of 6134842
  583097 words of memory out of 5000000
  26750 multiletter control sequences out of 15000+600000
  52716 words of font info for 112 fonts, out of 8000000 for 9000
+=======
+ 23869 strings out of 493089
+ 446363 string characters out of 6134841
+ 582050 words of memory out of 5000000
+ 26701 multiletter control sequences out of 15000+600000
+ 50956 words of font info for 110 fonts, out of 8000000 for 9000
+>>>>>>> Stashed changes
  1144 hyphenation exceptions out of 8191
  62i,16n,68p,2217b,977s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
@@ -1401,12 +1440,20 @@ pe1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2015/texmf-dist/fonts/typ
 e1/public/amsfonts/cm/cmtt8.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1
 /public/amsfonts/cm/cmtt9.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/p
 ublic/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2015/texmf-dist/fonts/typ
+<<<<<<< Updated upstream
 e1/urw/courier/ucrr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/h
 elvetic/uhvr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/times/ut
 mb8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb>
 </usr/local/texlive/2015/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/loca
 l/texlive/2015/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
 Output written on ostia_tsc.pdf (13 pages, 967329 bytes).
+=======
+e1/urw/courier/ucrr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/t
+imes/utmb8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/times/utmbi
+8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></u
+sr/local/texlive/2015/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on ostia_tsc.pdf (13 pages, 962914 bytes).
+>>>>>>> Stashed changes
 PDF statistics:
  914 PDF objects out of 1000 (max. 8388607)
  741 compressed objects within 8 object streams

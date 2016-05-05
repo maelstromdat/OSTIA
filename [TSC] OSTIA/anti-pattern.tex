@@ -186,7 +186,7 @@ parallelism level do not compensate the parallelism level of its
 to cope with high loads.
 
 For instance, let us take Figure \ref{topo1} as an example. There are 22
-components that needs to be allocated. Suppose that our cluster is composed by 4
+components that need to be allocated. Suppose that our cluster is composed by 4
 machines and each machine fits 10 instances of components. OSTIA in this case
 would suggest to simply remove one machine. Let us suppose that we have 3
 machines with 10 tasks each. At this point we have 30 slots available and 22
@@ -197,7 +197,7 @@ and \emph{articleExtractor} with \emph{weighted fan-in} of 8. Finally, since we
 have 8 free slots to share between two nodes we increase the parallelism level
 of the two critical nodes of $8/2 = 4$, setting it from 1 to 5.
 
-%\comment{I really liked the section but I think if we can find a way to link this up with the verification somehow and evaluate this would be perfect, can Francesco do this?}
+The above heuristic approach concludes the support that OSTIA offers to quickly and continuously improving streaming topologies by means of algorithmic evaluations and manipulations. Conversely, as previously stated we learned from industrial practice that the need might rise for more formal guarantees, e.g., concerning some key parts of a streaming topology with respect to key big-data properties such as queue-boundedness - i.e., a guarantee that the queue for a certain bolt will always be bounded - or queue-population - i.e., a guarantee that the queue never contains privacy sensitive objects. In similar scenarios, OSTIA offers the seamless capability of running complex and exhaustive formal verification over analysed topologies. The next section elaborates further on this key support offered by OSTIA.
 
 
 \comment{PJ: Should we put this section into a separate section? I feel it is disconnected to the content of this section.}
