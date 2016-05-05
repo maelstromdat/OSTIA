@@ -38,48 +38,49 @@ Warning--to sort, need author or key in stormCV
 Warning--to sort, need author or key in kafka
 Warning--to sort, need author or key in digitalpebble
 Warning--to sort, need author or key in ostia
+Warning--empty journal in balalaie2016microservices
 Warning--empty journal in soc
 
 Done.
-You've used 40 entries,
+You've used 41 entries,
             4566 wiz_defined-function locations,
-            1103 strings with 13743 characters,
-and the built_in function-call counts, 30028 in all, are:
-= -- 2552
-> -- 814
+            1107 strings with 13938 characters,
+and the built_in function-call counts, 30554 in all, are:
+= -- 2598
+> -- 834
 < -- 180
-+ -- 428
-- -- 204
-* -- 1583
-:= -- 4411
-add.period$ -- 78
-call.type$ -- 40
-change.case$ -- 203
++ -- 437
+- -- 210
+* -- 1613
+:= -- 4498
+add.period$ -- 80
+call.type$ -- 41
+change.case$ -- 209
 chr.to.int$ -- 417
-cite$ -- 51
-duplicate$ -- 1957
-empty$ -- 2370
-format.name$ -- 229
-if$ -- 6820
+cite$ -- 53
+duplicate$ -- 1994
+empty$ -- 2408
+format.name$ -- 236
+if$ -- 6931
 int.to.chr$ -- 0
-int.to.str$ -- 40
-missing$ -- 357
-newline$ -- 167
-num.names$ -- 60
-pop$ -- 1096
+int.to.str$ -- 41
+missing$ -- 364
+newline$ -- 170
+num.names$ -- 62
+pop$ -- 1121
 preamble$ -- 1
-purify$ -- 180
+purify$ -- 185
 quote$ -- 2
-skip$ -- 2155
+skip$ -- 2190
 stack$ -- 0
-substring$ -- 1218
-swap$ -- 1414
+substring$ -- 1224
+swap$ -- 1432
 text.length$ -- 41
 text.prefix$ -- 0
 top$ -- 6
-type$ -- 398
-warning$ -- 11
-while$ -- 128
-width$ -- 42
-write$ -- 375
+type$ -- 409
+warning$ -- 12
+while$ -- 130
+width$ -- 43
+write$ -- 382
 (There were 4 error messages)

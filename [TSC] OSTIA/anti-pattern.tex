@@ -4,7 +4,7 @@ architecting. First, we elaborate on the anti-patterns supported in
 OSTIA. Second, we elaborate on the algorithmic manipulation that OSTIA could
 apply to topologies to provide alternative visualisation. Third, we discuss how
 OSTIA suggests an alternative architecture to improve the system
-performance. Fourth, finally, we elaborate on how OSTIA can drive continuous
+performance. Finally, we elaborate on how OSTIA can drive continuous
 improvement assisted by formal verification. All figures in these sections use a
 simple graph-like notation where nodes may be any topological element (e.g.,
 Spouts or Bolts in Apache Storm terms) while edges are directed data-flow
@@ -12,10 +12,10 @@ connections.
 
 
 \subsection{Topology Design Anti-Patterns Within OSTIA}\label{sec:anti-pattern}
-This section elaborates on the anti-patterns we elicited through self-ethnography. These anti-patterns are elaborated further within OSTIA to allow for their detection during streaming topology inference analysis. Every pattern is elaborated using a simple graph-like notation where \emph{spouts} are nodes that have outgoing edges only whereas \emph{bolts} are nodes that can have either incoming or outgoing edges respectively.
+This section elaborates on the anti-patterns we elicited through self-ethnography (See Section \ref{ra}). These anti-patterns are elaborated further within OSTIA to allow for their detection during streaming topology inference analysis. Every pattern is elaborated using a simple graph-like notation where \emph{spouts} are nodes that have outgoing edges only whereas \emph{bolts} are nodes that can have either incoming or outgoing edges.
 
 \subsubsection{Multi-Anchoring}
-The Multi-Anchoring pattern is shown in Fig. \ref{fig:multi-anchoring}. In order to guarantee fault-tolerant stream processing, tuples processed by bolts need to be anchored with the unique id of the bolt and be passed to multiple acknowledgers (or ``ackers" in short) in the topology. In this way, ackers can keep track of tuples in the topology. Multiple ackers can indeed cause much overhead and influence the operational performance of the entire topology.
+The Multi-Anchoring pattern is shown in Fig. \ref{fig:multi-anchoring}. In order to guarantee fault-tolerant stream processing, tuples processed by bolts need to be anchored with the unique {\sf id} of the bolt and be passed to multiple acknowledgers (or ``ackers" in short) in the topology. In this way, ackers can keep track of tuples in the topology. Multiple ackers can indeed cause much overhead and influence the operational performance of the entire topology.
 %\emph{\bf TODO: what is the consequence of these anti-patterns? How does OSTIA detect?}
 %\emph{\bf Multi-anchoring is not supported at the moment. Besides, I am not sure it is an anti-patter but rather a design decision}
 
@@ -37,7 +37,7 @@ The Multi-Anchoring pattern is shown in Fig. \ref{fig:multi-anchoring}. In order
 
 \subsubsection{Cycle-in Topology}
 
-The Cycle-in pattern is shown in Fig. \ref{fig:cycle}. Technically, it is possible to have cycle in Storm topologies. An infinite cycle of processing would create an infinite tuple tree and make it impossible for Storm to ever acknowledge spout emitted tuples. Therefore, cycles should be avoided or resulting tuple trees should be investigated additionally to make sure they terminate at some point and under a specified series of conditions. The anti-pattern itself may lead to infrastructure overloading and increased costs.
+The Cycle-in pattern is shown in Fig. \ref{fig:cycle}. Technically, it is possible to have cycle in Storm topologies. An infinite cycle of processing would create an infinite tuple tree and make it impossible for Storm to ever acknowledge spout emitted tuples. Therefore, cycles should be avoided or resulting tuple trees should be investigated additionally to make sure they terminate at some point and under a specified series of conditions (these conditions can be hardcoded in Bolt logic). The anti-pattern itself may lead to infrastructure overloading and increased costs.
 %\emph{\bf A topology is already an infinite stream of tuple, the problem could be the overloading of some machines}
 %\emph{\bf At the cycle-detection is not supported (even if it is easy to implement)}
 
@@ -84,7 +84,7 @@ The Fan-in/Fan-out algorithmic manipulation is outlined in Fig. \ref{fig:fan}. F
 streams. Conversely, fan-out is the number outgoing streams. In the case of
 bolts, both in and out streams are internal to the topology. For Spouts,
 incoming streams are the data sources of the topology (e.g., message brokers,
-APIs, etc).
+APIs, etc) which live outside of the topology.
 
 \begin{figure}
 	\begin{center}
@@ -115,7 +115,7 @@ Although cascading may simplify the development of topologies by encouraging arc
 This algorithmic manipulation allows to combine multiple cascading topologies.
 
 \subsubsection{Topology clustering}\label{3}
-Topology clustering is outlined in Fig. \ref{fig:clustering}. Topology clustering implies identifying coupled processing elements (i.e., bolts and spouts) and cluster them together (e.g., by means of graph-based analysis) in a way that elements in a cluster have high cohesion and loose-coupling with elements in other clusters. Simple clustering or Social-Network Analysis mechanisms can be used to infer clusters. These clusters may require additional attention since they could turn out to become bottlenecks. Reasoning more deeply on clusters and their resolution may lead to establishing the Storm scheduling policy best-fitting with the application.
+Topology clustering is outlined in Fig. \ref{fig:clustering}. Topology clustering implies identifying coupled processing elements (i.e., bolts and spouts) and cluster them together (e.g., by means of graph-based analysis) in a way that elements in a cluster have high cohesion and loose-coupling with elements in other clusters. Simple clustering or Social-Network Analysis mechanisms can be used to infer clusters. These clusters may require additional attention since they could turn out to become bottlenecks. Reasoning more deeply on clusters and their resolution may lead to establishing the Storm scheduling policy best-fitting with the application. We will elaborate on this in Section \ref{sec:performance-boosting}.
 %\emph{\bf Does it relates with Storm scheduling?}
 
 \begin{figure}
@@ -140,6 +140,7 @@ Topology linearisation is outlined in Fig. \ref{fig:linearizing}. Sorting the pr
 
 \subsection{Suggestions for Performance Improvements}
 \label{sec:performance-boosting}
+In this section, we elaborate on a specific case where algorithmic analysis on the Stream topology can help to improve the performance of the Stream processing system.
 
 Big data architectures typically need parameters tuning to achieve best
 performance. For instance, in Storm developers have to specify the parallelism
@@ -196,8 +197,10 @@ and \emph{articleExtractor} with \emph{weighted fan-in} of 8. Finally, since we
 have 8 free slots to share between two nodes we increase the parallelism level
 of the two critical nodes of $8/2 = 4$, setting it from 1 to 5.
 
-\comment{I really liked the section but I think if we can find a way to link this up with the verification somehow and evaluate this would be perfect, can Francesco do this?}
+%\comment{I really liked the section but I think if we can find a way to link this up with the verification somehow and evaluate this would be perfect, can Francesco do this?}
 
+
+\comment{PJ: Should we put this section into a separate section? I feel it is disconnected to the content of this section.}
 \subsection{OSTIA-Based Formal Verification}\label{ver}
 \input{macros}
 

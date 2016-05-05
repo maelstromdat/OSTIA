@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.10.1)  4 MAY 2016 21:25
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.10.1)  5 MAY 2016 07:39
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1192,21 +1192,26 @@ Package pdftex.def Info: images/Stormmm.pdf used on input line 69.
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 )
-(./anti-pattern.tex [4 <./images/Stormmm.pdf>]
-<images/multi-anchoring.pdf, id=414, 179.85466pt x 121.77054pt>
+(./anti-pattern.tex
+LaTeX Font Info:    Try loading font information for OT1+phv on input line 18.
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/ot1phv.fd
+File: ot1phv.fd 2001/06/04 scalable font definitions for OT1/phv.
+) [4 <./images/Stormmm.pdf>] <images/multi-anchoring.pdf, id=415, 179.85466pt x
+ 121.77054pt>
 File: images/multi-anchoring.pdf Graphic file (type pdf)
 
 <use images/multi-anchoring.pdf>
 Package pdftex.def Info: images/multi-anchoring.pdf used on input line 32.
 (pdftex.def)             Requested size: 85.35826pt x 57.79143pt.
 
-<images/cycle.pdf, id=415, 96.36pt x 114.4275pt>
+<images/cycle.pdf, id=416, 96.36pt x 114.4275pt>
 File: images/cycle.pdf Graphic file (type pdf)
  <use images/cycle.pdf>
 Package pdftex.def Info: images/cycle.pdf used on input line 34.
 (pdftex.def)             Requested size: 71.13188pt x 84.46898pt.
 
-<images/persistence.pdf, id=418, 248.95442pt x 138.87154pt>
+<images/persistence.pdf, id=419, 248.95442pt x 138.87154pt>
 File: images/persistence.pdf Graphic file (type pdf)
 
 <use images/persistence.pdf>
@@ -1218,20 +1223,20 @@ Underfull \hbox (badness 2073) in paragraph at lines 67--68
 ta-tional fun-nel is
  []
 
-<images/funnel.pdf, id=420, 346.29375pt x 162.42892pt>
+<images/funnel.pdf, id=421, 346.29375pt x 162.42892pt>
 File: images/funnel.pdf Graphic file (type pdf)
  <use images/funnel.pdf>
 Package pdftex.def Info: images/funnel.pdf used on input line 71.
 (pdftex.def)             Requested size: 184.9429pt x 86.74866pt.
 
-<images/fan-in-out.pdf, id=427, 221.1893pt x 266.40018pt>
+<images/fan-in-out.pdf, id=428, 221.1893pt x 266.40018pt>
 File: images/fan-in-out.pdf Graphic file (type pdf)
 
 <use images/fan-in-out.pdf>
 Package pdftex.def Info: images/fan-in-out.pdf used on input line 91.
 (pdftex.def)             Requested size: 85.35826pt x 102.80217pt.
 
-<images/cascading.pdf, id=432, 495.188pt x 255.84604pt>
+<images/cascading.pdf, id=433, 495.188pt x 255.84604pt>
 File: images/cascading.pdf Graphic file (type pdf)
 
 <use images/cascading.pdf>
@@ -1239,14 +1244,14 @@ Package pdftex.def Info: images/cascading.pdf used on input line 109.
 (pdftex.def)             Requested size: 170.71652pt x 88.2045pt.
  [5 <./images/multi-anchoring.pdf> <./images/cycle.pdf> <./images/persistence.p
 df> <./images/funnel.pdf> <./images/fan-in-out.pdf>]
-<images/clustering.pdf, id=544, 566.86934pt x 549.1429pt>
+<images/clustering.pdf, id=547, 566.86934pt x 549.1429pt>
 File: images/clustering.pdf Graphic file (type pdf)
 
 <use images/clustering.pdf>
 Package pdftex.def Info: images/clustering.pdf used on input line 123.
 (pdftex.def)             Requested size: 184.9429pt x 179.15642pt.
 
-<images/linearizing.pdf, id=546, 541.1697pt x 602.41995pt>
+<images/linearizing.pdf, id=549, 541.1697pt x 602.41995pt>
 File: images/linearizing.pdf Graphic file (type pdf)
 
 <use images/linearizing.pdf>
@@ -1254,12 +1259,12 @@ Package pdftex.def Info: images/linearizing.pdf used on input line 135.
 (pdftex.def)             Requested size: 142.26378pt x 158.36281pt.
  [6 <./images/cascading.pdf> <./images/clustering.pdf> <./images/linearizing.pd
 f>] (./macros.tex)
-Underfull \hbox (badness 3058) in paragraph at lines 237--243
+Underfull \hbox (badness 3058) in paragraph at lines 240--246
 []\OT1/ptm/m/n/10 CLTLoc al-lows the spec-i-fi-ca-tion of non-deterministic
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 237--243
+Underfull \hbox (badness 10000) in paragraph at lines 240--246
 
  []
 
@@ -1291,13 +1296,13 @@ Missing character: There is no ( in font nullfont!
 Missing character: There is no I in font nullfont!
 Missing character: There is no ) in font nullfont!
 Missing character: There is no ; in font nullfont!
-
-LaTeX Font Warning: Command \small invalid in math mode on input line 91.
-
-
-LaTeX Font Warning: Command \small invalid in math mode on input line 91.
-
 [7]
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 91.
+
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 91.
+
 
 LaTeX Font Warning: Command \small invalid in math mode on input line 104.
 
@@ -1305,7 +1310,7 @@ LaTeX Font Warning: Command \small invalid in math mode on input line 104.
 LaTeX Font Warning: Command \small invalid in math mode on input line 104.
 
 )) (./eval.tex
-<images/output/focused_crawler.pdf, id=662, 919.435pt x 461.725pt>
+<images/output/focused_crawler.pdf, id=665, 919.435pt x 461.725pt>
 File: images/output/focused_crawler.pdf Graphic file (type pdf)
 
 <use images/output/focused_crawler.pdf>
@@ -1313,27 +1318,27 @@ Package pdftex.def Info: images/output/focused_crawler.pdf used on input line 3
 0.
 (pdftex.def)             Requested size: 312.9803pt x 157.17464pt.
 
-<images/output/senti_storm.pdf, id=668, 263.98625pt x 548.0475pt>
+<images/output/senti_storm.pdf, id=671, 263.98625pt x 548.0475pt>
 File: images/output/senti_storm.pdf Graphic file (type pdf)
 
 <use images/output/senti_storm.pdf>
-Package pdftex.def Info: images/output/senti_storm.pdf used on input line 67.
+Package pdftex.def Info: images/output/senti_storm.pdf used on input line 70.
 (pdftex.def)             Requested size: 113.81102pt x 236.27466pt.
-
-<images/output/crawl.pdf, id=670, 460.72125pt x 634.37pt>
+ [8]
+<images/output/crawl.pdf, id=693, 460.72125pt x 634.37pt>
 File: images/output/crawl.pdf Graphic file (type pdf)
 
 <use images/output/crawl.pdf>
-Package pdftex.def Info: images/output/crawl.pdf used on input line 101.
+Package pdftex.def Info: images/output/crawl.pdf used on input line 106.
 (pdftex.def)             Requested size: 170.71652pt x 235.052pt.
- [8]
-<images/verif-trace-color.pdf, id=692, 1058.75555pt x 677.89258pt>
+
+<images/verif-trace-color.pdf, id=695, 1058.75555pt x 677.89258pt>
 File: images/verif-trace-color.pdf Graphic file (type pdf)
 
 <use images/verif-trace-color.pdf>
-Package pdftex.def Info: images/verif-trace-color.pdf used on input line 112.
+Package pdftex.def Info: images/verif-trace-color.pdf used on input line 119.
 (pdftex.def)             Requested size: 252.0pt x 161.3425pt.
-LaTeX Font Info:    Try loading font information for OT1+pcr on input line 113.
+LaTeX Font Info:    Try loading font information for OT1+pcr on input line 120.
 
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/ot1pcr.fd
@@ -1347,23 +1352,32 @@ Underfull \hbox (badness 1845) in paragraph at lines 19--20
 
 ) (./rw.tex [10 <./images/verif-trace-color.pdf>]) (./conc.tex)
 (./ostia_tsc.bbl
+
+Package balance Warning: You have called \balance in second column
+(balance)                Columns might not be balanced.
+
+[11]
 Missing character: There is no é in font ptmr7t!
- [11]) [12] [13]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1016.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1016.
+) [12]
+Missing character: There is no â in font ptmr7t!
+Missing character: There is no € in font ptmr7t!
+Missing character: There is no ™ in font ptmr7t!
+ [13]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1018.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1018.
  (./ostia_tsc.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1016.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1016.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1018.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1018.
 
 Package rerunfilecheck Info: File `ostia_tsc.out' has not changed.
 (rerunfilecheck)             Checksum: E91D865C13947A18CD9B567C7194783A;2603.
  ) 
 Here is how much of TeX's memory you used:
- 23869 strings out of 493089
- 446363 string characters out of 6134842
- 613223 words of memory out of 5000000
- 26701 multiletter control sequences out of 15000+600000
- 50956 words of font info for 110 fonts, out of 8000000 for 9000
+ 23924 strings out of 493089
+ 447146 string characters out of 6134842
+ 583097 words of memory out of 5000000
+ 26750 multiletter control sequences out of 15000+600000
+ 52716 words of font info for 112 fonts, out of 8000000 for 9000
  1144 hyphenation exceptions out of 8191
  62i,16n,68p,2217b,977s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
@@ -1387,14 +1401,15 @@ pe1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2015/texmf-dist/fonts/typ
 e1/public/amsfonts/cm/cmtt8.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1
 /public/amsfonts/cm/cmtt9.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/p
 ublic/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2015/texmf-dist/fonts/typ
-e1/urw/courier/ucrr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/t
-imes/utmb8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/times/utmbi
-8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></u
-sr/local/texlive/2015/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on ostia_tsc.pdf (13 pages, 962447 bytes).
+e1/urw/courier/ucrr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/h
+elvetic/uhvr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/times/ut
+mb8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb>
+</usr/local/texlive/2015/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/loca
+l/texlive/2015/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on ostia_tsc.pdf (13 pages, 967329 bytes).
 PDF statistics:
- 906 PDF objects out of 1000 (max. 8388607)
- 734 compressed objects within 8 object streams
- 113 named destinations out of 1000 (max. 500000)
+ 914 PDF objects out of 1000 (max. 8388607)
+ 741 compressed objects within 8 object streams
+ 114 named destinations out of 1000 (max. 500000)
  376 words of extra memory for PDF output out of 10000 (max. 10000000)
 
