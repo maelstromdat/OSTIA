@@ -28,19 +28,19 @@ the ``focused-crawler" topology, is outlined in Fig. \ref{topo1}.
 \begin{figure*}
 \begin{center}
 		\includegraphics[width=11cm]{images/output/focused_crawler}
-		\caption{SocialSensor App, OSTIA sample output.}
+		\caption{SocialSensor App, OSTIA sample output partially linearised (top) and cascaded (bottom left and right).}
 		\label{topo1}
 		\end{center}
 \end{figure*}
 
 OSTIA has been proved particularly helpful in visualising the complex topology
 together with the parallelism level of each components. Combining this
-information with runtime data, such as latency, our industrial partner observed
-that the ``expander" bolt needed additional architectural reasoning. \comment{for example? elaborate more on this. the reviewers will likely say its vague...}
-Also, the
-partner welcomed the idea of using OSTIA as a mechanism to enact continuous
+information with runtime data (i.e., latency times) our industrial partner observed
+that the ``expander" bolt needed additional architectural reasoning. More in particular, the bolt in question concentrates a lot of the topology's progress on its queue, greatly hampering the topology's scalability. In our partner's scenario, the limited scalability was blocking the expansion of the topology in question with more data sources and sinks.
+In addition, the partner welcomed the idea of using OSTIA as a mechanism to enact continuous
 architecting of the topology in question as part of the needed architectural
 reasoning.
+%\comment{for example? elaborate more on this. the reviewers will likely say its vague...}
 
 Besides this pattern-based evaluation and assessment, OSTIA algorithmic analyses
 assisted our client in understanding that the topological structure of the
@@ -52,7 +52,19 @@ Hadoop Map Reduce~\cite{hadoop}
 %\footnote{\url{http://hadoop.apache.org/}} 
 framework for batch processing.
 
-\comment{this section is not good enough, we require to add more information, for example what would be the target architecture after refactoring looks like? we said some patters were idenfitified but we didnt say details of continuous rearchitecting...and also formal verification process for this}
+%\comment{this section is not good enough, we require to add more information, for example what would be the target architecture after refactoring looks like? we said some patters were idenfitified but we didnt say details of continuous rearchitecting...and also formal verification process for this}
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=10cm]{images/atc}
+		\caption{Industrial case-study, a refactored architecture.}
+		\label{atc}
+		\end{center}
+\end{figure}
+
+As a followup of our analysis, our partner is refactoring his own high-level software architecture adopting a lambda-like software architecture style \cite{lambda} (see Fig. \ref{atc}) which includes the Social-Sensor App (Top of Fig. \ref{atc}) as well as several additional computation components. In summary, the refactoring resulting from OSTIA-based analysis equated to deferring part of the computations originally intended in the expander bolt part of the Storm topology within the Social Sensor app to additional ad-hoc Hadoop Map Reduce jobs with similar purpose (e.g., the EntityExtractor compute node in Fig. \ref{atc}) and intents but batched out of the topological processing in Storm (see Fig. \ref{atc})\footnote{several other overburdened topological elements were refactored but were omitted here due to industrial secrecy}. 
+
+Our qualitative evaluation of the refactored architecture by means of several interviews and workshops revealed very encouraging results. However, we are yet to quantitatively evaluate wether the new software architecture actually reflects a tangible boost in terms of performance and scalability.
 
 \subsection{Evaluation on Open-Source Software}\label{os}
 
@@ -68,7 +80,7 @@ applications. Figures \ref{dp} and \ref{scv} outline standard OSTIA output for t
 \begin{figure}
 \begin{center}
 \includegraphics[width=4cm]{images/output/senti_storm}
-		\caption{StormCV topology.}
+		\caption{StormCV topology (linearised).}
 		\label{scv}
 		\end{center}
 \end{figure}
@@ -85,8 +97,8 @@ The OSTIA output aided as follows: (a) the output summarised in Fig. \ref{dp}
 allowed us to immediately grasp the functional behavior of the DigitalPebble and
 StormCV topologies allowing us to interpret correctly their operations before
 reading long documentation or inspecting the code; (b) OSTIA aided us in visually interpreting the complexity of the applications at hand; (c) OSTIA allowed us to spot several anti-patterns in the DigitalPebble Storm application around the ``sitemap" and ``parse" bolts, namely, a multiple cascading instance of the multi-anchoring pattern and a persistent-data pattern. Finally, OSTIA aided in the identification of the computational funnel anti-pattern around the "status" bolt closing the DigitalPebble topology. With this evaluation at hand, developers in the respective communities of DigitalPebble and StormCV could refactor their topologies, e.g., aided by OSTIA-based formal verification that proves the negative effects of said anti-patterns.
-
-\comment{this section needs further elaboration. we need to elaborate our discussion to visually locate these anti patterns.}
+%
+%\comment{this section needs further elaboration. we need to elaborate our discussion to visually locate these anti patterns.}
 % \comment{you said first, where is the second? this is incomplete}
 %
 %\begin{figure}
@@ -108,9 +120,9 @@ In this section we outline the results from OSTIA-based formal verification appl
 		\label{dp}
 		\end{center}
 \end{figure}
-The formal analysis of the ``focused-crawler'' topology confirmed the critical role of the ``expander'' bolt, previously noticed with the aim of OSTIA visual output. It emerged from the output traces that there exists an execution of the system, even without failures, where the queue occupation level is unbounded. Figure~\ref{verif-trace} shows how the tool constructed a periodic model in which a suffix (highlighted in red) of a finite sequence of events is repeated infinitely many times after a prefix (in white). After ensuring that the trace is not a spurious model, we concluded that the expander queue, having an increasing trend in the suffix, is unbounded.
-
-\comment{discuss thge benefit of this, was it possible without formal verification?  elaborate more}
+The formal analysis of the ``focused-crawler'' topology confirmed the critical role of the ``expander'' bolt, previously noticed with the aim of OSTIA visual output. It emerged from the output traces that there exists an execution of the system, even without failures, where the queue occupation level is unbounded. Figure~\ref{verif-trace} shows how the tool constructed a periodic model in which a suffix (highlighted in red) of a finite sequence of events is repeated infinitely many times after a prefix (in white). After ensuring that the trace is not a spurious model, we concluded that the expander queue, having an increasing trend in the suffix, is unbounded. These types of heavywheight and powerful analyses are made easier by OSTIA in that our tool provides a ready-made analysable counterpart of the elicited topologies making almost invisible the formal verification layer (other than manually setting and tuning operational parameters for verification) on top of which OSTIA support is harnessed.
+%
+%\comment{discuss thge benefit of this, was it possible without formal verification?  elaborate more}
 % alternative
 %This feedback persuaded to 
 

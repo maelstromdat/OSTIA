@@ -178,6 +178,16 @@ B.~Peng, M.~Hosseini, Z.~Hong, R.~Farivar, and R.~Campbell, ``R-storm:
   \url{http://doi.acm.org/10.1145/2814576.2814808}
 \BIBentrySTDinterwordspacing
 
+\bibitem{PengGWRYC14}
+\BIBentryALTinterwordspacing
+S.~Peng, J.~Gu, X.~S. Wang, W.~Rao, M.~Yang, and Y.~Cao, ``Cost-based
+  optimization of logical partitions for a query workload in a hadoop data
+  warehouse.'' in \emph{APWeb}, ser. Lecture Notes in Computer Science,
+  L.~Chen, Y.~Jia, T.~K. Sellis, and G.~Liu, Eds., vol. 8709.\hskip 1em plus
+  0.5em minus 0.4em\relax Springer, 2014, pp. 559--567. [Online]. Available:
+  \url{http://dblp.uni-trier.de/db/conf/apweb/apweb2014.html#PengGWRYC14}
+\BIBentrySTDinterwordspacing
+
 \bibitem{MPS13}
 M.~Pradella, A.~Morzenti, and P.~S. Pietro, ``Bounded satisfiability checking
   of metric temporal logic specifications,'' \emph{ACM Trans. Softw. Eng.

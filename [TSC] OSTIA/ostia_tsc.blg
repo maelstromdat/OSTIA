@@ -20,10 +20,13 @@ Repeated entry---line 507 of file ostia.bib
 I'm skipping whatever remains of this entry
 A bad cross reference---entry "icsoft"
 refers to entry "conf/icsoft/2014s", which doesn't exist
+A bad cross reference---entry "PengGWRYC14"
+refers to entry "conf/apweb/2014", which doesn't exist
 A bad cross reference---entry "stormgen"
 refers to entry "conf/fedcsis/2014", which doesn't exist
 Warning--I didn't find a database entry for "conf/icsoft/2014s"
 Warning--I didn't find a database entry for "conf/fedcsis/2014"
+Warning--I didn't find a database entry for "conf/apweb/2014"
 -- IEEEtranS.bst version 1.14 (2015/08/26) by Michael Shell.
 -- http://www.michaelshell.org/tex/ieeetran/bibtex/
 -- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
@@ -42,45 +45,45 @@ Warning--empty journal in balalaie2016microservices
 Warning--empty journal in soc
 
 Done.
-You've used 41 entries,
+You've used 42 entries,
             4566 wiz_defined-function locations,
-            1107 strings with 13938 characters,
-and the built_in function-call counts, 30554 in all, are:
-= -- 2598
-> -- 834
-< -- 180
-+ -- 437
-- -- 210
-* -- 1613
-:= -- 4498
-add.period$ -- 80
-call.type$ -- 41
-change.case$ -- 209
-chr.to.int$ -- 417
-cite$ -- 53
-duplicate$ -- 1994
-empty$ -- 2408
-format.name$ -- 236
-if$ -- 6931
+            1118 strings with 14333 characters,
+and the built_in function-call counts, 32045 in all, are:
+= -- 2721
+> -- 896
+< -- 189
++ -- 468
+- -- 226
+* -- 1703
+:= -- 4714
+add.period$ -- 83
+call.type$ -- 42
+change.case$ -- 220
+chr.to.int$ -- 438
+cite$ -- 54
+duplicate$ -- 2081
+empty$ -- 2511
+format.name$ -- 254
+if$ -- 7270
 int.to.chr$ -- 0
-int.to.str$ -- 41
-missing$ -- 364
-newline$ -- 170
-num.names$ -- 62
-pop$ -- 1121
+int.to.str$ -- 42
+missing$ -- 384
+newline$ -- 175
+num.names$ -- 66
+pop$ -- 1173
 preamble$ -- 1
-purify$ -- 185
+purify$ -- 193
 quote$ -- 2
-skip$ -- 2190
+skip$ -- 2294
 stack$ -- 0
-substring$ -- 1224
-swap$ -- 1432
-text.length$ -- 41
+substring$ -- 1279
+swap$ -- 1508
+text.length$ -- 43
 text.prefix$ -- 0
 top$ -- 6
-type$ -- 409
+type$ -- 420
 warning$ -- 12
-while$ -- 130
-width$ -- 43
-write$ -- 382
-(There were 4 error messages)
+while$ -- 136
+width$ -- 44
+write$ -- 397
+(There were 5 error messages)
