@@ -1,0 +1,11 @@
+digraph G {
+  IO_newPathArgs0 -> j1_INPUT_newPathArgs0 [label=""]
+  j1_INPUT_newPathArgs0 -> j1_MAPPER_MyMapper [label=""]
+  IO_outputPath -> j2_INPUT_outputPath [label=""]
+  j2_INPUT_outputPath -> j2_MAPPER_MyMapper2 [label=""]
+  j1_MAPPER_MyMapper -> j1_REDUCER_MyReducer [label=""]
+  j2_MAPPER_MyMapper2 -> j2_OUTPUT_outputPath1 [label=""]
+  j1_REDUCER_MyReducer -> j1_OUTPUT_outputPath [label=""]
+  j1_OUTPUT_outputPath -> IO_outputPath [label=""]
+  j2_OUTPUT_outputPath1 -> IO_outputPath1 [label=""]
+}

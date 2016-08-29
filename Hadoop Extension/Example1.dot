@@ -1,0 +1,8 @@
+digraph G {
+  IO_newPathargs0 -> job_INPUT_newPathargs0 [label=""]
+  job_INPUT_newPathargs0 -> job_MAPPER_TokenizerMapper [label=""]
+  job_MAPPER_TokenizerMapper -> job_COMBINER_IntSumReducer [label=""]
+  job_COMBINER_IntSumReducer -> job_REDUCER_IntSumReducer [label=""]
+  job_REDUCER_IntSumReducer -> job_OUTPUT_newPathargs1 [label=""]
+  job_OUTPUT_newPathargs1 -> IO_newPathargs1 [label=""]
+}
