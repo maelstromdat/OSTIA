@@ -3,7 +3,7 @@ require 'json'
 #:nodoc:
 module Ostia
   class DirectGraph
-    attr_reader :nodes, :spouts, :bolts, :resourcesIO, :inputs, :mappers, :combiners, :partitioners, :reducers, :outputs, :parallelism
+    attr_reader :nodes, :spouts, :bolts, :resourcesIO, :inputs, :mappers, :combiners, :partitioners, :reducers, :outputs, :files, :parallelism
 
     def initialize
       @nodes       = {}
@@ -16,6 +16,7 @@ module Ostia
       @partitioners_map  = {}
       @reducers_map  = {}
       @outputs_map  = {}
+      @files_map  = {}
       @inverse     = {}
       @parallelism = {}
     end
@@ -86,6 +87,7 @@ module Ostia
       @partitioners_map[node] ||= type if type == "is_partitioner"
       @reducers_map[node] ||= type if type == "is_reducer"
       @outputs_map[node] ||= type if type == "is_output"
+      @files_map[node] ||= type if type == "is_file"
       
       @inverse[node] ||= []
       @nodes[node] ||= []
@@ -127,6 +129,10 @@ module Ostia
     
      def outputs
       @outputs_map.select { |_, is_output| is_output }.keys
+    end
+    
+     def files
+      @files_map.select { |_, is_file| is_file }.keys
     end
       
 
@@ -177,6 +183,7 @@ module Ostia
       hash[:topology][:partitioners]  = []
       hash[:topology][:reducers]  = []
       hash[:topology][:outputs]  = []
+      hash[:topology][:files]  = []
       
 
 
@@ -192,7 +199,9 @@ module Ostia
       
                                      
       resourcesIO.each do |resourceIO|
-        hash[:topology][:resourcesIO] << { id: resourceIO }
+        hash[:topology][:resourcesIO] << { id: resourceIO,
+                                           subs: in_edges(resourceIO),
+                                           parallelism: @parallelism[resourceIO]  }
       end  
       
             inputs.each do |input|
@@ -229,6 +238,12 @@ module Ostia
         hash[:topology][:outputs] << { id: output,
                                      subs: in_edges(output),
                                      parallelism: @parallelism[output] }
+      end
+      
+            files.each do |file|
+        hash[:topology][:files] << { id: file,
+                                     subs: in_edges(file),
+                                     parallelism: @parallelism[file] }
       end
         
                         

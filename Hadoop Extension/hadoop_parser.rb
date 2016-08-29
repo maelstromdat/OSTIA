@@ -326,10 +326,9 @@ puts"--- INPUT --------"
     def generate_chain(graph,chains)
             
      puts "--- CHAIN ---------"
-     
             
       @Jobs.each do |current_job|            
-          
+         
          name = Array.new
          
          # ciclo sui nodi della catena 
@@ -355,7 +354,7 @@ puts"--- INPUT --------"
                    
                 name[i] = current_job + "." + type + fields[1].split('(').last.split('.').first
     
-                graph.add_node(name[i].is_what)
+                graph.add_node(name[i],is_what)
                 puts "aggiunto nodo chain:" + name[i]
                 
                 # se non é il primo nodo della catena => chiudo i nodi pendenti
@@ -441,7 +440,7 @@ puts"--- INPUT --------"
                    
                  fields_nameline = nameline.split(',') 
                  if current_job == fields_nameline[0].split('(').last
-                   namedOutput = "OUTPUT_" + fields[1].chomp(')') + "File_" + fields_nameline[1].chomp(')')
+                   namedOutput = "FILE_" + fields[1].chomp(')') + "File_" + fields_nameline[1].chomp(')')
                    
                    graph.add_node("\"" + namedOutput + "\"","is_file")
                    puts "aggiunto output: " + namedOutput
