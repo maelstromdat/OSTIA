@@ -24,9 +24,15 @@
 %\subsubsection{Assumptions and  level of abstraction}
 %We made several assumptions and abstractions while building the model:
 
-Building on top of the above framework,  a formal interpretation of the Storm (meta-)model requires the following abstractions and assumptions:
+Building on top of the above framework,  a formal interpretation of the Storm (meta-)model requires several abstractions and assumptions.
+
+%For example, some deployment details, such as the number of worker nodes and features of the underlying cluster, are abstracted away. 
+%There is a single queuing layer: every bolt has a unique incoming queue and no sending queue, while the worker queues are not represented. In the same way, each bolt/spout has a single output stream.
+%Moreover, the content of messages is not relevant: all the tuples have the same fixed size and we represent only quantity of tuples moving through the system.
+
+
 \begin{itemize}
-	\item some deployment details, e.g., the number of worker nodes and features of the underlying cluster, are abstracted;
+	\item some deployment details, e.g., the number of worker nodes and features of the underlying cluster, are abstracted away;
 	\item each bolt/spout has a single output stream;
 	\item %we simplified the message buffer system, assuming that 
 	there is a single queuing layer: every bolt has a unique incoming queue and no sending queue, while the worker queues are not represented;
