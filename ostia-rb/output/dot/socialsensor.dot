@@ -1,0 +1,16 @@
+digraph G {
+  wpSpout_1 -> wpDeserializer_2 [label="shuffleGrouping"]
+  miSpout_1 -> miDeserializer_2 [label="shuffleGrouping"]
+  wpDeserializer_2 -> expander_8 [label="shuffleGrouping"]
+  expander_8 -> articleExtraction_1 [label="shuffleGrouping"]
+  expander_8 -> mediaExtraction_1 [label="shuffleGrouping"]
+  articleExtraction_1 -> webPageUpdater_1 [label="shuffleGrouping"]
+  articleExtraction_1 -> textIndexer_1 [label="shuffleGrouping"]
+  articleExtraction_1 -> vIndexer_16 [label="shuffleGrouping"]
+  mediaExtraction_1 -> webPageUpdater_1 [label="shuffleGrouping"]
+  mediaExtraction_1 -> vIndexer_16 [label="shuffleGrouping"]
+  miDeserializer_2 -> vIndexer_16 [label="shuffleGrouping"]
+  vIndexer_16 -> mediaupdater_1 [label="shuffleGrouping"]
+  mediaupdater_1 -> mediaTextIndexer_1 [label="shuffleGrouping"]
+  mediaupdater_1 -> clusterer_1 [label="shuffleGrouping"]
+}
