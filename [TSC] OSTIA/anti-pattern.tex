@@ -204,13 +204,15 @@ The above heuristic approach concludes the support that OSTIA offers to quickly 
 \subsection{OSTIA-Based Formal Verification}\label{ver}
 \input{macros}
 
-This section describes the formal modelling and verification employed in OSTIA. Our assumption for continuous architecting, is that architects eliciting and studying their topologies by means of OSTIA may want to continuously and incrementally improve it based on results from solid verification approaches. The approach we outline, relies on \textit{satisfiability checking}~\cite{MPS13}, an alternative approach to model-checking where, instead of an operational model (like automata or transition systems), the system (i.e., a topology in this context) is specified by a formula defining its executions over time and properties are verified by proving that the system logically entails them.
+This section describes the formal modelling and verification employed in OSTIA. Our assumption for continuous architecting is that architects eliciting and studying their topologies by means of OSTIA may want to continuously and incrementally improve it based on results from solid verification approaches. The approach we outline, relies on \textit{satisfiability checking}~\cite{MPS13}, an alternative approach to model-checking where, instead of an operational model (like automata or transition systems), the system (i.e., a topology in this context) is specified by a formula defining its executions over time and properties are verified by proving that the system logically entails them.
 
 %The logic we use is Constraint LTL over clocks 
 CLTLoc is a real-time temporal logic and, in particular, a semantic restriction of Constraint LTL (CLTL)~\cite{DD07} allowing atomic formulae over $(\mathbb{R}, \set{<,=})$ where the arithmetical variables behave like clocks of Timed Automata (TA)~\cite{timed}.
-A clock $x$ measures the time elapsed since the last time when $x=0$ held, i.e., since the last ``reset'' of $x$.
-Clocks are interpreted over Reals and their value can be tested with respect to a positive integer value.
+As for TA, clocks measures time delays between events: a clock $x$ measures the time elapsed since the last time when $x=0$ held, i.e., since the last ``reset'' of $x$.
+Clocks are interpreted over Reals and their value can be tested with respect to a positive integer value or reset to 0.
 %
+To analyse anomalous executions of Storm topologies which do not preserve the queue-length boundedness property for the nodes of the application, we consider CLTLoc with counters.
+Counters are discrete non-negative variables that are used in our model to represent the length of bolt queues over the time throughout the streaming processing realized by the application.
 Let $X$ be a finite set of clock variables $x$ over $\Real$, $Y$ be a finite set of variables over $\Nat$ and $AP$ be a finite set of atomic propositions $p$.
 CLTLoc formulae with counters are defined as follows:
 \begin{equation*}%\small
@@ -222,7 +224,7 @@ CLTLoc formulae with counters are defined as follows:
   \end{gathered}
 \end{equation*}
 where $x \in X$, $y,z \in Y$, $c \in \Nat$ and 
-$\sim \in \set{<,=}$, $\bullet$, $\circ$, $\U$ and $\Snc$ are the
+$\sim \in \set{<,=}$, $\mathbf{X}$, $\mathbf{Y}$, $\U$ and $\Snc$ are the
 usual ``next'', ``previous'', ``until'' and ``since''.
 %The semantics of CLTLoc is defined with respect to $(\Real, \set{<,=})$ and $\pair{\Nat}{<}$, the latter representing positions in time.
 A \textit{model} is a pair $\pair{\pi}{\sigma}$, where $\sigma$ is a mapping associating every variable $x$ and position in $\Nat$ with value $\sigma(i,x)$ and $\pi$ is a mapping associating each position in $\Nat$ with subset of $AP$. 
