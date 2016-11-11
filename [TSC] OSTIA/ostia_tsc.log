@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.11.23)  5 MAY 2016 17:15
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.11.23)  11 NOV 2016 14:38
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1260,58 +1260,39 @@ Package pdftex.def Info: images/linearizing.pdf used on input line 135.
 (pdftex.def)             Requested size: 142.26378pt x 158.36281pt.
  [6 <./images/cascading.pdf> <./images/clustering.pdf> <./images/linearizing.pd
 f>] (./macros.tex)
-Underfull \hbox (badness 3058) in paragraph at lines 240--246
+Underfull \vbox (badness 1226) has occurred while \output is active []
+
+
+Underfull \hbox (badness 3058) in paragraph at lines 242--248
 []\OT1/ptm/m/n/10 CLTLoc al-lows the spec-i-fi-ca-tion of non-deterministic
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 240--246
+Underfull \hbox (badness 10000) in paragraph at lines 242--248
 
  []
 
-(./verification.tex
-Underfull \hbox (badness 10000) in paragraph at lines 39--47
+(./verification.tex <images/bolt-fsm.pdf, id=648, 284.06125pt x 162.6075pt>
+File: images/bolt-fsm.pdf Graphic file (type pdf)
 
- []
-
-Missing character: There is no e in font nullfont!
-Missing character: There is no d in font nullfont!
-Missing character: There is no g in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no [ in font nullfont!
-Missing character: There is no b in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no d in font nullfont!
-Missing character: There is no r in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no g in font nullfont!
-Missing character: There is no h in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no ] in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no d in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no ( in font nullfont!
-Missing character: There is no I in font nullfont!
-Missing character: There is no ) in font nullfont!
-Missing character: There is no ; in font nullfont!
-[7]
-
-LaTeX Font Warning: Command \small invalid in math mode on input line 91.
-
-
-LaTeX Font Warning: Command \small invalid in math mode on input line 91.
-
+<use images/bolt-fsm.pdf>
+Package pdftex.def Info: images/bolt-fsm.pdf used on input line 55.
+(pdftex.def)             Requested size: 176.39923pt x 100.98184pt.
+ [7]
 
 LaTeX Font Warning: Command \small invalid in math mode on input line 104.
 
 
 LaTeX Font Warning: Command \small invalid in math mode on input line 104.
+
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 117.
+
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 117.
 
 )) (./eval.tex
-<images/output/focused_crawler.pdf, id=663, 845.04686pt x 597.50786pt>
+<images/output/focused_crawler.pdf, id=668, 845.04686pt x 597.50786pt>
 File: images/output/focused_crawler.pdf Graphic file (type pdf)
 
 <use images/output/focused_crawler.pdf>
@@ -1319,7 +1300,7 @@ Package pdftex.def Info: images/output/focused_crawler.pdf used on input line 3
 0.
 (pdftex.def)             Requested size: 312.9803pt x 221.30237pt.
 
-<images/atc.png, id=665, 906.38625pt x 459.7175pt>
+<images/atc.png, id=670, 906.38625pt x 459.7175pt>
 File: images/atc.png Graphic file (type png)
  <use images/atc.png>
 Package pdftex.def Info: images/atc.png used on input line 59.
@@ -1329,45 +1310,50 @@ Overfull \hbox (32.52756pt too wide) in paragraph at lines 59--60
  [] 
  []
 
-<images/output/senti_storm.pdf, id=677, 597.50786pt x 845.04686pt>
+[8 <./images/bolt-fsm.pdf>]
+<images/output/senti_storm.pdf, id=723, 597.50786pt x 845.04686pt>
 File: images/output/senti_storm.pdf Graphic file (type pdf)
 
 <use images/output/senti_storm.pdf>
 Package pdftex.def Info: images/output/senti_storm.pdf used on input line 82.
 (pdftex.def)             Requested size: 113.81102pt x 160.9603pt.
- [8]
-<images/output/crawl.pdf, id=701, 460.72125pt x 634.37pt>
+ [9 <./images/output/focused_crawler.pdf, page is rotated 270 degrees> <./image
+s/atc.png> <./images/output/senti_storm.pdf>] <images/output/crawl.pdf, id=780,
+ 460.72125pt x 634.37pt>
 File: images/output/crawl.pdf Graphic file (type pdf)
 
 <use images/output/crawl.pdf>
 Package pdftex.def Info: images/output/crawl.pdf used on input line 118.
 (pdftex.def)             Requested size: 170.71652pt x 235.052pt.
- [9 <./images/output/focused_crawler.pdf, page is rotated 270 degrees> <./image
-s/atc.png> <./images/output/senti_storm.pdf>]
-<images/verif-trace-color.pdf, id=757, 1058.75555pt x 677.89258pt>
-File: images/verif-trace-color.pdf Graphic file (type pdf)
 
-<use images/verif-trace-color.pdf>
-Package pdftex.def Info: images/verif-trace-color.pdf used on input line 131.
-(pdftex.def)             Requested size: 252.0pt x 161.3425pt.
-LaTeX Font Info:    Try loading font information for OT1+pcr on input line 132.
+<images/verif-traces-bw.pdf, id=783, 912.40875pt x 1282.7925pt>
+File: images/verif-traces-bw.pdf Graphic file (type pdf)
+
+<use images/verif-traces-bw.pdf>
+Package pdftex.def Info: images/verif-traces-bw.pdf used on input line 133.
+(pdftex.def)             Requested size: 252.0pt x 354.286pt.
+LaTeX Font Info:    Try loading font information for OT1+pcr on input line 134.
 
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/ot1pcr.fd
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 )) (./disc.tex
-[10 <./images/output/crawl.pdf> <./images/verif-trace-color.pdf>]
+[10 <./images/output/crawl.pdf> <./images/verif-traces-bw.pdf>]
 Underfull \hbox (badness 1845) in paragraph at lines 19--20
 []\OT1/ptm/m/n/10 Second, OS-TIA only al-lows to re-cover and eval-u-ate
  []
 
-) (./rw.tex) (./conc.tex [11]) (./ostia_tsc.bbl
+) (./rw.tex) [11] (./conc.tex) (./ostia_tsc.bbl
 Missing character: There is no é in font ptmr7t!
-) [12]
+
+Overfull \vbox (9.46898pt too high) has occurred while \output is active []
+
+
+[12])
 Missing character: There is no â in font ptmr7t!
 Missing character: There is no € in font ptmr7t!
 Missing character: There is no ™ in font ptmr7t!
- [13]
+ [13] [14]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1018.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 1018.
  (./ostia_tsc.aux)
@@ -1375,16 +1361,16 @@ Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1018.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1018.
 
 Package rerunfilecheck Info: File `ostia_tsc.out' has not changed.
-(rerunfilecheck)             Checksum: 32C60C55D8A96661FD8F8F5735027200;2597.
+(rerunfilecheck)             Checksum: 59DF9E23B2A17B8321BC252E8CCA6AD8;2597.
  ) 
 Here is how much of TeX's memory you used:
- 23933 strings out of 493089
- 447279 string characters out of 6134841
- 614752 words of memory out of 5000000
- 26756 multiletter control sequences out of 15000+600000
+ 23809 strings out of 493089
+ 444735 string characters out of 6134841
+ 616558 words of memory out of 5000000
+ 26631 multiletter control sequences out of 15000+600000
  52716 words of font info for 112 fonts, out of 8000000 for 9000
  1144 hyphenation exceptions out of 8191
- 62i,16n,68p,2217b,977s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 62i,16n,66p,2217b,472s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
 exlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/te
 xlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx7.pfb></usr/local/texl
@@ -1411,10 +1397,10 @@ elvetic/uhvr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/times/ut
 mb8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb>
 </usr/local/texlive/2015/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/loca
 l/texlive/2015/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on ostia_tsc.pdf (13 pages, 1078785 bytes).
+Output written on ostia_tsc.pdf (14 pages, 1206062 bytes).
 PDF statistics:
- 951 PDF objects out of 1000 (max. 8388607)
- 772 compressed objects within 8 object streams
- 117 named destinations out of 1000 (max. 500000)
- 381 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 997 PDF objects out of 1000 (max. 8388607)
+ 806 compressed objects within 9 object streams
+ 118 named destinations out of 1000 (max. 500000)
+ 386 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -161,6 +161,11 @@ I.~Ivkovic and M.~W. Godfrey, ``Enhancing domain-specific software architecture
   recovery.'' in \emph{IWPC}.\hskip 1em plus 0.5em minus 0.4em\relax IEEE
   Computer Society, 2003, pp. 266--273.
 
+\bibitem{MBER16}
+F.~Marconi, M.~M. Bersani, M.~Erascu, and M.~Rossi, ``Towards the formal
+  verification of dia through mtl models,'' in \emph{booktitle}, ser. Lecture
+  Notes in Computer Science.
+
 \bibitem{soc}
 T.~Mens and M.~Wermelinger, ``Issue overview: Separation of concerns in
   software evolution,'' vol.~14, no.~5, pp. 311--315, 2002.
