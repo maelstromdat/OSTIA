@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.11.23)  11 NOV 2016 14:38
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.11.23)  6 APR 2017 19:42
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1366,7 +1366,7 @@ Package rerunfilecheck Info: File `ostia_tsc.out' has not changed.
 Here is how much of TeX's memory you used:
  23809 strings out of 493089
  444735 string characters out of 6134841
- 616558 words of memory out of 5000000
+ 616561 words of memory out of 5000000
  26631 multiletter control sequences out of 15000+600000
  52716 words of font info for 112 fonts, out of 8000000 for 9000
  1144 hyphenation exceptions out of 8191
@@ -1397,7 +1397,7 @@ elvetic/uhvr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/times/ut
 mb8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb>
 </usr/local/texlive/2015/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/loca
 l/texlive/2015/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on ostia_tsc.pdf (14 pages, 1206062 bytes).
+Output written on ostia_tsc.pdf (14 pages, 1206056 bytes).
 PDF statistics:
  997 PDF objects out of 1000 (max. 8388607)
  806 compressed objects within 9 object streams
