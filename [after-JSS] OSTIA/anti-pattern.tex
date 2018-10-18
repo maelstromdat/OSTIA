@@ -11,6 +11,7 @@ Spouts or Bolts in Apache Storm terms) while edges are directed data-flow
 connections.
 
 \subsection{Topology Design Anti-Patterns Within OSTIA}\label{sec:anti-pattern}
+\todoMB{inline}{Problema: dobbiamo giustificare perche' questi pattern sono potenzialmente dannosi.}
 This section elaborates on the anti-patterns we elicited (See Section \ref{ra}). These anti-patterns are elaborated further within OSTIA to allow for their detection during streaming topology inference analysis. Every pattern is elaborated using a simple graph-like notation where \emph{spouts} are nodes that have outgoing edges only whereas \emph{bolts} are nodes that can have either incoming or outgoing edges.
 
 \subsubsection{Multi-Anchoring}
@@ -75,7 +76,7 @@ The computational funnel is shown in Fig. \ref{fig:funnel}. A computational funn
 
 \subsection{algorithmic analyse-and-refactor actions  on Stream Topologies}\label{algo}
 
-This section elaborates on the algorithmic analyse-and-refactor actions  supported by OSTIA using the common graph-like notation introduced previously. OSTIA currently supports two topology content analysis (see Sec. \ref{1} and \ref{2}) as well as two topology layout analyses (see Sec. \ref{3} and \ref{4}). Only a part of these analyses is currently implemented in OSTIA. We discuss approach limitations further in Sect. \ref{disc}.
+This section elaborates on the algorithmic analyse-and-refactor actions  supported by OSTIA using the common graph-like notation introduced previously. OSTIA currently supports two topology content analysis (see Sec. \ref{1} and \ref{2}) as well as two topology layout analyses (see Sec. \ref{3} and \ref{4}). Only a part of these analyses is currently implemented in OSTIA. We discuss approach limitations further in Sect. \ref{disc}.\todoMB{}{Frase critica critica da rev. Solo alcune sono implementate.}
 
 \subsubsection{Fan-in/Fan-out}\label{1}
 
@@ -93,7 +94,7 @@ APIs, etc) which live outside of the topology.
 	\end{center}
 \end{figure}
 
-This algorithmic analyse-and-refactor action allows to visualise instances where fan-in and fan-out numbers are differing.
+This algorithmic analyse-and-refactor action allows to visualise instances where fan-in and fan-out numbers are differing.\todoMB{}{Solo visual quindi.}
 
 \subsubsection{Topology cascading}\label{2}
 
@@ -111,31 +112,34 @@ Although cascading may simplify the development of topologies by encouraging arc
 	\end{center}
 \end{figure}
 
-This algorithmic action allows to combine multiple cascading topologies.
+This algorithmic action allows to combine multiple cascading topologies.\todoMB{}{Non mi e' chiaro cosa faccia questa azione? E' visuale?}
 
-\subsubsection{Topology clustering}\label{3}
-Topology clustering is outlined in Fig. \ref{fig:clustering}. Topology clustering implies identifying coupled processing elements (i.e., bolts and spouts) and cluster them together (e.g., by means of graph-based analysis) in a way that elements in a cluster have high cohesion and loose-coupling with elements in other clusters. Simple clustering or Social-Network Analysis mechanisms can be used to infer clusters. These clusters may require additional attention since they could turn out to become bottlenecks. Reasoning more deeply on clusters and their resolution may lead to establishing the Storm scheduling policy best-fitting with the application. We will elaborate on this in Section \ref{sec:performance-boosting}.
-%\emph{\bf Does it relates with Storm scheduling?}
+%REMOVED
+%\subsubsection{Topology clustering}\label{3}
+%Topology clustering is outlined in Fig. \ref{fig:clustering}. Topology clustering implies identifying coupled processing elements (i.e., bolts and spouts) and cluster them together (e.g., by means of graph-based analysis) in a way that elements in a cluster have high cohesion and loose-coupling with elements in other clusters. Simple clustering or Social-Network Analysis mechanisms can be used to infer clusters. These clusters may require additional attention since they could turn out to become bottlenecks. Reasoning more deeply on clusters and their resolution may lead to establishing the Storm scheduling policy best-fitting with the application. We will elaborate on this in Section \ref{sec:performance-boosting}.
+%%\emph{\bf Does it relates with Storm scheduling?}
+%
+%\begin{figure}
+%	\begin{center}
+%		\includegraphics[width=6.5cm]{images/clustering}
+%		\caption{clustering.}
+%		\label{fig:clustering}
+%	\end{center}
+%\end{figure}
 
-\begin{figure}
-	\begin{center}
-		\includegraphics[width=6.5cm]{images/clustering}
-		\caption{clustering.}
-		\label{fig:clustering}
-	\end{center}
-\end{figure}
 
-\subsubsection{Linearising a topology}\label{4}
+%REMOVED
+%\subsubsection{Linearising a topology}\label{4}
+%
+%Topology linearisation is outlined in Fig. \ref{fig:linearizing}. Sorting the processing elements in a topology in a way that topology looks more linear, visually. This step ensures that visual investigation and evaluation of the structural complexity of the topology is possible by direct observation. It is sometimes essential to provide such a visualisation to evaluate how to refactor the topology as needed.
 
-Topology linearisation is outlined in Fig. \ref{fig:linearizing}. Sorting the processing elements in a topology in a way that topology looks more linear, visually. This step ensures that visual investigation and evaluation of the structural complexity of the topology is possible by direct observation. It is sometimes essential to provide such a visualisation to evaluate how to refactor the topology as needed.
-
-\begin{figure}
-	\begin{center}
-		\includegraphics[width=5cm]{images/linearizing}
-		\caption{linearising.}
-		\label{fig:linearizing}
-	\end{center}
-\end{figure}
+%\begin{figure}
+%	\begin{center}
+%		\includegraphics[width=5cm]{images/linearizing}
+%		\caption{linearising.}
+%		\label{fig:linearizing}
+%	\end{center}
+%\end{figure}
 
 \subsection{Performance Improvement Heuristics}
 \label{sec:performance-boosting}
@@ -157,7 +161,7 @@ number of machines used in the deployment and the number of instances of spouts
 and bolts that can be spawned in each machine. OSTIA statically analyses the
 topology and extracts the parallelism level for each component of the
 topology. At this point, we sum of all instances need to be allocated and the
-slots available on the machines ($machines * components\_for\_each\_machine$).
+slots available on the machines ($machines * components\_for\_each\_machine$).\todoMB{}{Qui mi sfugge il concetto di slot.}
 
 OSTIA decides whether improvements are possible (i.e. \emph{slots
   available} $>$ \emph{instances to be allocate}), and suggests changes to the
@@ -180,7 +184,7 @@ parallelism level do not compensate the parallelism level of its
 to cope with high loads.
 
 For instance, let us take Figure \ref{topo1} as an example. There are 22
-components that need to be allocated. Suppose that our cluster is composed by 4
+components that need to be allocated.\todoMB{}{Forse e' meglio parlare di threads invece che components?} Suppose that our cluster is composed by 4
 machines and each machine fits 10 instances of components. OSTIA in this case
 would suggest to simply remove one machine. Let us suppose that we have 3
 machines with 10 tasks each. At this point we have 30 slots available and 22
@@ -188,7 +192,7 @@ components, therefore we have 8 slots available that can be used to increase the
 performance. In order to decide the components to improves we identify the ones
 with maximum \emph{weighted fan-in}. In the example nodes \emph{mediaExtractor}
 and \emph{articleExtractor} with \emph{weighted fan-in} of 8. Finally, since we
-have 8 free slots to share between two nodes we increase the parallelism level
+have 8 free slots to share between two nodes\todoMB{}{Nodi, bolts?} we increase the parallelism level
 of the two critical nodes of $8/2 = 4$, setting it from 1 to 5.
 
 The above heuristic approach concludes the support that OSTIA offers to quickly and continuously improving streaming topologies by means of algorithmic evaluations and analysis. Conversely, as previously stated we learned from industrial practice that the need might rise for more formal guarantees, e.g., concerning some key parts of a streaming topology with respect to key big-data properties such as queue-boundedness - i.e., a guarantee that the queue for a certain bolt will always be bounded - or queue-population - i.e., a guarantee that the queue never contains privacy sensitive objects. In similar scenarios, OSTIA offers the seamless capability of running complex and exhaustive formal verification over analysed topologies. The next section elaborates further on this key support offered by OSTIA.

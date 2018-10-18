@@ -1,4 +1,4 @@
-\documentclass[final,5p,times,twocolumn]{elsarticle}
+\documentclass[]{elsarticle}
 
 \usepackage{lineno,hyperref}
 
@@ -327,8 +327,15 @@
 \usepackage{balance}
 \usepackage{url}
 \usepackage{rotating}
+\usepackage{changes}
+% COLORING AND USEFUL COMMAND FOR EDITING CHANGES
+\definechangesauthor[name={MB},color=orange]{MB}
+\newcommand{\addMB}[1]{\added[id=MB]{#1}}
+\newcommand{\delMB}[1]{\deleted[id=MB]{#1}}
+\newcommand{\repMB}[2]{\replaced[id=MB]{#2}{#1}}
 
-
+\usepackage{todonotes}
+\newcommand{\todoMB}[2]{\linespread{0.7}\todo[color=yellow!50,#1]{\scriptsize\textbf{MB:}#2}}
 
 % Some very useful LaTeX packages include:
 % (uncomment the ones you want to load)
@@ -682,7 +689,7 @@ On one hand, DIA topologies bear the same weight on overall DIA performance and 
 
 On the other hand, multiple middleware with different topologies may be merged within the same DIA. In the scope of OSTIA, the tool makes not difference between topology and architecture, since the tool recuperates all distinct topology graphs it finds in the namespace provided as input.
 
-We this premise, \emph{we advocate that an analogy exists between the classical notion of software architecture and our notion of DIA topology - for this reason, from now on, we use the terms topology and architecture interchangeably.}
+We this premise, \emph{we advocate that an analogy exists between the classical notion of software architecture and our notion of DIA topology - for this reason, from now on, we use the terms topology and architecture interchangeably.}\todoMB{}{Rischioso. Un rev. ci ha criticato questo punto.}
 
 To evaluate DIA effectiveness in big data terms we mean that the architecture as well as the architecting processes and tools are able to support design, deployment, operation, refactoring, and subsequent (re-)deployment of DIAs continuously and consistently with runtime restrictions imposed by big data development frameworks. 
 Storm, for example, is an Apache big data processing middleware which requires the processing elements to represent a Directed-Acyclic-Graph (DAG). In toy topologies (comprising few components), such constraints can be effectively checked manually, however, when the number of components in such architectures increases to real-life industrial scale architectures, it is enormously difficult to verify even these ``simple" structural DAG constraints.
