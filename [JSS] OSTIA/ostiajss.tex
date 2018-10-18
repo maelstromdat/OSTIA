@@ -658,7 +658,7 @@
 
 \begin{abstract}
 Big data architectures have been gaining momentum in recent years. For
-instance, Twitter uses stream processing frameworks like Storm to analyse billions of tweets per minute and learn the trending topics. However, architectures that process big data involve many different components interconnected via semantically different connectors making it a difficult task for software architects to refactor the initial designs. As an aid to designers and developers, we developed OSTIA (On-the-fly Static Topology Inference Analysis) that allows: (a) visualising big data architectures for the purpose of design-time refactoring while maintaining constraints that would only be evaluated at later stages such as deployment and run-time; (b) detecting the occurrence of common anti-patterns across big data architectures; (c) exploiting software verification techniques on the elicited architectural models. This paper illustrates OSTIA and evaluates its uses and benefits on three industrial-scale case studies.
+instance, Twitter uses stream processing frameworks like Storm to analyse billions of tweets per minute and learn the trending topics. However, architectures that process big data involve many different components interconnected via semantically different connectors making it a difficult task for software architects to refactor the initial designs. As an aid to designers and developers, we developed OSTIA that stands for ``On-the-fly Static Topology Inference Analysis"; OSTIA is a tool that allows: (a) recovering big data architectures for the purpose of design-time refactoring while maintaining constraints that would only be evaluated at later stages (deployment, run-time); (b) detecting the occurrence of common anti-patterns across big data architectures; (c) exploiting software verification techniques to evaluate the safety of the elicited architectural models. This paper illustrates OSTIA and evaluates its uses and benefits using industrial and open-source case study research.
 \end{abstract}
 
 \begin{keyword}
@@ -676,26 +676,31 @@ DevOps \sep Continuous Architecting\sep Big Data
 
 \section{Terminological Reflections on Continuous Architecting}
 
-From a software architecture perspective, topologies are not properly \emph{software architectures}. A software architecture is a set of interconnected and inter-communicating components across a series of connectors and other architecture elements \cite{kazmanbook}. Rather, DIA topologies are based on operations to be applied on the raw data. For the sake of designing our tool, however, we inherited from software architecture research and software architecture recovery tools and practices with which we enable DIA topology reverse-engineering.  
+With respect to the typical definition of software architectures, namely, \emph{[...] a set of interconnected and inter-communicating components across a series of connectors and other architecture elements} \cite{kazmanbook}, data-intensive application topologies are not properly \emph{software architectures}. Rather, DIA topologies are graphs of operations to be applied on raw big data. However, for the sake of designing their data-intensive applications, data-intensive architects need to use those topologies as subjects of the same rigorous architecting principles, practices, analyses and trade-offs inherited from software architecture research and practice. Much in the same vein, in designing OSTIA, we inherited tools, practices and approaches from software architecture recovery \cite{DobricaN02} to enable DIA topology reverse-engineering. This parallel between software architectures and data-intensive topologies is reasonable for two reasons.
 
-On one hand, DIA topologies bear the same weight on overall DIA performance and application properties that regular software architectures reflect for regular applications. 
+On one hand, DIA topologies bear the same weight on overall DIA performance and application properties since they contain the architecture decisions (e.g., DIA middleware interconnections and dependencies) and middleware configurations (e.g., memory footprint, resource management, scheduling policies, degrees of parallelism) that dictate the visible DIA architecture properties. 
 
-On the other hand, multiple middleware with different topologies may be merged within the same DIA. In the scope of OSTIA, the tool makes not difference between topology and architecture, since the tool recuperates all distinct topology graphs it finds in the namespace provided as input.
+On the other hand, multiple middleware with different topologies may be merged within the same DIA --  in this instance it is in fact the combination of several topologies, typically one per each data-processing middleware, that dictates visible DIA architecture properties. 
 
-We this premise, \emph{we advocate that an analogy exists between the classical notion of software architecture and our notion of DIA topology - for this reason, from now on, we use the terms topology and architecture interchangeably.}
+As a result in the scope of OSTIA, the tool recovers *all distinct topology graphs* for supported technologies (Apache Hadoop and Apache Storm) that it finds in the namespace provided as input.
 
-To evaluate DIA effectiveness in big data terms we mean that the architecture as well as the architecting processes and tools are able to support design, deployment, operation, refactoring, and subsequent (re-)deployment of DIAs continuously and consistently with runtime restrictions imposed by big data development frameworks. 
-Storm, for example, is an Apache big data processing middleware which requires the processing elements to represent a Directed-Acyclic-Graph (DAG). In toy topologies (comprising few components), such constraints can be effectively checked manually, however, when the number of components in such architectures increases to real-life industrial scale architectures, it is enormously difficult to verify even these ``simple" structural DAG constraints.
+With this premise, \emph{we advocate that an analogy exists between the classical notion of software architecture and our notion of DIA topology, and, for this reason from now on we use the terms topology and architecture interchangeably.}
 
-In the big data domain, such \emph{*continuous*} architecting means supporting the continuous and incremental improvement of big data topologies - e.g., by: (1) changing the topological arrangement of architecture elements or any of their properties (e.g., queues and their lengths); (2) using on-the-fly analyses on running applications; (3) exploiting platform and infrastructure monitoring data. For example, the industrial partner that aided the evaluation of the results in this paper is currently facing the issue of continuously changing and re-arranging their stream processing application. Particularly, they require to change in response to: (a) types of content that need analysis (multimedia images, audios as opposed to news articles and text); (b) types of users that need recommendation (e.g., governments as opposed to single users). Changing and constantly re-arranging an application's architecture requires constant and \emph{continuous architecting} of DIAs, their interconnection and their visible properties. 
+Under the above premise, we aim to support DIA \emph{*continuous*} architecting; In the big data domain, such continuous architecting means supporting the continuous and incremental improvement of big data topologies - e.g., according to the following iterative process:
+\begin{enumerate}
+\item changing the topological arrangement of data-processing elements in the topology, as well as tuning any of their properties (e.g., replication and parallelisation factors);
+\item changing the data-intensive middleware configuration parameters (e.g., queues and their lengths);
+\item using on-the-fly analyses on running applications (e.g., queue safety given a certain workload); 
+\item exploiting platform and infrastructure monitoring data -- for example, the industrial partner that aided the evaluation of the results in this paper is currently facing the issue of continuously changing and re-arranging their stream processing application in response to: (a) types of content that need analysis (multimedia images, audios as opposed to news articles and text); (b) types of users that need recommendation (e.g., governments as opposed to single users); 
+\item evaluate results and improvements, iterating back to step 1, if and where necessary;
+\end{enumerate}
 
-With OSTIA, we aimed at providing automated support to this continuous architecting exercise. OSTIA reduces the (re-)design efforts in that exercises and increases the speed of big data architectures' (re-)deployability by saving the effort of running trial-and-error experiments on expensive infrastructure.
+With OSTIA, we aimed at providing automated support to the above continuous architecting exercise in the scope of data-intensive architectures. OSTIA supports the (re-)design steps 1 to 3 with algorithmic manipulation, heuristics, and design anti-pattern matching; also, the tool supports step 5 with formal verification techniques.
 
 \section{Research Design and Context of Study}
 
 \label{ra}
 \input{ra}
-
 
 \section{Research Solution}
 \label{rs}
