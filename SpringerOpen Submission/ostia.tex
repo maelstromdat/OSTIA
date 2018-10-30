@@ -1,0 +1,219 @@
+%%%%%%%%%%%%%%%%%%%%%%% file template.tex %%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% This is a general template file for the LaTeX package SVJour3
+% for Springer journals.          Springer Heidelberg 2010/09/16
+%
+% Copy it to a new file with a new name and use it as the basis
+% for your article. Delete % signs as needed.
+%
+% This template includes a few options for different layouts and
+% content for various journals. Please consult a previous issue of
+% your journal as needed.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% First comes an example EPS file -- just ignore it and
+% proceed on the \documentclass line
+% your LaTeX will extract the file if required
+%
+%\documentclass{svjour3}                     % onecolumn (standard format)
+%\documentclass[smallcondensed]{svjour3}     % onecolumn (ditto)
+\documentclass[smallextended]{svjour3}       % onecolumn (second format)
+%\documentclass[twocolumn]{svjour3}          % twocolumn
+%
+\smartqed  % flush right qed marks, e.g. at end of proof
+%
+\usepackage{graphicx}
+
+\usepackage{lineno,hyperref}
+
+\usepackage{amssymb}
+
+\usepackage{array}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{supertabular}
+\usepackage[table]{xcolor}
+
+
+
+% Some very useful LaTeX packages include:
+% (uncomment the ones you want to load)
+\providecommand{\tabularnewline}{\\}
+\usepackage{booktabs, multicol, multirow}
+\usepackage[acronym,nomain]{glossaries}
+\usepackage[inline]{enumitem}
+\usepackage{algorithm}
+\usepackage{algorithmicx}
+\usepackage{algpseudocode}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{subfigure}
+\usepackage{grffile}
+\usepackage{tabularx}
+\usepackage{colortbl}
+\usepackage{hhline}
+\usepackage{hyperref}
+\usepackage{here}
+\usepackage{graphicx}
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % new commands % % %
+\usepackage[colorinlistoftodos,prependcaption,textsize=tiny]{todonotes}
+%
+% Convenience commands for the paper editing process
+%
+\newcommand{\comment}[1]{{\textbf{\color{red}[#1]}}}
+\newcommand{\fixed}[1]{{\textbf{\color{blue}[#1]}}}
+
+%
+% Convenience commands for references
+%
+\newcommand{\secref}[1]{Section~\ref{sec:#1}}
+\newcommand{\tabref}[1]{Table~\ref{tab:#1}}
+\newcommand{\figref}[1]{Figure~\ref{fig:#1}}
+\newcommand{\quotes}[1]{``#1''}
+
+\newcommand{\argmin}{\arg\!\min}
+\newcommand{\argmax}{\arg\!\max}
+
+
+%\newtheorem{definition}{Definition}
+\renewcommand{\algorithmicrequire}{\textbf{Input:}}
+\renewcommand{\algorithmicensure}{\textbf{Output:}}
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+% Acronym definitions
+\newacronym{sps}{SPS}{Stream Processing Systems}
+\newacronym{pe}{PE}{Processing Elements}
+\newacronym{dag}{DAG}{Directed Acyclic Graph}
+
+%
+\usepackage{pgf}
+\usepackage{tikz}
+\usetikzlibrary{arrows,automata}
+\usetikzlibrary{shapes.misc}
+
+\tikzset{cross/.style={cross out, draw=black, minimum size=3*(#1-\pgflinewidth), inner sep=0pt, outer sep=0pt},
+	%default radius will be 1pt. 
+	cross/.default={10pt}}
+
+\usepackage{array}
+\usepackage{balance}
+\usepackage{url}
+\usepackage{rotating}
+\usepackage{changes}
+% COLORING AND USEFUL COMMAND FOR EDITING CHANGES
+\definechangesauthor[name={MB},color=orange]{MB}
+\newcommand{\addMB}[1]{\added[id=MB]{#1}}
+\newcommand{\delMB}[1]{\deleted[id=MB]{#1}}
+\newcommand{\repMB}[2]{\replaced[id=MB]{#2}{#1}}
+
+\usepackage{todonotes}
+\newcommand{\todoMB}[2]{\linespread{0.7}\todo[color=yellow!50,#1]{\scriptsize\textbf{MB:}#2}}
+
+%
+% \usepackage{mathptmx}      % use Times fonts if available on your TeX system
+%
+% insert here the call for the packages your document requires
+%\usepackage{latexsym}
+% etc.
+%
+% please place your own definitions here and don't use \def but
+% \newcommand{}{}
+%
+% Insert the name of "your journal" with
+% \journalname{myjournal}
+%
+\begin{document}
+
+\title{Verified Big Data Topologies \emph{By-Design}: a Semi-Automated Approach}
+%\subtitle{Do you have a subtitle?\\ If so, write it here}
+
+%\titlerunning{Short form of title}        % if too long for running head
+
+\author{Marcello M. Bersani \and Francesco Marconi \and Damian A. Tamburri \and Andrea Nodari \and Pooyan Jamshidi}
+
+%\authorrunning{Short form of author list} % if too long for running head
+
+\institute{Marcello and Francesco are \at
+              Politecnico di Milano, Milan, Italy \\
+              \email{$[$marcellomaria.bersani, francesco.marconi$]$@polimi.it}           %  \\
+%             \emph{Present address:} of F. Author  %  if needed
+           \and
+           Damian is \at
+              TU/e - JADS\\
+              \email{d.a.tamburri@tue.nl}           %  \\
+                  \and
+           Pooyan and Andrea are \at
+              Imperial College London\\
+              \email{$[$p.jamshidi,a.nodari15$]$@imperial.co.uk}    
+}
+
+\date{Received: date / Accepted: date}
+% The correct dates will be entered by the editor
+
+
+\maketitle
+
+\begin{abstract}
+Big data architectures have been gaining momentum in recent years. For
+instance, Twitter uses stream processing frameworks like Apache Storm to analyse billions of tweets per minute and learn the trending topics. However, architectures that process big data involve many different components interconnected via semantically different connectors making it a difficult task for software architects to refactor the initial designs. As an aid to designers and developers, we developed OSTIA (Ordinary Static Topology Inference Analysis) that allows detecting the occurrence of common anti-patterns across big data architectures and exploiting software verification techniques on the elicited architectural models. This paper illustrates OSTIA and evaluates its uses and benefits on three industrial-scale case-studies.
+\keywords{Big Data Architectures \and Software Design \& Analysis \and Big Data Systems Verification}
+% \PACS{PACS code1 \and PACS code2 \and more}
+% \subclass{MSC code1 \and MSC code2 \and more}
+\end{abstract}
+
+\section{Introduction}
+\label{intro}
+\input{intro}
+
+\section{Research Methods}
+
+\label{ra}
+\input{ra}
+
+\section{OSTIA Explained}
+\label{rs}
+\input{rs}
+\input{anti-pattern}
+
+\section{Evaluation}
+\label{eval}
+\input{eval}
+
+\section{Discussion}
+\label{disc}
+\input{disc}
+
+\section{Related Work}
+\label{rw}
+\input{rw}
+
+\section{Conclusion}
+\input{conc}
+\label{conc}
+
+
+
+
+
+
+\begin{acknowledgements}
+Some of the authors' work is partially supported by the European Commission grant no. 0421 (Interreg ICT), Werkinzicht and the European Commission grant no. 787061 (H2020), ANITA.
+\end{acknowledgements}
+
+ BibTeX users please use one of
+%\bibliographystyle{spbasic}      % basic style, author-year citations
+\bibliographystyle{spmpsci}      % mathematics and physical sciences
+%\bibliographystyle{spphys}       % APS-like style for physics
+\bibliography{ostia}   % name your BibTeX data base
+
+% Non-BibTeX users please use
+
+\end{document}
+% end of file template.tex
+
