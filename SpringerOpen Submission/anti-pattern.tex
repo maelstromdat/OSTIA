@@ -11,11 +11,11 @@
 %connections.
 
 \subsection{Topology Design Anti-Patterns Within OSTIA}\label{sec:anti-pattern}
-\todoMB{inline}{Problema: dobbiamo giustificare perche' questi pattern sono potenzialmente dannosi.}
+%\todoMB{inline}{Problema: dobbiamo giustificare perche' questi pattern sono potenzialmente dannosi.}
 This section elaborates on the anti-patterns we elicited (See Section \ref{ra}). These anti-patterns are elaborated further within OSTIA to allow for their detection during streaming topology inference analysis. Every pattern is elaborated using a simple graph-like notation where \emph{spouts} are nodes that have outgoing edges only whereas \emph{bolts} are nodes that can have either incoming or outgoing edges.
 
 \subsubsection{Multi-Anchoring}
-The Multi-Anchoring pattern is shown in Fig. \ref{fig:multi-anchoring1}. In order to guarantee fault-tolerant stream processing, tuples processed by bolts need to be anchored with the unique {\sf id} of the bolt and be passed to multiple acknowledgers (or ``ackers" in short) in the topology. In this way, ackers can keep track of tuples in the topology. Multiple ackers can indeed cause much overhead and influence the operational performance of the entire topology.
+The Multi-Anchoring pattern is shown in Fig. \ref{fig:multi-anchoring1}. In order to guarantee fault-tolerant stream processing, tuples processed by bolts need to be anchored with the unique {\sf id} of the bolt and be passed to multiple acknowledgers (or ``ackers" in short) in the topology. In this way, ackers can keep track of tuples in the topology. Our practitioners agree that multiple ackers can indeed cause much overhead and influence the operational performance of the entire topology.
 %\emph{\bf TODO: what is the consequence of these anti-patterns? How does OSTIA detect?}
 %\emph{\bf Multi-anchoring is not supported at the moment. Besides, I am not sure it is an anti-patter but rather a design decision}
 
@@ -37,7 +37,7 @@ The Multi-Anchoring pattern is shown in Fig. \ref{fig:multi-anchoring1}. In orde
 
 \subsubsection{Cycle-in Topology}
 
-The Cycle-in pattern is shown in Fig. \ref{fig:cycle1}. Technically, it is possible to have cycle in Storm topologies. An infinite cycle of processing would create an infinite tuple tree and make it impossible for Storm to ever acknowledge spout emitted tuples. Therefore, cycles should be avoided or resulting tuple trees should be investigated additionally to make sure they terminate at some point and under a specified series of conditions (these conditions can be hardcoded in Bolt logic). The anti-pattern itself may lead to infrastructure overloading and increased costs.
+The Cycle-in pattern is shown in Fig. \ref{fig:cycle1}. Technically, it is possible to have cycle in Storm topologies. An infinite cycle of processing would create an infinite tuple tree and make it impossible for Storm to ever acknowledge spout emitted tuples. Therefore, cycles should be avoided or resulting tuple trees should be investigated additionally to make sure they terminate at some point and under a specified series of conditions (these conditions can be hardcoded in Bolt logic). The anti-pattern itself may lead to infrastructure overloading which in turn incurs in increased costs.
 %\emph{\bf A topology is already an infinite stream of tuple, the problem could be the overloading of some machines}
 %\emph{\bf At the cycle-detection is not supported (even if it is easy to implement)}
 
