@@ -20,9 +20,28 @@ From a methodological perspective, the results outlined in this paper were elabo
 
 \subsection{Extracting Anti-Patterns for Big Data Applications}
 
-he anti-patterns illustrated in this paper were initially elaborated within 3 structured focus-groups \cite{focusgroup} involving 5 experienced practitioners and researchers on big data technologies, such as Apache Storm. The practitioners were simply required to elaborate on the most frequent structural and anti-patterns they encountered on their DIA design and experimentation. 
+he anti-patterns illustrated in this paper were initially elaborated within 3 structured focus-groups \cite{focusgroup} involving practitioners from a different organization in each focus-group round; subsequently, we interviewed 2 domain-expert researchers on big data technologies as a control group. The data was analyzed with a simple card-sorting exercise and cross-referenced with the insights emerging from the control group; disagreement between the two groups was evaluated Inter-Rater Reliability assessment using the well-known Krippendorf Alpha coefficient \cite{content} (assessment of $K_{alpha=0,89}$). 
 
-The group was structured as follows: (a) the practitioners were presented with a data-intensive architectural design using standard UML structure and behavior representations (a component view and an activity view \cite{NittoJGST16}); (b) the practitioners were asked to identify and discuss any bottlenecks or structural limitations in the outlined designs; (c) finally, the practitioners were asked to illustrate any other anti-pattern the showcased topologies did not contain.
+Table \ref{tabba} outlines the population we used for this part of the study. The practitioners were simply required to elaborate on the most frequent structural and anti-patterns they encountered on their DIA design and experimentation. 
+
+\begin{table}
+\caption{Focus-Groups population outline.}\label{tabba}
+\begin{tabular}{|c|c|c|c|}
+\hline 
+\textbf{Role} & \textbf{\#Participants} & \textbf{Mean Age} & \textbf{Mean Exp. With DIAs (\#months)}\tabularnewline
+\hline 
+Architect & 3 & 35,3 & 17,3\tabularnewline
+\hline 
+Developer & 4 & 27,7 & 36,2\tabularnewline
+\hline 
+Operator & 5 & 31,1 & 38,1\tabularnewline
+\hline 
+Manager & 3 & 44,2 & 18,4\tabularnewline
+\hline 
+\end{tabular}
+\end{table}
+
+The focus-group sessions were structured as follows: (a) the practitioners were presented with a data-intensive architectural design using standard UML structure and behavior representations (a component view and an activity view \cite{NittoJGST16}); (b) the practitioners were asked to identify and discuss any bottlenecks or structural limitations in the outlined designs; (c) finally, the practitioners were asked to illustrate any other anti-pattern the showcased topologies did not contain.
 %\todoMB{}{Spiegare meglio il focus-group}.
 %Following the focus-group, through self-ethnography \cite{selfeth} and brainstorming we identified the series of essential consistency checks, algorithmic evaluations as well as anti-patterns that can now be applied through OSTIA while recovering an architectural representation for Storm topologies. 
 
