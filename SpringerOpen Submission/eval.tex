@@ -8,12 +8,16 @@
 %\item any additional case that we can run?
 %\item what do the results show? do we have a way to quickly quantify the time that is saved by using this approach? e.g., the time that is saved in setting up and running the infrastructure and how much would that time saved have costed these could be valuable evaluation insights
 %\end{itemize}
-We evaluated OSTIA through qualitative evaluation and case-study research featuring an open-/closed-source industrial case study (see Section \ref{cs}) and two open-source case studies (see Section \ref{os}) on which we also applied complex formal verification (see Section \ref{ver}).
+We evaluated OSTIA through qualitative evaluation and case-study research featuring an open-/closed-source industrial case study (see Section \ref{cs}) and two open-source case studies (see Section \ref{os}) on which we also applied OSTIA-based formal verification and refactoring (see Section \ref{ver}). The objective of the evaluation was two-fold:
+\begin{enumerate}
+\item[OBJ.1] Evaluate the occurrence of anti-patterns evidenced by our practitioners in both open- and closed-source DIAs;
+\item[OBJ.2] understand whether OSTIA-based analyses aid in refactoring towards formally-verified DIA topologies \emph{by-design};
+\end{enumerate}
 
-\subsection{Industrial Case-Study}\label{cs}
+\subsection{Establishing Anti-Patterns Occurrence with Case-Study Research: Industry}\label{cs}
 
 %As previously introduced in Section \ref{ra}, 
-OSTIA was evaluated using several topologies part of the SocialSensor App. Our industrial partner is having
+OSTIA was evaluated using 3 medium/large topologies (11+ elements) part of the SocialSensor App. Our industrial partner is having
 performance and availability outages connected to currently unknown
 circumstances. Therefore, the objective of our evaluation for OSTIA was twofold:
 (a) allow our industrial partner to enact architecture refactoring of their
@@ -32,7 +36,7 @@ Clusters may require, in general, additional attention since they could turn out
 Reasoning more deeply on clusters and their resolution may lead to establishing the Storm scheduling policy best-fitting with the application.
 
 
-OSTIA standard output\footnote{Output of OSTIA analyses is not evidenced for the
+OSTIA standard output\footnote{Output of OSTIA analyses is not shown fully for the
 sake of space.} for the smallest of the three SocialSensor topologies, namely
 the ``focused-crawler" topology, is outlined in Fig. \ref{topo1}.
 
@@ -110,7 +114,7 @@ As a followup of our analysis, our partner is refactoring his own high-level sof
 Our qualitative evaluation of the refactored architecture by means of several interviews and workshops revealed very encouraging results. 
 %However, we are yet to quantitatively evaluate whether the new software architecture actually reflects a tangible boost in terms of performance and scalability.\todoMB{}{Azz...pesante questa...}
 
-\subsection{Evaluation on Open-Source Software}\label{os}
+\subsection{Establishing Anti-Patterns Occurrence with Case-Study Research: Open-Source}\label{os}
 
 To confirm the usefulness and capacity of OSTIA to enact a continuous
 architecting cycle, we applied it in understanding (first) and attempting
@@ -141,6 +145,10 @@ The OSTIA output aided as follows: (a) the output summarised in Fig. \ref{dp}
 allowed us to immediately grasp the functional behavior of the DigitalPebble and
 StormCV topologies allowing us to interpret correctly their operations before
 reading long documentation or inspecting the code; (b) OSTIA aided us in visually interpreting the complexity of the applications at hand; (c) OSTIA allowed us to spot several anti-patterns in the DigitalPebble Storm application around the ``sitemap" and ``parse" bolts, namely, a multiple cascading instance of the multi-anchoring pattern and a persistent-data pattern. Finally, OSTIA aided in the identification of the computational funnel anti-pattern around the "status" bolt closing the DigitalPebble topology. With this evaluation at hand, developers in the respective communities of DigitalPebble and StormCV could refactor their topologies, e.g., aided by OSTIA-based formal verification that proves the negative effects of said anti-patterns.
+
+\begin{framed}
+\textbf{Summary for Obj 1.} The patterns we elicited thanks to focus-groups in industry indeed have an actual recurrent manifestation in both industry and open-source. OSTIA-based analysis can support reasoning and potential refactoring of the proposed anti-patterns.
+\end{framed}
 %
 %\comment{this section needs further elaboration. we need to elaborate our discussion to visually locate these anti patterns.}
 % \comment{you said first, where is the second? this is incomplete}
@@ -153,7 +161,7 @@ reading long documentation or inspecting the code; (b) OSTIA aided us in visuall
 %\end{center}
 %\end{figure}
 
-\subsection{OSTIA-based Formal Verification: An Industrial Case-Study}
+\subsection{OSTIA-based Formal Verification and Refactoring}
 
 In this section we outline the results from OSTIA-based formal verification applied on (one of) the topologies used by our industrial partner in practice. 
 Results provide valuable insights for improving these topologies through refactoring.
@@ -179,4 +187,9 @@ These types of heavyweight and powerful analyses are made easier by OSTIA in tha
 \caption{OSTIA-based formal verification output traces showing the evolution of the two bolts over time. Queue trends are displayed as solid black line. Dashed lines show the processing activity of the bolts, while the other lines illustrate the incoming tuples from the subscribed nodes (\texttt{emit} events).}
 \label{verif-trace}
 \end{figure}
+
+
+\begin{framed}
+\textbf{Summary for Obj 2.} OSTIA-based formal verification effectively evaluates the safety of DIAs focusing on their design-time representation; further investigation of the generalisability of this approach towards runtime is needed to scope the extent to which OSTIA offers support for continuous evolution.
+\end{framed}
 
