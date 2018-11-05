@@ -16,11 +16,11 @@
 %where we evaluated our case-study owners' scenarios and found that their continuous architecting needs were: (a) focusing on the topological abstractions and surrounding architectural specifications; (b) focusing on bridging the gap between insights from Ops to (re-)work at the Dev level; (c) their needs primarily consisted in maintaining architectural consistency during refactoring.
 %In pursuit of the research question above, 
 
-From a methodological perspective, the results outlined in this paper were elaborated as follows.
+From a methodological perspective, the results outlined in this paper were elaborated as follows and made concrete through the actions in Sec.~\ref{sec:antipatternextraction} and \ref{sec:researchsolutioneval}.
 
-\subsection{Extracting Anti-Patterns for Big Data Applications}
+\subsection{Extracting Anti-Patterns for Big Data Applications}\label{sec:antipatternextraction}
 
-he anti-patterns illustrated in this paper were initially elaborated within 3 structured focus-groups \cite{focusgroup} involving practitioners from a different organization in each focus-group round; subsequently, we interviewed 2 domain-expert (5+ years of experience) researchers on big data technologies as a control group. The data was analyzed with a simple card-sorting exercise and cross-referenced the patterns thus emerged with the ones emerging from our interview-based control group; disagreement between the two groups was evaluated Inter-Rater Reliability assessment using the well-known Krippendorf Alpha coefficient \cite{content} (assessment of $K_{alpha}=0,89$). 
+The anti-patterns illustrated in this paper were initially elaborated within 3 structured focus-groups \cite{focusgroup} involving practitioners from a different organization in each focus-group round; subsequently, we interviewed 2 domain-expert (5+ years of experience) researchers on big data technologies as a control group. The data was analyzed with a simple card-sorting exercise and cross-referenced the patterns thus emerged with the ones emerging from our interview-based control group;\todoMB{}{Dam, non capsico la frase prima del punto-e-virgola} disagreement between the two groups was evaluated Inter-Rater Reliability assessment using the well-known Krippendorf Alpha coefficient \cite{content} (assessment of $K_{alpha}=0,89$). 
 
 Table \ref{tabba} outlines the population we used for this part of the study. The practitioners were simply required to elaborate on the most frequent structural and anti-patterns they encountered on their DIA design and experimentation. 
 
@@ -56,7 +56,7 @@ The focus-group sessions were structured as follows: (a) the practitioners were 
 %  \label{socialsensor-topology}
 %\end{figure*}
 
-\subsection{Research Solution Evaluation}
+\subsection{Research Solution Evaluation}\label{sec:researchsolutioneval}
 
 OSTIA's evaluation is threefold. 
 
@@ -74,7 +74,7 @@ App~\cite{socialsensor}
 %Fig. \ref{socialsensor-topology} for a sample realised using a simple UML object diagram).  In particular, the topology in
 %Fig. \ref{socialsensor-topology} extracts data from sources and divides and arranges contents based on type (e.g., article vs. media),
 %later updating a series of databases (e.g., Redis) with these elaborations.
-
+%
 which features the combined
 action of three complex streaming topologies based on Apache Storm. The
 models that OSTIA elicited from this application were showcased to our
@@ -85,14 +85,14 @@ on questionnaires and open discussion.
 Second, to further confirm the validity of OSTIA analyses and support, we
 applied it on two open-source applications featuring Big-Data analytics, namely: (a) the DigitalPebble application,
 %\footnote{\url{https://github.com/DigitalPebble/storm-crawler}}, 
-``A Text Classification API in Java originally developed by DigitalPebble Ltd. The
-API is independent from the ML implementations used and can be used as a front
-end to various ML algorithms" ~\cite{storm-crawler}; (b) the StormCV application, 
+``A text classification API in Java originally developed by DigitalPebble Ltd.
+The API is independent from the ML implementations and can be used as a front
+end to various ML algorithms''~\cite{storm-crawler}; (b) the StormCV application, 
 %\footnote{\url{https://github.com/sensorstorm/StormCV}} 
 ``StormCV
 enables the use of Apache Storm for video processing by adding computer vision
 (CV) specific operations and data model; the platform enables the development of
-distributed video processing pipelines which can be deployed on Storm clusters" ~\cite{stormCV}.
+distributed video processing pipelines which can be deployed on Storm clusters"~\cite{stormCV}.
 
 %\begin{itemize}
 %\item elaborate on the case-study partner
@@ -105,6 +105,6 @@ distributed video processing pipelines which can be deployed on Storm clusters" 
 Third, finally, as part of the OSTIA extension recapped in this manuscript, we applied formal verification approaches using the
 Zot~\cite{zot}
 %\footnote{\url{https://github.com/fm-polimi/zot}} 
-LTL model-checker following an approach tailored from previous work \cite{icsoft,BRS15}.
+model-checker following an approach tailored from previous work \cite{icsoft,BRS15}.
 
 %\comment{this section need a bit of refactoring it's not focused enough}
