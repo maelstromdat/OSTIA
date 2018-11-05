@@ -11,7 +11,7 @@
 %% \item OSTIA explanation of use and simple usage scenario
 %% \item OSTIA explanation of use and simple usage scenario of continuous architecting
 %% \end{itemize}
-This section outlines OSTIA starting form a brief recap of the technology it is currently designed to support. Further on, the section introduces how OSTIA was designed to support continuous architecting, using the case of streaming topologies in Storm as a running example. Finally, the section outlines an example meta-model for Storm that captures all restrictions and rules (e.g., for configuration, topology, dependence, messaging, etc.) in the framework. OSTIA uses this and similar meta-models as a reference every time the application is run to recover and analyse operational topologies.
+This section outlines OSTIA starting form a brief recap of the technology it is currently designed to support. Further on, the section introduces how OSTIA was designed to support design-time analysis and continuous improvement of data-intensive applications, using the case of streaming topologies in Storm as a running example. Finally, the section outlines an example meta-model for Storm that captures all restrictions and rules (e.g., for configuration, topology, dependence, messaging, etc.) in the framework. OSTIA uses this and similar meta-models as a reference every time the application is run to recover and analyse operational topologies.
 
 \subsection{OSTIA Tool Architecture}
 
@@ -21,9 +21,9 @@ topology is retrieved by OSTIA via static analysis of the source code. OSTIA
 generates a simple intermediate format to be used by other algorithmic
 processes.
 
-OSTIA is architected in a way that algorithmic analysis, such as anti-pattern
-analyses, can be easily added. These analyses use the information resides in the
-intermediate format and provide added value analyses for continuous architecting. Since the information in the intermediate format only rely
+OSTIA is architected in a way that additional algorithmic analyses similar to our anti-pattern
+analyses can be easily added. These analyses use the information resides in the
+intermediate format and provide added value analyses for design-time analysis and verification. Since the information in the intermediate format only rely
 on the logical code analysis, the algorithmic analyses require some
 information regarding the running topology, such as end to end latency and
 throughput.
@@ -40,7 +40,7 @@ runtime monitoring of the topology on real deployment cluster. These provide
 appropriate and rich information for refactoring the initial architecture and
 enabling performance-driven DevOps \cite{brunnert2015performance}.
 Finally, OSTIA allows users to export the topology in different formats
-(e.g. JSON) to analyse and continuously improve the topology with other tools, e.g., by means of formal verification.
+(specifically, JSON, Dot, CSV, and XMI) to analyse and continuously improve the topology with other tools --- in the scope of this paper we focus on verification \emph{by-design} featuring formal verification.
 
 %%%\subsection{A Concrete Example: The Storm Architecture}
 %%%
