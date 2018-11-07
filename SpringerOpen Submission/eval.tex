@@ -90,7 +90,7 @@ reasoning.
 %\comment{for example? elaborate more on this. the reviewers will likely say its vague...}
 
 %Besides this pattern-based evaluation and assessment, OSTIA algorithmic analyses\todoMB{}{Non mi è chiaro quali siano le analisi oltre ai pattern...}
-assisted our client in understanding that the topological structure of the
+OSTIA assisted our client in understanding that the topological structure of the
 SocialSensor app would be better fit for batch processing rather than streaming,
 since the partner observed autonomously that too many database-output spouts and
 bolts were used in their versions of the SocialSensor topologies. In so doing,
@@ -109,7 +109,7 @@ framework for batch processing.
 		\end{center}
 \end{figure}
 
-As a followup of our analysis, our partner is refactoring his own high-level software architecture adopting a lambda-like software architecture style \cite{lambda} (see Fig. \ref{atc}) which includes the Social-Sensor App (Top of Fig. \ref{atc}) as well as several additional computation components. In summary, the refactoring resulting from OSTIA-based analysis equated to deferring part of the computations originally intended in the expander bolt part of the Storm topology within the Social Sensor app to additional ad-hoc Hadoop Map Reduce jobs with similar purpose (e.g., the EntityExtractor compute node in Fig. \ref{atc}) and intents but batched out of the topological processing in Storm (see Fig. \ref{atc})\footnote{several other overburdened topological elements were refactored but were omitted here due to industrial secrecy}. 
+As a followup of our analysis, our partner is refactoring his own high-level software architecture adopting a lambda-like software architecture style \cite{lambda} (see Fig. \ref{atc}) which includes the Social-Sensor App (Top of Fig. \ref{atc}) as well as several additional computation components. In summary, the refactoring resulting from OSTIA-based analysis equated to deferring part of the computations originally intended in the expander bolt [***part of the Storm topology***] within the Social Sensor app to additional ad-hoc Hadoop Map Reduce jobs with similar purpose (e.g., the EntityExtractor compute node in Fig. \ref{atc}) and intents but batched out of the topological processing in Storm (see Fig. \ref{atc})\footnote{several other overburdened topological elements were refactored but were omitted here due to industrial secrecy}. 
 
 Our qualitative evaluation of the refactored architecture by means of several interviews and workshops revealed very encouraging results. 
 %However, we are yet to quantitatively evaluate whether the new software architecture actually reflects a tangible boost in terms of performance and scalability.\todoMB{}{Azz...pesante questa...}

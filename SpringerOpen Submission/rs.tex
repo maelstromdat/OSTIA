@@ -11,22 +11,56 @@
 %% \item OSTIA explanation of use and simple usage scenario
 %% \item OSTIA explanation of use and simple usage scenario of continuous architecting
 %% \end{itemize}
-This section outlines OSTIA starting form a brief recap of the technology it is currently designed to support. Further on, the section introduces how OSTIA was designed to support design-time analysis and continuous improvement of data-intensive applications, using the case of streaming topologies in Storm as a running example. Finally, the section outlines an example meta-model for Storm that captures all restrictions and rules (e.g., for configuration, topology, dependence, messaging, etc.) in the framework. OSTIA uses this and similar meta-models as a reference every time the application is run to recover and analyse operational topologies.
+%This section outlines OSTIA starting form a brief recap of the technology it is currently designed to support. Further on, 
+This section introduces how OSTIA was designed to support design-time analysis and continuous improvement of data-intensive applications, using the Storm framework as a running example.
+For this reason, a brief recap of Storm is given to understand the rationale behind OSTIA.
+%Finally, the section outlines an example meta-model for Storm that captures all restrictions and rules (e.g., for configuration, topology, dependence, messaging, etc.) in the framework. OSTIA uses this and similar meta-models as a reference every time the application is run to recover and analyse operational topologies.
+
+\subsection{A Concrete Example: The Storm Architecture}
+
+Storm is a technology developed at Twitter \cite{toshniwal2014storm} in order to
+face the problem of processing of streaming of data. It is defined as a
+distributed processing framework which is able to analyse streams of data. A Storm topology is a DAG composed by nodes of two types: spouts and bolts. The former type includes nodes that process the data entering the topology, for instance
+querying APIs or retrieve information from a message broker, such as Apache
+Kafka\footnote{\url{http://kafka.apache.org/}}. The latter executes operations on data, such as filtering or serialising.
+
+
+
+%%%OSTIA was designed to retrieve and analyse big data topologies, allowing their refactoring in a way which is consistent with framework restrictions, rules and regulations part of the Storm framework. To do so, OSTIA uses a meta-model for the Storm framework which acts as an operational image of all said restrictions and rules that OSTIA needs to maintain. 
+%%%Essentially OSTIA uses the meta-model as such an operational image for Storm, for two purposes: (a) checking that Storm restrictions (e.g., Spouts initiate the topology) and constraints (e.g., grouping policies) are valid on models recovered by OSTIA; (b) keep checking said restrictions and constraints during continuous architecting. \todoMB{}{Chiarire.}
+%%%To give a hint of the complexity of the technology, we outline the meta-model in Fig. \ref{stormmm}. where, for example, the grouping restrictions that Storm envisions are captured in an enumeration of constraints (see the $<<$Grouping$>>$ element or the $<<$ReplicationFactor$>>$ concrete parameter). Key elements of the meta-model are the following:
+%%%\begin{itemize}
+%%%\item $<<$TopologyConfiguration$>>$ contains the parameters necessary for the Storm framework to be configured and to run on the selected infrastructure. OSTIA checks that these parameters are present or that defaults are correctly inplace;\todoMB{}{In che senso?}
+%%%\item $<<$Topology$>>$ specifies the topological construct being elicited for the analysed Storm application, as composed of the $<<$Bolt$>>$ and  the $<<$Spout$>>$ meta-elements;
+%%%\item  $<<$Grouping$>>$ contains restrictions on the possible groupings of the $<<$Bolt$>>$ and the $<<$Spout$>>$ meta-elements within the elicited topology. OSTIA checks these restrictions upon recovery and exporting of topologies;\todoMB{}{In che senso?}
+%%%\end{itemize}
+%%%
+%%%\begin{figure*}
+%%%\centering
+%%%%	\begin{sideways}
+%%%		\includegraphics[width=16cm]{images/Stormmm}
+%%%%	\end{sideways}
+%%%	\caption{The Storm Meta-Model, an overview.}
+%%%		\label{stormmm}
+%%%\end{figure*}
+%%%
+%%%A complete overview of the details of this meta-model and the restrictions captured therein is beyond the scope of this paper - rather, the entire purpose of OSTIA is to hide their complexity: for example, notice the \emph{TopologyConfiguration} meta-class, where we deliberately selected 22 (about 10\% of the entire set) of parameters possibly configurable for running Storm topologies. Further detail on the Storm meta-model may be found on the full technical report describing our technology\footnote{\url{http://dice-h2020.eu/deliverables/D2.1}}.
+
 
 \subsection{OSTIA Tool Architecture}
 
 The overall architecture of OSTIA is depicted in
 Figure \ref{archostia}. The logical architectural information of the
 topology is retrieved by OSTIA via static analysis of the source code. OSTIA
-generates a simple intermediate format to be used by other algorithmic
+generates a simple intermediate format to be used afterwards by other algorithmic
 processes.
 
-OSTIA is architected in a way that additional algorithmic analyses similar to our anti-pattern
-analyses can be easily added. These analyses use the information resides in the
-intermediate format and provide added value analyses for design-time analysis and verification. Since the information in the intermediate format only rely
-on the logical code analysis, the algorithmic analyses require some
-information regarding the running topology, such as end to end latency and
-throughput.
+OSTIA is indeed architected in a way that additional algorithmic analyses similar to our anti-pattern
+analyses can be easily added. These functionalities are carried out with the information that resides in the
+intermediate format and provide added value for the design-time analysis and verification. Since the information in the intermediate format only rely
+on the logical code analysis, the algorithmic analyses require some additional
+information regarding the running topology, such as, for instance, the end to end latency and
+throughput of the topology or the mean duration of the computation carried out by the computational nodes when they process a unit of data.
 
 \begin{figure}[H]
 	\begin{center}
