@@ -16,12 +16,13 @@ Apache Spark~\cite{spark}
 or Apache Hadoop~\cite{hadoop}) typically involved in design and development of big data applications
 %\footnote{\url{https://hadoop.apache.org/}} 
 and complexities in large-scale architectures. %and their governance within networked organizations.
-\todoMB{}{Aggiunto un ``and'' per chiudere la frase (c'era gia').}
+%\todoMB{}{Aggiunto un ``and'' per chiudere la frase (c'era gia').}
 
 A key complexity of the above design and development activity lies in quickly and continuously refining the configuration parameters of the middleware and service platforms on top of which the DIA is running \cite{wicsabd}. The process in question is especially complex as the number of middleware involved in DIAs design increases; the more middleware are involved the more parameters need co--evaluation (e.g., latency or beaconing times, caching policies, queue retention and more) - \emph{fine-tuning these ``knobs" on so many concurrent technologies requires an automated tool to speed up this heavily manual, trial-and-error continuous fine-tuning process}.
 
 We argue that a primary entry-point for such fine-tuning is the DIA's graph of operations along with the configurations that the graph is decorated with, for execution. 
-This is possible when the adopted framework decomposes the computation in term of concurrent operations on data that are subject to a specific precedence relation.\todoMB{}{Aggiunto commento.}
+This is possible when the adopted framework decomposes the computation in term of concurrent operations on data that are subject to a specific precedence relation.
+%\todoMB{}{Aggiunto commento.}
 On one hand, the graph in question is a DAG --- a Directed Acyclic Graph representing the cascade of operations to be applied on data in a batch (i.e., slicing the data and analysing one partition at the time with the same operations) or stream (i.e., continuous data analysis) processing fashion. On the other hand, the application graph can either be known to the designer or it can be directly extracted from DIA code. This second scenario is where our research solution comes in.
 %
 %Effectiveness, in big data terms, means that the architecture as well as the architecting processes and tools are able to support design, deployment, operation, refactoring and subsequent (re-)deployment of architectures continuously and consistently with runtime restrictions imposed by big data development frameworks. 
@@ -42,7 +43,8 @@ The verification approach is lightweight and it is carried out in a completely t
 %in at least five scenarios: (a) realising an exportable visual representation of the developed topologies; (b) verifying, the structural constraints on topologies that would only become evident during infrastructure setup or runtime operation; (c) verifying the topologies against anti-patterns \cite{patternoriented2000} that may lower performance and limit deployability/executability; (d) manipulate said topologies to elicit non-obvious structural properties such as linearisation or cascading; (e) finally, use topologies for
 %In an effort to offer said support in a DevOps fashion, OSTIA was engineered to act as an architecture recovery mechanism that closes the feedback loop between operational data architectures (Ops phase) and their refactoring phase (Dev phase). As previously stated, currently, OSTIA focuses on Apache Hadoop and Apache Storm, i.e., the most famous and established real-time batch and stream processing engines \cite{storm, toshniwal2014storm}, respectively. 
 
-This paper outlines OSTIA, elaborating on the major usage scenario above, its benefits, and limitations. Also, we evaluate OSTIA using case-study research to conclude that OSTIA does in fact provide valuable insights for refactoring of big data architectures.\todoMB{}{Ho tolto il rifermento al continuos architecting e alle applicazioni stream-based. Meglio rimanere generici.}
+This paper outlines OSTIA, elaborating on the major usage scenario above, its benefits, and limitations. Also, we evaluate OSTIA using case-study research to conclude that OSTIA does in fact provide valuable insights for refactoring of big data architectures.
+%\todoMB{}{Ho tolto il rifermento al continuos architecting e alle applicazioni stream-based. Meglio rimanere generici.}
 Although a previous version of this paper was published in the proceedings of WICSA 2015 \cite{wicsabd}, we introduce the following novel contributions:
 \begin{itemize}
 \item we extended OSTIA to address Apache Hadoop data-intensive applications and re-executed the evaluation in line with this addition;
