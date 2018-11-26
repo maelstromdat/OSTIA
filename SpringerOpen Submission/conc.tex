@@ -1,7 +1,7 @@
 %Applications that make heavy use of big data application frameworks require intensive reasoning of the system architecture. 
 %We set out to assist the design-time formal verification of big data designs by 
 
-This paper proposes a methodology allowing designers and developers to perform analysis of big-data applications by means of code analysis and formal verification techniques.
+This paper proposes an approach allowing designers and developers to perform analysis of big-data applications by means of code analysis and formal verification techniques.
 OSTIA provides support to both in the following sense:
 %It provides automated constraint verification in order to identify design anti-patterns and provide structural refactorings. 
 it helps designers and developers by recovering the architectural topology on-the-fly from the application code and by assisting them in: 
@@ -10,11 +10,12 @@ it helps designers and developers by recovering the architectural topology on-th
 (c) Finally, OSTIA allows designers to check whether the recovered topologies contain occurrences of key anti-patterns. By running a case-study with partner organizations, we observed that OSTIA assists designers and developers in establishing and continuously improving the quality of topologies behind their big data applications. 
 %We confirmed this result running OSTIA on several open-source applications featuring streaming technologies.  % \url{https://github.com/maelstromdat/OSTIA}. 
 
-OSTIA can be easily extended to provide support for other data-intensive application frameworks as it is general in the approach and modular with respect to the definition of anti-patterns and formal analysis means to be adopted.
-For this reason, we believe that OSTIA can be considered as a reference in the development of data-intensive applications because it is able to guide designers in the structural refactoring of the application logic.
+OSTIA can be easily extended to provide more refined tools for the analysis of data-intensive applications as it is general in the approach and modular with respect to the definition of (i) the anti-patterns to be considered and (ii) the formal analysis approaches and the application modeling to be adopted.
+For this reason, in addition to the practical evidence observed,  we believe that OSTIA can be considered as a reference point in the development of data-intensive applications.
 This motivates us to further elaborate the anti-patterns, 
 %that may emerge across big data topologies 
-exploiting graphs analysis techniques inherited from social-networks analysis. Also, we plan to expand OSTIA to support technologies beyond the most common application framework for streaming. %, i.e., Storm. Finally, we plan to further evaluate OSTIA using empirical evaluation.
+exploiting graphs analysis techniques inherited from social-networks analysis. Also, we plan to expand OSTIA to support technologies beyond the most common application framework for streaming %, i.e., Storm. 
+and, finally, to further evaluate OSTIA using empirical evaluation.
 
 %{\small\subsubsection*{Acknowledgment} The Authors' work is partially supported by the European Commission grant no. 644869 (EU H2020), DICE.}
 
