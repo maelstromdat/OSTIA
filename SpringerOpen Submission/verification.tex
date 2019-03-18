@@ -122,4 +122,71 @@ Currently, the verification tool accepts %as configuration format
 a JSON file containing all the configuration parameters.
 OSTIA supports such format and is able to extract from static code analysis a partial set of features, and an almost complete set of parameters after monitoring a short run of the system. The user can complete the JSON file by adding some verification-specific settings.
 
+{\color{blue}
+\subsection{JSON format for verification.}
+Listing~\ref{lst:json-format} shows an excerpt of a JSON script describing a topology including two spouts, called $\mathtt{S}_1$ and $\mathtt{S}_2$, and three bolts, called called $\mathtt{B}_1$, $\mathtt{S}_2$ and $\mathtt{S}_3$.
+Spouts and bolts are modeled by means of a number of parameters that represent an abstraction of their (non-functional) behavior at runtime.
+The JSON format is a readable means that captures all the needed information,  required to run the verification, that are classified into three distinct groups.
+A list of the main ones is included hereafter.
+\begin{itemize}
+	\item Topology-related settings:
+	\begin{itemize}
+		\item list of spouts:
+		\begin{itemize}
+			\item \texttt{emit\_rate}: spout average tuple emitting rate.
+		\end{itemize}
+		\item list of bolts:
+		\begin{itemize}
+			\item \texttt{subs}: the list of all the nodes in the topology that send tuple to the bolt.
+			\item \texttt{parallelism}: level of parallelism chosen for the bolt. This value can be extracted from the code implementing Storm topology or set at design time.
+			\item \texttt{alpha}: average processing time for the single tuple.
+			\item \texttt{sigma}: ration between number of output tuples and number of input tuples. This value is an abstraction of the functionality carried out by the bolt: values smaller than one model filtering functions whereas value greater than one model other generic function on input tuples.
+			%\item \texttt{min\_ttf}: minimum time to failure
+		\end{itemize}
+		\item structure of the topology, expressed through the combination of the subscription lists (``\texttt{subs''}) of all the bolts composing the topology.
+		\item \texttt{queue\_threshold}: the maximum level of occupancy that should not be exceeded by any queue. This value is extracted from the code implementing Storm topology or set at design time.
+		\item \texttt{max\_idle\_time}: the maximum time for a bolt to be inactive.
+	\end{itemize}
+	\item Verification-related settings: the information in this section does not model the topology itself but actually relates to the analysis that is run on the topology. 
+	\begin{itemize}
+		\item \texttt{num\_steps}: being the verification engine implemented according to the bounded model-checking approach, the value specifies the number of discrete time instants to be explored in the verification phase.
+		\item \texttt{periodic\_queues}: the list of bolts whose queue size is analyzed. The verification procedure determines the existence of a system execution that leads to and increasing queue size for the bolts specified in the list.	
+		\item \texttt{plugin}: underlying model-checker to be used.
+	\end{itemize}
+\end{itemize}
 
+\begin{lstlisting}[basicstyle=\normalfont\ttfamily\small,tabsize=12,caption=Example JSON file describing a simple topology. Dots are used for the sake of clarity and conciseness and numbers are casual.]
+{
+"app_name": "Simple Topology",
+"description": "",
+"version": "0.1",
+"topology":{
+	"spouts":[
+	            {"id":"S1",
+	            "avg_emit_rate":2.0},
+	            {"id":"S2",
+	            "avg_emit_rate":1.0}
+	         ],
+	"bolts":[
+	            {"id": "B1",
+	            ...},
+	            {"id": "B2",
+	            "subs": ["S1", "S2"],
+	            "alpha": 5.0,
+	            "sigma": 0.5,
+	            "min_ttf": 1000,
+	            "parallelism": 10},
+	            {"id": "B3",
+	            ...}
+	        ],
+	"max_idle_time": 0.01,
+	"queue_threshold": 2000
+},
+"verification_params":{
+            "plugin" : ...,
+            "max_time" :  ...,
+            "num_steps": ...,
+            "periodic_queues":["B1"]}
+}
+\end{lstlisting}\label{lst:json-format}
+}

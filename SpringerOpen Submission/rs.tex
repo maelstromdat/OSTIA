@@ -124,3 +124,46 @@ Finally, OSTIA allows users to export the topology in different formats
 %%%to limit the time spent by the system in each state (or processing phase) and to elaborate the concept of \textit{rate}, intended as ``number of times an event is occurring every time unit''.
 %%%The formal modeling (see Section \ref{ver}) is based on real-time temporal logic, i.e., the topology behavior is defined through a temporal logic formula written in Constraint LTL over clocks (CLTLoc)~\cite{BRS15}.
 
+{\color{blue}
+\subsection{OSTIA Methodology}
+\label{sec:methodology}
+The OSTIA Methodology effectively combines two successful approaches commonly adopted software development. 
+The first one is DevOps and the second one is Model-Driven Engineering.
+OSTIA can be adopted by both the Developers and Operators parts of the DevOps cycle that, together, contribute to the iterative developments cycle of software; and, in addition, it can be used to effectively enforce the model refinement that enables the shift from high-level abstract models to low-level refined ones.
+
+OSTIA takes part in the design process at the level of Developers as follows.
+Designers of applications can use OSTIA to model their application by means of an abstract modeling language, based on UML. 
+The language allows them to design the application in terms of suitable abstraction that model the computational nodes of the application and the data sources providing input data.
+Based on the adopted technology, that will be used for the implementation of the final artifact, the language offers suitable stereotypes modeling the relevant technology-dependent features and that enable the analysis of the application design by means of the OSTIA verification tool.
+This work focuses on two specific technologies and, therefore, the UML abstractions are only limited to those required to model Apache Storm applications and Hadoop applications.
+Moreover, on the Developers side, the designers can use OSTIA to iteratively refine the model of their application by running the automatic analysis on different application models, that are possibly instantiated with different parameter values (e.g., the number of workers in a node running a certain functionality of the Storm topology).
+
+On the other hand, OSTIA  also participates to the DevOps cycle in the Operators side because it offers post-design analysis features.
+OSTIA, in fact, can be adopted by operators for the elicitation of the application architecture from its source code.
+In particular, a number of structural anti-pattern has been identified in this work as potential threats that might affect the performance of the application and even its correct behavior at runtime.
+OSTIA implements basic yet useful functionalities for static code analysis that can be used by designers and operators to discover possibly structural issues.
+The result of the analysis that OSTIA provides at this level is the application topology and the parts of the application that are likely to be a potential threat for the entire application. 
+Combining the application topology with runtime information, that can be collected by standard monitoring framework, the designers can actually enforce a refinement iteration on their design, in addition to the one performed at design time, that is based on realistic information coming from the real deployment of the application.
+This step might turn out in a refactoring of the deployed design into a new refined solution that, in turn, can be verified with the OSTIA verification tool, deployed and later analyzed with the same OSTIA functionalities.
+Figure~\ref{fig:iterative-refinement} shows the refinement loop which is enabled by OSTIA.
+\begin{figure}
+	\centering
+	\includegraphics[scale=0.35]{./images/refinementMethodology.pdf}
+	\caption{Iterative refinement support by OSTIA.}
+	\label{fig:iterative-refinement}
+\end{figure}
+
+To make the OSTIA methodology a practice, the following activities reflected into an OSTIA tool.
+\begin{itemize}
+	\item \textbf{Architecture elicitation} - the static analysis of the source code of the application extracts its topology and made it available for later analysis.
+	\item \textbf{Structural anti-pattern identification} - standard algorithms for graph analysis identify specific structures in the application topology that might lead to undesired behaviors.
+	\item \textbf{Formal analysis} - model-checking of the annotated model of the application verifies the existence of executions that might burden the application runtime with an excessive workload.
+\end{itemize}
+
+\noindent
+The previous tools can be used in the following scenarios.
+\begin{itemize}
+	\item \textbf{Architecture analysis}. a development team implements an application that has to satisfy certain requirements at runtime. OSTIA can be used to refine the application model before the implementation phase.
+	\item \textbf{DevOps} - 
+\end{itemize}
+}
