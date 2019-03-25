@@ -49,6 +49,8 @@ Kafka\footnote{\url{http://kafka.apache.org/}}. The latter executes operations o
 
 \subsection{OSTIA Tool Architecture}
 
+\subsubsection{Architecture Overview}
+
 The overall architecture of OSTIA is depicted in
 Figure \ref{archostia}. The logical architectural information of the
 topology is retrieved by OSTIA via static analysis of the source code. OSTIA
@@ -76,6 +78,14 @@ enabling performance-driven DevOps \cite{brunnert2015performance}.
 Finally, OSTIA allows users to export the topology in different formats
 (specifically, JSON, Dot, CSV, and XMI) to analyse and continuously improve the topology with other tools --- in the scope of this paper we focus on verification \emph{by-design} featuring formal verification.
 
+{\color{blue}
+\subsubsection{Architecture Properties and Extensibility}
+
+The architectural design of the OSTIA tool was incepted using a modular model-driven architecture \cite{mda} in mind. More specifically, the tool provides a platform-independent and topology-based analysis module which elicits topologies from data-intensive applications using an technology-agnostic format based on the ``.Dot" notation, a well-known standard graph-representation format. On top of this analysis module, the architecture provides a design and analysis module which outputs a visualization of the graph-formatted input. Finally, the tool provides a pattern-analysis module with graph-analysis and pattern-mining functions; one function per pattern is used in this module. Finally, the tool provides a software-verification interlay relying on third-party tools from previous and related work as outlined in sec. \ref{verification}.
+
+From an extensibility perspective, the architecture provides a basis template commented within the source-code as a basic format to be used to extend each module; in principle, extending designers need to simply ``instantiate" this template within the module and recall the extension from the visualization layer to warrant for OSTIA extensibility.
+
+}
 %%%\subsection{A Concrete Example: The Storm Architecture}
 %%%
 %%%Storm is a technology developed at Twitter \cite{toshniwal2014storm} in order to

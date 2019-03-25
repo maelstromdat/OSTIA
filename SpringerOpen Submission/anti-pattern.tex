@@ -202,10 +202,14 @@ The computational funnel is shown in Fig. \ref{fig:funnel}. A computational funn
 
 \subsection{DOT format for topology elicitation.}
 
+{\color{blue}
+As previously stated, the OSTIA tool is rigged to elicit and represent Big Data topologies using the ``*.dot" format; the format in question is a de-facto and de-iure graph description language. DOT graphs are typically files with the file extension gv or dot. Paraphrasing from Wikipedia, \emph{``Various programs can process DOT files. Some, such as dot, neato, twopi, circo, fdp, and sfdp, can read a DOT file and render it in graphical form. Others, such as gvpr, gc, acyclic, ccomps, sccmap, and tred, read DOT files and perform calculations on the represented graph. Finally, others, such as lefty, dotty, and grappa, provide an interactive interface [...]"}. 
 
+OSTIA uses the same approach as the aforementioned tools and instatiates the same design-patterns employed by the tools in question to enact formal-verification of data-intensive topologies.
+}
 %
 %\comment{PJ: Should we put this section into a separate section? I feel it is disconnected to the content of this section.}
-\subsection{OSTIA-Based Formal Verification}\label{ver}
+\subsection{OSTIA-Based Formal Verification}\label{ver}\label{verification}
 \input{macros}
 
 This section describes the formal modelling and verification employed in OSTIA. Our assumption for DIA refactoring is that architects eliciting and studying their topologies by means of OSTIA may want to continuously and incrementally improve it based on results from solid verification approaches. The approach, which was first proposed in \cite{MBER16}, relies on \textit{satisfiability checking}~\cite{MPS13}, an alternative approach to model-checking where, instead of an operational model (like automata or transition systems), the system (i.e., a topology in this context) is specified by a formula defining its executions over time and properties are verified by proving that the system logically entails them.
