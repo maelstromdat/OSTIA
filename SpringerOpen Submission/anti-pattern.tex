@@ -204,7 +204,14 @@ The computational funnel is shown in Fig. \ref{fig:funnel}. A computational funn
 
 {\color{blue}
 As previously stated, the OSTIA tool is rigged to elicit and represent Big Data topologies using the ``*.dot" format; the format in question is a de-facto and de-iure graph description language. DOT graphs are typically files with the file extension gv or dot. Paraphrasing from Wikipedia, \emph{``Various programs can process DOT files. Some, such as dot, neato, twopi, circo, fdp, and sfdp, can read a DOT file and render it in graphical form. Others, such as gvpr, gc, acyclic, ccomps, sccmap, and tred, read DOT files and perform calculations on the represented graph. Finally, others, such as lefty, dotty, and grappa, provide an interactive interface [...]"}. 
+A small excerpt of DOT code describing a graph with 4 nodes is the following:
 
+\begin{lstlisting}[basicstyle=\normalfont\ttfamily\small,tabsize=12,caption=DOT script describing an undirected graph N with four nodes.]
+  graph N {
+  	n1 -- n2 -- n3;
+ 	n2 -- n4;
+  } 
+\end{lstlisting}
 OSTIA uses the same approach as the aforementioned tools and instatiates the same design-patterns employed by the tools in question to enact formal-verification of data-intensive topologies.
 }
 %
