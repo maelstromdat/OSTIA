@@ -143,7 +143,7 @@ A list of the main ones is included hereafter.
 			\item \texttt{sigma}: ration between number of output tuples and number of input tuples. This value is an abstraction of the functionality carried out by the bolt: values smaller than one model filtering functions whereas value greater than one model other generic function on input tuples.
 			%\item \texttt{min\_ttf}: minimum time to failure
 		\end{itemize}
-		\item structure of the topology, expressed through the combination of the subscription lists (``\texttt{subs''}) of all the bolts composing the topology.
+		\item structure of the topology, expressed through the combination of the subscription lists (``\texttt{subs}'') of all the bolts composing the topology.
 		\item \texttt{queue\_threshold}: the maximum level of occupancy that should not be exceeded by any queue. This value is extracted from the code implementing Storm topology or set at design time.
 		\item \texttt{max\_idle\_time}: the maximum time for a bolt to be inactive.
 	\end{itemize}
@@ -155,12 +155,12 @@ A list of the main ones is included hereafter.
 	\end{itemize}
 \end{itemize}
 
-\begin{lstlisting}[basicstyle=\normalfont\ttfamily\small,tabsize=12,caption=Example JSON file describing a simple topology. Dots are used for the sake of clarity and conciseness and numbers are casual.]
+\begin{lstlisting}[basicstyle=\normalfont\ttfamily\small,tabsize=12,caption=JSON script describing a simple topology. Dots are used as abbreviations.]
 {
-"app_name": "Simple Topology",
-"description": "",
-"version": "0.1",
-"topology":{
+ "app_name": "Simple Topology",
+ "description": "",
+ "version": "0.1",
+ "topology":{
 	"spouts":[
 	            {"id":"S1",
 	            "avg_emit_rate":2.0},
@@ -181,12 +181,12 @@ A list of the main ones is included hereafter.
 	        ],
 	"max_idle_time": 0.01,
 	"queue_threshold": 2000
-},
-"verification_params":{
+ },
+ "verification_params":{
             "plugin" : ...,
             "max_time" :  ...,
             "num_steps": ...,
             "periodic_queues":["B1"]}
-}
+ }
 \end{lstlisting}\label{lst:json-format}
 }
