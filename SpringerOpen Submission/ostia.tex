@@ -175,33 +175,1271 @@ As an aid to designers and developers, we developed OSTIA (Ordinary Static Topol
 
 \section{Introduction}
 \label{intro}
-\input{intro}
+%\input{intro}
+
+%%\begin{itemize}
+%%\item I would follow the path of the abstract, we should probably provide some numbers and info on storm
+%%\item mind you we should stress on the innovative aspects of the paper and tech. there is nothing strictly related to it
+%%\item we should comment on what could be done with OSTIA in combination with Eclipse Based tech.
+%%\end{itemize}
+%%%Big data architectures have been gaining momentum in the last few years. For example, Twitter uses complex Stream topologies featuring frameworks like Storm to analyse and learn trending topics from billions of tweets per minute. However, verifying the consistency of said topologies often requires de- ployment on multi-node clusters and can be expensive as well as time consuming. As an aid to designers and developers evaluating their Stream topologies at design-time, we developed OSTIA, that is, ?On-the-fly Storm Topology Inference Analysis?. OSTIA allows reverse-engineering of Storm topologies so that designers and developers may: (a) use previously existing model- driven verification&validation techniques on elicited models; (b) visualise and evaluate elicited models against consistency checks that would only be available at deployment and run-time. We illustrate the uses and benefits of OSTIA on three real-life industrial case studies.
+%%%%%%
+%%%%%% intro needs a bit of refinement with what we say in the title and a few more definitions should be included (e.g., about streaming and what it represents or why topologies ?are? the Big Data architecture)? Perhaps we should also increase the stress and focus on Quality and deployability aspects (i.e., the main topics of next year?s QoSA) in the intro, and how OSTIA aids at improving these aspects
+
+Big data or \emph{data-intensive} applications (DIAs) process large amounts of data for the purpose of gaining key business intelligence through complex analytics using machine-learning techniques \cite{bdsurvey,ml4bd}. These applications are receiving increased attention in the last years given their ability to yield competitive advantage by direct investigation of user needs and trends hidden in the enormous quantities of data produced daily by the average Internet user. According to Gartner~\cite{gartner} %\footnote{\url{http://www.gartner.com/newsroom/id/2637615}} 
+business intelligence and analytics applications will remain a top focus for Chief-Information Officers (CIOs) of most Fortune 500 companies until at least 2019-2021.
+However, the cost of ownership of the systems that process big data analytics are high due to infrastructure costs, steep learning curves for the different frameworks (such as Apache Storm~\cite{storm},
+%\footnote{\url{http://storm.apache.org/}}, 
+Apache Spark~\cite{spark}
+%\footnote{\url{http://spark.apache.org/}} 
+or Apache Hadoop~\cite{hadoop}) typically involved in design and development of big data applications
+%\footnote{\url{https://hadoop.apache.org/}} 
+and complexities in large-scale architectures. %and their governance within networked organizations.
+%\todoMB{}{Aggiunto un ``and'' per chiudere la frase (c'era gia').}
+
+A key complexity of the above design and development activity lies in quickly and continuously refining the configuration parameters of the middleware and service platforms on top of which the DIA is running \cite{wicsabd}. The process in question is especially complex as the number of middleware involved in DIAs design increases; the more middleware are involved the more parameters need co--evaluation (e.g., latency or beaconing times, caching policies, queue retention and more) - \emph{fine-tuning these ``knobs" on so many concurrent technologies requires an automated tool to speed up this heavily manual, trial-and-error continuous fine-tuning process}.
+
+We argue that a primary entry-point for such fine-tuning is the DIA's graph of operations along with the configurations that the graph is decorated with, for execution. 
+This is possible when the adopted framework decomposes the computation in term of concurrent operations on data that are subject to a specific precedence relation.
+%\todoMB{}{Aggiunto commento.}
+On one hand, the graph in question is a DAG --- a Directed Acyclic Graph representing the cascade of operations to be applied on data in a batch (i.e., slicing the data and analysing one partition at the time with the same operations) or stream (i.e., continuous data analysis) processing fashion. On the other hand, the application graph can either be known to the designer or it can be directly extracted from DIA code. This second scenario is where our research solution comes in.
+%
+%Effectiveness, in big data terms, means that the architecture as well as the architecting processes and tools are able to support design, deployment, operation, refactoring and subsequent (re-)deployment of architectures continuously and consistently with runtime restrictions imposed by big data development frameworks. 
+%Storm, for example, is an Apache big data processing middleware which requires the processing elements to represent a Directed-Acyclic-Graph (DAG). In toy topologies (comprising few components), such constraints can be effectively checked manually, however, when the number of components in such architectures increases to real-life industrial scale architectures, it is enormously difficult to verify even these ``simple" structural DAG constraints.
+%\textbf{TODO: can we add an example of said consistency checks/issues?} \\
+%We argue that the above notion of architecture and architecting effectiveness can be maintained through continuous architecting of big data applications consistently with a DevOps organisational structure \cite{ossslr,devops}. 
+%
+%
+%In the big data domain, continuous architecting means supporting the continuous and incremental improvement of big data architectural designs - e.g., by changing the topological arrangement of architecture elements or any of their properties such as queue lengths - using on-the-fly analyses on running applications exploiting platform and infrastructure monitoring data. For example, the industrial parter that aided the evaluation of the results in this paper is currently facing the issue of continuously changing and re-arranging their stream processing application. Particularly, they require to change in response to: (a) types of content that need analysis (multimedia images, audios as opposed to news articles and text); (b) types of users that need recommendation (e.g., governments as opposed to single users). Changing and constantly re-arranging an application's architecture requires constant and \emph{continuous architecting} of architecture elements, their interconnection and their visible properties. Moreover, providing automated support to this continuous architecting exercise, reduces the (re-)design efforts and increases the speed of big data architectures' (re-)deployability by saving the effort of running trial-and-error experiments on expensive infrastructure.
+
+This paper illustrates and evaluates OSTIA, which stands for ``Ordinary Static Topology Inference Analysis" -- OSTIA is a tool which retrieves data-intensive topologies to allow for: (a) \emph{anti-pattern analysis} - OSTIA allows detection of known and established design anti-patterns for data-intensive applications; (b) \emph{transparent formal verification} - OSTIA transposes the recovered data-intensive topology models into equivalent formal models for the purpose of verifying temporal properties, such as basic queue-safety clauses \cite{icsoft}. 
+
+First, during its reverse-engineering step, OSTIA recovers a JSON file describing the technical structure details and configurations in the targeted topologies.
+%analyses the architecture to verify whether it is consistent with development restrictions and/or deployment constraints of the underlying development frameworks (e.g., constraints).\todoMB{}{Frase non chiara.} To do so, OSTIA hardcodes intimate knowledge on key big data processing frameworks (Apache Storm and Apache Hadoop2, in our case) and their dependency structure in the form of a meta-model \cite{mda}. This knowledge is necessary to infer from data-intensive source-code topologies are correct and correctly configured. As previously stated, currently, OSTIA focuses on Apache Hadoop and Apache Storm, i.e., the most famous and established real-time batch and stream processing engines \cite{storm, toshniwal2014storm}, respectively. 
+%
+Secondly, such representations may be used for further analysis through model verification thanks to formal verification techniques \cite{icsoft}. 
+The verification approach is lightweight and it is carried out in a completely transparent fashion to OSTIA users.
+%in at least five scenarios: (a) realising an exportable visual representation of the developed topologies; (b) verifying, the structural constraints on topologies that would only become evident during infrastructure setup or runtime operation; (c) verifying the topologies against anti-patterns \cite{patternoriented2000} that may lower performance and limit deployability/executability; (d) manipulate said topologies to elicit non-obvious structural properties such as linearisation or cascading; (e) finally, use topologies for
+%In an effort to offer said support in a DevOps fashion, OSTIA was engineered to act as an architecture recovery mechanism that closes the feedback loop between operational data architectures (Ops phase) and their refactoring phase (Dev phase). As previously stated, currently, OSTIA focuses on Apache Hadoop and Apache Storm, i.e., the most famous and established real-time batch and stream processing engines \cite{storm, toshniwal2014storm}, respectively. 
+
+This paper outlines OSTIA, elaborating on the major usage scenario above, its benefits, and limitations. Also, we evaluate OSTIA using case-study research to conclude that OSTIA does in fact provide valuable insights for refactoring of big data architectures.
+%\todoMB{}{Ho tolto il rifermento al continuos architecting e alle applicazioni stream-based. Meglio rimanere generici.}
+Although a previous version of this paper was published in the proceedings of WICSA 2015 \cite{wicsabd}, we introduce the following novel contributions:
+\begin{itemize}
+\item we extended OSTIA to address Apache Hadoop data-intensive applications and re-executed the evaluation in line with this addition;
+\item we extended OSTIA with a formal verification feature for using a formal model built via Constraint LTL over-clocks (CLTLoc)~\cite{BRS15} - an extension of the well-known Linear Temporal Logic (LTL)~\cite{ltl} with variables measuring the elapsing of time. This feature operates verification on CLTLoc specifications and is completely transparent to OSTIA users, checking autonomously for  safety of OSTIA-elicited topologies;
+%\item we extended OSTIA with 3 heuristics\todoMB{}{Non le trovo nel paper.} that expert big data practitioners in the WICSA 2015 working group panel suggested as valuable additions;
+\end{itemize}
+
+We released OSTIA as an open-source software~\cite{ostia}.
+
+The rest of the paper is structured as follows. The next section elaborates further on the notion of refactoring for DIAs. Section \ref{ra} outlines our research design and context of study. Section \ref{rs} outlines OSTIA. Section \ref{eval} evaluates OSTIA while Section \ref{disc} discusses results and evaluation outlining OSTIA limitations and threats to validity. Finally, Sections \ref{rw} and \ref{conc} report related work and conclude the paper.
+
+
 
 \section{Research Methods}
 
 \label{ra}
-\input{ra}
+%\input{ra}
+
+%\begin{itemize}
+%\item so we had a focus group to actually elaborate the aprroach
+%\item then we used explorative prototyping to elicit the initial version of the prototype and then refined that by means of case study, we could mention that we used ATC as an action-research source (this is what we are doing now internally in WP2 actually)
+%\item ...
+%\end{itemize}
+%
+%The work we elaborated in this paper is stemming from the following research question:
+%
+%\begin{center}
+%\emph{``What are the sub-optimal structural"}
+%\end{center}
+%% \comment{I would say if we connect it to the special need in DICE would makes more sense?}
+%
+%This research question emerged as part of our work within the DICE EU H2020 project~\cite{dice2020}
+%%\footnote{\url{http://www.dice-h2020.eu/}} 
+%where we evaluated our case-study owners' scenarios and found that their continuous architecting needs were: (a) focusing on the topological abstractions and surrounding architectural specifications; (b) focusing on bridging the gap between insights from Ops to (re-)work at the Dev level; (c) their needs primarily consisted in maintaining architectural consistency during refactoring.
+%In pursuit of the research question above, 
+
+From a methodological perspective, the results outlined in this paper were elaborated as follows and made concrete through the actions in Sec.~\ref{sec:antipatternextraction} and \ref{sec:researchsolutioneval}.
+
+\subsection{Extracting Anti-Patterns for Big Data Applications}\label{sec:antipatternextraction}
+
+The anti-patterns illustrated in this paper were initially elaborated within 3 structured focus-groups \cite{focusgroup} involving practitioners from a different organization in each focus-group round; subsequently, we interviewed 2 domain-expert (5+ years of experience) researchers on big data technologies as a control group. The data was analyzed with a simple card-sorting exercise. The patterns emerged from the card-sorting were confirmed/disproved with the patterns emerging from our interview-based control group; disagreement between the two groups was evaluated Inter-Rater Reliability assessment using the well-known Krippendorf Alpha coefficient \cite{content} (assessment of $K_{alpha}=0,89$). 
+%; \todoMB{}{Dam, non capsico la frase prima del punto-e-virgola}
+
+Table \ref{tabba} outlines the population we used for this part of the study. The practitioners were simply required to elaborate on the most frequent structural and anti-patterns they encountered on their DIA design and experimentation. 
+
+\begin{table}
+\caption{Focus-Groups population outline.}\label{tabba}
+\begin{tabular}{|c|c|c|c|}
+\hline 
+\textbf{Role} & \textbf{\#Participants} & \textbf{Mean Age} & \textbf{Mean Exp. With DIAs (\#months)}\tabularnewline
+\hline 
+Architect & 3 & 35,3 & 17,3\tabularnewline
+\hline 
+Developer & 4 & 27,7 & 36,2\tabularnewline
+\hline 
+Operator & 5 & 31,1 & 38,1\tabularnewline
+\hline 
+Manager & 3 & 44,2 & 18,4\tabularnewline
+\hline 
+\end{tabular}
+\end{table}
+
+The focus-group sessions were structured as follows: (a) the practitioners were presented with a data-intensive architectural design using standard UML structure and behavior representations (a component view and an activity view \cite{NittoJGST16}); (b) the practitioners were asked to identify and discuss any bottlenecks or structural limitations in the outlined designs; (c) finally, the practitioners were asked to illustrate any other anti-pattern the showcased topologies did not contain.
+%\todoMB{}{Spiegare meglio il focus-group}.
+%Following the focus-group, through self-ethnography \cite{selfeth} and brainstorming we identified the series of essential consistency checks, algorithmic evaluations as well as anti-patterns that can now be applied through OSTIA while recovering an architectural representation for Storm topologies. 
+
+%We designed OSTIA
+%%\footnote{\url{https://github.com/maelstromdat/OSTIA}} 
+%to support the incremental and iterative refinement of streaming topologies based on the incremental discovery and correction of the anti-patterns.
+%
+%\begin{figure*}
+%  \centering
+%  \includegraphics[width=12cm]{socialsensorother}
+%  \caption{A sample Storm topology (readable from left to right) using an UML object diagram in the SocialSensor App, notes identify types for nodes (i.e., Bolts or Spouts).}
+%  \label{socialsensor-topology}
+%\end{figure*}
+
+\subsection{Research Solution Evaluation}\label{sec:researchsolutioneval}
+
+OSTIA's evaluation is threefold. 
+
+First, we evaluated our solution using an industrial case-study offered by one of the industrial partners in the DICE EU H2020 Project consortium~\cite{dice2020}.
+%\footnote{\url{http://www.dice-h2020.eu/}}.  
+The
+partner in question uses open-source social-sensing software to elaborate a
+subscription-based big-data application that: (a) aggregates news assets from
+various sources (e.g., Twitter, Facebook, etc.) based on user-desired
+specifications (e.g., topic, sentiment, etc.); (b) presents and allows the
+manipulation of data. The application in question is based on the SocialSensor
+App~\cite{socialsensor}
+%\footnote{\url{https://github.com/socialsensor}} 
+%(see
+%Fig. \ref{socialsensor-topology} for a sample realised using a simple UML object diagram).  In particular, the topology in
+%Fig. \ref{socialsensor-topology} extracts data from sources and divides and arranges contents based on type (e.g., article vs. media),
+%later updating a series of databases (e.g., Redis) with these elaborations.
+%
+which features the combined
+action of three complex streaming topologies based on Apache Storm. The
+models that OSTIA elicited from this application were showcased to our
+industrial partner in a focus group aimed at establishing the value of insights
+produced as part of OSTIA-based analyses. Our qualitative assessment was based
+on questionnaires and open discussion.
+
+Second, to further confirm the validity of OSTIA analyses and support, we
+applied it on two open-source applications featuring Big-Data analytics, namely: (a) the DigitalPebble application,
+%\footnote{\url{https://github.com/DigitalPebble/storm-crawler}}, 
+``A text classification API in Java originally developed by DigitalPebble Ltd.
+The API is independent from the ML implementations and can be used as a front
+end to various ML algorithms''~\cite{storm-crawler}; (b) the StormCV application, 
+%\footnote{\url{https://github.com/sensorstorm/StormCV}} 
+``StormCV
+enables the use of Apache Storm for video processing by adding computer vision
+(CV) specific operations and data model; the platform enables the development of
+distributed video processing pipelines which can be deployed on Storm clusters"~\cite{stormCV}.
+
+%\begin{itemize}
+%\item elaborate on the case-study partner
+%\item elaborate on the case at hand for that partner
+%\item elaborate on the origin of the application and how it uses social-sensor
+%\item also, elaborate on the case by NETF which starts and stems from KILLRWEATHER
+%\item should we elaborate on something else?
+%\end{itemize}
+%\textbf{TODO: @anyone, feel free to elaborate more!!}
+Third, finally, as part of the OSTIA extension recapped in this manuscript, we applied formal verification approaches using the
+Zot~\cite{zot}
+%\footnote{\url{https://github.com/fm-polimi/zot}} 
+model-checker following an approach tailored from previous work \cite{icsoft,BRS15}.
+
+%\comment{this section need a bit of refactoring it's not focused enough}
+
 
 \section{Results: OSTIA Explained}
 \label{rs}
-\input{rs}
-\input{anti-pattern}
+%\input{rs}
+%\input{anti-pattern}
+
+
+%% \textbf{@Pooyan,Andrea: here we should probably elaborate on OSTIA's architecture and the design principles that led us to define it as such... also we might want to elaborate on its components, the structure I'm suggesting below is merely tentative but it will give us ahead start!!}
+
+%% \begin{itemize}
+%% \item add and comment the meta-model of storm and how OSTIA uses that as a reference to draw and check models which are consistent with the technology
+%% \item OSTIA Architecture
+%% \item we should probably elaborate the architecture part (or on a separate "implementation" part or paragraph) with a link to the downloadable technology - @Andrea: can we bundle it up as plugin for Eclipse? E.g., somehow using RCP?
+%% \item OSTIA Antipatterns Module
+%% \item OSTIA Visualisation Module
+%% \item OSTIA extensibility
+%% \item OSTIA explanation of use and simple usage scenario
+%% \item OSTIA explanation of use and simple usage scenario of continuous architecting
+%% \end{itemize}
+%This section outlines OSTIA starting form a brief recap of the technology it is currently designed to support. Further on, 
+This section introduces how OSTIA was designed to support design-time analysis and continuous improvement of data-intensive applications, using the Storm framework as a running example.
+For this reason, a brief recap of Storm is given to understand the rationale behind OSTIA.
+%Finally, the section outlines an example meta-model for Storm that captures all restrictions and rules (e.g., for configuration, topology, dependence, messaging, etc.) in the framework. OSTIA uses this and similar meta-models as a reference every time the application is run to recover and analyse operational topologies.
+
+\subsection{A Concrete Example: The Storm Architecture}
+
+Storm is a technology developed at Twitter \cite{toshniwal2014storm} in order to
+face the problem of processing of streaming of data. It is defined as a
+distributed processing framework which is able to analyse streams of data. A Storm topology is a DAG composed by nodes of two types: spouts and bolts. The former type includes nodes that process the data entering the topology, for instance
+querying APIs or retrieve information from a message broker, such as Apache
+Kafka\footnote{\url{http://kafka.apache.org/}}. The latter executes operations on data, such as filtering or serialising.
+
+
+
+%%%OSTIA was designed to retrieve and analyse big data topologies, allowing their refactoring in a way which is consistent with framework restrictions, rules and regulations part of the Storm framework. To do so, OSTIA uses a meta-model for the Storm framework which acts as an operational image of all said restrictions and rules that OSTIA needs to maintain. 
+%%%Essentially OSTIA uses the meta-model as such an operational image for Storm, for two purposes: (a) checking that Storm restrictions (e.g., Spouts initiate the topology) and constraints (e.g., grouping policies) are valid on models recovered by OSTIA; (b) keep checking said restrictions and constraints during continuous architecting. \todoMB{}{Chiarire.}
+%%%To give a hint of the complexity of the technology, we outline the meta-model in Fig. \ref{stormmm}. where, for example, the grouping restrictions that Storm envisions are captured in an enumeration of constraints (see the $<<$Grouping$>>$ element or the $<<$ReplicationFactor$>>$ concrete parameter). Key elements of the meta-model are the following:
+%%%\begin{itemize}
+%%%\item $<<$TopologyConfiguration$>>$ contains the parameters necessary for the Storm framework to be configured and to run on the selected infrastructure. OSTIA checks that these parameters are present or that defaults are correctly inplace;\todoMB{}{In che senso?}
+%%%\item $<<$Topology$>>$ specifies the topological construct being elicited for the analysed Storm application, as composed of the $<<$Bolt$>>$ and  the $<<$Spout$>>$ meta-elements;
+%%%\item  $<<$Grouping$>>$ contains restrictions on the possible groupings of the $<<$Bolt$>>$ and the $<<$Spout$>>$ meta-elements within the elicited topology. OSTIA checks these restrictions upon recovery and exporting of topologies;\todoMB{}{In che senso?}
+%%%\end{itemize}
+%%%
+%%%\begin{figure*}
+%%%\centering
+%%%%	\begin{sideways}
+%%%		\includegraphics[width=16cm]{Stormmm}
+%%%%	\end{sideways}
+%%%	\caption{The Storm Meta-Model, an overview.}
+%%%		\label{stormmm}
+%%%\end{figure*}
+%%%
+%%%A complete overview of the details of this meta-model and the restrictions captured therein is beyond the scope of this paper - rather, the entire purpose of OSTIA is to hide their complexity: for example, notice the \emph{TopologyConfiguration} meta-class, where we deliberately selected 22 (about 10\% of the entire set) of parameters possibly configurable for running Storm topologies. Further detail on the Storm meta-model may be found on the full technical report describing our technology\footnote{\url{http://dice-h2020.eu/deliverables/D2.1}}.
+
+
+\subsection{OSTIA Tool Architecture}
+
+\subsubsection{Architecture Overview}
+
+The overall architecture of OSTIA is depicted in
+Figure \ref{archostia}. The logical architectural information of the
+topology is retrieved by OSTIA via static analysis of the source code. OSTIA
+generates a simple intermediate format to be used afterwards by other algorithmic
+processes.
+
+OSTIA is indeed architected in a way that additional algorithmic analyses similar to our anti-pattern
+analyses can be easily added. These functionalities are carried out with the information that resides in the
+intermediate format and provide added value for the design-time analysis and verification. Since the information in the intermediate format only rely
+on the logical code analysis, the algorithmic analyses require some additional
+information regarding the running topology, such as, for instance, the end to end latency and
+throughput of the topology or the mean duration of the computation carried out by the computational nodes when they process a unit of data.
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=9cm,draft]{fig1}
+		\caption{OSTIA extensible architecture.}\label{archostia}
+	\end{center}
+\end{figure}
+
+Such information will be continuously added to the intermediate repository via
+runtime monitoring of the topology on real deployment cluster. These provide
+appropriate and rich information for refactoring the initial architecture and
+enabling performance-driven DevOps \cite{brunnert2015performance}.
+Finally, OSTIA allows users to export the topology in different formats
+(specifically, JSON, Dot, CSV, and XMI) to analyse and continuously improve the topology with other tools --- in the scope of this paper we focus on verification \emph{by-design} featuring formal verification.
+
+{\color{blue}
+\subsubsection{Architecture Properties and Extensibility}
+
+The architectural design of the OSTIA tool was incepted using a modular model-driven architecture \cite{mda} in mind. More specifically, the tool provides a platform-independent and topology-based analysis module which elicits topologies from data-intensive applications using an technology-agnostic format based on the ``.Dot" notation, a well-known standard graph-representation format. On top of this analysis module, the architecture provides a design and analysis module which outputs a visualization of the graph-formatted input. Finally, the tool provides a pattern-analysis module with graph-analysis and pattern-mining functions; one function per pattern is used in this module. Finally, the tool provides a software-verification interlay relying on third-party tools from previous and related work as outlined in sec. \ref{verification}.
+
+From an extensibility perspective, the architecture provides a basis template commented within the source-code as a basic format to be used to extend each module; in principle, extending designers need to simply ``instantiate" this template within the module and recall the extension from the visualization layer to warrant for OSTIA extensibility.
+
+}
+%%%\subsection{A Concrete Example: The Storm Architecture}
+%%%
+%%%Storm is a technology developed at Twitter \cite{toshniwal2014storm} in order to
+%%%face the problem of processing of streaming of data. It is defined as a
+%%%distributed processing framework which is able to analyse streams of data. A Storm topology is a computational graph composed by nodes of two types: spouts and bolts. The former type includes nodes that process the data entering the topology, for instance
+%%%querying APIs or retrieve information from a message broker, such as Apache
+%%%Kafka\footnote{\url{http://kafka.apache.org/}}. The latter executes operations on data, such as filtering or serialising.
+%%%
+%%%\subsubsection{Storm Framework Meta-Model}
+%%%
+%%%OSTIA was designed to retrieve and analyse big data topologies, allowing their refactoring in a way which is consistent with framework restrictions, rules and regulations part of the Storm framework. To do so, OSTIA uses a meta-model for the Storm framework which acts as an operational image of all said restrictions and rules that OSTIA needs to maintain. 
+%%%Essentially OSTIA uses the meta-model as such an operational image for Storm, for two purposes: (a) checking that Storm restrictions (e.g., Spouts initiate the topology) and constraints (e.g., grouping policies) are valid on models recovered by OSTIA; (b) keep checking said restrictions and constraints during continuous architecting. \todoMB{}{Chiarire.}
+%%%To give a hint of the complexity of the technology, we outline the meta-model in Fig. \ref{stormmm}. where, for example, the grouping restrictions that Storm envisions are captured in an enumeration of constraints (see the $<<$Grouping$>>$ element or the $<<$ReplicationFactor$>>$ concrete parameter). Key elements of the meta-model are the following:
+%%%\begin{itemize}
+%%%\item $<<$TopologyConfiguration$>>$ contains the parameters necessary for the Storm framework to be configured and to run on the selected infrastructure. OSTIA checks that these parameters are present or that defaults are correctly inplace;\todoMB{}{In che senso?}
+%%%\item $<<$Topology$>>$ specifies the topological construct being elicited for the analysed Storm application, as composed of the $<<$Bolt$>>$ and  the $<<$Spout$>>$ meta-elements;
+%%%\item  $<<$Grouping$>>$ contains restrictions on the possible groupings of the $<<$Bolt$>>$ and the $<<$Spout$>>$ meta-elements within the elicited topology. OSTIA checks these restrictions upon recovery and exporting of topologies;\todoMB{}{In che senso?}
+%%%\end{itemize}
+%%%
+%%%\begin{figure*}
+%%%\centering
+%%%%	\begin{sideways}
+%%%		\includegraphics[width=16cm]{Stormmm}
+%%%%	\end{sideways}
+%%%	\caption{The Storm Meta-Model, an overview.}
+%%%		\label{stormmm}
+%%%\end{figure*}
+%%%
+%%%A complete overview of the details of this meta-model and the restrictions captured therein is beyond the scope of this paper - rather, the entire purpose of OSTIA is to hide their complexity: for example, notice the \emph{TopologyConfiguration} meta-class, where we deliberately selected 22 (about 10\% of the entire set) of parameters possibly configurable for running Storm topologies. Further detail on the Storm meta-model may be found on the full technical report describing our technology\footnote{\url{http://dice-h2020.eu/deliverables/D2.1}}.
+%%%%\comment{a description about the verification analyses and more details about the implementations should be added here}
+%%%
+%%%\subsubsection{Storm: A Formal Interpretation}
+%%%Model-checking can serve as a means to enact continuous architecting of Storm topologies. Topologies can undergo formal verification, for example, to assess temporal properties on their execution.
+%%%This section elaborates on the role of formal verification in OSTIA and describes the necessary background, modelling assumptions and model definition behind Storm topology verification.
+%%%In particular, we provide a non-deterministic model representing Storm topologies' behavior in terms of the delay connected to bolts' processing, spout input profile and node failures. Spout input profile is measured with rates of incoming tuples into the topology.
+%%%Verification in OSTIA is intended to discover possible design errors at design time which are caused by (i) under/over estimation of timing requirements of computational nodes or (ii) possible runtime node failures.
+%%%Therefore, in this context, we are interested in verifying properties like, for instance, the existence of an execution of the topology which guarantees queue-length boundedness even if failures occur with a certain delay.
+%%%Defining the formal model, requires the comprehension of %started by understanding and capturing 
+%%%the behaviors of both spouts and bolts which, after choosing the level of abstraction of the model, allows us to abstract those behaviors accordingly, %in order 
+%%%to formalize them as finite state machines. The purpose of this activity is defining the %possible 
+%%%operations performed by nodes and their allowed orderings in a real implementation. %of such operations.
+%%%We then extend the model %by taking into account 
+%%%considering the message buffers (or queues) and the quantity of tuples that are exchanged through the topology.
+%%%In addition, %to the correct ordering of the operations, we decided to 
+%%%we introduce more specific temporal constraints %into the model, in order 
+%%%to limit the time spent by the system in each state (or processing phase) and to elaborate the concept of \textit{rate}, intended as ``number of times an event is occurring every time unit''.
+%%%The formal modeling (see Section \ref{ver}) is based on real-time temporal logic, i.e., the topology behavior is defined through a temporal logic formula written in Constraint LTL over clocks (CLTLoc)~\cite{BRS15}.
+
+{\color{blue}
+\subsection{OSTIA Methodology}
+\label{sec:methodology}
+The OSTIA Methodology effectively combines two successful approaches commonly adopted software development. 
+The first one is DevOps and the second one is Model-Driven Engineering.
+OSTIA can be adopted by both the Developers and Operators parts of the DevOps cycle that, together, contribute to the iterative developments cycle of software; and, in addition, it can be used to effectively enforce the model refinement that enables the shift from high-level abstract models to low-level refined ones.
+
+OSTIA takes part in the design process at the level of Developers as follows.
+Designers of applications can use OSTIA to model their application by means of an abstract modeling language, based on UML. 
+The language allows them to design the application in terms of abstraction that model the computational nodes of the application and the data sources providing input data.
+Based on the adopted technology, that will be used for the implementation of the final artifact, the language offers suitable stereotypes modeling the relevant technology-dependent features and that enable the analysis of the application design by means of the OSTIA verification tool.
+This work focuses on two specific technologies and, therefore, the UML abstractions are only limited to those required to model Apache Storm applications and Hadoop applications.
+Moreover, on the Developers side, the designers can use OSTIA to iteratively refine the model of their application by running the automatic analysis on different application models, that are possibly instantiated with different parameter values (e.g., the number of workers in a node running a certain functionality of the Storm topology).
+
+On the other hand, OSTIA  also participates to the DevOps cycle in the Operators side because it offers post-design analysis features.
+OSTIA, in fact, can be adopted by operators for the elicitation of the application architecture from its source code.
+In particular, a number of structural anti-pattern has been identified in this work as potential threats that might affect the performance of the application and even its correct behavior at runtime.
+OSTIA implements basic yet useful functionalities for static code analysis that can be used by designers and operators to discover possibly structural issues.
+The result of the analysis that OSTIA provides at this level is the application topology and the parts of the application that are likely to be a potential threat for the entire application. 
+Combining the application topology with runtime information, that can be collected by standard monitoring framework, the designers can actually enforce a refinement iteration on their design, in addition to the one performed at design time, that is based on realistic information coming from the real deployment of the application.
+This step might turn out in a refactoring of the deployed design into a new refined solution that, in turn, can be verified with the OSTIA verification tool, deployed and later analyzed with the same OSTIA functionalities.
+Figure~\ref{fig:iterative-refinement} shows the refinement loop which is enabled by OSTIA.
+\begin{figure}
+	\centering
+	\includegraphics[scale=0.35]{refinementMethodology.pdf}
+	\caption{Iterative refinement support by OSTIA.}
+	\label{fig:iterative-refinement}
+\end{figure}
+
+To make the OSTIA methodology a practice, the following activities reflected into the OSTIA tool.
+\begin{itemize}
+	\item \textbf{Architecture elicitation} - the static analysis of the source code of the application extracts its topology and made it available for later analysis.
+	\item \textbf{Structural anti-pattern identification} - standard algorithms for graph analysis (such as clustering) identify specific structures in the application topology that might lead to undesired behaviors.
+	\item \textbf{Formal analysis} - model-checking of the annotated model of the application verifies the existence of executions that might burden the application runtime with an excessive workload.
+\end{itemize}
+
+\noindent
+The previous tools can be used in the following scenarios.
+\begin{itemize}
+	\item \textbf{Architecture analysis}. A development team implements an application that has to satisfy certain requirements at runtime. OSTIA can be used to refine the application model before the implementation phase.
+	\item \textbf{DevOps}. As part of a DevOps pipeline dedicated to data-intensive solutions, OSTIA can be used for instrumenting the continuous refactoring of the data-intensive application by studying the application structure and the underlying topology to improve their operational characteristics.
+\end{itemize}
+}
+
+
+%\subsection{OSTIA-Based Verification By-Design}
+%This section elaborates on the ways in which OSTIA supports continuous
+%architecting. First, we elaborate on the anti-patterns supported in
+%OSTIA. Second, we elaborate on the algorithmic analyse-and-refactor actions that OSTIA can
+%apply to topologies to provide alternative visualisation and improved topology structure. Third, we discuss how
+%OSTIA suggests an alternative architecture to improve the system
+%performance. Finally, we elaborate on how OSTIA can drive continuous
+%improvement assisted by formal verification. All figures in these sections use a
+%simple graph-like notation where nodes may be any topological element (e.g.,
+%Spouts or Bolts in Apache Storm terms) while edges are directed data-flow
+%connections.
+
+\subsection{Topology Design Anti-Patterns Within OSTIA}\label{sec:anti-pattern}
+%\todoMB{inline}{Problema: dobbiamo giustificare perche' questi pattern sono potenzialmente dannosi.}
+This section elaborates on the anti-patterns we elicited (See Section \ref{ra}). These anti-patterns are elaborated further within OSTIA to allow for their detection during streaming topology inference analysis. Every pattern is elaborated using a simple graph-like notation where \emph{spouts} are nodes that have outgoing edges only whereas \emph{bolts} are nodes that can have either incoming or outgoing edges.
+
+\subsubsection{Multi-Anchoring}
+The Multi-Anchoring pattern is shown in Fig. \ref{fig:multi-anchoring1}. In order to guarantee fault-tolerant stream processing, tuples processed by bolts need to be anchored with the unique {\sf id} of the bolt and be passed to multiple acknowledgers (or ``ackers" in short) in the topology. In this way, ackers can keep track of tuples in the topology. Our practitioners agree that multiple ackers can indeed cause much overhead and influence the operational performance of the entire topology.
+%\emph{\bf TODO: what is the consequence of these anti-patterns? How does OSTIA detect?}
+%\emph{\bf Multi-anchoring is not supported at the moment. Besides, I am not sure it is an anti-patter but rather a design decision}
+
+%\begin{figure}[H]
+%	\begin{center}
+%		\includegraphics[width=2.5cm]{multi-anchoring}
+%		\caption{Multi-anchoring.}
+%		\label{fig:multi-anchoring}
+%	\end{center}
+%\end{figure}
+
+\begin{figure}
+\centering 
+\subfigure[Multi-anchoring.]{\includegraphics[width=3.5cm,draft]{fig2}}\caption{The multi-anchoring anti-pattern.}\label{fig:multi-anchoring1}
+%\hspace{1cm}
+\subfigure[Cycle-in.]{\includegraphics[width=2.25cm,draft]{fig3}}\caption{The cycle-in anti-pattern.}\label{fig:cycle1}
+\end{figure}
+
+
+\subsubsection{Cycle-in Topology}
+
+The Cycle-in pattern is shown in Fig. \ref{fig:cycle1}. Technically, it is possible to have cycle in Storm topologies. An infinite cycle of processing would create an infinite tuple tree and make it impossible for Storm to ever acknowledge spout emitted tuples. Therefore, cycles should be avoided or resulting tuple trees should be investigated additionally to make sure they terminate at some point and under a specified series of conditions (these conditions can be hardcoded in Bolt logic). The anti-pattern itself may lead to infrastructure overloading which in turn incurs in increased costs.
+%\emph{\bf A topology is already an infinite stream of tuple, the problem could be the overloading of some machines}
+%\emph{\bf At the cycle-detection is not supported (even if it is easy to implement)}
+
+%\begin{figure}[H]
+%	\begin{center}
+%		\includegraphics[width=2cm]{cycle}
+%		\caption{Cycle-in Topology.}
+%		\label{fig:cycle}
+%	\end{center}
+%\end{figure}
+
+\subsubsection{Persistent Data}
+
+The persistent data pattern is shown in Fig. \ref{fig:persistence}. This pattern covers the circumstance wherefore if two processing elements need to update a same entity in a storage, there should be a consistency mechanism in place. OSTIA offers limited support to this feature, which we plan to look into more carefully for future work. More details on this support are discussed in the approach limitations section.
+%\emph{\bf Ostia does not support this. BTW is this static analysis? if not, is it off-topic?}
+
+\begin{figure}
+	\begin{center}
+		\includegraphics[width=5cm,draft]{fig4}
+		\caption{Concurrency management in case of Persistent Data circumstances.}
+		\label{fig:persistence}
+	\end{center}
+\end{figure}
+
+
+\subsubsection{Computation Funnel}
+The computational funnel is shown in Fig. \ref{fig:funnel}. A computational funnel emerges when there is not a path from data source (spout) to the bolts that sends out the tuples off the topology to another topology through a messaging framework or through a storage. This circumstance should be dealt with since it may compromise the availability of results under the desired performance restrictions.
+
+\begin{figure}
+	\begin{center}
+		\includegraphics[width=6.5cm,draft]{fig5}
+		\caption{computation funnel.}
+		\label{fig:funnel}
+	\end{center}
+\end{figure}
+
+%\subsection{algorithmic analyse-and-refactor actions  on Stream Topologies}\label{algo}
+%
+%This section elaborates on the algorithmic analyse-and-refactor actions  supported by OSTIA using the common graph-like notation introduced previously. OSTIA currently supports two topology content analysis (see Sec. \ref{1} and \ref{2}) as well as two topology layout analyses (see Sec. \ref{3} and \ref{4}). Only a part of these analyses is currently implemented in OSTIA. We discuss approach limitations further in Sect. \ref{disc}.\todoMB{}{Frase critica critica da rev. Solo alcune sono implementate.}
+%
+%\subsubsection{Fan-in/Fan-out}\label{1}
+%
+%The Fan-in/Fan-out algorithmic analyse-and-refactor action is outlined in Fig. \ref{fig:fan}. For each element of the topology, fan-in is the number of incoming
+%streams. Conversely, fan-out is the number outgoing streams. In the case of
+%bolts, both in and out streams are internal to the topology. For Spouts,
+%incoming streams are the data sources of the topology (e.g., message brokers,
+%APIs, etc) which live outside of the topology.
+%
+%\begin{figure}
+%	\begin{center}
+%		\includegraphics[width=3cm]{fan-in-out}
+%		\caption{Fan-in fan-out in Stream topologies.}
+%		\label{fig:fan}
+%	\end{center}
+%\end{figure}
+%
+%This algorithmic analyse-and-refactor action allows to visualise instances where fan-in and fan-out numbers are differing.\todoMB{}{Solo visual quindi.}
+%
+%\subsubsection{Topology cascading}\label{2}
+%
+%The Cascading algorithmic analyse-and-refactor action is outlined in Fig. \ref{fig:cascading}. By topology cascading, we mean connecting two different Storm topologies via a messaging framework (e.g., Apache Kafka~\cite{kafka}).
+%%\footnote{\url{http://kafka.apache.org/}}). 
+%Although cascading may simplify the development of topologies by encouraging architecture elements' reuse especially for complex but procedural topologies, this circumstance may well raise the complexity of continuous architecting and may require separation of concerns \cite{soc}. For example, Fig. \ref{fig:cascading} outlines an instance in which two topologies are concatenated together by a message broker. In this instance, formal verification may be applied on the left-hand side topology, which is more business-critical, while the right-hand side of the entire topology is improved by on-the-fly OSTIA-based analysis. Even though OSTIA support for this feature is still limited, we report it nonetheless since OSTIA was engineered to address multiple topologies at once. 
+%%More details on this and similar limitations are discussed in Section \ref{lim}.
+%%\emph{\bf Ostia does not support this. I can't think of an easy way to implement it}
+%
+%\begin{figure}
+%	\begin{center}
+%		\includegraphics[width=6cm]{cascading}
+%		\caption{cascading.}
+%		\label{fig:cascading}
+%	\end{center}
+%\end{figure}
+%
+%This algorithmic action allows to combine multiple cascading topologies.\todoMB{}{Non mi e' chiaro cosa faccia questa azione? E' visuale?}
+
+%REMOVED MOVED TO CASE-STUDY ANALYSIS 
+%\subsubsection{Topology clustering}\label{3}
+%Topology clustering is outlined in Fig. \ref{fig:clustering}. Topology clustering implies identifying coupled processing elements (i.e., bolts and spouts) and cluster them together (e.g., by means of graph-based analysis) in a way that elements in a cluster have high cohesion and loose-coupling with elements in other clusters. Simple clustering or Social-Network Analysis mechanisms can be used to infer clusters. These clusters may require additional attention since they could turn out to become bottlenecks. Reasoning more deeply on clusters and their resolution may lead to establishing the Storm scheduling policy best-fitting with the application. We will elaborate on this in Section \ref{sec:performance-boosting}.
+%%\emph{\bf Does it relates with Storm scheduling?}
+%
+%\begin{figure}
+%	\begin{center}
+%		\includegraphics[width=6.5cm]{clustering}
+%		\caption{clustering.}
+%		\label{fig:clustering}
+%	\end{center}
+%\end{figure}
+
+
+%REMOVED MOVED TO CASE-STUDY ANALYSIS 
+%\subsubsection{Linearising a topology}\label{4}
+%
+%Topology linearisation is outlined in Fig. \ref{fig:linearizing}. Sorting the processing elements in a topology in a way that topology looks more linear, visually. This step ensures that visual investigation and evaluation of the structural complexity of the topology is possible by direct observation. It is sometimes essential to provide such a visualisation to evaluate how to refactor the topology as needed.
+
+%\begin{figure}
+%	\begin{center}
+%		\includegraphics[width=5cm]{linearizing}
+%		\caption{linearising.}
+%		\label{fig:linearizing}
+%	\end{center}
+%\end{figure}
+
+
+% SECTION HEURISTICS REMOVED FOR SAFETY REASONS
+%%%\subsection{Performance Improvement Heuristics}
+%%%\label{sec:performance-boosting}
+%%%In this section, we elaborate on a specific case where algorithmic analyse-and-refactor actions improve the performance of the data-intensive application. More in particular, big data architectures typically need parameters tuning to achieve best
+%%%performance. For instance, in Storm developers have to specify the parallelism
+%%%level for each node, which is the number of processes instantiated for a
+%%%particular bolt or spout. OSTIA provides suggestions on how to change the
+%%%parallelism level of the nodes, using simple and fast heuristics together with
+%%%static analysis.
+%%%
+%%%After architects designed a Storm application, a scheduler instantiates the
+%%%topology on a cluster of machines. The default scheduler utilises a round-robin
+%%%strategy to fairly load the machines with the bolts and spouts. This a crucial
+%%%assumption for the heuristic used in OSTIA to perform well. There are several
+%%%proposals in the state of the art to change the default scheduler logic in order to boost the performance of the topologies \cite{Aniello2013Adaptive, R-Storm2015Peng}. However, many DIA users typically prefer the default scheduler, while having the opportunity to tune the parameters automatically behind the scenes.
+%%%
+%%%The OSTIA heuristic works as follows: A DIA architect runs OSTIA specifying the
+%%%number of machines used in the deployment and the number of instances of spouts
+%%%and bolts that can be spawned in each machine. OSTIA statically analyses the
+%%%topology and extracts the parallelism level for each component of the
+%%%topology. At this point, we sum of all instances need to be allocated and the
+%%%slots available on the machines ($machines * components\_for\_each\_machine$).\todoMB{}{Qui mi sfugge il concetto di slot.}
+%%%
+%%%OSTIA decides whether improvements are possible (i.e. \emph{slots
+%%%  available} $>$ \emph{instances to be allocate}), and suggests changes to the
+%%%parallelism level to the nodes in order to improve the performance. The simplest
+%%%case occurs when the unallocated slots are enough to remove a machine from the
+%%%cluster, thus saving costs.
+%%%
+%%%Alternatively, OSTIA identifies a subset of nodes, called critical nodes, which
+%%%are important from a performance perspective. The critical nodes of a topology
+%%%are defined as the nodes with the highest \emph{weighted fan-in}. The
+%%%\emph{weighted fan-in} of a node \emph{N} is defined by Equation \ref{eq:wfi}.
+%%%
+%%%\begin{align}
+%%%  \text{weighted fan-in(N)} = \frac{\sum_{X \rightarrow N \in Edges} parallelism(X)}{parallelism(N)} \label{eq:wfi}
+%%%\end{align}
+%%%
+%%%The critical nodes could be easily susceptible to overloading as their
+%%%parallelism level do not compensate the parallelism level of its
+%%%\emph{in-nodes}. Increasing the parallelism level gives the nodes more resources
+%%%to cope with high loads.
+%%%
+%%%For instance, let us take Figure \ref{topo1} as an example. There are 22
+%%%components that need to be allocated.\todoMB{}{Forse e' meglio parlare di threads invece che components?} Suppose that our cluster is composed by 4
+%%%machines and each machine fits 10 instances of components. OSTIA in this case
+%%%would suggest to simply remove one machine. Let us suppose that we have 3
+%%%machines with 10 tasks each. At this point we have 30 slots available and 22
+%%%components, therefore we have 8 slots available that can be used to increase the
+%%%performance. In order to decide the components to improves we identify the ones
+%%%with maximum \emph{weighted fan-in}. In the example nodes \emph{mediaExtractor}
+%%%and \emph{articleExtractor} with \emph{weighted fan-in} of 8. Finally, since we
+%%%have 8 free slots to share between two nodes\todoMB{}{Nodi, bolts?} we increase the parallelism level
+%%%of the two critical nodes of $8/2 = 4$, setting it from 1 to 5.
+%%%
+%%%The above heuristic approach concludes the support that OSTIA offers to quickly and continuously improving streaming topologies by means of algorithmic evaluations and analysis. Conversely, as previously stated we learned from industrial practice that the need might rise for more formal guarantees, e.g., concerning some key parts of a streaming topology with respect to key big-data properties such as queue-boundedness - i.e., a guarantee that the queue for a certain bolt will always be bounded - or queue-population - i.e., a guarantee that the queue never contains privacy sensitive objects. In similar scenarios, OSTIA offers the seamless capability of running complex and exhaustive formal verification over analysed topologies. The next section elaborates further on this key support offered by OSTIA.
+
+
+\subsection{DOT format for topology elicitation.}
+
+{\color{blue}
+As previously stated, the OSTIA tool is rigged to elicit and represent Big Data topologies using the ``*.dot" format; the format in question is a de-facto and de-iure graph description language. DOT graphs are typically files with the file extension gv or dot. Paraphrasing from Wikipedia, \emph{``Various programs can process DOT files. Some, such as dot, neato, twopi, circo, fdp, and sfdp, can read a DOT file and render it in graphical form. Others, such as gvpr, gc, acyclic, ccomps, sccmap, and tred, read DOT files and perform calculations on the represented graph. Finally, others, such as lefty, dotty, and grappa, provide an interactive interface [...]"}. 
+A small excerpt of DOT code describing a graph with 4 nodes is the following:
+
+\begin{lstlisting}[basicstyle=\normalfont\ttfamily\small,tabsize=12,caption=DOT script describing an undirected graph N with four nodes.]
+  graph N {
+  	n1 -- n2 -- n3;
+ 	n2 -- n4;
+  } 
+\end{lstlisting}
+OSTIA uses the same approach as the aforementioned tools and instatiates the same design-patterns employed by the tools in question to enact formal-verification of data-intensive topologies.
+}
+%
+%\comment{PJ: Should we put this section into a separate section? I feel it is disconnected to the content of this section.}
+\subsection{OSTIA-Based Formal Verification}\label{ver}\label{verification}
+%\input{macros}
+
+\newcommand{\M}{\mathcal{M}}
+\newcommand{\timestr}{\mathcal{T}}
+
+\newcommand{\D}{\mathcal{D}}
+\newcommand{\C}{\mathcal{C}}
+
+%old, compatibility reasons
+\newcommand{\U}{\mathbf{U}}
+\newcommand{\Snc}{\mathbf{S}}
+\newcommand{\T}{\mathbf{T}}
+\newcommand{\R}{\mathbf{R}}
+
+\newcommand{\Nat}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Real}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+
+%old, compatibility reasons
+
+\newcommand{\X}[1]{\mathbf{X}\left(#1\right)}
+\newcommand{\Y}[1]{\mathbf{Y}\left(#1\right)}
+
+%\newcommand{\X}{\mathbf{X}}
+%\newcommand{\Y}{\mathbf{Y}}
+
+
+\newcommand{\Zed}{\mathbf{Z}}
+\newcommand{\Lng}{\mathscr {L}}
+\newcommand{\iFF}{\Leftrightarrow}
+\newcommand{\niFF}{\nLeftrightarrow}
+\newcommand{\SNC}{{\mathcal S}}
+\newcommand{\TRG}{{\mathcal T}}
+\newcommand{\zot}{$\mathds{Z}$ot}
+%old, compatibility reasons
+\newcommand{\G}[1]{\mathbf{G}\left(#1\right)}
+\newcommand{\F}[1]{\mathbf{F}\left(#1\right)}
+%\newcommand{\Q}{\mathbb{Q}}
+
+\newcommand{\triple}[3]{(#1, #2, #3)}
+\newcommand{\pair}[2]{(#1, #2)}
+\newcommand{\siff}{\Leftrightarrow}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\aX}{\mathrm{X}}
+\newcommand{\aY}{\mathrm{Y}}
+\newcommand{\x}{\mathbf{x}}
+\newcommand{\eqdef}{\stackrel{\mbox{\begin{tiny}def\end{tiny}}}{=}} % =def=
+\newcommand{\iFFdef}{\stackrel{\mbox{\begin{tiny}def\end{tiny}}}{\iFF}}
+% =def=
+\newcommand{\step}[1]{\xrightarrow{#1}}
+
+\newcommand{\pspace}{\textsc{PSpace}}
+
+
+\makeatletter
+\def\Eqlfill@{\arrowfill@\Relbar\Relbar\Relbar}
+\newcommand{\longmodels}[1][]{\,|\!\!\!\ext@arrow 0359\Eqlfill@{#1}}
+\makeatother
+
+\newcommand{\symodels}{\longmodels{\mbox{\it{\tiny sym}}}}
+
+\newcommand{\intervaLii}[2]{[#1,#2]}
+\newcommand{\intervaLie}[2]{[#1,#2)}
+\newcommand{\intervaLee}[2]{(#1,#2)}
+
+\newcommand{\interval}[2]{\langle #1,#2 \rangle}
+
+\newcommand{\set}[1]{\{ #1 \}}
+
+\newcommand{\tsys}[1]{\mathcal{S}(#1)}
+
+
+\newcommand{\lapp}[1]{\lfloor #1 \rfloor}
+\newcommand{\happ}[1]{\lceil #1 \rceil}
+
+
+\newcommand{\first}[2]{(H_{#1}\vee L_{#1}) \wedge(\neg(H_{#1}\vee L_{#1}) \Snc (#2))}
+
+\newcommand{\pname}[1]{\ensuremath{\textit{#1}}}
+\newcommand{\on}{\pname{on}}
+\newcommand{\off}{\pname{off}}
+\newcommand{\lon}{\pname{l}}
+\newcommand{\test}{\pname{test}}
+\newcommand{\resetc}{\pname{reset-c}}
+\newcommand{\turnoff}{\pname{turnoff}}
+
+
+
+
+\newcommand{\edge}[1]{\texttt{#1}}
+\newcommand{\enabled}[1]{\texttt{e}_{#1}}
+
+\newcommand{\visit}[1]{\mathit{visit}(#1)}
+\newcommand{\inv}[1]{\mathit{inv}(q_{#1})}
+
+
+\newcommand{\intg}[1]{\lfloor#1\rfloor}
+\newcommand{\fract}[1]{\mathit{frac(#1)}}
+
+
+
+%%%%%%%%%%%%%%% STORM MODEL COMMANDS
+
+
+\newcommand{\ori}{\mathtt{orig}}
+%commands with single parameter
+\newcommand{\p}[1]{\mathtt{process}_{#1}}
+\newcommand{\ta}[1]{\mathtt{take}_{#1}}
+\newcommand{\e}[1]{\mathtt{emit}_{#1}}
+\newcommand{\add}[1]{\mathtt{add}_{#1}}
+\newcommand{\f}[1]{\mathtt{fail}_{#1}}
+\newcommand{\buf}[1]{\mathtt{buffer}_{#1}}
+\newcommand{\startf}[1]{\mathtt{startFailure}_{#1}}
+\newcommand{\startid}[1]{\mathtt{startIdle}_{#1}}
+\newcommand{\id}[1]{\mathtt{idle}_{#1}}
+\newcommand{\cl}[1]{\mathtt{clock}_{#1}}
+\newcommand{\cltf}[1]{ \cl{to\f{#1}}}
+\newcommand{\ph}[1]{\mathtt{phase}_{#1}}
+
+%commands with two parameters (index, rate)
+\newcommand{\pr}[2]{\p{#1}(#2)}
+\newcommand{\tar}[2]{\ta{#1}(#2)}
+\newcommand{\er}[2]{\e{#1}(#2)}
+\newcommand{\addr}[2]{\add{#1}(#2)}
+\newcommand{\ra}[1]{r_{\add{#1}}}
+\newcommand{\rp}[1]{r_{\p{#1}}}
+\newcommand{\re}[1]{r_{\e{#1}}}
+\newcommand{\rt}[1]{r_{\ta{#1}}}
+\newcommand{\rf}[1]{r_{\mathtt{failure}_{#1}}}
+\newcommand{\rff}[2]{r_{\mathtt{failure}_{#1#2}}}
+\newcommand{\rr}[1]{r_{\mathtt{replay}_{#1}}}
+\newcommand{\reb}[1]{\bar{r}_{\e{#1}}}
+\newcommand{\rth}[1]{\hat{r}_{\ta{#1}}}
+\newcommand{\reh}[1]{\hat{r}_{\e{#1}}}
+
+\newcommand{\tph}[2]{t_{\ph{#1}}^{#2} }
+
+	
+
+This section describes the formal modelling and verification employed in OSTIA. Our assumption for DIA refactoring is that architects eliciting and studying their topologies by means of OSTIA may want to continuously and incrementally improve it based on results from solid verification approaches. The approach, which was first proposed in \cite{MBER16}, relies on \textit{satisfiability checking}~\cite{MPS13}, an alternative approach to model-checking where, instead of an operational model (like automata or transition systems), the system (i.e., a topology in this context) is specified by a formula defining its executions over time and properties are verified by proving that the system logically entails them.
+
+%The logic we use is Constraint LTL over clocks 
+CLTLoc is a real-time temporal logic and, in particular, a semantic restriction of Constraint LTL (CLTL)~\cite{DD07} allowing atomic formulae over $(\mathbb{R}, \set{<,=})$ where the arithmetical variables behave like clocks of Timed Automata (TA)~\cite{timed}.
+As for TA, clocks measures time delays between events: a clock $x$ measures the time elapsed since the last time when $x=0$ held, i.e., since the last ``reset'' of $x$.
+Clocks are interpreted over Reals and their value can be tested with respect to a positive integer value or reset to 0.
+%
+To analyse anomalous executions of Storm topologies which do not preserve the queue-length boundedness property for the nodes of the application, we consider CLTLoc with counters.
+Counters are discrete non-negative variables that are used in our model to represent the length of bolt queues over the time throughout the streaming processing realized by the application.
+Let $X$ be a finite set of clock variables $x$ over $\Real$, $Y$ be a finite set of variables over $\Nat$ and $AP$ be a finite set of atomic propositions $p$.
+CLTLoc formulae with counters are defined as follows:
+\begin{equation*}%\small
+  \phi :=
+  \begin{gathered}
+    p \mid x\sim c \mid y\sim c\mid \aX y\sim z\pm c \mid\phi \wedge \phi \mid \neg \phi \mid \\
+       \X{\phi} \mid \Y{\phi} %\mid \Zed\phi
+\mid \phi\U\phi \mid \phi\Snc\phi
+  \end{gathered}
+\end{equation*}
+where $x \in X$, $y,z \in Y$, $c \in \Nat$ and 
+$\sim \in \set{<,=}$, $\mathbf{X}$, $\mathbf{Y}$, $\U$ and $\Snc$ are the
+usual ``next'', ``previous'', ``until'' and ``since''.
+%The semantics of CLTLoc is defined with respect to $(\Real, \set{<,=})$ and $\pair{\Nat}{<}$, the latter representing positions in time.
+A \textit{model} is a pair $\pair{\pi}{\sigma}$, where $\sigma$ is a mapping associating every variable $x$ and position in $\Nat$ with value $\sigma(i,x)$ and $\pi$ is a mapping associating each position in $\Nat$ with subset of $AP$. 
+The semantics of CLTLoc is defined as for LTL except for formulae $x\sim c$ and $\aX y \sim z\pm c$. 
+%At position $i\in\Nat$, $ \pair{\pi}{\sigma}, i \models x\sim c \textbf{ iff }  \sigma(i, x)\sim c$ and $\pair{\pi}{\sigma}, i \models \aX y\sim z \pm c \textbf{ iff }  \sigma(i+1, z) \sim \sigma(i,z) \pm c$.
+Intuitively, formula $x\sim c$ states that the value of clock $x$ is $\sim$ than/to $c$ and formula $\aX y \sim z\pm c$ states that the next value of variable $y$ is $\sim$ to/than $z+c$.
+
+The standard technique to prove the satisfiability of CLTL and CLTLoc formulae is based on of B\"uchi automata \cite{DD07,BRS15} %the evidence has turned out that it may be rather expensive in practice, even in the case of LTL (the size of the automaton is exponential with respect to the size of the formula).
+but, for practical implementation, Bounded Satisfiability Checking (BSC)~\cite{MPS13} avoids the onerous construction of automata by means of a reduction to a decidable Satisfiability Modulo Theory (SMT) problem~\cite{BRS15}.
+%By unrolling the semantics of a formula for a finite number $k>0$ of steps, 
+The outcome of a BSC problem is either an infinite ultimately periodic model or unsat.
+%\cite{BRS15} shows that BSC for CLTLoc is complete and that is reducible to a decidable Satisfiability Modulo Theory (SMT) problem. 
+%A CLTLoc formula can be translated into the decidable theory of quantifier-free formulae with equality and uninterpreted functions combined with the theory of Reals over $(\Real,<)$. %, written QF-EUF$(\Real,<)$.
+
+CLTLoc allows the specification of non-deterministic models using temporal constraints wherein clock variables range over a dense domain and whose value is not abstracted.
+Clock variables represent, in the logical language and with the same precision, physical (dense) clocks implemented in real architectures.
+%They appear in formulae in the form $x \sim c$ to express a bound $c$ on the delay measured by clock $x$. 
+Clocks are associated with specific events to measure time elapsing over the executions.
+As they are reset when the associated event occurs, in any moment, the clock value represents the time elapsed since the previous reset and corresponds to the elapsed time since the last occurrence of the event associated to it.
+We use such constraints to define, for instance, the time delay required to process tuples or between two node failures.\\
+
+%Modeling topologies requires to express by formulae emitting rates which measure the number of tuples emitted by a spout node per time unit.
+%***TBC
+
+%\input{verification}
+
+%Verification techinques:
+%\begin{itemize}
+%\item Safety Verification
+%\item Performance analysis	
+%\end{itemize}
+%A \textit{safety} property is intuitively defined in the formal verification context as a property stating that something ``bad'' will \textit{never} happen during execution.\cite{lamport1}
+%Cassical examples of safety properties are deadlock freedom and mutual exclusion, where the ``bad'' behaviour is respectively the deadlock occurrence and the simultaneous execution of a critical section.
+%One of the most important requirements for streaming systems is guaranteeing low latency while maintaining high throughput. 
+%In a distributed  --> Motivare questione delle code!
+%
+
+%
+%\subsection{Storm Formal Model}
+%\label{sec:storm-model}
+%To perform our verification tasks we defined a formal model expressed in CLTLoc with discrete variables. The resulting model is a non-deterministic infinite state system.
+
+% MOVED BEFORE
+%%%\subsubsection{OSTIA Models: a Formal Interpretation}
+%%%We started by understanding and capturing the behaviors of both spouts and bolts. 
+%%%After choosing the level of abstraction of our model we simplified those behaviors accordingly, in order to formalize them as finite state machines. The purpose of this first activity was to define the possible operations and the allowed orderings of such operations.
+%%%We then extended the model by taking into account the message buffers (or queues) and the quantity of tuples that are exchanged through the topology.
+%%%In addition to the correct ordering of the operations, we decided to introduce more specific temporal constraints into the model, in order to limit the time spent by the system in each state (or processing phase) and to elaborate the concept of \textit{rate}, intended as ``number of times an event is occurring every time unit''.\\
+
+%\subsubsection{Assumptions and  level of abstraction}
+%We made several assumptions and abstractions while building the model:
+
+Building on top of the above framework, in \cite{MBER16} we provide a formal interpretation of the Storm (meta-)model which requires several abstractions and assumptions.
+
+%For example, some deployment details, such as the number of worker nodes and features of the underlying cluster, are abstracted away. 
+%There is a single queuing layer: every bolt has a unique incoming queue and no sending queue, while the worker queues are not represented. In the same way, each bolt/spout has a single output stream.
+%Moreover, the content of messages is not relevant: all the tuples have the same fixed size and we represent only quantity of tuples moving through the system.
+
+
+\begin{itemize}
+	\item key deployment details, e.g., the number of worker nodes and features of the underlying cluster, are abstracted away;
+	\item each bolt/spout has a single output stream;
+	\item %we simplified the message buffer system, assuming that 
+	there is a single queuing layer: every bolt has a unique incoming queue and no sending queue, while the worker queues are not represented;
+	\item every operation is performed within minimum and maximum thresholds of time;
+	\item %we do not take into account 
+	the content of the messages is not relevant: all the tuples have the same fixed size and we represent only quantity of tuples moving through the system;
+\end{itemize}
+
+%\subsubsection{Model Formalization}
+A Storm Topology is a directed graph $\mathbf{G} = \{ \mathbf{N}, Sub\}$ where the set of nodes $\mathbf{N} = \mathbf{S}\bigcup \mathbf{B}$ includes in the sets of spouts (\textbf{S}) and bolts (\textbf{B}) and %the set of edges $\mathbf{E} = \{ Sub_{i,j} | i \in \mathbf{B}, j \in \{\mathbf{S}\bigcup \mathbf{B}\} \}$ 
+$Sub\subset\mathbf{N}\times\mathbf{N}$ defines how the nodes are connected each other via the subscription relation. Pair $(i,j)\in Sub$ indicates that ``bolt $i$ subscribes to the streams emitted by the spout/bolt $j$''. 
+Spouts cannot subscribe to other nodes in the topology.
+Each bolt has a receive queue where the incoming tuples are collected before being read and processed. % by the node.
+The queues have infinite size and the level of occupation of each $j^{th}$ queue is described by the variable $q_j$. %\footnote{Spouts have no queues, by definition.}
+Spouts have no queues, and 
+each spout can either \textit{emit} tuples into the topology or stay \emph{idle}.
+Each bolt can be in \emph{idle} state, in \emph{failure} state or in  \emph{processing} state.  While in the processing state, the bolt first reads tuples from its receive queue (\textit{take} action), then it performs its transformation (\textit{execute} action) and finally it \textit{emits} the output tuples in its output streams. \\
+\begin{figure}[tb]
+\centering
+\includegraphics[width=0.5\linewidth,draft]{fig6}
+\caption{Finite state automaton describing bolt states.}
+\label{figure-fsa}
+\end{figure}
+
+%\begin{figure}
+%	\centering	
+%	\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.5cm,semithick, every node/.style={scale=0.55}]
+%	
+%	\tikzstyle{every state}=[fill=white,text=black,minimum width={width("execute")+10pt}]
+%	
+%	
+%	\node[state]            (I) {$idle$};  
+%	\node[state]         (T) [above right of=I] {$take$};  
+%	\node[state]         (E) [right of=T] {$execute$};
+%	\node[state]         (F) [below right of=I] {$fail$};
+%	\node[state]         (EM) [right of=F] {$emit$};
+%	
+%	\path (I) edge              node {} (T)
+%	edge              node {} (F)
+%	edge [loop above]  node {} (I)
+%	(E) edge [loop right] node {} (E)
+%	edge              node {} (EM)
+%	(T) edge              node {} (E)
+%	edge              node {} (F)
+%	(EM) edge             node {} (I)
+%	edge              node {} (F)
+%	(F) edge [loop below]  node {} (F);
+%	edge [bend right]  node {} (I);
+%	\end{tikzpicture}
+%	\caption{Finite state automaton describing bolt states.}
+%	\label{figure-fsa}
+%\end{figure}
+%To give an idea about how the model is formalized, 
+An excerpt of the full model designed in \cite{MBER16} is shown in Fig. \ref{figure-fsa}.
+We provide, as an example, one of the formulae defining the processing state. Formula \ref{formula:1} can be read as \textit{``for all bolts: if a bolt j is processing tuples, then it has been processing tuples since it took those tuples from the queue, (or since the origin of the events), and it will keep processing those tuples until it will either emit them or fail. Moreover, the bolt is not in a failure state''.}
+\begin{align}
+\small
+%
+\bigwedge_{
+	i \in \mathbf{B} } 
+\left( 
+\begin{array}{l}
+\p{i} \Rightarrow \\
+\p{i} \, \Snc \, ( \ta{i} \lor (\ori \land \p{i})) \land \\
+\p{i} \, \U \, (\e{i} \lor \f{i}) \land \lnot \f{i} 
+\end{array}
+\right) \label{formula:1} 
+%
+\end{align}
+The number of tuples emitted by a bolt depends on the number of incoming tuples. The ratio $\frac{\#output\_tuples}{\#input\_tuples}$ %is used to 
+expresses the ``kind of function''  performed by the bolt and is given as configuration parameter. 
+All the emitted tuples are then added to the receive queues of the bolts subscribing to the emitting nodes.
+In the same way, whenever a bolt reads tuples from the queue, the number of elements in queue decreases. To this end, formula \ref{formula:2}, imposes that \textit{``if a bolt takes elements from its queue, the number of queued elements in the next time instant will be equal to the current number of elements plus the quantity of tuples being added (emitted) from other connectd nodes minus the quantity of tuples being read''.}
+\begin{align}\small
+%
+\bigwedge_{
+	\begin{subarray}{c}
+	\,j \in B
+	\end{subarray}
+} &( \ta{j}{}  \Rightarrow (\aX q_j = q_j + \ra{j} - \rt{j} )) \label{formula:2}
+%
+\end{align}
+These functional constraints are fixed for all the nodes and they are not configurable.
+%What is configurable and can be tuned changing the parameters of the model is everything concerning 
+The structure of the topology, the parallelism level of each node, the bolt function and the non-functional requirements, as, for example, the time needed for a bolt in order to process a tuple, the minimum and maximum time between failures and the spout emitting rate are configurable parameters of the model.
+Currently, the verification tool accepts %as configuration format 
+a JSON file containing all the configuration parameters.
+OSTIA supports such format and is able to extract from static code analysis a partial set of features, and an almost complete set of parameters after monitoring a short run of the system. The user can complete the JSON file by adding some verification-specific settings.
+
+{\color{blue}
+\subsection{JSON format for verification.}
+Listing~\ref{lst:json-format} shows an excerpt of a JSON script describing a topology including two spouts, called $\mathtt{S}_1$ and $\mathtt{S}_2$, and three bolts, called called $\mathtt{B}_1$, $\mathtt{S}_2$ and $\mathtt{S}_3$.
+Spouts and bolts are modeled by means of a number of parameters that represent an abstraction of their (non-functional) behavior at runtime.
+The JSON format is a readable means that captures all the needed information,  required to run the verification, that are classified into three distinct groups.
+A list of the main ones is included hereafter.
+\begin{itemize}
+	\item Topology-related settings:
+	\begin{itemize}
+		\item list of spouts:
+		\begin{itemize}
+			\item \texttt{emit\_rate}: spout average tuple emitting rate.
+		\end{itemize}
+		\item list of bolts:
+		\begin{itemize}
+			\item \texttt{subs}: the list of all the nodes in the topology that send tuple to the bolt.
+			\item \texttt{parallelism}: level of parallelism chosen for the bolt. This value can be extracted from the code implementing Storm topology or set at design time.
+			\item \texttt{alpha}: average processing time for the single tuple.
+			\item \texttt{sigma}: ration between number of output tuples and number of input tuples. This value is an abstraction of the functionality carried out by the bolt: values smaller than one model filtering functions whereas value greater than one model other generic function on input tuples.
+			%\item \texttt{min\_ttf}: minimum time to failure
+		\end{itemize}
+		\item structure of the topology, expressed through the combination of the subscription lists (``\texttt{subs}'') of all the bolts composing the topology.
+		\item \texttt{queue\_threshold}: the maximum level of occupancy that should not be exceeded by any queue. This value is extracted from the code implementing Storm topology or set at design time.
+		\item \texttt{max\_idle\_time}: the maximum time for a bolt to be inactive.
+	\end{itemize}
+	\item Verification-related settings: the information in this section does not model the topology itself but actually relates to the analysis that is run on the topology. 
+	\begin{itemize}
+		\item \texttt{num\_steps}: being the verification engine implemented according to the bounded model-checking approach, the value specifies the number of discrete time instants to be explored in the verification phase.
+		\item \texttt{periodic\_queues}: the list of bolts whose queue size is analyzed. The verification procedure determines the existence of a system execution that leads to and increasing queue size for the bolts specified in the list.	
+		\item \texttt{plugin}: underlying model-checker to be used.
+	\end{itemize}
+\end{itemize}
+
+\begin{lstlisting}[basicstyle=\normalfont\ttfamily\small,tabsize=12,caption=JSON script describing a simple topology. Dots are used as abbreviations.]
+{
+ "app_name": "Simple Topology",
+ "description": "",
+ "version": "0.1",
+ "topology":{
+	"spouts":[
+	            {"id":"S1",
+	            "avg_emit_rate":2.0},
+	            {"id":"S2",
+	            "avg_emit_rate":1.0}
+	         ],
+	"bolts":[
+	            {"id": "B1",
+	            ...},
+	            {"id": "B2",
+	            "subs": ["S1", "S2"],
+	            "alpha": 5.0,
+	            "sigma": 0.5,
+	            "min_ttf": 1000,
+	            "parallelism": 10},
+	            {"id": "B3",
+	            ...}
+	        ],
+	"max_idle_time": 0.01,
+	"queue_threshold": 2000
+ },
+ "verification_params":{
+            "plugin" : ...,
+            "max_time" :  ...,
+            "num_steps": ...,
+            "periodic_queues":["B1"]}
+ }
+\end{lstlisting}\label{lst:json-format}
+}
+
+
+
+
 
 \section{Results}
 \label{eval}
-\input{eval}
+%\input{eval}
+
+
+%\textbf{@Marcello,Francesco: we should also probably elaborate on the kind of verification technique we are using and how that can help in evaluating the topology.. remember here we do not have the DICE restriction so we can mention any kind of analysis that it would be possible to run, also analyses that are currently in the hands of other DICE partners!!}
+
+%\begin{itemize}
+%\item we can use the ATC case study as much as we want - that yields already three topologies that we can infer
+%\item ATC has agreed that we can mention their role in this exercise, I also showed them the topology that we elicited basically with OSTIA and they already made considerations on how to improve it
+%\item in the evaluation we should also comment on how OSTIA can help you in visualizing the application topology that you may be considering to use by reusing a big-data application for something else... visualising the application topology and analysing it may allow you to improve it while you are using it as a starting point for your application
+%\item another application that we can use is the one that NETF is considering for their own scenario, KILLRWEATHER - \url{https://github.com/killrweather/killrweather}
+%\item any additional case that we can run?
+%\item what do the results show? do we have a way to quickly quantify the time that is saved by using this approach? e.g., the time that is saved in setting up and running the infrastructure and how much would that time saved have costed these could be valuable evaluation insights
+%\end{itemize}
+We evaluated OSTIA through qualitative evaluation and case-study research featuring an open-/closed-source industrial case study (see Section \ref{cs}) and two open-source case studies (see Section \ref{os}) on which we also applied OSTIA-based formal verification and refactoring (see Section \ref{ver}). The objective of the evaluation was two-fold:
+\begin{enumerate}
+\item[OBJ.1] Evaluate the occurrence of anti-patterns evidenced by our practitioners in both open- and closed-source DIAs;
+\item[OBJ.2] understand whether OSTIA-based analyses aid in refactoring towards formally-verified DIA topologies \emph{by-design};
+\end{enumerate}
+
+\subsection{Establishing Anti-Patterns Occurrence with Case-Study Research: 3 Cases from Industry}\label{cs}
+
+%As previously introduced in Section \ref{ra}, 
+OSTIA was evaluated using 3 medium/large topologies (11+ elements) part of the SocialSensor App. Our industrial partner is having
+performance and availability outages connected to currently unknown
+circumstances. Therefore, the objective of our evaluation for OSTIA was twofold:
+(a) allow our industrial partner to enact architecture refactoring of their
+application with the goal of discovering any patterns or hotspots that may be
+requiring further architectural reasoning; (b) understand whether OSTIA provided
+valuable feedback helping designers in tuning their application through a design-and-refactor loop.%to endure the continuous architecting exercise.
+
+
+In addition to formal verification, specific algorithms for graph analysis can be integrated in OSTIA to offer a deeper insight of the applications.
+For instance, the industrial case study has been analyzed with two algorithms to identify linear sequences of nodes and clusters in the topology graph.
+Topology linearisation results in sorting the processing elements in a topology in a way that topology looks more linear, visually. 
+This step ensures that visual investigation and evaluation of the structural complexity of the topology is possible by direct observation. 
+Topology clustering implies identifying coupled processing elements (i.e., bolts and spouts) and cluster them together (e.g., by means of graph-based analysis) in a way that elements in a cluster have high cohesion and loose-coupling with elements in other clusters. 
+Simple clustering or Social-Network Analysis mechanisms can be used to infer clusters. 
+Clusters may require, in general, additional attention since they could turn out to become bottlenecks. 
+Reasoning more deeply on clusters and their resolution may lead to establishing the Storm scheduling policy best-fitting with the application.
+
+
+OSTIA standard output\footnote{Output of OSTIA analyses is not shown fully for the
+sake of space.} for the smallest of the three SocialSensor topologies, namely
+the ``focused-crawler" topology, is outlined in Fig. \ref{topo1}.
+
+\begin{figure*}
+\begin{center}
+		\includegraphics[width=11cm,draft]{fig7}
+		\caption{SocialSensor App, OSTIA sample output partially linearised (top) and cascaded (bottom left and right).}
+		\label{topo1}
+		\end{center}
+\end{figure*}
+
+
+
+%OSTIA has been proved particularly helpful in visualising the complex topologytogether with the parallelism level of each components. 
+
+
+%REMOVED MOVED TO CASE-STUDY ANALYSIS 
+%\subsubsection{Topology clustering}\label{3}
+%Topology clustering is outlined in Fig. \ref{fig:clustering}. Topology clustering implies identifying coupled processing elements (i.e., bolts and spouts) and cluster them together (e.g., by means of graph-based analysis) in a way that elements in a cluster have high cohesion and loose-coupling with elements in other clusters. Simple clustering or Social-Network Analysis mechanisms can be used to infer clusters. These clusters may require additional attention since they could turn out to become bottlenecks. Reasoning more deeply on clusters and their resolution may lead to establishing the Storm scheduling policy best-fitting with the application. We will elaborate on this in Section \ref{sec:performance-boosting}.
+%%\emph{\bf Does it relates with Storm scheduling?}
+%
+%\begin{figure}
+%	\begin{center}
+%		\includegraphics[width=6.5cm]{clustering}
+%		\caption{clustering.}
+%		\label{fig:clustering}
+%	\end{center}
+%\end{figure}
+
+
+%REMOVED MOVED TO CASE-STUDY ANALYSIS 
+%\subsubsection{Linearising a topology}\label{4}
+%
+%Topology linearisation is outlined in Fig. \ref{fig:linearizing}. Sorting the processing elements in a topology in a way that topology looks more linear, visually. This step ensures that visual investigation and evaluation of the structural complexity of the topology is possible by direct observation. It is sometimes essential to provide such a visualisation to evaluate how to refactor the topology as needed.
+
+%\begin{figure}
+%	\begin{center}
+%		\includegraphics[width=5cm]{linearizing}
+%		\caption{linearising.}
+%		\label{fig:linearizing}
+%	\end{center}
+%\end{figure}
+
+
+
+Combining this
+information with runtime data (i.e., latency times) our industrial partner observed
+that the ``expander" bolt needed additional architectural reasoning. More in particular, the bolt in question concentrates a lot of the topology's progress on its queue, greatly hampering the topology's scalability. In our partner's scenario, the limited scalability was blocking the expansion of the topology in question with more data sources and sinks.
+In addition, the partner welcomed the idea of using OSTIA as a mechanism to enact the refactoring of the topology in question as part of the needed architectural
+reasoning.
+%\comment{for example? elaborate more on this. the reviewers will likely say its vague...}
+
+%Besides this pattern-based evaluation and assessment, OSTIA algorithmic analyses\todoMB{}{Non mi è chiaro quali siano le analisi oltre ai pattern...}
+OSTIA assisted our client in understanding that the topological structure of the
+SocialSensor app would be better fit for batch processing rather than streaming,
+since the partner observed autonomously that too many database-output spouts and
+bolts were used in their versions of the SocialSensor topologies. In so doing,
+the partner is now using OSTIA to drive the refactoring exercise towards a
+Hadoop Map Reduce~\cite{hadoop}
+%\footnote{\url{http://hadoop.apache.org/}} 
+framework for batch processing.
+
+%\comment{this section is not good enough, we require to add more information, for example what would be the target architecture after refactoring looks like? we said some patters were idenfitified but we didnt say details of continuous rearchitecting...and also formal verification process for this}
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=8cm,draft]{fig8}
+		\caption{Industrial case-study, a refactored architecture.}
+		\label{atc}
+		\end{center}
+\end{figure}
+
+As a followup of our analysis, our partner is refactoring his own high-level software architecture adopting a lambda-like software architecture style \cite{lambda} (see Fig. \ref{atc}) which includes the Social-Sensor App (Top of Fig. \ref{atc}) as well as several additional computation components. In summary, the refactoring resulting from OSTIA-based analysis equated to deferring part of the computations originally intended in the expander bolt within the Social Sensor app to additional ad-hoc Hadoop Map Reduce jobs with similar purpose (e.g., the EntityExtractor compute node in Fig. \ref{atc}) and intents but batched out of the topological processing in Storm (see Fig. \ref{atc})\footnote{several other overburdened topological elements were refactored but were omitted here due to industrial secrecy}. 
+
+Our qualitative evaluation of the refactored architecture by means of several interviews and workshops revealed very encouraging results. 
+%However, we are yet to quantitatively evaluate whether the new software architecture actually reflects a tangible boost in terms of performance and scalability.\todoMB{}{Azz...pesante questa...}
+
+\subsection{Establishing Anti-Patterns Occurrence with Case-Study Research: 3 Cases from Open-Source}\label{os}
+
+To confirm the usefulness and capacity of OSTIA to enact a refactoring cycle, we applied it in understanding (first) and attempting
+improvements of two open-source applications, namely, the previously introduced
+DigitalPebble~\cite{digitalpebble} and 
+%\footnote{\url{https://github.com/DigitalPebble}} and
+StormCV~\cite{stormCV}
+%\footnote{\url{https://github.com/sensorstorm/StormCV}}
+applications. Figures \ref{dp} and \ref{scv} outline standard OSTIA output for the two applications. Note that we did not have any prior knowledge concerning the two applications in question and we merely run OSTIA on the applications' codebase dump in our own experimental machine. OSTIA output takes mere seconds for small to medium-sized topologies (e.g., around 25 nodes). 
+%
+\begin{figure}
+\begin{center}
+\includegraphics[width=4cm,draft]{fig9}
+		\caption{StormCV topology (linearised).}
+		\label{scv}
+		\end{center}
+\end{figure}
+%%%%
+%%%%\begin{figure}
+%%%%\label{fig:oscasestudy}
+%%%%\centering 
+%%%%\subfigure[{\footnotesize DigitalPebble topology.}]{\includegraphics[width=4.5cm]{output/crawl}}\label{dp}
+%%%%\hspace{0.5cm}
+%%%%\subfigure[{\footnotesize StormCV topology.}]{\includegraphics[width=3cm]{output/senti_storm}}\label{scv}
+%%%%\end{figure}
+
+The OSTIA output aided as follows: (a) the output summarised in Fig. \ref{dp}
+allowed us to immediately grasp the functional behavior of the DigitalPebble and
+StormCV topologies allowing us to interpret correctly their operations before
+reading long documentation or inspecting the code; (b) OSTIA aided us in visually interpreting the complexity of the applications at hand; (c) OSTIA allowed us to spot several anti-patterns in the DigitalPebble Storm application around the ``sitemap" and ``parse" bolts, namely, a multiple cascading instance of the multi-anchoring pattern and a persistent-data pattern. Finally, OSTIA aided in the identification of the computational funnel anti-pattern around the "status" bolt closing the DigitalPebble topology. With this evaluation at hand, developers in the respective communities of DigitalPebble and StormCV could refactor their topologies, e.g., aided by OSTIA-based formal verification that proves the negative effects of said anti-patterns.
+
+\begin{framed}
+\textbf{Summary for Obj 1.} The patterns we elicited thanks to focus-groups in industry indeed have an actual recurrent manifestation in both industry and open-source. OSTIA-based analysis can support reasoning and potential refactoring of the proposed anti-patterns.
+\end{framed}
+%
+%\comment{this section needs further elaboration. we need to elaborate our discussion to visually locate these anti patterns.}
+% \comment{you said first, where is the second? this is incomplete}
+%
+%\begin{figure}
+%\begin{center}
+%		\includegraphics[width=2.7cm]{}
+%		\caption{}
+%		\label{scv}
+%\end{center}
+%\end{figure}
+
+\subsection{OSTIA-based Formal Verification and Refactoring}
+
+In this section we outline the results from OSTIA-based formal verification applied on (one of) the topologies used by our industrial partner in practice. 
+Results provide valuable insights for improving these topologies through refactoring.
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=6cm,draft]{fig10}
+		\caption{DigitalPebble topology.}
+		\label{dp}
+		\end{center}
+\end{figure}
+The formal analysis of the ``focused-crawler'' topology confirmed the critical role of the ``expander'' bolt, previously noticed with the aim of OSTIA visual output. It emerged from the output traces that there exists an execution of the system, even without failures, where the queue occupation level of the bolt is unbounded. Figure~\ref{verif-trace} shows how the tool constructed a periodic model in which a suffix (highlighted by the gray background) of a finite sequence of events is repeated infinitely many times after a prefix (on white background). After ensuring that the trace is not a spurious model, we concluded that the expander queue, having an increasing trend in the suffix, is unbounded. 
+As shown in the the output trace at the bottom of Fig.~\ref{verif-trace}, further analyses on the DigitalPebble use case revealed that the same problem affects the ``status'' bolt of the DigitalPebble topology. This finding from the formal verification tool reinforced the outcome of the anti-pattern module of OSTIA, showing how the presence of the computational funnel anti-pattern could lead to an unbounded growth in the queue of the ``status'' bolt.
+These types of heavyweight and powerful analyses are made easier by OSTIA in that our tool provides a ready-made analyzable models of the topologies making almost invisible the formal verification layer (other than manually setting and tuning operational parameters for verification). %on top of which OSTIA support is harnessed.
+%
+%\comment{discuss thge benefit of this, was it possible without formal verification?  elaborate more}
+% alternative
+%This feedback persuaded to 
+
+\begin{figure}
+\centering
+\includegraphics[width=1\linewidth,draft]{fig11}
+\caption{OSTIA-based formal verification output traces showing the evolution of the two bolts over time. Queue trends are displayed as solid black line. Dashed lines show the processing activity of the bolts, while the other lines illustrate the incoming tuples from the subscribed nodes (\texttt{emit} events).}
+\label{verif-trace}
+\end{figure}
+
+
+\begin{framed}
+\textbf{Summary for Obj 2.} OSTIA-based formal verification effectively evaluates the safety of DIAs focusing on their design-time representation; further investigation of the generalisability of this approach towards runtime is needed to scope the extent to which OSTIA offers support for continuous evolution.
+\end{framed}
+
+
 
 \section{Discussion}
 \label{disc}
-\input{disc}
+%\input{disc}
+
+This section discusses some findings and the limitations of OSTIA.
+
+\subsection{Findings and Observations}
+
+OSTIA represents one humble, but significant step at supporting practically the necessities behind developing and maintaining high-quality big-data application architectures. In designing and developing OSTIA we encountered a number of insights that may aid application refactoring.
+
+First, we found (and observed in industrial practice) that it is often common to develop ``runnable" architecture topology that will undergo for refactoring even after the deployment phase and  while the application is running.
+%than improving the topology at design time for a tentatively perfect execution. 
+This is mostly the case with big-data applications that are developed stemming from previously existing topologies or applications. OSTIA hardcodes this way of thinking by supporting reverse-engineering and recovery of deployed topologies for their incremental improvement. Such improvement is helpful because 
+%these topologies running continuously on rented clusters and 
+the refactoring can help in boosting the application, that therefore require less resources and less cost for the rented clusters. Although we did not carry out extensive qualitative or quantitative evaluation of OSTIA in this regard, we are planning additional industrial experiments for future work with the goal of increasing OSTIA usability and practical quality.
+
+Second, big-data applications design is an extremely young and emerging field for which not many software design patterns have been discovered yet. The (anti-)patterns and approaches currently hardcoded into OSTIA are inherited from related fields, e.g., pattern- and cluster-based graph analysis. Nevertheless, OSTIA may also be used to investigate the existence of recurrent and effective design solutions (i.e., design patterns) for the benefit of big-data application design. We are improving OSTIA in this regard by experimenting on two fronts: (a) re-design and extend the facilities with which OSTIA supports anti-pattern detection; (b) run OSTIA on multiple big-data applications stemming from multiple technologies beyond Storm (e.g., Apache Spark, Hadoop Map Reduce, etc.) with the purpose of finding recurrent patterns. A similar approach may feature OSTIA as part of architecture trade-off analysis campaigns \cite{atam}.
+
+Third, a step which is currently undersupported during big-data applications design is devising an efficient algorithmic breakdown of a workflow into an efficient topology. Conversely, OSTIA does support the linearisation and combination of multiple topologies, e.g., into a cascade. Cascading and similar super-structures may be an interesting investigation venue since they may reveal more efficient styles for big-data architectures beyond styles such as Lambda Architecture \cite{lambda} and Microservices \cite{balalaie2016microservices}. OSTIA may aid in this investigation by allowing the interactive and incremental improvement of multiple (combinations of) topologies together.
+
+\subsection{Approach Limitations and Threats to Validity}\label{lim}
+
+Although OSTIA shows promise both conceptually and as a practical tool, it shows several limitations.
+
+First of all, OSTIA only supports only a limited set of DIA middleware technologies. Multiple other big-data frameworks such as Apache Spark, Samza, exist to support both streaming and batch processing. 
+
+Second, OSTIA only allows to recover and evaluate previously-existing topologies, its usage is limited to design improvement and refactoring phases rather than design. Although this limitation may inhibit practitioners from using our technology, the (anti-)patterns and algorithmic approaches elaborated in this paper help designers and implementors to develop the reasonably good-quality and ``quick" topologies upon which to use OSTIA for continuous improvement.
+
+Third, OSTIA does offer essential insights to aid deployment as well (e.g., separating or \emph{clustering} complex portions of a topology so that they may run on dedicated infrastructure) and therefore the tool may serve for the additional purpose of aiding deployment design. However, our tool was not designed to be used as a system that aids deployment planning and infrastructure design. Further research should be invested into combining on-the-fly technology such as OSTIA with more powerful solvers that determine infrastructure configuration details and similar technological tuning, e.g., the works by Peng et Al. \cite{PengGWRYC14} and similar.
+%Rather, as specified previously in the introduction, OSTIA was meant to evaluate and increase the quality of topologies \emph{before} they enter into operation since the continuous improvement cycles connected to operating the topology and learning from operation are often costly and still greatly inefficient. \comment{but we provided evidences that we exploit the operation data for formal verification and performance improvements. this paragraph is a bit vague, please edit}
+
+%Fourth, although we were able to discover a number of recurrent anti-patterns to be applied during OSTIA analysis, we were not able to implement all of them in practice and in a manner which allows to spot both the anti-pattern and any problems connected with it. \todoMB{}{Rev ha probabilmente frainteso e ci ha cazziato.}For example, detecting the ``Cycle-in topology" is already possible, however, OSTIA would not allow designers to understand the consequence of the anti-pattern, i.e., where in the infrastructure do the cycles cause troubles. Also, there are several features that are currently under implementation but not released within the OSTIA codebase, for example, the ``Persistent Data" and the ``Topology Cascading" features.\todoMB{}{Altra critica da rev...implementazione parziale.}
+
+In the future we plan to tackle the above limitations furthering our understanding of streaming design as well as the support OSTIA offers to designers during the refactoring process.
+
+
 
 \section{Related Work}
 \label{rw}
-\input{rw}
+%\input{rw}
+
+%\begin{itemize}
+%\item mention DICE
+%\item mention work by Len Bass on Big-Data
+%\item other stuff on big data?
+%\item feel free to extend this section with Previous work of course :)
+%\end{itemize}
+
+The work behind OSTIA stems from the EU H2020 Project called DICE~\cite{dice2020}
+%\footnote{\url{http://www.dice-h2020.eu/}} 
+where we are investigating the use of model-driven facilities to support the design and quality enhancement of big data applications. Much similarly to the DICE effort, the IBM Stream Processing Language (SPL) initiative \cite{ibmspl} provides an implementation language specific to programming streams management (e.g., Storm jobs) and related reactive systems. In addition, there are several work close to OSTIA in terms of their foundations and type of support, e.g., works focusing on distilling and analysing big data topologies \emph{by-design}~\cite{SNASEL2017286}, as also highlighted in recent research by Kalantari et al. \cite{Kalantari2017}. 
+
+First, from a non-functional perspective, much literature discusses quality analyses of Big Data topologies, e.g., from a performance~\cite{perfbd} or reliability point of view \cite{bigdatareliab}. Existing work use complex math-based approaches to evaluating a number of big data architectures, their structure and general configuration. However, these approaches do not suggest any architecture refactorings. With OSTIA, we automatically elicits a Storm topology, analyses the topologies against a number of consistency constraints that make the topology consistent with the framework. To the best of our knowledge, no such tool exists to date. Furthermore, as highlighted by Olshannikova et al. \cite{Olshannikova2015} the few works existing on big data processes and their visualization highlight a considerable shortcoming in tools and technologies to visualize and interact with data-intensive models at runtime \cite{Olshannikova2015}.
+
+Second, from a modelling perspective, approaches such as StormGen~\cite{stormgen} offer means to develop Storm topologies in a model-driven fashion using a combination of generative techniques based on XText and heavyweight (meta-)modelling, based on EMF, the standard Eclipse Modelling Framework Format. Although the first of its kind, StormGen merely allows the specification of a Storm topology, without applying any consistency checks or without offering the possibility to \emph{recover} said topology once it has been developed. By means of OSTIA, designers can work refining their Storm topologies, e.g., as a consequence of verification or failed checks through OSTIA. Tools such as StormGen can be used to assist preliminary development of quick-and-dirty topologies.
+%Fourth, from a verification perspective, no previous effort tried yet to combine formal verification and architectural modelling of streaming topologies. Our attempt serves as a first rudimentary effort towards using complex and valuable verification approaches in combination with lightweight and agile DevOps inspired tools and approaches.
+%%...\\
+%%\textbf{@Marcello,Francesco: here we should probably elaborate on what kind of verification approach we are using and what other verifications may be done, e.g., using some related work at this point... e.g., is there any other verification attempt considering JSON as an interchange format? I would discuss these and compare them to OSTIA as a whole}
+%=======
+%\textbf{@Marcello,Francesco: here we should probably elaborate on what kind of verification approach we are using and what other verifications may be done, e.g., using some related work at this point... e.g., is there any other verification attempt considering JSON as an interchange format? I would discuss these and compare them to OSTIA as a whole}\\
+
+Third, from a verification perspective, to the best of our knowledge, this represents the first attempt to build a formal model representing Storm topologies, and the first try in making a configurable model aiming at running verification tasks of non-functional properties for big data applications. While some works concentrate on exploiting big data technologies to speedup verification tasks~\cite{camilli2014}, others focus on the formalization of the specific framework, but remain application-independent, and their goal is rather to verify properties of the framework, such as reliability and load balancing~\cite{dicomputational}, or the validity of the messaging flow in MapReduce~\cite{yang2010formalizing}.
+%\footnote{The Authors' work is partially supported by the European Commission grant no. 644869 (EU H2020), DICE. Also, Damian's work is partially supported by the European Commission grant no. 610531 (FP7 ICT Call 10), SeaClouds.}.
+%
+%.
+%
+%Finally, several deployment modelling technologies may be related to OSTIA since their role is to model the deployment structure for Big data architectures such as in Celar\footnote{\url{https://github.com/CELAR/c-Eclipse}}, that is, a deployment modelling technology based on the TOSCA OASIS Standard\footnote{\url{https://www.oasis-open.org/apps/org/workgroup/tosca/}}. Celar may be used together with OSTIA In a scenario where OSTIA helps architecture refinement in function of infrastructure needs/requirements
+
 
 \section{Conclusion}
-\input{conc}
+%\input{conc}
 \label{conc}
+
+%Applications that make heavy use of big data application frameworks require intensive reasoning of the system architecture. 
+%We set out to assist the design-time formal verification of big data designs by 
+
+This paper proposes an approach allowing designers and developers to perform analysis of big-data applications by means of code analysis and formal verification techniques.
+OSTIA provides support to both in the following sense:
+%It provides automated constraint verification in order to identify design anti-patterns and provide structural refactorings. 
+it helps designers and developers by recovering the architectural topology on-the-fly from the application code and by assisting them in: 
+(a) reasoning on the topological structure and how to refine it; 
+(b) exporting the topological structure consistently with restrictions of their reference development framework so that further analysis (e.g., formal verification) may ensue. In addition, while performing on-the-fly architecture recovery, the analyses focuses on checking for the compliance to essential consistency rules specific to targeted big data frameworks. 
+(c) Finally, OSTIA allows designers to check whether the recovered topologies contain occurrences of key anti-patterns. By running a case-study with partner organizations, we observed that OSTIA assists designers and developers in establishing and continuously improving the quality of topologies behind their big data applications. 
+%We confirmed this result running OSTIA on several open-source applications featuring streaming technologies.  % \url{https://github.com/maelstromdat/OSTIA}. 
+
+OSTIA can be easily extended to provide more refined tools for the analysis of data-intensive applications as it is general in the approach and modular with respect to the definition of (i) the anti-patterns to be considered and (ii) the formal analysis approaches and the application modeling to be adopted.
+For this reason, in addition to the practical evidence observed,  we believe that OSTIA can be considered as a reference point in the development of data-intensive applications.
+This motivates us to further elaborate the anti-patterns, 
+%that may emerge across big data topologies 
+exploiting graphs analysis techniques inherited from social-networks analysis. Also, we plan to expand OSTIA to support technologies beyond the most common application framework for streaming %, i.e., Storm. 
+and, finally, to further evaluate OSTIA using empirical evaluation.
+
+%{\small\subsubsection*{Acknowledgment} The Authors' work is partially supported by the European Commission grant no. 644869 (EU H2020), DICE.}
+
+%{\small\subsubsection*{Appendix} Please follow the link to navigate to the appendices: \url{http://tinyurl.com/zco4sdz}.}
 
 \section{List of abbreviations}
 All the abbreviation occurring in the work are listed here in the order of appearance.
@@ -243,7 +1481,7 @@ The authors declare that they have no competing interests
 \medskip
 \noindent
 \textbf{Funding}.
-The work is supported by the European Commission grant no. 644869 (H2020), DICE, the European Commission grant no. 0421 (Interreg ICT), Werkinzicht and the European Commission grant no. 787061 (H2020), ANITA.
+The work is supported by the European Commission grant no. 0421 (Interreg ICT), Werkinzicht and the European Commission grant no. 787061 (H2020), ANITA.
 
 \medskip
 \noindent
